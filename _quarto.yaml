@@ -6,7 +6,7 @@ lang: es
 
 book:
   title: "Bitácoras Grupo #1, CA-204 (II-2024)"
-  author: "José Carlos Quintero Cedeño, Diego Alberto Vega Víquez"
+  author: "José Carlos Quintero Cedeño, Diego Alberto Vega Víquez" 
   date: today
   site-url: google.com # Vacío por el momento
   chapters:
