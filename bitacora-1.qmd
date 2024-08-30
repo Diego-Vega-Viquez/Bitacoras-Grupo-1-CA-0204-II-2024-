@@ -44,14 +44,14 @@ Contexto espacial y temporal: Los resultados pueden verse influenciados por el c
 
   <!-- Inicializar itemizador -->
 
-¿Qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y como pueden estas variables reflejar las desigualdades en la distribución de ingreso en Costa Rica?
+ - ¿Qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y como pueden estas variables reflejar las desigualdades en la distribución de ingreso en Costa Rica?
 
-¿En qué medida el logro educativo contribuye a la movilidad económica de las personas y a la superación de la pobreza en Costa Rica?
+ - ¿En qué medida el logro educativo contribuye a la movilidad económica de las personas y a la superación de la pobreza en Costa Rica?
 
-¿Qué factores externos pueden modificar o mediar la relación entre nivel educativo y condición socioeconómica en Costa Rica?
+ - ¿Qué factores externos pueden modificar o mediar la relación entre nivel educativo y condición socioeconómica en Costa Rica?
 
-¿Cómo afecta la precisión de los datos recolectados en encuestas nacionales la interpretación de la relación entre nivel educativo y condición socioeconómica en Costa Rica?
-
+ - ¿Cómo afecta la precisión de los datos recolectados en encuestas nacionales la interpretación de la relación entre nivel educativo y condición socioeconómica en Costa Rica?
+ 
   <!-- Teriminar itemizador -->
 
 ### Argumentación de las preguntas
