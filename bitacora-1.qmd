@@ -40,4 +40,13 @@ Contexto espacial y temporal: Los resultados pueden verse influenciados por el c
 
   <!-- Teriminar itemizador -->
 
+### Reformulación de la idea en modo preguntas
+
+  <!-- Inicializar itemizador -->
+
+¿Qué factores externos pueden modificar o mediar la relación entre nivel educativo y condición socioeconómica en Costa Rica?
+
+¿Cómo afecta la precisión de los datos recolectados en encuestas nacionales la interpretación de la relación entre nivel educativo y condición socioeconómica en Costa Rica?
+
+  <!-- Teriminar itemizador -->
 
