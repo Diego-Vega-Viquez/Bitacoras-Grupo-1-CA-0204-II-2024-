@@ -180,11 +180,17 @@ Además, datos imprecisos pueden llevar a la difusión de narrativas inexactas s
   
   **Lógica**
   
+La precisión de los datos recolectados en encuestas nacionales es esencial para entender la relación entre las variables de manera adecuada. Datos precisos permiten realizar análisis más exactos y confiables, lo cual es crucial para identificar patrones reales y establecer correlaciones significativas. Además, contar con datos precisos facilita la comparación a lo largo del tiempo y entre diferentes grupos demográficos, lo que permite un análisis más detallado y la identificación de tendencias.
+  
   **Ética**
+  
+Asegurarse de que los datos sean precisos implica un compromiso con la transparencia y la responsabilidad, lo cual es esencial para mantener la confianza del público en los resultados del análisis. Además, la precisión en la recolección de datos respeta los derechos de los participantes, ya que se asegura que su información se utiliza de manera adecuada y se representa fielmente. Esto no solo es importante para la validez de los resultados, sino también para proteger la dignidad y los derechos de los individuos que contribuyen con su información personal.
   
   **Emocional**
   
+Asegurar la precisión en los datos recolectados puede generar una mayor confianza en las encuestas nacionales y en las instituciones que las realizan. Las personas son más propensas a participar en estudios y proporcionar datos precisos cuando confían en que su información será utilizada de manera correcta y con respeto a su privacidad.
+  
   **Concluya**
   
-    
+Para analizar cómo la precisión de los datos recolectados en encuestas nacionales afecta la interpretación de la relación entre nivel educativo y condición socioeconómica en Costa Rica, es esencial garantizar la calidad y precisión de la recolección de datos. Esto requiere no solo metodologías rigurosas y herramientas adecuadas, sino también un enfoque ético que respete los derechos de los participantes y utilice los datos de manera responsable. Un análisis basado en datos precisos permitirá conclusiones más válidas y justas, lo que es crucial para desarrollar políticas públicas que aborden efectivamente las desigualdades en la educación y la distribución de ingresos en el país.
   
