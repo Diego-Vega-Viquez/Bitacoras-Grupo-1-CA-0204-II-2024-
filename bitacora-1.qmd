@@ -54,3 +54,32 @@ Contexto espacial y temporal: Los resultados pueden verse influenciados por el c
 
   <!-- Teriminar itemizador -->
 
+### Argumentación de las preguntas
+
+  Pregunta: ¿Qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y como pueden estas variables reflejar las desigualdades en la distribución de ingreso en Costa Rica?
+  
+ **Contraargumentos**
+  
+  **Logica**
+
+  La pregunta sugiere que la condición socioeconómica está estrechamente relacionada con el nivel educativo de una persona. La condición socioeconómica de un individuo es más compleja que eso, y no solo se ve determinada por la educación. Sería imprudente dejar de lado factores como el contexto económico local, la estabilidad política del país, las políticas que se implementan en materias de empleo y protección social, la experiencia laboral, y los contactos que pueden llegar a tener una persona, pues estos también influyen en gran medida en la determinación del ingreso y la condición socioeconómica de un individuo.
+                        
+  Asimismo, el hecho de que el enfoque se haga sobre el nivel educativo puede opacar el papel de las habilidades especificas o técnicas que no requieren educación formal, las cuales pueden incluso llegar a ser más relevantes y lucrativas, como, por ejemplo, en el caso de las personas que aprenden a programar a través de internet, las cuales pueden llegar a obtener muy buenos puestos de trabajo sin necesariamente tener un título universitario.
+                        
+  En esta misma línea, otro determinante que puede verse opacado por el nivel educativo es la experiencia práctica en un campo laboral específico; en diferentes contextos, las empresas pueden valorar la experiencia laboral y las habilidades adquiridas a lo largo del tiempo por encima del nivel educativo formal. Por ejemplo, una persona con 5 años de experiencia en un oficio puede ganar más y tener más oportunidades de conseguir empleo que alguien recién graduado de la universidad.
+  
+  *Ética*
+  
+  Se podría perpetuar la idea de que las personas solo pueden esperar a tener una mejor calidad de vida si se empeñan a tener una buena educación, lo cual minimizaría la influencia de factores sistémicos como la discriminación y la falta de acceso a recursos y oportunidades.
+                        
+  Desde un punto de vista político, enfocarse únicamente en el nivel educativo puede desviar la atención de la responsabilidad de políticas públicas en crear condiciones de acceso a recursos y empleo; esto podría percibirse como una sobre simplificación de problemas estructurales que van más allá del sistema educativo.
+                        
+  Finalmente, el hecho de potencialmente tomar como referencia estudios que relacionan educación y condición socioeconómica en otros países podría sesgar la presente investigación, pues estas fuentes podrían estar orientadas a sociedades y mercados laborales específicos, los cuales pueden divergir significativamente de la realidad costarricense.
+  
+  *Emocional*
+  
+  A la hora de intentar establecer un vínculo entre el nivel educativo y la condición socioeconómica, se pueden llegar a “menospreciar” aquellas personas que han logrado alcanzar una condición económica favorable mediante habilidades emprendedoras y aprovechamiento de oportunidades únicas, sin necesariamente tener un nivel educativo alto.
+                        
+  Además, la experiencia y el conocimiento en áreas que por lo general no son reconocidas en términos académicos, como la agricultura, el comercio local y los servicios manuales, son altamente valorados y pueden llegar a proporcionarle a una persona estabilidad y acceso a recursos para su desarrollo pleno y el de su familia.
+  
+  
