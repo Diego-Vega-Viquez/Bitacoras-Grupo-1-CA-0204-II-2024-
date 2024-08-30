@@ -2,9 +2,42 @@
 
 ## Parte de planificación
 
-## Definición de la idea
+### Definición de la idea
 
-## Pregunta
+  Analizar la forma en la que el nivel educativo de un individuo influye en su condición socioeconómica, explorando la relación entre la educación, la situación económica, las características sociodemográficas y otros factores relevantes para comprender su impacto en la calidad de vida.
 
- [@mitchell].
+### Conceptualización de la idea
+
+<!-- Inicializar itemizador -->
+
+Nivel educativo: El nivel educativo hace referencia al grado de         instrucción alcanzado por un individuo dentro del sistema educativo formal. Este indicador es crucial para analizar las oportunidades económicas, el acceso a mejores condiciones de vida, y la capacidad de los individuos para salir de la pobreza. En el contexto socioeconómico, un mayor nivel educativo está generalmente asociado con un incremento en la productividad, ingresos más altos y, por ende, una mejora en la calidad de vida. <!-- agregar cita  -->
+
+  Condición socioeconómica:
+            
+  Educación:
+            
+  Situación económica:
+            
+  Características sociodemográficas:
+            
+  Calidad de vida:
+  
+  <!-- Teriminar itemizador -->
+
+### Identificación de tensiones
+
+  Entre las principales tensiones identificadas en nuestra idea para el     proyecto de análisis, se encuentran:
+  
+  <!-- Se entiende "tensiones" como los obstáculos, desafíos o contradicciones que pueden surgir durante el proceso de investigación. -->
+  
+<!-- Inicializar itemizador -->
+
+Imprecisión de los datos: La base de datos se basa en una encuesta nacional, lo que puede llevar a casos en los que algunos encuestados no respondieron o lo hicieron incorrectamente. Esto puede afectar el análisis y llevar a conclusiones erróneas.
+             
+Sesgos en los datos: La hipótesis sobre la relación entre nivel educativo y condición socioeconómica podría verse afectada por sesgos en los datos. Es posible que ciertas variables no tengan una relación de causa y efecto directa, sino que puedan estar influenciadas por factores externos no considerados.
+            
+Contexto espacial y temporal: Los resultados pueden verse influenciados por el contexto geográfico y cultural del país en el que se realizó la encuesta, así como por el momento en que se llevó a cabo. Estos factores pueden afectar la relevancia y aplicabilidad de los hallazgos.
+
+  <!-- Teriminar itemizador -->
+
 
