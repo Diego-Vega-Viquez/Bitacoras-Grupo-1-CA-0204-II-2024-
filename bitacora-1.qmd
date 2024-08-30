@@ -103,3 +103,28 @@
   *Concluya*
   
   Para investigar la relación entre el nivel educativo y la condición socioeconómica, resulta imprescindible tener claro que la educación es uno de muchos factores que influyen en la condición socioeconómica de un individuo. El desarrollo de esta pregunta debe involucrar procesos de medición sólidos y fundamentos teóricos bien establecidos, al igual que fuentes de información confiables para que el análisis de datos sea lo más apegado a la realidad, y un enfoque que llegue a retratar la importancia de la educación en la construcción de una sociedad más igualitaria y próspera.
+  
+  Pregunta: ¿Qué factores externos pueden modificar o mediar la relación entre nivel educativo y condición socioeconómica en Costa Rica?
+  
+  **Contraargumentos**
+  
+  **Lógica**
+
+Aunque el nivel educativo es un factor importante en la determinación de la condición socioeconómica, existen múltiples factores externos que pueden modificar o mediar esta relación. Por ejemplo, la economía global, la estabilidad política del país y las políticas públicas en materia de empleo y bienestar social juegan un rol crucial en la creación de oportunidades laborales y, por tanto, en la condición socioeconómica. Además, la discriminación y las barreras estructurales pueden limitar las oportunidades para ciertas personas, independientemente de su nivel educativo. 
+    
+Las características sociodemográficas, como el lugar de residencia (urbano o rural), la etnia, y el género, también pueden influir en la medida en que la educación impacta en la condición socioeconómica. Por ejemplo, una persona educada en una zona rural con pocas oportunidades laborales podría no experimentar el mismo nivel de beneficios económicos que alguien con el mismo nivel educativo en una ciudad con un mercado laboral más desarrollado. 
+    
+Por último, la situación familiar y el capital social de una persona también pueden mediar esta relación, ya que personas con acceso a redes de apoyo y recursos adicionales pueden tener mejores oportunidades de aplicar su educación para mejorar su condición socioeconómica.
+
+**Ética**
+
+El enfoque exclusivo en la educación como determinante de la condición socioeconómica podría llevar a una subestimación de otros factores sistémicos que perpetúan la desigualdad, como la discriminación estructural, el acceso desigual a oportunidades laborales, y las condiciones macroeconómicas que afectan el empleo. Ignorar estos factores podría perpetuar una narrativa simplista que responsabiliza únicamente a los individuos por su situación económica.
+    
+Además, la utilización de datos que no tengan en cuenta estas variables externas podría llevar a conclusiones sesgadas. Es crucial asegurarse de que los análisis incluyan una amplia gama de factores externos para evitar la simplificación excesiva y para promover un análisis más justo y equilibrado.
+
+**Emocional**
+
+Enfocarse únicamente en la educación como la clave para mejorar la condición socioeconómica podría desmoralizar a aquellos que, a pesar de tener una buena educación, enfrentan barreras significativas debido a factores externos, como la discriminación o la falta de oportunidades laborales en su región. Esta perspectiva puede llevar a la frustración y a la sensación de que, a pesar de los esfuerzos educativos, no se pueden superar ciertas limitaciones impuestas por la sociedad o el entorno económico.
+    
+Por otro lado, reconocer la influencia de factores externos en la relación entre educación y condición socioeconómica podría ayudar a generar empatía y un entendimiento más profundo de las desigualdades existentes, lo que podría motivar acciones más inclusivas y enfocadas en la equidad social.
+  
