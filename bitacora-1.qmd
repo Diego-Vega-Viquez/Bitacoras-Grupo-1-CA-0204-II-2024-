@@ -104,6 +104,47 @@
   
   Para investigar la relación entre el nivel educativo y la condición socioeconómica, resulta imprescindible tener claro que la educación es uno de muchos factores que influyen en la condición socioeconómica de un individuo. El desarrollo de esta pregunta debe involucrar procesos de medición sólidos y fundamentos teóricos bien establecidos, al igual que fuentes de información confiables para que el análisis de datos sea lo más apegado a la realidad, y un enfoque que llegue a retratar la importancia de la educación en la construcción de una sociedad más igualitaria y próspera.
   
+  Pregunta: ¿En qué medida el logro educativo contribuye a la movilidad económica de las personas y a la superación de la pobreza en Costa Rica?
+  
+  **Contraargumentos**
+  
+  **Lógica**
+  
+  La pregunta pretende cuantificar la medida en que la educación influye en la movilidad económica de las personas, lo cual puede ser difícil de conseguir, pues, por ejemplo, un año más de educación no necesariamente se traduce en un aumento determinado de la calidad de vida de una persona. 
+  
+  Asimismo, las condiciones que hacen que un individuo sea propenso a caer en la pobreza son diversas, por lo cual atribuirle una “cantidad de crédito” a la educación podría resultar ser complejo en el proceso de análisis de los datos, pues es difícil ver si la razón por la cual un individuo supera o no condiciones de pobreza es por un mejor logro educativo o por otros factores que están en juego.
+  
+  Finalmente, otro problema que surge es ver si la educación es la que promueve la movilidad económica de las personas, o bien si la movilidad económica de las personas está vinculada con un mayor logro educativo. 
+  
+  **Ética**
+  
+  La utilización de un repositorio relacionado con temas educativos y sociodemográficos que no utilice una muestra lo suficientemente grande podría conducir a una mala representación del estado de la educación en Costa Rica en cierto momento, lo que provocaría a su vez un análisis erróneo de la situación.
+  
+  **Emocional**
+  
+  Las diversas instituciones educativas en Costa Rica pueden ofrecer una calidad de educación que varía considerablemente, lo que puede llevar a la omisión de aspectos cualitativos importantes al vincular la educación con la movilidad económica de las personas. En otras palabras, es posible que, por ejemplo, al considerar diferentes colegios que se enfoquen en la formación de estudiantes en un mismo ámbito (académico, técnico, científico), algunos cuenten con mejores infraestructuras y recursos, ofreciendo así una preparación más completa y robusta. Esta disparidad puede influir significativamente en las oportunidades económicas futuras de los estudiantes, y el hecho de que se omitan estos aspectos podría generar una perspectiva deformada de lo que necesariamente debe mejorarse para propiciar la movilidad económica. 
+  
+  **Argumentos**
+  
+  **Lógica**
+  
+  A través del uso de metodologías que hagan uso de datos cuantitativos y cualitativos, así como la obtención de datos que midan el nivel educativo y socioeconómico de una persona desde múltiples aristas, es posible garantizar que las mediciones sean lo más precisas, en aras de llegar a un análisis más aplicable a la realidad.
+  
+  Asimismo, se podría hacer el estudio con base en teorías y principios previamente trabajadas para fundamentar de una manera más objetiva las causas de la movilidad económica de las personas y la medida en que la educación incide en este proceso.
+
+  **Ética**
+  
+  Como se afirmó en el punto anterior, es importante que se utilice una base de datos lo suficientemente extensa, que mida una cantidad significativamente grande de variables, para poder captar el aspecto multidimensional que rodea a la pobreza, y a las probabilidades de superarla.
+  
+  **Emocional**
+  
+  El uso de datos que reflejen el verdadero estado de la educación en Costa Rica y su vínculo con la movilidad económica podría dar paso a un estudio que motive a las personas a aspirar a un mayor nivel educativo para mejorar su calidad de vida. 
+  
+	Además, apelar a la educación como una posible solución para superar la pobreza puede conducir a la sociedad costarricense a implementar mejores políticas educativas, enfocadas en dar apoyo a las personas más vulnerables del país.
+
+  **Concluya**
+  La propuesta para cuantificar la medida en la cual la educación contribuye a la movilidad económica de las personas y a la superación de la pobreza debe ser un proceso que incluya métodos que midan el nivel educativo y la condición socioeconómica de un individuo desde múltiples aristas, además de que debería estar basado en teorías previamente establecidas. Todo esto a través de una recolección extensa de datos, que reflejen adecuadamente la realidad del país y motiven a un sentimiento de responsabilidad colectiva en la población. Esto permitiría llegar a una cuantificación precisa de la importancia de la educación en el proceso de movilidad económica en Costa Rica.
+  
   Pregunta: ¿Qué factores externos pueden modificar o mediar la relación entre nivel educativo y condición socioeconómica en Costa Rica?
   
   **Contraargumentos**
