@@ -231,6 +231,17 @@ Asegurar la precisión en los datos recolectados puede generar una mayor confian
   
 Para analizar cómo la precisión de los datos recolectados en encuestas nacionales afecta la interpretación de la relación entre nivel educativo y condición socioeconómica en Costa Rica, es esencial garantizar la calidad y precisión de la recolección de datos. Esto requiere no solo metodologías rigurosas y herramientas adecuadas, sino también un enfoque ético que respete los derechos de los participantes y utilice los datos de manera responsable. Un análisis basado en datos precisos permitirá conclusiones más válidas y justas, lo que es crucial para desarrollar políticas públicas que aborden efectivamente las desigualdades en la educación y la distribución de ingresos en el país.
 
+### Argumentación a través de datos
+
+  Para el presente proyecto se hará uso de la base de datos de la Encuesta Nacional de Hogares de Costa Rica del 2023 realizada por el INEC. Esta encierra información de un grupo de viviendas seleccionadas en Costa Rica, así como la información de todos los hogares y personas que residen en estas; en particular, presenta más de 30000 casos, y mide alrededor de 590 variables. 
+  
+	Todas estas variables se pueden dividir en diferentes apartados, los cuales aportan diferentes enfoques que pueden ser de utilidad para el presente estudio. 
+El primero alude a las variables de identificación, como zona y región de planificación. Estas variables son importantes para poder realizar un estudio comparativo por localización geográfica, de manera que podrían valorarse las disparidades en acceso a la educación en diferentes regiones. 
+
+  El segundo se refiere a las características sociodemográficas de la muestra, donde se miden variables a nivel hogar, vivienda y por persona. Entre las más relevantes para este estudio, se destacan las relacionadas con el tema educativo por persona, como la asistencia a la educación formal, el último año aprobado, el tipo de centro educativo al que asiste o asistió, la universidad pública a la que asiste o asistió, el nivel de instrucción, los años de escolaridad, los años de rezago escolar, la formación educativa formal, el título que posee, motivos de no asistencia a la educación formal, incentivos para la educación, si recibe o no beca, etc. Evaluar estas variables con respecto a la condición económica de las personas podría ayudar a revelar la relación entre educación y pobreza.
+  
+  El tercero contiene variables referentes a la condición económica, como la condición de actividad (empleado, desempleado, fuera de la fuerza de trabajo), y el ingreso principal y secundario, medido ya sea de forma bruta o neta. Como se mencionó anteriormente, es importante tener presentes estos datos a la hora de determinar cómo incide el desarrollo educativo de un individuo en su condición económica.
+
 ### Fichas de literatura
 
 **Título: Una aproximación empírica a la relación entre educacion y pobreza**
@@ -262,7 +273,6 @@ Para analizar cómo la precisión de los datos recolectados en encuestas naciona
 -	Argumento central: el hecho de completar la secundaria contribuye a disminuir la probabilidad de caer en pobreza, y el grado de disminución aumenta si se alcanza una educación postsecundaria.
 -	Problemas con el argumento o tema: el porcentaje de reducción porcentual de dicha probabilidad no permite ver si el impacto de la educación es alto o bajo, puesto que es una cifra relativa que depende de la tasa de pobreza que haya en un momento dado.
 -	Resumen en un párrafo: El estudio toma a la población de entre 25 y 60 años de la ENAHO 2013 y los divide en dos grupos: personas que completaron secundaria y personas que adquirieron un mayor nivel educativo. Se analizan características personales, de vivienda y del hogar de cada individuo; esto para determinar, a través de estimaciones realizadas por un modelo Probit (el cual se emplea por lo general para medir la relación entre variables dicotómicas), se logra medir la correlación de cada característica con el nivel educativo. A partir de estas cifras, se estima el impacto de la educación en la pobreza: se concluye que alcanzar la secundaria completa reduce las probabilidades de caer en pobreza en un 5,7%, mientras que la posibilidad de obtener estudios postsecundarios la reduce en 8,4%.
-
 
 
 
