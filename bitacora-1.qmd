@@ -4,7 +4,7 @@
 
 ### Definición de la idea
 
-  Analizar la forma en la que el nivel educativo de un individuo influye en su condición socioeconómica, explorando la relación entre la educación, la situación económica, las características sociodemográficas y otros factores relevantes para comprender su impacto en la calidad de vida.
+  Analizar la forma en la que el nivel educativo de un individuo influye en su condición socioeconómica, explorando la relación entre la educación, la situación económica, las características sociodemográficas y otros factores relevantes para comprender su impacto en la calidad de vida. 
 
 ### Conceptualización de la idea
 
@@ -247,6 +247,22 @@ Para analizar cómo la precisión de los datos recolectados en encuestas naciona
 -	Argumento Central: la educacion y la condición socioeconómica de una persona actúan una sobre la otra recíprocamente.
 -	Problemas con el argumento o tema: Se parte desde el punto de vista de que la educación influye en gran medida en la condición de pobreza de una persona, pero después se reconoce que la condición socioeconómica del individuo influye significativamente en el acceso a la educación, por lo que no se puede establecer un vínculo unidireccional.
 -	Resumen en un párrafo: A partir de la utilización de un modelo Logit de elección múltiple y modelos de ecuaciones estructurales, los investigadores lograron vislumbrar el tipo de relación que existe entre las variables de pobreza y educacion (así como el tamaño del hogar). Se argumenta que esta se basa en una dinámica de reciprocidad, en donde la pobreza afecta a la educacion y la educacion a la pobreza. Asimismo, se utiliza la teoría del capital humano (la cual sugiere que la educacion, por sus efectos sobre la productividad y el nivel de ingreso de las personas, es determinante para la superación de la pobreza) como marco de referencia teórica para respaldar los datos. Se concluye que, si bien la educación es de los principales promotores de la movilidad económica, esta no garantiza que los individuos salgan de la pobreza, puesto que se necesitan de otros factores para generar un entorno económico favorable que permita mejorar la calidad de vida de las personas.
+
+**Título: Evaluación de impacto de la educación sobre la pobreza en Costa Rica (un análisis para educación secundaria y postsecundaria)**
+
+-	Autor(es): Carmen Sánchez Retana
+-	Año: 2015
+-	Nombre del tema: influencia de la educacion secundaria y postsecundaria en la pobreza
+-	Forma de organizarlo:
+    + Cronológico: el análisis se hizo a partir de la Encuesta Nacional De Hogares de Costa Rica del 2013
+    + Metodológico: Propensity Score Matching, Modelo Probit
+    + Temático:
+    + Teoría: teoría del capital humano
+-	Resumen en una oración: se logra medir la disminución en la probabilidad de caer en la pobreza si se llega a completar una educación secundaria, y también si se llega a una educación postsecundaria.
+-	Argumento central: el hecho de completar la secundaria contribuye a disminuir la probabilidad de caer en pobreza, y el grado de disminución aumenta si se alcanza una educación postsecundaria.
+-	Problemas con el argumento o tema: el porcentaje de reducción porcentual de dicha probabilidad no permite ver si el impacto de la educación es alto o bajo, puesto que es una cifra relativa que depende de la tasa de pobreza que haya en un momento dado.
+-	Resumen en un párrafo: El estudio toma a la población de entre 25 y 60 años de la ENAHO 2013 y los divide en dos grupos: personas que completaron secundaria y personas que adquirieron un mayor nivel educativo. Se analizan características personales, de vivienda y del hogar de cada individuo; esto para determinar, a través de estimaciones realizadas por un modelo Probit (el cual se emplea por lo general para medir la relación entre variables dicotómicas), se logra medir la correlación de cada característica con el nivel educativo. A partir de estas cifras, se estima el impacto de la educación en la pobreza: se concluye que alcanzar la secundaria completa reduce las probabilidades de caer en pobreza en un 5,7%, mientras que la posibilidad de obtener estudios postsecundarios la reduce en 8,4%.
+
 
 
 
