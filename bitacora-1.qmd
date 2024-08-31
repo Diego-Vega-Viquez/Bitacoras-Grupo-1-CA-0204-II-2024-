@@ -60,47 +60,47 @@
   
  **Contraargumentos**
   
-  **Logica**
+  **Lógica**
 
   La pregunta sugiere que la condición socioeconómica está estrechamente relacionada con el nivel educativo de una persona. La condición socioeconómica de un individuo es más compleja que eso, y no solo se ve determinada por la educación. Sería imprudente dejar de lado factores como el contexto económico local, la estabilidad política del país, las políticas que se implementan en materias de empleo y protección social, la experiencia laboral, y los contactos que pueden llegar a tener una persona, pues estos también influyen en gran medida en la determinación del ingreso y la condición socioeconómica de un individuo.
                         
-  Asimismo, el hecho de que el enfoque se haga sobre el nivel educativo puede opacar el papel de las habilidades especificas o técnicas que no requieren educación formal, las cuales pueden incluso llegar a ser más relevantes y lucrativas, como, por ejemplo, en el caso de las personas que aprenden a programar a través de internet, las cuales pueden llegar a obtener muy buenos puestos de trabajo sin necesariamente tener un título universitario.
+  Asimismo, el hecho de que el enfoque se haga sobre el nivel educativo puede opacar el papel de habilidades específicas que no requieren educación formal, las cuales pueden incluso llegar a ser más relevantes y lucrativas, como, por ejemplo, en el caso de las personas que aprenden a programar a través de internet, las cuales pueden llegar a obtener muy buenos puestos de trabajo sin necesariamente tener un título universitario.
                         
   En esta misma línea, otro determinante que puede verse opacado por el nivel educativo es la experiencia práctica en un campo laboral específico; en diferentes contextos, las empresas pueden valorar la experiencia laboral y las habilidades adquiridas a lo largo del tiempo por encima del nivel educativo formal. Por ejemplo, una persona con 5 años de experiencia en un oficio puede ganar más y tener más oportunidades de conseguir empleo que alguien recién graduado de la universidad.
   
-  *Ética*
+  **Ética**
   
   Se podría perpetuar la idea de que las personas solo pueden esperar a tener una mejor calidad de vida si se empeñan a tener una buena educación, lo cual minimizaría la influencia de factores sistémicos como la discriminación y la falta de acceso a recursos y oportunidades.
                         
-  Desde un punto de vista político, enfocarse únicamente en el nivel educativo puede desviar la atención de la responsabilidad de políticas públicas en crear condiciones de acceso a recursos y empleo; esto podría percibirse como una sobre simplificación de problemas estructurales que van más allá del sistema educativo.
+  Desde un punto de vista político, enfocarse únicamente en el nivel educativo puede desviar la atención de la responsabilidad de políticas públicas en crear condiciones de acceso a recursos y empleo; esto podría percibirse como una sobresimplificación de problemas estructurales que van más allá del sistema educativo.
                         
   Finalmente, el hecho de potencialmente tomar como referencia estudios que relacionan educación y condición socioeconómica en otros países podría sesgar la presente investigación, pues estas fuentes podrían estar orientadas a sociedades y mercados laborales específicos, los cuales pueden divergir significativamente de la realidad costarricense.
   
-  *Emocional*
+  **Emocional**
   
   A la hora de intentar establecer un vínculo entre el nivel educativo y la condición socioeconómica, se pueden llegar a “menospreciar” aquellas personas que han logrado alcanzar una condición económica favorable mediante habilidades emprendedoras y aprovechamiento de oportunidades únicas, sin necesariamente tener un nivel educativo alto.
                         
-  Además, la experiencia y el conocimiento en áreas que por lo general no son reconocidas en términos académicos, como la agricultura, el comercio local y los servicios manuales, son altamente valorados y pueden llegar a proporcionarle a una persona estabilidad y acceso a recursos para su desarrollo pleno y el de su familia.
+  Además, la experiencia y el conocimiento en áreas que por lo general no son reconocidas en términos académicos, como la agricultura, el comercio local y el trabajo manual, son altamente valorados y pueden llegar a proporcionarle a una persona estabilidad y acceso a recursos para su desarrollo pleno y el de su familia.
   
-  *Contraargumentos*
+  **Contraargumentos**
   
-  *Lógica*
+  **Lógica**
   
-  Si bien la condición socioeconómica de un individuo no es determinada únicamente por su nivel educativo, se pueden emplear métodos estadísticos para establecer una correlación significativa entre el nivel educativo y el ingreso y acceso a recursos para el pleno desenvolvimiento de las personas. Se podría afirmar que las personas que han alcanzado un nivel educativo más alto suelen tener empleos mejor remunerados, más estabilidad y beneficios laborales. Así pues, se puede llegar a argumentar a favor de que la educación generalmente estaría asociada con una mayor capacidad de adquirir habilidades valoradas por el mercado laboral, de manera que estaría asociada también a un mayor nivel de ingreso.
+  Si bien la condición socioeconómica de un individuo no es determinada únicamente por su nivel educativo, se pueden emplear métodos estadísticos para establecer una correlación significativa entre el nivel educativo y el ingreso y acceso a recursos para el pleno desenvolvimiento de las personas. 
   
-  *Ética*
+  **Ética**
   
   Utilizar datos de encuestas nacionales de hogares, instituciones del gobierno y organismos internacionales aseguraría que los análisis se basen en fuentes confiables y precisas. 
                         
   Reconocer los sesgos que podrían estar implicados en la investigación podría ayudar a minimizarlos, de manera que es importante tener presente que la definición de la condición socioeconómica de las personas conlleva múltiples aristas, de las cuales se elige a la educación como principal motivo de estudio.
   
-  *Emocional*
+  **Emocional**
   
-  En Costa Rica, muchas personas aspiran a mejorar su condición socioeconómica, por lo cual enfatizar cómo la educación puede ser un camino para mejorar sus condiciones de vida apela a la esperanza y motivación de las personas para superar sus circunstancias. 
+  En Costa Rica, muchas personas aspiran a mejorar su condición socioeconómica, por lo cual enfatizar cómo la educación puede ser un camino para mejorar calidad de vida apela a la esperanza y motivación de las personas para superar sus circunstancias. 
                         
   Además, el hecho de identificar las carencias en los sistemas educativos nacionales podría contribuir a un incremento en el apoyo y la inversión en educación. 
   
-  *Concluya*
+  **Concluya**
   
   Para investigar la relación entre el nivel educativo y la condición socioeconómica, resulta imprescindible tener claro que la educación es uno de muchos factores que influyen en la condición socioeconómica de un individuo. El desarrollo de esta pregunta debe involucrar procesos de medición sólidos y fundamentos teóricos bien establecidos, al igual que fuentes de información confiables para que el análisis de datos sea lo más apegado a la realidad, y un enfoque que llegue a retratar la importancia de la educación en la construcción de una sociedad más igualitaria y próspera.
   
@@ -130,10 +130,6 @@ Por otro lado, reconocer la influencia de factores externos en la relación entr
   
   **Argumentos**
   
-Aunque hay múltiples factores externos que influyen en la relación entre nivel educativo y condición socioeconómica, se puede argumentar que un mayor nivel educativo proporciona una base más sólida para que los individuos puedan aprovechar mejor las oportunidades económicas disponibles, independientemente de estos factores externos. Esto se debe a que una educación de calidad puede dotar a las personas de habilidades críticas, pensamiento analítico y capacidad de adaptación, lo que les permite navegar en contextos económicos y sociales cambiantes. 
-    
-Asimismo, los datos pueden mostrar que, aunque existen variaciones en los beneficios económicos del nivel educativo debido a factores externos, en general, las personas con mayor nivel educativo tienden a tener mejores resultados socioeconómicos en comparación con aquellas con menor educación. Los análisis estadísticos pueden ayudar a aislar el efecto del nivel educativo de otros factores para evaluar su impacto específico.
-  
   **Lógica**
   
   Aunque hay múltiples factores externos que influyen en la relación entre nivel educativo y condición socioeconómica, se puede argumentar que un mayor nivel educativo proporciona una base más sólida para que los individuos puedan aprovechar mejor las oportunidades económicas disponibles, independientemente de estos factores externos. Esto se debe a que una educación de calidad puede dotar a las personas de habilidades críticas, pensamiento analítico y capacidad de adaptación, lo que les permite navegar en contextos económicos y sociales cambiantes. 
@@ -162,7 +158,7 @@ Pregunta: ¿Cómo afecta la precisión de los datos recolectados en encuestas na
   
   **Lógica**
   
-La precisión de los datos recolectados en encuestas nacionales es fundamental para cualquier análisis estadístico, y por tanto en este proyecto cuya dinámica se basa en el el análisis exploratorio de datos enfocando la relación entre nivel educativo y condición socioeconómica. Sin embargo, existe el riesgo de que los datos no sean completamente precisos debido a errores de muestreo, sesgos en la recolección de datos o respuestas incorrectas de los participantes. Estos errores pueden llevar a interpretaciones equivocadas de la relación entre nivel educativo y condición socioeconómica. 
+La precisión de los datos recolectados en encuestas nacionales es fundamental para cualquier análisis estadístico, y por tanto en este proyecto, cuya dinámica se basa en el el análisis exploratorio de datos con énfasis en la relación entre nivel educativo y condición socioeconómica. Sin embargo, existe el riesgo de que los datos no sean completamente precisos debido a errores de muestreo, sesgos en la recolección de datos o respuestas incorrectas de los participantes. Estos errores pueden llevar a interpretaciones equivocadas de la relación entre nivel educativo y condición socioeconómica. 
                                 
 Además, la variabilidad en la precisión de los datos recolectados puede ser influenciada por la metodología de la encuesta, como el tamaño de la muestra, el método de recolección y la calidad de la capacitación de los encuestadores. Todos estos factores pueden introducir sesgos que afectan la interpretación de los resultados.
 
