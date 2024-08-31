@@ -230,4 +230,24 @@ Asegurar la precisión en los datos recolectados puede generar una mayor confian
   **Concluya**
   
 Para analizar cómo la precisión de los datos recolectados en encuestas nacionales afecta la interpretación de la relación entre nivel educativo y condición socioeconómica en Costa Rica, es esencial garantizar la calidad y precisión de la recolección de datos. Esto requiere no solo metodologías rigurosas y herramientas adecuadas, sino también un enfoque ético que respete los derechos de los participantes y utilice los datos de manera responsable. Un análisis basado en datos precisos permitirá conclusiones más válidas y justas, lo que es crucial para desarrollar políticas públicas que aborden efectivamente las desigualdades en la educación y la distribución de ingresos en el país.
+
+### Fichas de literatura
+
+**Título: Una aproximación empírica a la relación entre educacion y pobreza**
+
+-	Autor(es): Luis Fernando Aguado Quintero, Luis Eduardo Girón Cruz, Fernando Salazar Silva
+-	Año: 2007
+-	Nombre del tema: relación entre la educacion y la pobreza
+-	Forma de organizarlo:
+    + Cronológico: se utilizan datos de una encuesta elaborada el 2003 en Colombia.
+    + Metodológico: tablas cruzadas; modelo Logit múltiple ordenado; modelo de ecuaciones estructurales.
+    + Temático: educación, economía
+    + Teoría: teoría del capital humano
+-	Resumen en una oración: Utiliza modelos para cuantificar la interrelación entre las variables pobreza y educación con respecto a la muestra estudiada.
+-	Argumento Central: la educacion y la condición socioeconómica de una persona actúan una sobre la otra recíprocamente.
+-	Problemas con el argumento o tema: Se parte desde el punto de vista de que la educación influye en gran medida en la condición de pobreza de una persona, pero después se reconoce que la condición socioeconómica del individuo influye significativamente en el acceso a la educación, por lo que no se puede establecer un vínculo unidireccional.
+-	Resumen en un párrafo: A partir de la utilización de un modelo Logit de elección múltiple y modelos de ecuaciones estructurales, los investigadores lograron vislumbrar el tipo de relación que existe entre las variables de pobreza y educacion (así como el tamaño del hogar). Se argumenta que esta se basa en una dinámica de reciprocidad, en donde la pobreza afecta a la educacion y la educacion a la pobreza. Asimismo, se utiliza la teoría del capital humano (la cual sugiere que la educacion, por sus efectos sobre la productividad y el nivel de ingreso de las personas, es determinante para la superación de la pobreza) como marco de referencia teórica para respaldar los datos. Se concluye que, si bien la educación es de los principales promotores de la movilidad económica, esta no garantiza que los individuos salgan de la pobreza, puesto que se necesitan de otros factores para generar un entorno económico favorable que permita mejorar la calidad de vida de las personas.
+
+
+
   
