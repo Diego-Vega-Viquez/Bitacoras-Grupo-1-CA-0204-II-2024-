@@ -140,7 +140,8 @@
   
   El uso de datos que reflejen el verdadero estado de la educación en Costa Rica y su vínculo con la movilidad económica podría dar paso a un estudio que motive a las personas a aspirar a un mayor nivel educativo para mejorar su calidad de vida. 
   
-	Además, apelar a la educación como una posible solución para superar la pobreza puede conducir a la sociedad costarricense a implementar mejores políticas educativas, enfocadas en dar apoyo a las personas más vulnerables del país.
+
+  Además, apelar a la educación como una posible solución para superar la pobreza puede conducir a la sociedad costarricense a implementar mejores políticas educativas, enfocadas en dar apoyo a las personas más vulnerables del país.
 
   **Concluya**
   La propuesta para cuantificar la medida en la cual la educación contribuye a la movilidad económica de las personas y a la superación de la pobreza debe ser un proceso que incluya métodos que midan el nivel educativo y la condición socioeconómica de un individuo desde múltiples aristas, además de que debería estar basado en teorías previamente establecidas. Todo esto a través de una recolección extensa de datos, que reflejen adecuadamente la realidad del país y motiven a un sentimiento de responsabilidad colectiva en la población. Esto permitiría llegar a una cuantificación precisa de la importancia de la educación en el proceso de movilidad económica en Costa Rica.
@@ -233,14 +234,17 @@ Para analizar cómo la precisión de los datos recolectados en encuestas naciona
 
 ### Argumentación a través de datos
 
-  Para el presente proyecto se hará uso de la base de datos de la Encuesta Nacional de Hogares de Costa Rica del 2023 realizada por el INEC. Esta encierra información de un grupo de viviendas seleccionadas en Costa Rica, así como la información de todos los hogares y personas que residen en estas; en particular, presenta más de 30000 casos, y mide alrededor de 590 variables. 
+  Para el presente proyecto se hará uso de la base de datos de la Encuesta Nacional de Hogares de Costa Rica del 2023 realizada por el INEC. Esta encierra información de un grupo de viviendas representativas de Costa Rica, así como la información de todos los hogares y personas que residen en estas; en particular, presenta más de 30000 casos, y mide alrededor de 590 variables. Se tomará como unidad estadística a las personas de entre 18 y 60 años de edad.
   
-	Todas estas variables se pueden dividir en diferentes apartados, los cuales aportan diferentes enfoques que pueden ser de utilidad para el presente estudio. 
-El primero alude a las variables de identificación, como zona y región de planificación. Estas variables son importantes para poder realizar un estudio comparativo por localización geográfica, de manera que podrían valorarse las disparidades en acceso a la educación en diferentes regiones. 
+	Todas las variables que incluye la base se pueden dividir en diferentes apartados, los cuales aportan diferentes enfoques que pueden ser de utilidad para el presente estudio. 
 
-  El segundo se refiere a las características sociodemográficas de la muestra, donde se miden variables a nivel hogar, vivienda y por persona. Entre las más relevantes para este estudio, se destacan las relacionadas con el tema educativo por persona, como la asistencia a la educación formal, el último año aprobado, el tipo de centro educativo al que asiste o asistió, la universidad pública a la que asiste o asistió, el nivel de instrucción, los años de escolaridad, los años de rezago escolar, la formación educativa formal, el título que posee, motivos de no asistencia a la educación formal, incentivos para la educación, si recibe o no beca, etc. Evaluar estas variables con respecto a la condición económica de las personas podría ayudar a revelar la relación entre educación y pobreza.
+El primero alude a las variables de identificación, como zona y región de planificación. Estas variables son importantes para poder realizar un estudio comparativo por localización geográfica, de manera que podrían valorarse las disparidades en acceso a la educación en diferentes regiones, así como la forma en que estas, en consecuencia, condicionan económicamente a las personas que viven en una región o zona determinada.
+
+  El segundo se refiere a las características sociodemográficas de la muestra, donde se miden variables a nivel hogar, vivienda y por persona. Entre las más relevantes para este estudio, se destacan las relacionadas con el tema educativo por persona, como la asistencia a la educación formal, el último año aprobado, el tipo de centro educativo al que asiste o asistió, la universidad pública a la que asiste o asistió, el nivel de instrucción, los años de escolaridad, los años de rezago escolar, la formación educativa formal, el título que posee, motivos de no asistencia a la educación formal, incentivos para la educación, si recibe o no beca, etc. Evaluar estas variables con respecto a la condición económica de las personas podría ayudar a revelar la relación entre educación y pobreza; sería de interés explorar, por ejemplo, si lo que esta más vinculado a una mejor condición de vida es los años de escolaridad, si se finalizó la secundaria, si se tiene un título universitario, si se fue a una universidad o colegio público o privado, si se recibió una beca para estudiar, y demás aspectos. 
   
-  El tercero contiene variables referentes a la condición económica, como la condición de actividad (empleado, desempleado, fuera de la fuerza de trabajo), y el ingreso principal y secundario, medido ya sea de forma bruta o neta. Como se mencionó anteriormente, es importante tener presentes estos datos a la hora de determinar cómo incide el desarrollo educativo de un individuo en su condición económica.
+  El tercer apartado contiene variables referentes a la condición económica, como la condición de actividad (empleado, desempleado, fuera de la fuerza de trabajo), mediciones del ingreso, así como de pobreza y condición de vida. Como se mencionó anteriormente, es importante tener presentes estos datos a la hora de determinar cómo incide el desarrollo educativo de un individuo en su condición económica.
+  
+  A continuación, se incluye una lista amplia de variables que podrían ser de utilidad para el presente estudio:
 
 ### Fichas de literatura
 
