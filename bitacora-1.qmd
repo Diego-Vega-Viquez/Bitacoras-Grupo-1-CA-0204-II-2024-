@@ -4,13 +4,11 @@
 
 ### Definición de la idea
 
-  Analizar la forma en la que el nivel educativo de un individuo influye en su condición socioeconómica, explorando la relación entre la educación, la situación económica, las características sociodemográficas y otros factores relevantes para comprender su impacto en la calidad de vida. 
+Analizar la forma en la que el nivel educativo de un individuo influye en su condición socioeconómica, explorando la relación entre la educación, la situación económica, las características sociodemográficas y otros factores relevantes para comprender su impacto en la calidad de vida. 
 
 ### Conceptualización de la idea
 
-<!-- Inicializar itemizador -->
-
- - Nivel educativo: El nivel educativo hace referencia al grado de         instrucción alcanzado por un individuo dentro del sistema educativo formal. Este indicador es crucial para analizar las oportunidades económicas, el acceso a mejores condiciones de vida, y la capacidad de los individuos para salir de la pobreza. En el contexto socioeconómico, un mayor nivel educativo está generalmente asociado con un incremento en la productividad, ingresos más altos y, por ende, una mejora en la calidad de vida. <!-- agregar cita  -->
+ - Nivel educativo: El nivel educativo hace referencia al grado de instrucción alcanzado por un individuo dentro del sistema educativo formal. Este indicador es crucial para analizar las oportunidades económicas, el acceso a mejores condiciones de vida, y la capacidad de los individuos para salir de la pobreza. En el contexto socioeconómico, un mayor nivel educativo está generalmente asociado con un incremento en la productividad, ingresos más altos y, por ende, una mejora en la calidad de vida. <!-- agregar cita  -->
 
  - Condición socioeconómica:
             
@@ -21,16 +19,12 @@
  - Características sociodemográficas:
             
  - Calidad de vida:
-  
-  <!-- Teriminar itemizador -->
 
 ### Identificación de tensiones
 
   Entre las principales tensiones identificadas en nuestra idea para el     proyecto de análisis, se encuentran:
   
   <!-- Se entiende "tensiones" como los obstáculos, desafíos o contradicciones que pueden surgir durante el proceso de investigación. -->
-  
-<!-- Inicializar itemizador -->
 
  - Imprecisión de los datos: La base de datos se basa en una encuesta nacional, lo que puede llevar a casos en los que algunos encuestados no respondieron o lo hicieron incorrectamente. Esto puede afectar el análisis y llevar a conclusiones erróneas.
              
@@ -38,11 +32,8 @@
             
  - Contexto espacial y temporal: Los resultados pueden verse influenciados por el contexto geográfico y cultural del país en el que se realizó la encuesta, así como por el momento en que se llevó a cabo. Estos factores pueden afectar la relevancia y aplicabilidad de los hallazgos.
 
-  <!-- Teriminar itemizador -->
 
 ### Reformulación de la idea en modo preguntas
-
-  <!-- Inicializar itemizador -->
 
  - ¿Qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y como pueden estas variables reflejar las desigualdades en la distribución de ingreso en Costa Rica?
 
@@ -51,8 +42,6 @@
  - ¿Qué factores externos pueden modificar o mediar la relación entre nivel educativo y condición socioeconómica en Costa Rica?
 
  - ¿Cómo afecta la precisión de los datos recolectados en encuestas nacionales la interpretación de la relación entre nivel educativo y condición socioeconómica en Costa Rica?
- 
-  <!-- Teriminar itemizador -->
 
 ### Argumentación de las preguntas
 
@@ -275,6 +264,17 @@ El primero alude a las variables de identificación, como zona y región de plan
 - Nivel de pobreza: si una persona sufre de pobreza extrema, no extrema o si no sufre de pobreza.
 - Intensidad de pobreza multidimensional: refleja la distancia de las personas pobres al umbral de pobreza, el cual está delimitado a partir de la definición multidimensional de pobreza.
 
+## Revisión bibliográfica
+
+### Búsqueda de bibliografía
+
+Entre las posibles combinaciones de palabras clave se encuentran
+
+- Combinación 1
+- Combinación 2
+- Combinación 3
+- Combinación 4
+
 ### Fichas de literatura
 
 **Título: Una aproximación empírica a la relación entre educacion y pobreza**
@@ -336,4 +336,9 @@ El primero alude a las variables de identificación, como zona y región de plan
 -	Argumento central: 
 -	Problemas con el argumento o tema: 
 -	Resumen en un párrafo: 
+
+### Construcción de la UVE de Gowin
+
+## Parte de escritura
+
   
