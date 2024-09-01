@@ -245,6 +245,35 @@ El primero alude a las variables de identificación, como zona y región de plan
   El tercer apartado contiene variables referentes a la condición económica, como la condición de actividad (empleado, desempleado, fuera de la fuerza de trabajo), mediciones del ingreso, así como de pobreza y condición de vida. Como se mencionó anteriormente, es importante tener presentes estos datos a la hora de determinar cómo incide el desarrollo educativo de un individuo en su condición económica.
   
   A continuación, se incluye una lista amplia de variables que podrían ser de utilidad para el presente estudio:
+  
+- Región de planificación: chorotega, central, pacífico central, brunca, huetar norte, huetar atlántica.
+- Zona: urbana o rural.
+- Tenencia de computadora (portátil o de escritorio).
+- Tenencia de internet.
+- Tamaño del hogar.
+- Sexo.
+- Edad.
+- Estado conyugal.
+- Condición de migrante.
+- Asistencia a educación formal.
+- Último año aprobado.
+- Tipo de centro educativo al que asiste o asistió.
+- Universidad pública a la que asiste o asistió.
+- Nivel de instrucción: sin instrucción, primaria (completa o incompleta), secundaria (académica o técnica) (completa o incompleta), educación superior de pregrado y grado, educación superior de posgrado.
+- Años de escolaridad.
+- Años de rezgo escolar.
+- Formación educativa formal: va dirigida a las personas  con nivel de instrucción secundaria técnica, parauniversitaria, universitaria, especialidad, maestría o doctorado; se refiere al área en que se desempeñó la persona, como salud o ingeniería.
+- Título: Técnico medio, perito o diplomado no universitario, profesorado o diplomado universitario, bachillerato, licenciatura, especialización, maestría, doctorado.
+- Motivos de no asistencia a la educación formal.
+- Recibe beca de (FONABE, INA, Municipalidad, Universidad Pública, Empléate, otra institución pública, Universidad privada, otra empresa o institución privada).
+- Monto de beca de (FONABE, INA, Municipalidad, Universidad Pública, Empléate, otra institución pública, Universidad privada, otra empresa o institución privada).
+- Recibió cursos de educación no formal: se refiere a si la persona concluyó algún programa de enseñanza no formal o extraescolar (por ejemplo, en el INA).
+- Formación educativa no formal: incluye las mismas áreas que la educacion formal.
+- Dominio de un segundo idioma.
+- Condición de actividad: se refiere a si se está en condición de ocupado (sí trabajó al menos una hora en el periodo de referencia), desempleado abierto (no trabajó en el periodo de referencia, pero estaba dispuesto a trabajar), o fuera de la fuerza de trabajo (no trabajó en el periodo de referencia, pero no estaba dispuesto a trabajar).
+- Ingreso total por persona (bruto o neto).
+- Nivel de pobreza: si una persona sufre de pobreza extrema, no extrema o si no sufre de pobreza.
+- Intensidad de pobreza multidimensional: refleja la distancia de las personas pobrez al umbral de pobreza, el cual está delimitado a partir de la definición multidimensional de pobreza.
 
 ### Fichas de literatura
 
