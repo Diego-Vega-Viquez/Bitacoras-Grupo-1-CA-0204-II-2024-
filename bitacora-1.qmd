@@ -307,6 +307,33 @@ El primero alude a las variables de identificación, como zona y región de plan
 -	Problemas con el argumento o tema: el porcentaje de reducción porcentual de dicha probabilidad no permite ver si el impacto de la educación es alto o bajo, puesto que es una cifra relativa que depende de la tasa de pobreza que haya en un momento dado.
 -	Resumen en un párrafo: El estudio toma a la población de entre 25 y 60 años de la ENAHO 2013 y los divide en dos grupos: personas que completaron secundaria y personas que adquirieron un mayor nivel educativo. Se analizan características personales, de vivienda y del hogar de cada individuo; esto para determinar, a través de estimaciones realizadas por un modelo Probit (el cual se emplea por lo general para medir la relación entre variables dicotómicas), se logra medir la correlación de cada característica con el nivel educativo. A partir de estas cifras, se estima el impacto de la educación en la pobreza: se concluye que alcanzar la secundaria completa reduce las probabilidades de caer en pobreza en un 5,7%, mientras que la posibilidad de obtener estudios postsecundarios la reduce en 8,4%.
 
+**Título: **
 
+-	Autor(es):
+-	Año: 
+-	Nombre del tema: 
+-	Forma de organizarlo:
+    + Cronológico: 
+    + Metodológico: 
+    + Temático:
+    + Teoría: 
+-	Resumen en una oración: 
+-	Argumento central: 
+-	Problemas con el argumento o tema: 
+-	Resumen en un párrafo: 
 
+**Título: **
+
+-	Autor(es):
+-	Año: 
+-	Nombre del tema: 
+-	Forma de organizarlo:
+    + Cronológico: 
+    + Metodológico: 
+    + Temático:
+    + Teoría: 
+-	Resumen en una oración: 
+-	Argumento central: 
+-	Problemas con el argumento o tema: 
+-	Resumen en un párrafo: 
   
