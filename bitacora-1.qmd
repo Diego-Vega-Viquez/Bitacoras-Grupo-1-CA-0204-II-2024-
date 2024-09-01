@@ -236,7 +236,7 @@ Para analizar cómo la precisión de los datos recolectados en encuestas naciona
 
   Para el presente proyecto se hará uso de la base de datos de la Encuesta Nacional de Hogares de Costa Rica del 2023 realizada por el INEC. Esta encierra información de un grupo de viviendas representativas de Costa Rica, así como la información de todos los hogares y personas que residen en estas; en particular, presenta más de 30000 casos, y mide alrededor de 590 variables. Se tomará como unidad estadística a las personas de entre 18 y 60 años de edad.
   
-	Todas las variables que incluye la base se pueden dividir en diferentes apartados, los cuales aportan diferentes enfoques que pueden ser de utilidad para el presente estudio. 
+  Todas las variables que incluye la base se pueden dividir en diferentes apartados, los cuales aportan diferentes enfoques que pueden ser de utilidad para el presente estudio. 
 
 El primero alude a las variables de identificación, como zona y región de planificación. Estas variables son importantes para poder realizar un estudio comparativo por localización geográfica, de manera que podrían valorarse las disparidades en acceso a la educación en diferentes regiones, así como la forma en que estas, en consecuencia, condicionan económicamente a las personas que viven en una región o zona determinada.
 
@@ -273,7 +273,7 @@ El primero alude a las variables de identificación, como zona y región de plan
 - Condición de actividad: se refiere a si se está en condición de ocupado (sí trabajó al menos una hora en el periodo de referencia), desempleado abierto (no trabajó en el periodo de referencia, pero estaba dispuesto a trabajar), o fuera de la fuerza de trabajo (no trabajó en el periodo de referencia, pero no estaba dispuesto a trabajar).
 - Ingreso total por persona (bruto o neto).
 - Nivel de pobreza: si una persona sufre de pobreza extrema, no extrema o si no sufre de pobreza.
-- Intensidad de pobreza multidimensional: refleja la distancia de las personas pobrez al umbral de pobreza, el cual está delimitado a partir de la definición multidimensional de pobreza.
+- Intensidad de pobreza multidimensional: refleja la distancia de las personas pobres al umbral de pobreza, el cual está delimitado a partir de la definición multidimensional de pobreza.
 
 ### Fichas de literatura
 
