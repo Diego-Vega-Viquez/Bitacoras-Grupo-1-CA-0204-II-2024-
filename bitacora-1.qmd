@@ -270,10 +270,11 @@ El primero alude a las variables de identificación, como zona y región de plan
 
 Entre las posibles combinaciones de palabras clave se encuentran
 
-- Combinación 1
-- Combinación 2
-- Combinación 3
-- Combinación 4
+- nivel educativo + condición socioeconómica + características sociodemográficas
+- educación + situación económica + impacto en calidad de vida
+- relación + nivel educativo + situación económica
+- educación + características sociodemográficas + calidad de vida
+- impacto + educación + calidad de vida
 
 ### Fichas de literatura
 
