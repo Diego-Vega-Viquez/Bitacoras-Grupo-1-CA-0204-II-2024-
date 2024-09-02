@@ -307,20 +307,20 @@ Entre las posibles combinaciones de palabras clave se encuentran
 -	Problemas con el argumento o tema: el porcentaje de reducción porcentual de dicha probabilidad no permite ver si el impacto de la educación es alto o bajo, puesto que es una cifra relativa que depende de la tasa de pobreza que haya en un momento dado.
 -	Resumen en un párrafo: El estudio toma a la población de entre 25 y 60 años de la ENAHO 2013 y los divide en dos grupos: personas que completaron secundaria y personas que adquirieron un mayor nivel educativo. Se analizan características personales, de vivienda y del hogar de cada individuo; esto para determinar, a través de estimaciones realizadas por un modelo Probit (el cual se emplea por lo general para medir la relación entre variables dicotómicas), se logra medir la correlación de cada característica con el nivel educativo. A partir de estas cifras, se estima el impacto de la educación en la pobreza: se concluye que alcanzar la secundaria completa reduce las probabilidades de caer en pobreza en un 5,7%, mientras que la posibilidad de obtener estudios postsecundarios la reduce en 8,4%.
 
-**Título: **
+**Título: Educación y pobreza: una relación conflictiva **
 
--	Autor(es):
--	Año: 
--	Nombre del tema: 
+-	Autor(es): Bazdresch Parada Miguel
+-	Año: 2001
+-	Nombre del tema: Relación entre educación, desigualdad y pobreza desde las perspectivas del capital humano y la teoría marxista.
 -	Forma de organizarlo:
-    + Cronológico: 
-    + Metodológico: 
-    + Temático:
-    + Teoría: 
--	Resumen en una oración: 
--	Argumento central: 
--	Problemas con el argumento o tema: 
--	Resumen en un párrafo: 
+    + Cronológico: Estudios y proyecciones principalmente de los años 1971-1995.
+    + Metodológico: Métodos deductivos y análisis empírico basado en estudios educativos y socioeconómicos.
+    + Temático: Desigualdad educativa y su relación con el bienestar socioeconómico.
+    + Teoría: Teoría del capital humano y teoría marxista.
+-	Resumen en una oración: El texto analiza como la educación se relaciona con el nivel socioeconómico en México.
+-	Argumento central: La educación en el territorio mexicano no logra per se escalar a un individuo en la pirámide social, ya que intervienen factores sociales preexistentes.
+-	Problemas con el argumento o tema: Cabe destacar que los datos son imperfectos, en la mayoría de casos no existe suficiente evidencia que respalde las ideas o hipótesis como las planteadas en este trabajo, además que el autor sugiere ciertos cambios que en la práctica son difíciles de ejecutar.
+-	Resumen en un párrafo: La fuente expresa la relación entre la educación, condición socioeconómica, y pobreza en Mexico enfatizando en la teoría del capital humano para demostrar la complejidad del tema educativo. Demuestra algunos resultados empíricos que contradicen el supuesto que la educación favorece en la condición económica de una persona, haciendo énfasis en la condición de las personas que habitan en zonas rurales y marginadas. Por otro lado la teoría marxista señala que estas relaciones están directamente influenciadas por condiciones sociales y económicas. Sin importar lo que se haga a nivel de gobierno, se muestra que la educación sigue siendo un factor que perpetúa la desigualdad social en México 
 
 **Título: **
 
