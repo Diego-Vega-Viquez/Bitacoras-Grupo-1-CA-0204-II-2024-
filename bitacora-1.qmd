@@ -322,20 +322,20 @@ Entre las posibles combinaciones de palabras clave se encuentran
 -	Problemas con el argumento o tema: Cabe destacar que los datos son imperfectos, en la mayoría de casos no existe suficiente evidencia que respalde las ideas o hipótesis como las planteadas en este trabajo, además que el autor sugiere ciertos cambios que en la práctica son difíciles de ejecutar.
 -	Resumen en un párrafo: La fuente expresa la relación entre la educación, condición socioeconómica, y pobreza en Mexico enfatizando en la teoría del capital humano para demostrar la complejidad del tema educativo. Demuestra algunos resultados empíricos que contradicen el supuesto que la educación favorece en la condición económica de una persona, haciendo énfasis en la condición de las personas que habitan en zonas rurales y marginadas. Por otro lado la teoría marxista señala que estas relaciones están directamente influenciadas por condiciones sociales y económicas. Sin importar lo que se haga a nivel de gobierno, se muestra que la educación sigue siendo un factor que perpetúa la desigualdad social en México 
 
-**Título: **
+**Título: México: impacto de la educación en la pobreza rural**
 
--	Autor(es):
--	Año: 
--	Nombre del tema: 
+-	Autor(es): Ordaz Díaz Juan Luis
+-	Año: 2009
+-	Nombre del tema: Educación básica y sus efectos en la reducción de la pobreza en Mexico, con énfasis en el sector rural
 -	Forma de organizarlo:
-    + Cronológico: 
-    + Metodológico: 
-    + Temático:
-    + Teoría: 
--	Resumen en una oración: 
--	Argumento central: 
--	Problemas con el argumento o tema: 
--	Resumen en un párrafo: 
+    + Cronológico: El texto se enfoca en el momento inmediato cuando se escribió, 2009.
+    + Metodológico: Propensity Score Matching (PSM)
+    + Temático: evaluación de políticas educativas y econometría aplicada al desarrollo social
+    + Teoría: teoría del capital humano
+-	Resumen en una oración: La educación reduce la pobreza en zonas rurales de México.
+-	Argumento central: Le educación primaria y secundaria corresponden a un pilar fundamental en la erradicación de la pobreza en México, más en zonas rurales que a nivel nacional.
+-	Problemas con el argumento o tema: El texto no especifica la calidad de la educación que es recibida por los estudiantes, dicho factor es de suma importancia ya que puede condicionar el nivel educativo de dicha población.
+-	Resumen en un párrafo: El documento se enfoca en dar a conocer el efecto de la educación en la población rural y nacional del territorio mexicano. Utiliza el método estadístico de Propensity Score Matching, el estudio demuestra que la educación reduce las probabilidades de los individuos de caer en pobreza, dicha probabilidad es más efectiva en sectores rurales. El estudio enfatiza que la inversion en educación representa una acción importantísima para la erradicación de la pobreza, aunque no menciona la calidad de la educación, la cual podría multiplicar los efectos positivos de al educación que detalla el autor.
 
 ### Construcción de la UVE de Gowin
 
