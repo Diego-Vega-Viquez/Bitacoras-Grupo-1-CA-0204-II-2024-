@@ -9,6 +9,8 @@ book:
   author: "José Carlos Quintero Cedeño, Diego Alberto Vega Víquez" 
   date: today
   site-url: google.com # Vacío por el momento
+  repo-actions: [edit]
+  downloads: [pdf, epub]
   chapters:
     - "index.qmd"
     - "bitacora-1.qmd"
