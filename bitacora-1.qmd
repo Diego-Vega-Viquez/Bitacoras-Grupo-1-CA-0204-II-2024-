@@ -350,6 +350,8 @@ Entre las posibles combinaciones de palabras clave se encuentran
 
 ### Construcción de la UVE de Gowin
 
+![UVE Heurística](UVE_Gowing.png)
+
 ## Parte de escritura
 
   
