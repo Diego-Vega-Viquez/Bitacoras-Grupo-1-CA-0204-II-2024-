@@ -352,9 +352,17 @@ Entre las posibles combinaciones de palabras clave se encuentran
 -	Problemas con el argumento o tema: El texto no especifica la calidad de la educación que es recibida por los estudiantes, dicho factor es de suma importancia ya que puede condicionar el nivel educativo de dicha población.
 -	Resumen en un párrafo: El documento se enfoca en dar a conocer el efecto de la educación en la población rural y nacional del territorio mexicano. Utiliza el método estadístico de Propensity Score Matching, el estudio demuestra que la educación reduce las probabilidades de los individuos de caer en pobreza, dicha probabilidad es más efectiva en sectores rurales. El estudio enfatiza que la inversion en educación representa una acción importantísima para la erradicación de la pobreza, aunque no menciona la calidad de la educación, la cual podría multiplicar los efectos positivos de al educación que detalla el autor.
 
-### Construcción de la UVE de Gowin
+## Construcción de la UVE de Godwin
 
 ![UVE Heurística](UVE_Gowing.png)
+
+### Conceptos básicos
+
+- **Pobreza**: De acuerdo con @Sanchez, la pobreza se puede catalogar como una situación de privación, en la cual la insuficiencia de ingresos provoca impedimento en alcanzar la satisfacción de necesidades básicas, lo cual imposibilita conseguir cierto nivel de bienestar. Aunado a esto, según @ENAHO2023, existe una concepción más integral, en la cual la carencia no surge solamente de la falta de ingreso, sino que las privaciones pueden existir en diferentes ámbitos de bienestar, como la educación, vivienda y uso de internet, salud, trabajo y protección social.
+
+- **Nivel educativo**: El nivel educativo hace referencia al grado de instrucción alcanzado por un individuo dentro de un sistema educativo, ya sea formal o no formal. @ENAHO2023 define a estas dos áreas de la siguiente manera: la educación formal se refiere al sistema educacional sistematizado, estructurado en jerarquías y graduado cronológicamente que va desde la educación preescolar hasta la universitaria, mientras que la educación no formal se refiere al proceso educativo que no forma parte del sistema educativo del país.
+
+- **Ingreso**: según @ENAHO2023, el ingreso comprende la suma de las entradas que percibe una persona a partir de diferentes fuentes, entre las que destacan aquellas por concepto de trabajo, rentas o transferencias. 
 
 ## Parte de escritura
 
