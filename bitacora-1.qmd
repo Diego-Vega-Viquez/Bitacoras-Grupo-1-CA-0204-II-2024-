@@ -38,13 +38,15 @@ Así pues, realizar un estudio enfocado en el nivel educativo de los costarricen
   
   <!-- Se entiende "tensiones" como los obstáculos, desafíos o contradicciones que pueden surgir durante el proceso de investigación. -->
 
- - Imprecisión de los datos: La base de datos se basa en una encuesta nacional, lo que puede llevar a casos en los que algunos encuestados no respondieron o lo hicieron incorrectamente. Esto puede afectar el análisis y llevar a conclusiones erróneas.
-             
- - Sesgos en los datos: La hipótesis sobre la relación entre nivel educativo y condición socioeconómica podría verse afectada por sesgos en los datos. Es posible que ciertas variables no tengan una relación de causa y efecto directa, sino que puedan estar influenciadas por factores externos no considerados.
-            
- - Contexto espacial y temporal: Los resultados pueden verse influenciados por el contexto geográfico y cultural del país en el que se realizó la encuesta, así como por el momento en que se llevó a cabo. Estos factores pueden afectar la relevancia y aplicabilidad de los hallazgos.
+- La idea podría sugerir que, de alguna forma, se va a hallar un vínculo causal entre la educación y la pobreza, de manera que podría llegar a pensarse que se busca encontrar que la educación podría dar camino a una mejor condición de vida. Sin embargo, existe la posibilidad de que la educación podría estar simplemente correlacionada con otros factores que determinan la calidad de vida de una persona, lo cual es un desafío metodológico a tener en cuenta.
 
+- La definición de una buena calidad de vida es algo altamente amplio y subjetivo, lo cual podría generar tensiones a la hora de querer generalizar, puesto que diferentes personas pueden tener diferentes concepciones. 
 
+- Al querer explorar temas relacionados con la pobreza, hay que estar conscientes de que existen diferentes formas de medir esta variable; elegir un método sobre otro podría influir en los resultados y conclusiones de la investigación, generando tensiones sobre cuál es la forma “correcta” de medir la pobreza.
+
+- Los datos recolectados para querer vincular a la educación y la condición socioeconómica de una persona pueden verse sesgados por su contexto espacial y temporal. Una meta que se formula para el presente trabajo es que se pueda llegar a una conclusión aplicable a la situación en Costa Rica, por lo que es necesario tomar datos que permitan cumplir este objetivo.
+
+hola que hace 
 ### Reformulación de la idea en modo preguntas
 
  - ¿Qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y como pueden estas variables reflejar las desigualdades en la distribución de ingreso en Costa Rica?
