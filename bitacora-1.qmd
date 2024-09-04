@@ -16,6 +16,8 @@ Así pues, realizar un estudio enfocado en el nivel educativo de los costarricen
   
   Asimismo, se considera que esta vía de exploración ofrece gran variedad de enfoques a la hora de realizar un potencial análisis, pues hay diferentes formas de medir la pobreza (como el método de línea de pobreza o índice de pobreza multidimensional) y el nivel educativo de una persona (si se terminó primaria, secundaria, universidad, que título se obtuvo, años de escolaridad, etc.), además de que se podrían considerar demás dimensiones, como el ingreso obtenido por la persona para determinar si la pobreza también incide en el grado de desigualdad del país.
   
+  Por tanto, la idea inicial de la presente investigación consiste en lo siguiente: dados los datos obtenidos de una base que se dedique a medir tanto parámetros educativos como socioeconómicos de una población, se desea explorar la relación que existe entre el nivel educativo y la condición socioeconómica de un individuo, en aras de determinar que tanto influye la educación en mejorar la calidad de vida. A partir de ello, se formula la siguiente pregunta: ¿Como incide el nivel educativo de una persona en su calidad de vida?
+  
 ### Conceptualización de la idea
 
  - Nivel educativo: El nivel educativo hace referencia al grado de instrucción alcanzado por un individuo dentro del sistema educativo formal. Este indicador es crucial para analizar las oportunidades económicas, el acceso a mejores condiciones de vida, y la capacidad de los individuos para salir de la pobreza. En el contexto socioeconómico, un mayor nivel educativo está generalmente asociado con un incremento en la productividad, ingresos más altos y, por ende, una mejora en la calidad de vida. <!-- agregar cita  -->
