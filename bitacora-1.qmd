@@ -16,6 +16,8 @@ Así pues, realizar un estudio enfocado en el nivel educativo de los costarricen
   
   Asimismo, se considera que esta vía de exploración ofrece gran variedad de enfoques a la hora de realizar un potencial análisis, pues hay diferentes formas de medir la pobreza (como el método de línea de pobreza o índice de pobreza multidimensional) y el nivel educativo de una persona (si se terminó primaria, secundaria, universidad, que título se obtuvo, años de escolaridad, etc.), además de que se podrían considerar demás dimensiones, como el ingreso obtenido por la persona para determinar si la pobreza también incide en el grado de desigualdad del país.
   
+  Por tanto, la idea inicial de la presente investigación consiste en lo siguiente: dados los datos obtenidos de una base que se dedique a medir tanto parámetros educativos como socioeconómicos de una población, se desea explorar la relación que existe entre el nivel educativo y la condición socioeconómica de un individuo, en aras de determinar que tanto influye la educación en mejorar la calidad de vida. A partir de ello, se formula la siguiente pregunta: ¿Como incide el nivel educativo de una persona en su calidad de vida?
+  
 ### Conceptualización de la idea
 
  - Nivel educativo: El nivel educativo hace referencia al grado de instrucción alcanzado por un individuo dentro del sistema educativo formal. Este indicador es crucial para analizar las oportunidades económicas, el acceso a mejores condiciones de vida, y la capacidad de los individuos para salir de la pobreza. En el contexto socioeconómico, un mayor nivel educativo está generalmente asociado con un incremento en la productividad, ingresos más altos y, por ende, una mejora en la calidad de vida. <!-- agregar cita  -->
@@ -233,7 +235,7 @@ Para analizar cómo la precisión de los datos recolectados en encuestas naciona
 
 ### Argumentación a través de datos
 
-  Para el presente proyecto se hará uso de la base de datos de la Encuesta Nacional de Hogares de Costa Rica del 2023 realizada por el INEC. Esta encierra información de un grupo de viviendas representativas de Costa Rica, así como la información de todos los hogares y personas que residen en estas; en particular, presenta más de 30000 casos, y mide alrededor de 590 variables. Se tomará como unidad estadística a las personas de entre 18 y 60 años de edad.
+  Para el presente proyecto se hará uso de la base de datos de la Encuesta Nacional de Hogares (ENAHO) realizada por el INEC en Costa Rica el año 2023. Esta es una encuesta que se hace año con año, pero solo se tomarán los datos del 2023. La ENAHO encierra una muestra representativa de viviendas de Costa Rica, así como la información de todos los hogares y personas que residen en estas; en particular, presenta más de 30000 casos, y mide alrededor de 590 variables. Se tomará como unidad estadística a las personas de entre 18 y 60 años de edad, las cuales se piensa que ya habrán tenido algún impacto de la educación en su condición socioeconómica.
   
   Todas las variables que incluye la base se pueden dividir en diferentes apartados, los cuales aportan diferentes enfoques que pueden ser de utilidad para el presente estudio. 
 
