@@ -235,7 +235,7 @@ Para analizar cómo la precisión de los datos recolectados en encuestas naciona
 
 ### Argumentación a través de datos
 
-  Para el presente proyecto se hará uso de la base de datos de la Encuesta Nacional de Hogares de Costa Rica del 2023 realizada por el INEC. Esta encierra información de un grupo de viviendas representativas de Costa Rica, así como la información de todos los hogares y personas que residen en estas; en particular, presenta más de 30000 casos, y mide alrededor de 590 variables. Se tomará como unidad estadística a las personas de entre 18 y 60 años de edad.
+  Para el presente proyecto se hará uso de la base de datos de la Encuesta Nacional de Hogares (ENAHO) realizada por el INEC en Costa Rica el año 2023. Esta es una encuesta que se hace año con año, pero solo se tomarán los datos del 2023. La ENAHO encierra una muestra representativa de viviendas de Costa Rica, así como la información de todos los hogares y personas que residen en estas; en particular, presenta más de 30000 casos, y mide alrededor de 590 variables. Se tomará como unidad estadística a las personas de entre 18 y 60 años de edad, las cuales se piensa que ya habrán tenido algún impacto de la educación en su condición socioeconómica.
   
   Todas las variables que incluye la base se pueden dividir en diferentes apartados, los cuales aportan diferentes enfoques que pueden ser de utilidad para el presente estudio. 
 
