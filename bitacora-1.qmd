@@ -359,11 +359,11 @@ Entre las posibles combinaciones de palabras clave se encuentran
 
 - **Ingreso**: según @ENAHO2023, el ingreso comprende la suma de las entradas que percibe una persona a partir de diferentes fuentes, entre las que destacan aquellas por concepto de trabajo, rentas o transferencias. 
 
-### **Principios y teorías**
+### Principios y teorías
 
-- **Teoría del capital humano:** a lo que se refiere esta teoría principalmente, según @Aguado, es que las habilidades, conocimientos y competencias que adquieren los individuos a través de la educación y la experiencia en sus diversas formas corresponden a un recurso económico valioso que puede ser usado para aumentar la productividad, tanto individual como colectiva.
+- **Teoría del capital humano:** a lo que se refiere esta teoría principalmente, según @Aguado, es que las habilidades, conocimientos y competencias que adquieren los individuos-a través de la educación y la experiencia en sus diversas formas-corresponden a un recurso económico valioso que puede ser usado para aumentar su calidad de vida. Esto porque, con mayor capital humano, las personas pueden ser más productivas, lo que propicia a que tengan mayores ingresos, lo cual, se piensa, conduce a un mayor bienestar.
 
-- **Enfoque estructural de la pobreza:** de acuerdo con @Rodriguez, la pobreza no es necesariamente un resultado de las características o valores culturales de los individuos, sino más bien corresponde al producto de las estructuras económicas y sociales en las que las personas se encuentran inmersas. Desde este punto de vista, la pobreza se entiende como un fenómeno que surge de los factores sistémicos que influyen en las oportunidades y restricciones o limitaciones que enfrentan las personas.
+- **Enfoque estructural de la pobreza:** de acuerdo con @Rodriguez, la pobreza es producto de las estructuras económicas y sociales en las que las personas se encuentran inmersas. Desde este punto de vista, la pobreza se entiende como un fenómeno que surge de los factores sistémicos que influyen en las oportunidades y restricciones que enfrentan las personas. Las causas de la pobreza, en consecuencia, se agruparían en tres categorías: los factores demográficos (que corresponden a las características que los individuos se llevan al mercado de trabajo), los factores relacionados con el mercado de trabajo (los cuales determinan el nivel de empleo, y así el salario promedio de una economía), y los factores institucionales (los cuales corresponden a las barreras ajenas al mercado que privan a ciertos grupos sociales de desarrollar capital humano).
 
 {{< pagebreak >}}
 
