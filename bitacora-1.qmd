@@ -377,7 +377,7 @@ Entre las posibles combinaciones de palabras clave se encuentran
   
   A la hora de explorar la relación entre la pobreza y la educación, es importante reconocer las tensiones que surgen, así como la forma en que otros autores las han llegado a abordar. En particular, es necesario reconocer a la pobreza como una condición compleja, que va más allá del ingreso. En esta línea, @Jiang hace énfasis en la importancia de la concepción multidimensional de la pobreza a través del análisis de diferentes dimensiones, como la vivienda, acceso a servicios de salud y el apoyo social.  
   
-  Desde un enfoque estructural, la pobreza debe entenderse como el resultado de estructuras económicas y sociales, las cuales involucran factores demográficos, factores relacionados con el mercado de trabajo, y factores institucionales [agregar referencia]. 
+  Desde un enfoque estructural, la pobreza debe entenderse como el resultado de estructuras económicas y sociales, las cuales involucran factores demográficos, factores relacionados con el mercado de trabajo, y factores institucionales [@Rodriguez]. 
   
   Por otra parte, resulta problemático intentar establecer un vínculo causal unidireccional entre la educación y la condición económica de una persona. @Aguado encuentra en su estudio que la relación entre pobreza y educación se basa en una dinámica de reciprocidad, en donde la pobreza contribuye a que el individuo tenga carencias en su acceso a la educación, y la falta de educación le impone barreras laborales, lo cual contribuye a perpetuar su condición. 
   
