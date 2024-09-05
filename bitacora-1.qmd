@@ -4,19 +4,19 @@
 
 ### Definición de la idea
 
-En la actualidad, es evidente observar de primera mano la importancia que tiene la educación en la vida de cualquiera que tenga el privilegio de poseerla. Todos se pueden ver beneficiados por ella, desde aquellas personas que solo logran graduarse de primaria, hasta aquellos que consiguen doctorados y maestrías en áreas de estudio especializadas. Los sistemas educativos le permiten a una persona aprender a leer, a escribir, a pensar de una manera crítica, a opinar, a crear, a comunicarse, y a desarrollar una mayor variedad de habilidades que son imprescindibles para el desarrollo de vida de un individuo. En consecuencia, cualquier investigación que contemple a la educación como objeto de estudio es de interés para cualquier persona que desee analizar el bienestar de una población.
+En la actualidad, se puede observar de primera mano la importancia que tiene la educación en la vida de cualquiera que tenga el privilegio de poseerla. Todos se pueden ver beneficiados por ella, desde aquellas personas que solo logran graduarse de primaria, hasta aquellos que consiguen doctorados y maestrías en áreas de estudio especializadas. Los sistemas educativos permiten a una persona aprender a leer, a escribir, a pensar de una manera crítica, a opinar, a crear, a comunicarse, y a desarrollar una mayor variedad de habilidades que son imprescindibles para el desarrollo personal de un individuo. En consecuencia, cualquier investigación que contemple a la educación como objeto de estudio es de interés para cualquier persona que desee analizar el bienestar de una población.
 
 Así pues, realizar un estudio enfocado en el nivel educativo de los costarricenses es necesario para tomar conciencia del estado del aparato educativo nacional.
 
 “Entre 2021 y el inicio de 2023, nuevas caídas de la inversión per cápita en educación hicieron retroceder al país hacia los niveles que se tenía diez años atrás. […] El sector educativo enfrenta una coyuntura decisiva ante este sendero de involución que conduce a una educación de menor calidad y accesos cada vez más excluyentes para amplios segmentos de la población. [@EstadoNacion, p.27] 
 
-  A partir de lo anterior, es esencial realizar estudios que permitan localizar donde están las falencias del sistema educativo y qué consecuencias podría sufrir el país tras la inacción de las autoridades competentes, en aras de llegar a proponer posibles soluciones que permitan mejorar la situación. 
+  En base a lo anterior, es esencial realizar estudios que permitan localizar dónde están las falencias del sistema educativo y qué consecuencias podría sufrir el país debido a la inacción de las autoridades competentes, en aras de llegar a proponer posibles soluciones que permitan mejorar la situación. 
   
-  En particular, vincular el nivel educativo con la condición socioeconómica de las personas podría ser un enfoque que propicie el desarrollo de un estudio sumamente relevante, capaz de motivar la acción colectiva en el país; todo esto bajo la premisa de que la educación conduce a una mejor vida. Actualmente, alrededor de 499850 hogares costarricenses se pueden considerar pobres [@ENAHO2023, p.63], de manera que, si se encuentra empíricamente que la educación conduce a menos pobreza, entonces este resultado podría ayudar a fundamentar nuevas políticas en educación, orientadas a aumentar las oportunidades de conseguir una mejor vida para la población.
+  En particular, vincular el nivel educativo con la condición socioeconómica de las personas podría ser un enfoque que propicie el desarrollo de un estudio sumamente relevante, capaz de motivar la acción colectiva en el país; todo esto bajo la premisa de que la educación mejora la calidad de vida. Actualmente, alrededor de 499850 hogares costarricenses se pueden considerar pobres [@ENAHO2023, p.63], de manera que, si se encuentra empíricamente que la educación conduce a menos pobreza, entonces este resultado podría ayudar a fundamentar nuevas políticas en educación, orientadas a aumentar las oportunidades de conseguir una mejor vida para la población.
   
-  Asimismo, se considera que esta vía de exploración ofrece gran variedad de enfoques a la hora de realizar un potencial análisis, pues hay diferentes formas de medir la pobreza (como el método de línea de pobreza o índice de pobreza multidimensional) y el nivel educativo de una persona (si se terminó primaria, secundaria, universidad, que título se obtuvo, años de escolaridad, etc.), además de que se podrían considerar demás dimensiones, como el ingreso obtenido por la persona para determinar si la pobreza también incide en el grado de desigualdad del país.
+  Asimismo, se considera que esta vía de exploración ofrece gran variedad de enfoques a la hora de realizar un potencial análisis, pues hay diferentes formas de medir la pobreza (como el método de línea de pobreza o índice de pobreza multidimensional) y el nivel educativo de una persona (si se terminó primaria, secundaria, universidad, que título se obtuvo, años de escolaridad, etc.), además de que se podrían considerar otras dimensiones, como el ingreso obtenido por la persona para determinar si la pobreza también incide en el grado de desigualdad del país.
   
-  Por tanto, la idea inicial de la presente investigación consiste en lo siguiente: dados los datos obtenidos de una base que se dedique a medir tanto a parámetros educativos como socioeconómicos de una población, se desea explorar como objeto de estudio la relación que existe entre el nivel educativo y la condición socioeconómica de un individuo, en aras de determinar que tanto influye la educación en su calidad de vida. A partir de ello, se formula la siguiente pregunta: ¿Como incide el nivel educativo de una persona en su calidad de vida?
+  Por tanto, la idea inicial de la presente investigación consiste en lo siguiente: dados los datos obtenidos de una base que se dedique a medir tanto a parámetros educativos como socioeconómicos de una población, se desea explorar como objeto de estudio la relación que existe entre el nivel educativo y la condición socioeconómica de un individuo, en aras de determinar cuánto influye la educación en su calidad de vida. A partir de ello, se formula la siguiente pregunta: ¿Cómo incide el nivel educativo de una persona en su calidad de vida?
 
 ### Identificación de tensiones
 
@@ -24,17 +24,17 @@ Así pues, realizar un estudio enfocado en el nivel educativo de los costarricen
   
   <!-- Se entiende "tensiones" como los obstáculos, desafíos o contradicciones que pueden surgir durante el proceso de investigación. -->
 
-- La idea podría sugerir que, de alguna forma, se va a hallar un vínculo causal entre la educación y la pobreza, de manera que podría llegar a pensarse que se busca encontrar que la educación podría dar camino a una mejor condición de vida. Sin embargo, existe la posibilidad de que la educación podría estar simplemente correlacionada con otros factores que determinan la calidad de vida de una persona, lo cual es un desafío metodológico a tener en cuenta.
+- La idea sugiere que, de alguna forma, se va a hallar un vínculo causal entre la educación y la pobreza, de manera que podría llegar a pensarse que se busca encontrar que la educación podría dar camino a una mejor condición de vida. Sin embargo, es posible que la educación esté simplemente correlacionada con otros factores que determinan la calidad de vida de una persona, lo que representa un desafío metodológico a tener en cuenta.
 
 - La definición de una buena calidad de vida es algo altamente amplio y subjetivo, lo cual podría generar tensiones a la hora de querer generalizar, puesto que diferentes personas pueden tener diferentes concepciones. 
 
 - Al querer explorar temas relacionados con la pobreza, hay que estar conscientes de que existen diferentes formas de medir esta variable; elegir un método sobre otro podría influir en los resultados y conclusiones de la investigación, generando tensiones sobre cuál es la forma “correcta” de medir la pobreza.
 
-- Los datos recolectados para querer vincular a la educación y la condición socioeconómica de una persona pueden verse sesgados por su contexto espacial y temporal. Una meta que se formula para el presente trabajo es que se pueda llegar a una conclusión aplicable a la situación en Costa Rica, por lo que es necesario tomar datos que permitan cumplir este objetivo.
+- Los datos recolectados para vincular la educación con la condición socioeconómica de una persona pueden verse sesgados por su contexto espacial y temporal. Una meta que se formula para el presente trabajo es que se pueda llegar a una conclusión aplicable a la situación en Costa Rica, por lo que es necesario tomar datos que permitan cumplir este objetivo.
 
 ### Reformulación de la idea en modo preguntas
 
- - ¿Qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y como pueden estas variables reflejar las desigualdades en la distribución de ingreso en Costa Rica?
+ - ¿Qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y cómo pueden estas variables reflejar las desigualdades en la distribución de ingreso en Costa Rica?
 
  - ¿En qué medida el logro educativo contribuye a la movilidad económica de las personas y a la superación de la pobreza en Costa Rica?
 
@@ -44,7 +44,7 @@ Así pues, realizar un estudio enfocado en el nivel educativo de los costarricen
 
 ### Argumentación de las preguntas
 
-  Pregunta: ¿Qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y como pueden estas variables reflejar las desigualdades en la distribución de ingreso en Costa Rica?
+  ***Pregunta: ¿Qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y cómo pueden estas variables reflejar las desigualdades en la distribución de ingreso en Costa Rica?***
   
  **Contraargumentos**
   
@@ -60,7 +60,7 @@ Así pues, realizar un estudio enfocado en el nivel educativo de los costarricen
   
   Se podría perpetuar la idea de que las personas solo pueden esperar a tener una mejor calidad de vida si se empeñan a tener una buena educación, lo cual minimizaría la influencia de factores sistémicos como la discriminación y la falta de acceso a recursos y oportunidades.
                         
-  Desde un punto de vista político, enfocarse únicamente en el nivel educativo puede desviar la atención de la responsabilidad de políticas públicas en crear condiciones de acceso a recursos y empleo; esto podría percibirse como una sobresimplificación de problemas estructurales que van más allá del sistema educativo.
+  Desde un punto de vista político, enfocarse únicamente en el nivel educativo puede desviar la atención de la responsabilidad de políticas públicas en crear condiciones de acceso a recursos y empleo; esto podría percibirse como una simplificación excesiva de problemas estructurales que van más allá del sistema educativo.
                         
   Finalmente, el hecho de potencialmente tomar como referencia estudios que relacionan educación y condición socioeconómica en otros países podría sesgar la presente investigación, pues estas fuentes podrían estar orientadas a sociedades y mercados laborales específicos, los cuales pueden divergir significativamente de la realidad costarricense.
   
@@ -94,7 +94,7 @@ Así pues, realizar un estudio enfocado en el nivel educativo de los costarricen
   
   Para investigar la relación entre el nivel educativo y la condición socioeconómica, resulta imprescindible tener claro que la educación es uno de muchos factores que influyen en la condición socioeconómica de un individuo. El desarrollo de esta pregunta debe involucrar procesos de medición sólidos y fundamentos teóricos bien establecidos, al igual que fuentes de información confiables para que el análisis de datos sea lo más apegado a la realidad, y un enfoque que llegue a retratar la importancia de la educación en la construcción de una sociedad más igualitaria y próspera.
   
-  Pregunta: ¿En qué medida el logro educativo contribuye a la movilidad económica de las personas y a la superación de la pobreza en Costa Rica?
+  ***Pregunta: ¿En qué medida el logro educativo contribuye a la movilidad económica de las personas y a la superación de la pobreza en Costa Rica?***
   
   **Contraargumentos**
   
@@ -138,7 +138,7 @@ Así pues, realizar un estudio enfocado en el nivel educativo de los costarricen
   **Concluya**
   La propuesta para cuantificar la medida en la cual la educación contribuye a la movilidad económica de las personas y a la superación de la pobreza debe ser un proceso que incluya métodos que midan el nivel educativo y la condición socioeconómica de un individuo desde múltiples aristas, además de que debería estar basado en teorías previamente establecidas. Todo esto a través de una recolección extensa de datos, que reflejen adecuadamente la realidad del país y motiven a un sentimiento de responsabilidad colectiva en la población. Esto permitiría llegar a una cuantificación precisa de la importancia de la educación en el proceso de movilidad económica en Costa Rica.
   
-  Pregunta: ¿Qué factores externos pueden modificar o mediar la relación entre nivel educativo y condición socioeconómica en Costa Rica?
+  ***Pregunta: ¿Qué factores externos pueden modificar o mediar la relación entre nivel educativo y condición socioeconómica en Costa Rica?***
   
   **Contraargumentos**
   
@@ -186,7 +186,7 @@ Además, este enfoque puede inspirar un compromiso más fuerte con la justicia s
   
 Para explorar cómo los factores externos pueden modificar o mediar la relación entre nivel educativo y condición socioeconómica en Costa Rica, es crucial adoptar un enfoque multifacético que tenga en cuenta el impacto de variables como el contexto económico, la estabilidad política, las políticas públicas, y las características sociodemográficas. Este enfoque permitirá un análisis más riguroso y ético, y ayudará a evitar conclusiones simplistas, promoviendo así un entendimiento más profundo de las desigualdades en la distribución de ingresos y cómo estas pueden ser mitigadas a través de políticas más inclusivas y equitativas.
   
-Pregunta: ¿Cómo afecta la precisión de los datos recolectados en encuestas nacionales la interpretación de la relación entre nivel educativo y condición socioeconómica en Costa Rica?
+  ***Pregunta: ¿Cómo afecta la precisión de los datos recolectados en encuestas nacionales la interpretación de la relación entre nivel educativo y condición socioeconómica en Costa Rica?***
   
   **Contraargumentos**
   
@@ -262,7 +262,7 @@ El primero alude a las variables de identificación, como zona y región de plan
 - Recibe beca de (FONABE, INA, Municipalidad, Universidad Pública, Empléate, otra institución pública, Universidad privada, otra empresa o institución privada).
 - Monto de beca de (FONABE, INA, Municipalidad, Universidad Pública, Empléate, otra institución pública, Universidad privada, otra empresa o institución privada).
 - Recibió cursos de educación no formal: se refiere a si la persona concluyó algún programa de enseñanza no formal o extraescolar (por ejemplo, en el INA).
-- Formación educativa no formal: incluye las mismas áreas que la educacion formal.
+- Formación educativa no formal: incluye las mismas áreas que la educación formal.
 - Dominio de un segundo idioma.
 - Condición de actividad: se refiere a si se está en condición de ocupado (sí trabajó al menos una hora en el periodo de referencia), desempleado abierto (no trabajó en el periodo de referencia, pero estaba dispuesto a trabajar), o fuera de la fuerza de trabajo (no trabajó en el periodo de referencia, pero no estaba dispuesto a trabajar).
 - Ingreso total por persona (bruto o neto).
@@ -285,26 +285,26 @@ Entre las posibles combinaciones de palabras clave se encuentran
 
 ### Fichas de literatura
 
-**Título: Una aproximación empírica a la relación entre educacion y pobreza**
+**Título: Una aproximación empírica a la relación entre educación y pobreza**
 
 -	Autor(es): Luis Fernando Aguado Quintero, Luis Eduardo Girón Cruz, Fernando Salazar Silva
 -	Año: 2007
--	Nombre del tema: relación entre la educacion y la pobreza
+-	Nombre del tema: relación entre la educación y la pobreza
 -	Forma de organizarlo:
     + Cronológico: se utilizan datos de una encuesta elaborada el 2003 en Colombia.
     + Metodológico: tablas cruzadas; modelo Logit múltiple ordenado; modelo de ecuaciones estructurales.
     + Temático: educación, economía
     + Teoría: teoría del capital humano
 -	Resumen en una oración: Utiliza modelos para cuantificar la interrelación entre las variables pobreza y educación con respecto a la muestra estudiada.
--	Argumento Central: la educacion y la condición socioeconómica de una persona actúan una sobre la otra recíprocamente.
+-	Argumento Central: la educación y la condición socioeconómica de una persona actúan una sobre la otra recíprocamente.
 -	Problemas con el argumento o tema: Se parte desde el punto de vista de que la educación influye en gran medida en la condición de pobreza de una persona, pero después se reconoce que la condición socioeconómica del individuo influye significativamente en el acceso a la educación, por lo que no se puede establecer un vínculo unidireccional.
--	Resumen en un párrafo: A partir de la utilización de un modelo Logit de elección múltiple y modelos de ecuaciones estructurales, los investigadores lograron vislumbrar el tipo de relación que existe entre las variables de pobreza y educacion (así como el tamaño del hogar). Se argumenta que esta se basa en una dinámica de reciprocidad, en donde la pobreza afecta a la educacion y la educacion a la pobreza. Asimismo, se utiliza la teoría del capital humano (la cual sugiere que la educacion, por sus efectos sobre la productividad y el nivel de ingreso de las personas, es determinante para la superación de la pobreza) como marco de referencia teórica para respaldar los datos. Se concluye que, si bien la educación es de los principales promotores de la movilidad económica, esta no garantiza que los individuos salgan de la pobreza, puesto que se necesitan de otros factores para generar un entorno económico favorable que permita mejorar la calidad de vida de las personas.
+-	Resumen en un párrafo: A partir de la utilización de un modelo Logit de elección múltiple y modelos de ecuaciones estructurales, los investigadores lograron vislumbrar el tipo de relación que existe entre las variables de pobreza y educación (así como el tamaño del hogar). Se argumenta que esta se basa en una dinámica de reciprocidad, en donde la pobreza afecta a la educación y la educación a la pobreza. Asimismo, se utiliza la teoría del capital humano (la cual sugiere que la educación, por sus efectos sobre la productividad y el nivel de ingreso de las personas, es determinante para la superación de la pobreza) como marco de referencia teórica para respaldar los datos. Se concluye que, si bien la educación es de los principales promotores de la movilidad económica, esta no garantiza que los individuos salgan de la pobreza, puesto que se necesitan de otros factores para generar un entorno económico favorable que permita mejorar la calidad de vida de las personas.
 
 **Título: Evaluación de impacto de la educación sobre la pobreza en Costa Rica (un análisis para educación secundaria y postsecundaria)**
 
 -	Autor(es): Carmen Sánchez Retana
 -	Año: 2015
--	Nombre del tema: influencia de la educacion secundaria y postsecundaria en la pobreza
+-	Nombre del tema: influencia de la educación secundaria y postsecundaria en la pobreza
 -	Forma de organizarlo:
     + Cronológico: el análisis se hizo a partir de la Encuesta Nacional De Hogares de Costa Rica del 2013
     + Metodológico: Propensity Score Matching, Modelo Probit
@@ -312,7 +312,7 @@ Entre las posibles combinaciones de palabras clave se encuentran
     + Teoría: teoría del capital humano
 -	Resumen en una oración: se logra medir la disminución en la probabilidad de caer en la pobreza si se llega a completar una educación secundaria, y también si se llega a una educación postsecundaria.
 -	Argumento central: el hecho de completar la secundaria contribuye a disminuir la probabilidad de caer en pobreza, y el grado de disminución aumenta si se alcanza una educación postsecundaria.
--	Problemas con el argumento o tema: el porcentaje de reducción porcentual de dicha probabilidad no permite ver si el impacto de la educación es alto o bajo, puesto que es una cifra relativa que depende de la tasa de pobreza que haya en un momento dado.
+-	Problemas con el argumento o tema: el porcentaje de reducción porcentual de esta probabilidad no permite ver si el impacto de la educación es alto o bajo, puesto que es una cifra relativa que depende de la tasa de pobreza que haya en un momento dado.
 -	Resumen en un párrafo: El estudio toma a la población de entre 25 y 60 años de la ENAHO 2013 y los divide en dos grupos: personas que completaron secundaria y personas que adquirieron un mayor nivel educativo. Se analizan características personales, de vivienda y del hogar de cada individuo; esto para determinar, a través de estimaciones realizadas por un modelo Probit (el cual se emplea por lo general para medir la relación entre variables dicotómicas), se logra medir la correlación de cada característica con el nivel educativo. A partir de estas cifras, se estima el impacto de la educación en la pobreza: se concluye que alcanzar la secundaria completa reduce las probabilidades de caer en pobreza en un 5,7%, mientras que la posibilidad de obtener estudios postsecundarios la reduce en 8,4%.
 
 **Título: Educación y pobreza: una relación conflictiva **
@@ -343,7 +343,7 @@ Entre las posibles combinaciones de palabras clave se encuentran
 -	Resumen en una oración: La educación reduce la pobreza en zonas rurales de México.
 -	Argumento central: Le educación primaria y secundaria corresponden a un pilar fundamental en la erradicación de la pobreza en México, más en zonas rurales que a nivel nacional.
 -	Problemas con el argumento o tema: El texto no especifica la calidad de la educación que es recibida por los estudiantes, dicho factor es de suma importancia ya que puede condicionar el nivel educativo de dicha población.
--	Resumen en un párrafo: El documento se enfoca en dar a conocer el efecto de la educación en la población rural y nacional del territorio mexicano. Utiliza el método estadístico de Propensity Score Matching, el estudio demuestra que la educación reduce las probabilidades de los individuos de caer en pobreza, dicha probabilidad es más efectiva en sectores rurales. El estudio enfatiza que la inversion en educación representa una acción importantísima para la erradicación de la pobreza, aunque no menciona la calidad de la educación, la cual podría multiplicar los efectos positivos de al educación que detalla el autor.
+-	Resumen en un párrafo: El documento se enfoca en dar a conocer el efecto de la educación en la población rural y nacional del territorio mexicano. Utiliza el método estadístico de Propensity Score Matching, el estudio demuestra que la educación reduce las probabilidades de los individuos de caer en pobreza, dicha probabilidad es más efectiva en sectores rurales. El estudio enfatiza que la inversión en educación representa una acción importantísima para la erradicación de la pobreza, aunque no menciona la calidad de la educación, la cual podría multiplicar los efectos positivos de al educación que detalla el autor.
 
 {{< pagebreak >}}
 
@@ -353,7 +353,7 @@ Entre las posibles combinaciones de palabras clave se encuentran
 
 ### Conceptos básicos
 
-- **Pobreza**: De acuerdo con @Sanchez, la pobreza se puede catalogar como una situación de privación, en la cual la insuficiencia de ingresos provoca impedimento en alcanzar la satisfacción de necesidades básicas, lo cual imposibilita conseguir cierto nivel de bienestar. Aunado a esto, según @ENAHO2023, existe una concepción más integral, en la cual la carencia no surge solamente de la falta de ingreso, sino que las privaciones pueden existir en diferentes ámbitos de bienestar, como la educación, vivienda y uso de internet, salud, trabajo y protección social.
+- **Pobreza**: De acuerdo con @Sanchez, la pobreza se puede catalogar como una situación de privación, en la cual la insuficiencia de ingresos provoca impedimento en alcanzar la satisfacción de necesidades básicas, lo cual imposibilita conseguir cierto nivel de bienestar. Además de esto, según @ENAHO2023, existe una concepción más integral, en la cual la carencia no surge solamente de la falta de ingreso, sino que las privaciones pueden existir en diferentes ámbitos de bienestar, como la educación, vivienda y uso de internet, salud, trabajo y protección social.
 
 - **Nivel educativo**: El nivel educativo hace referencia al grado de instrucción alcanzado por un individuo dentro de un sistema educativo, ya sea formal o no formal. @ENAHO2023 define a estas dos áreas de la siguiente manera: la educación formal se refiere al sistema educacional sistematizado, estructurado en jerarquías y graduado cronológicamente que va desde la educación preescolar hasta la universitaria, mientras que la educación no formal se refiere al proceso educativo que no forma parte del sistema educativo del país.
 
@@ -369,7 +369,7 @@ Entre las posibles combinaciones de palabras clave se encuentran
 
 ## Parte de escritura
 
-  Para la presente investigación se desarrollará el tema de la relación entra la educación y la condición socioeconómica a través de la pregunta: ¿qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y cómo pueden estas variables reflejar las desigualdades en la distribución de ingreso en Costa Rica? Esto porque se considera que es la más adecuada para generar conocimientos que podrían ser relevantes para el país, al igual que encierra conceptos adicionales como la distribución del ingreso, que podría poner en perspectiva desigualdades económicas subyacentes. Para esto, se hará uso de datos de individuos de entre 18 y 60 años, recolectados por la Encuesta Nacional de Hogares del 2023 del INEC. 
+  Para la presente investigación se desarrollará el tema de la relación entra la educación y la condición socioeconómica a través de la pregunta: ¿qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y cómo pueden estas variables reflejar las desigualdades en la distribución de ingreso en Costa Rica? Esto porque se considera que es la más adecuada para generar conocimientos que podrían ser relevantes para el país, al igual que encierra conceptos adicionales como la distribución del ingreso, que podrían poner en perspectiva desigualdades económicas subyacentes. Para esto, se hará uso de datos de individuos de entre 18 y 60 años, recolectados por la Encuesta Nacional de Hogares del 2023 del INEC. 
   
   Es evidente que la educación tiene un impacto positivo en la calidad de vida de las personas, pues está vinculada con mejores oportunidades laborales para las mismas. Esta relación se puede explorar a través de la teoría del capital humano, la cual establece que un mayor nivel educativo proporciona más capital humano a las personas, lo cual está vinculado con una mayor productividad, que les permite competir por mejores puestos de trabajo y mejores ingresos [@Sanchez].
   
