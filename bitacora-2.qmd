@@ -1,1 +1,62 @@
 # Bitácora 2
+
+## Parte de planificación
+
+### Ordenamiento de la Literatura
+
+| Organización   | Literatura            |
+|----------------|-----------------------|
+| **Tipo**       | **Tema general**      | **Tema específico** | **Título**   | **Año**  | **Autor(es)**  |
+| Metodológico   | Regresión logística   | AAA                 | Título 1     | 2000     | Autor 1        |
+| Metodológico   | SVM                   | BBB                 | Título 2     | 2001     | Autor 2        |
+| Metodológico   | Árboles de decisión   | CCC                 | Título 3     | 2002     | Autor 3        |
+
+## Enlaces de la literatura
+
+* Copiar los párrafos de las fichas literarias en el orden establecido.
+* Reescribir cada párrafo con las siguientes secciones:
+  + **Resumen del artículo:**
+  + **Contraste con otro artículo/autor:**
+  + **Contribución propia:**
+  
+## Análisis estadísticos
+
+### Análisis descriptivo
+
+
+
+### Propuesta Metodológica
+
+
+
+### Construcción de fichas de resultados
+
+- Nombre de su hallazgo/resultado: 
+- Resumen en una oración: 
+- Principal característica: 
+- Problemas o posibles desafíos: 
+- Resumen en un párrafo:
+
+- Nombre de su hallazgo/resultado: 
+- Resumen en una oración: 
+- Principal característica: 
+- Problemas o posibles desafíos: 
+- Resumen en un párrafo:
+
+- Nombre de su hallazgo/resultado: 
+- Resumen en una oración: 
+- Principal característica: 
+- Problemas o posibles desafíos: 
+- Resumen en un párrafo:
+
+- Nombre de su hallazgo/resultado: 
+- Resumen en una oración: 
+- Principal característica: 
+- Problemas o posibles desafíos: 
+- Resumen en un párrafo:
+
+- Nombre de su hallazgo/resultado: 
+- Resumen en una oración: 
+- Principal característica: 
+- Problemas o posibles desafíos: 
+- Resumen en un párrafo:
