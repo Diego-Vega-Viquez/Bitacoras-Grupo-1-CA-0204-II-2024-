@@ -285,6 +285,20 @@ Entre las posibles combinaciones de palabras clave se encuentran
 
 ### Fichas de literatura
 
+**Título: Human Capital and Poverty Alleviation**  
+- Autor(es): Gary S. Becker  
+- Año: 1995  
+- Nombre del tema: La importancia del capital humano para el bienestar de las personas  
+- Forma de organizarlo:
+    + Cronológico: Toma literatura en materia educativa y económica en diferentes países, elaborada entre los años cincuenta y noventa.
+    + Metodológico: Análisis de investigaciones elaboradas previamente.
+    + Temático: Economía, Salud, Educación.
+    + Teoría: Teoría del capital humano.
+- Resumen en una oración: Explora la relación entre el capital humano y el crecimiento económico, señalando que la educación y la salud son claves para el bienestar de los países.
+- Argumento Central: El desarrollo de capital humano es la principal vía para el progreso económico de los países.
+- Problemas con el argumento o tema: El desarrollo de capital humano es inútil si no hay una organización eficiente de la producción.
+- Resumen en un párrafo: Becker analiza la importancia del capital humano en el crecimiento económico de diferentes países, destacando la estrecha relación entre el rendimiento económico y variables como la educación y la expectativa de vida. Argumenta que en países pobres, una población más educada y saludable puede impulsar un crecimiento económico más rápido, especialmente con énfasis en la educación primaria y secundaria. Además, sostiene que la educación es determinante para la salud y expectativa de vida, ya que las personas educadas tienden a hacer mejores inversiones en su salud. Becker también subraya que la educación reduce la desigualdad y facilita la movilidad económica, siendo la vía más efectiva para superar situaciones de vulnerabilidad económica.
+
 **Título: Una aproximación empírica a la relación entre educación y pobreza**
 
 -	Autor(es): Luis Fernando Aguado Quintero, Luis Eduardo Girón Cruz, Fernando Salazar Silva
@@ -328,7 +342,7 @@ Entre las posibles combinaciones de palabras clave se encuentran
 -	Resumen en una oración: El texto analiza como la educación se relaciona con el nivel socioeconómico en México.
 -	Argumento central: La educación en el territorio mexicano no logra per se escalar a un individuo en la pirámide social, ya que intervienen factores sociales preexistentes.
 -	Problemas con el argumento o tema: Cabe destacar que los datos son imperfectos, en la mayoría de casos no existe suficiente evidencia que respalde las ideas o hipótesis como las planteadas en este trabajo, además que el autor sugiere ciertos cambios que en la práctica son difíciles de ejecutar.
--	Resumen en un párrafo: La fuente expresa la relación entre la educación, condición socioeconómica, y pobreza en Mexico enfatizando en la teoría del capital humano para demostrar la complejidad del tema educativo. Demuestra algunos resultados empíricos que contradicen el supuesto que la educación favorece en la condición económica de una persona, haciendo énfasis en la condición de las personas que habitan en zonas rurales y marginadas. Por otro lado la teoría marxista señala que estas relaciones están directamente influenciadas por condiciones sociales y económicas. Sin importar lo que se haga a nivel de gobierno, se muestra que la educación sigue siendo un factor que perpetúa la desigualdad social en México 
+-	Resumen en un párrafo: el escrito explora la relación entre educación y pobreza bajo el marco de diferentes teorías, entre las que se destacan la teoría del capital humano (la cual establece que mayor educación conduce a un mayor éxito económico) y la teoría marxista (la cual establece que la educación no resolverá la pobreza, por lo que esta solo es útil para conducir a un cambio social que sí lleve a las personas a una mejor calidad de vida). Se dedica a analizar diferentes estudios relacionados con la investigación educativa en México a lo largo del tiempo para llegar a las siguientes conclusiones: las personas pobres sufren de la desigualdad de oportunidades, en tanto tienen menor posibilidad de ingresar oportunamente a las instituciones del sistema educativo, de permanecer hasta terminar los ciclos escolares, y de alcanzar el aprovechamiento escolar satisfactorio; así pues, la falta de educación de las personas en condición de pobreza surge de dicha condición, y la falta de oportunidades surge de su educación empobrecida. En consecuencia, la teoría del capital humano queda mal parada, pues, si bien la educación formal y no formal educan, no hay evidencia de que ayuden a elevar los ingresos o brindar mayor movilidad económica a los sujetos. 
 
 **Título: México: impacto de la educación en la pobreza rural**
 
@@ -343,7 +357,82 @@ Entre las posibles combinaciones de palabras clave se encuentran
 -	Resumen en una oración: La educación reduce la pobreza en zonas rurales de México.
 -	Argumento central: Le educación primaria y secundaria corresponden a un pilar fundamental en la erradicación de la pobreza en México, más en zonas rurales que a nivel nacional.
 -	Problemas con el argumento o tema: El texto no especifica la calidad de la educación que es recibida por los estudiantes, dicho factor es de suma importancia ya que puede condicionar el nivel educativo de dicha población.
--	Resumen en un párrafo: El documento se enfoca en dar a conocer el efecto de la educación en la población rural y nacional del territorio mexicano. Utiliza el método estadístico de Propensity Score Matching, el estudio demuestra que la educación reduce las probabilidades de los individuos de caer en pobreza, dicha probabilidad es más efectiva en sectores rurales. El estudio enfatiza que la inversión en educación representa una acción importantísima para la erradicación de la pobreza, aunque no menciona la calidad de la educación, la cual podría multiplicar los efectos positivos de al educación que detalla el autor.
+-	Resumen en un párrafo: El documento se enfoca en dar a conocer el efecto de la educación en la población rural y nacional del territorio mexicano. Utiliza el método estadístico de Propensity Score Matching, el estudio demuestra que la educación reduce las probabilidades de los individuos de caer en pobreza, dicha probabilidad es más efectiva en sectores rurales. El estudio enfatiza que la inversión en educación representa una acción importantísima para la erradicación de la pobreza, aunque no menciona la calidad de la educación, la cual podría multiplicar los efectos positivos de la educación que detalla el autor.
+
+**Título: Principales conclusiones del Libro: Educación, pobreza y desigualdad en Costa Rica**
+
+- Autor(es): Leonardo Sánchez Hernández y Rafael Arias Ramírez  
+- Año: s.f.  
+- Nombre del tema: Impacto de la educación sobre la pobreza y desigualdad en Costa Rica  
+- Forma de organizarlo:
+    + Cronológico: Utiliza datos recolectados en el contexto costarricense antes del 2017.
+    + Metodológico: Medidas de pobreza como las necesidades básicas insatisfechas y línea de pobreza.
+    + Temático: Economía y Educación.
+    + Teoría: Teoría del capital humano.
+- Resumen en una oración: La educación ayuda a disminuir la desigualdad y la pobreza en Costa Rica.
+- Argumento Central: La educación, particularmente la secundaria y universitaria, es clave para reducir la pobreza y la desigualdad en el país; mejorar la calidad educativa en zonas vulnerables es crucial para cerrar la brecha.
+- Problemas con el argumento o tema: A pesar del impacto positivo, la cobertura y calidad educativa en Costa Rica es limitada, lo que frena la reducción de la pobreza.
+- Resumen en un párrafo: Se concluye que la educación es determinante para la condición socioeconómica de una persona. Se afirma que los estudios universitarios permiten reducir significativamente las carencias de albergue, higiene, conocimiento y consumo. La educación mejora la inserción en el mercado laboral bajo mejores condiciones, reduciendo así el riesgo de privaciones materiales.
+
+**Título: Las características de la educación y su efecto en la pobreza: un análisis para México**
+
+- Autor(es): Omar Ricárdez González y David Robles Ortiz  
+- Año: 2024  
+- Nombre del tema: Efecto de la educación en la pobreza multidimensional extrema y moderada  
+- Forma de organizarlo:
+    + Cronológico: Se utilizan datos de la Encuesta Nacional de Ingresos y Gasto de los Hogares de 2010 y 2020 de México.
+    + Metodológico: Modelo Logit.
+    + Temático: Economía y Educación.
+    + Teoría: Teoría del capital humano.
+- Resumen en una oración: La educación influye en la pobreza, pero su efecto depende del contexto.
+- Argumento Central: La educación puede reducir la pobreza, pero su impacto varía según características individuales y regionales.
+- Problemas con el argumento o tema: Los autores destacan las dificultades para medir adecuadamente las disparidades en la calidad de la educación entre regiones, lo que afecta los resultados.
+- Resumen en un párrafo: Se investiga el impacto de las 4 "A" de la educación—Accesibilidad, Aceptabilidad, Adaptabilidad y Disponibilidad—en la pobreza en México, utilizando datos de 2010 y 2020. El estudio muestra que una mayor accesibilidad educativa para las mujeres reduce significativamente su probabilidad de estar en pobreza. También revela que la presencia de profesores mejor capacitados y mejor pagados, o la educación privada, disminuyen la probabilidad de caer en pobreza, especialmente en regiones con mayores desigualdades educativas.
+
+**Título: The Impact of COVID-19 on Education in Latin America: Long-Run Implications for Poverty and Inequality**
+
+-Autor(es): Jessica Bracco, Matías Ciaschi, Leonardo Gasparini y Mariana Marchionni y Guido Neidhöfer
+-Año: 2024
+-Nombre del tema: impacto en los cierres de las instituciones educativas a causa del COVID en la pobreza y la desigualdad en América Latina.
+-Forma de organizarlo:
+    +Cronológico: Se usan los datos de encuestas nacionales de hogares de la mayoría de los países de América Latina, realizadas en 2020
+    +Metodológico: uso de microsimulaciones para estimar el impacto de la pandemia em ingresos futuros y en indicadores de pobreza y desigualdad
+    +Temático: Salud, Educación y Economía
+    +Teoría: teoría del capital humano
+-Resumen en una oración:
+-Argumento central: 
+-Problemas con el argumento o tema: 
+-Resumen en un párrafo: Se argumenta que la pandemia tuvo un efecto significativo en la educación de la población joven en América Latina, pues obligó a que se interrumpieran los estudios, e incluso provocó que algunas personas se vieran forzadas a abandonar el sistema educativo. A partir de ello, se efectúan microsimulaciones para determinar el impacto de este paro educativo en los niveles de pobreza y desigualdad en el año 2045. Se encuentra que la interrupción en la formación de capital humano podría tener consecuencias negativas en los ingresos de las personas a largo plazo, y en consecuencia en los niveles de pobreza y desigualdad. En particular, se estima que la pobreza medida por nivel de ingreso podría incrementar de 8.4% a 20.7% dependiendo de la eficacia de las medidas implementadas por el gobierno y las familias para compensar el paro educativo; el impacto sería aún más severo para aquellas personas que abandonaran sus estudios, las cuales sufrirían un aumento de 22.7% a 38.5% de probabilidad de caer en pobreza.
+
+**Título: Encuesta Nacional de Hogares Julio 2023: Resultados Generales**
+
+-Autor(es): Instituto Nacional de Estadística y Censos (INEC)
+-Año: 2023
+-Nombre del tema: indicadores sociales y económicos asociados a las condiciones de vida de la población costarricense
+-Forma de organizarlo:
+    +Cronológico: encuesta realizada el 2023 en Costa Rica
+	  +Metodológico: elaboración de cuestionario
+	  +Temático: Economía, demografía
+	  +Teoría: 
+-Resumen en una oración: se muestran los indicadores de bienestar en Costa Rica del 2023
+-Argumento central: 
+-Problemas con el argumento o tema:
+-Resumen en un párrafo: es un informe que muestra el resultado de las mediciones sociodemográficas y económicas para determinar los indicadores de bienestar de Costa Rica. Se recopila información de los hogares y de los individuos, relacionada con el ingreso, el nivel educativo y la condición socioeconómica. 
+
+**Título: Impact of Education on Multidimensional Poverty Reduction at the Post-Poverty Alleviation Era in Xinjiang**
+-Autor(es): Jian Qiu, Hongsen Wang, Ailida Aikerbayr
+-Año: 2023
+-Nombre del tema: impacto de la educación en la reducción de la pobreza multidimensional
+-Forma de organizarlo:
+    +Cronológico: utiliza datos de una encuesta del 2022 realizada en Xinjiang, China
+    +Metodológico: Modelo Probit, Método Alkire-Foster
+    +Temático: Educación, Economía
+    +Teoría: Teoría de la pobreza multidimensional
+-Resumen en una oración: se mide y analiza la incidencia de pobreza multidimensional en Xinjiang, y se considera el impacto de la educación en su aliviamiento.  
+-Argumento central: si bien muchas personas se siguen enfrentando a desafíos significativos desde la perspectiva multidimensional de la pobreza, el mayor nivel de educación que tiene una persona está vinculada a una menor pobreza multidimensional.
+-Problemas con el argumento o tema: evaluar el impacto de la educacion de la pobreza a través de mediciones del ingreso de las personas es problemático a la hora de determinar la verdadera condición socioeconómica de un individuo, por lo cual es necesario utilizar un método que valore esta condición desde una perspectiva multidimensional.
+-Resumen en un párrafo: Se hace un estudio en Xinjiang, China, para determinar el impacto de la educación secundaria en la probabilidad de que un individuo sufra pobreza desde la perspectiva multidimensional a partir del método alkire-foster. Se encuentra que existe una correlación negativa entre el nivel educativo y la pobreza multidimensional medida a nivel individual. Empero, para la población  de menos de 35 años se encuentra que esta correlación no es significativa, lo cual se interpreta como una consecuencia de la implementación de educacion obligatoria general y la expansión de mayores oportunidades educativas en China tras la reforma y el periodo de apertura que experimentó el país, los cuales pudieron disminuir las disparidades en el acceso a la educación entre las personas jóvenes, lo cual permitiría a otros factores incidir más significativamente en la determinación de la condición socioeconómica.
+
 
 {{< pagebreak >}}
 
