@@ -391,75 +391,78 @@ Entre las posibles combinaciones de palabras clave se encuentran
 
 **Título: The Impact of COVID-19 on Education in Latin America: Long-Run Implications for Poverty and Inequality**
 
--Autor(es): Jessica Bracco, Matías Ciaschi, Leonardo Gasparini y Mariana Marchionni y Guido Neidhöfer
--Año: 2024
--Nombre del tema: impacto en los cierres de las instituciones educativas a causa del COVID en la pobreza y la desigualdad en América Latina.
--Forma de organizarlo:
-    +Cronológico: Se usan los datos de encuestas nacionales de hogares de la mayoría de los países de América Latina, realizadas en 2020
-    +Metodológico: uso de microsimulaciones para estimar el impacto de la pandemia em ingresos futuros y en indicadores de pobreza y desigualdad
-    +Temático: Salud, Educación y Economía
-    +Teoría: teoría del capital humano
--Resumen en una oración:
--Argumento central: 
--Problemas con el argumento o tema: 
--Resumen en un párrafo: Se argumenta que la pandemia tuvo un efecto significativo en la educación de la población joven en América Latina, pues obligó a que se interrumpieran los estudios, e incluso provocó que algunas personas se vieran forzadas a abandonar el sistema educativo. A partir de ello, se efectúan microsimulaciones para determinar el impacto de este paro educativo en los niveles de pobreza y desigualdad en el año 2045. Se encuentra que la interrupción en la formación de capital humano podría tener consecuencias negativas en los ingresos de las personas a largo plazo, y en consecuencia en los niveles de pobreza y desigualdad. En particular, se estima que la pobreza medida por nivel de ingreso podría incrementar de 8.4% a 20.7% dependiendo de la eficacia de las medidas implementadas por el gobierno y las familias para compensar el paro educativo; el impacto sería aún más severo para aquellas personas que abandonaran sus estudios, las cuales sufrirían un aumento de 22.7% a 38.5% de probabilidad de caer en pobreza.
+ - Autor(es): Jessica Bracco, Matías Ciaschi, Leonardo Gasparini y Mariana Marchionni y Guido Neidhöfer
+ - Año: 2024
+ - Nombre del tema: impacto en los cierres de las instituciones educativas a causa del COVID en la pobreza y la desigualdad en América Latina.
+ - Forma de organizarlo:
+    + Cronológico: Se usan los datos de encuestas nacionales de hogares de la mayoría de los países de América Latina, realizadas en 2020
+    + Metodológico: uso de microsimulaciones para estimar el impacto de la pandemia em ingresos futuros y en indicadores de pobreza y desigualdad
+    + Temático: Salud, Educación y Economía
+    + Teoría: teoría del capital humano
+ - Resumen en una oración:
+ - Argumento central: 
+ - Problemas con el argumento o tema: 
+ - Resumen en un párrafo: Se argumenta que la pandemia tuvo un efecto significativo en la educación de la población joven en América Latina, pues obligó a que se interrumpieran los estudios, e incluso provocó que algunas personas se vieran forzadas a abandonar el sistema educativo. A partir de ello, se efectúan microsimulaciones para determinar el impacto de este paro educativo en los niveles de pobreza y desigualdad en el año 2045. Se encuentra que la interrupción en la formación de capital humano podría tener consecuencias negativas en los ingresos de las personas a largo plazo, y en consecuencia en los niveles de pobreza y desigualdad. En particular, se estima que la pobreza medida por nivel de ingreso podría incrementar de 8.4% a 20.7% dependiendo de la eficacia de las medidas implementadas por el gobierno y las familias para compensar el paro educativo; el impacto sería aún más severo para aquellas personas que abandonaran sus estudios, las cuales sufrirían un aumento de 22.7% a 38.5% de probabilidad de caer en pobreza.
 
 **Título: Encuesta Nacional de Hogares Julio 2023: Resultados Generales**
 
--Autor(es): Instituto Nacional de Estadística y Censos (INEC)
--Año: 2023
--Nombre del tema: indicadores sociales y económicos asociados a las condiciones de vida de la población costarricense
--Forma de organizarlo:
-    +Cronológico: encuesta realizada el 2023 en Costa Rica
-	  +Metodológico: elaboración de cuestionario
-	  +Temático: Economía, demografía
-	  +Teoría: 
--Resumen en una oración: se muestran los indicadores de bienestar en Costa Rica del 2023
--Argumento central: 
--Problemas con el argumento o tema:
--Resumen en un párrafo: es un informe que muestra el resultado de las mediciones sociodemográficas y económicas para determinar los indicadores de bienestar de Costa Rica. Se recopila información de los hogares y de los individuos, relacionada con el ingreso, el nivel educativo y la condición socioeconómica. 
+ - Autor(es): Instituto Nacional de Estadística y Censos (INEC)
+ - Año: 2023
+ - Nombre del tema: indicadores sociales y económicos asociados a las condiciones de vida de la población costarricense
+ - Forma de organizarlo:
+    + Cronológico: encuesta realizada el 2023 en Costa Rica
+	  + Metodológico: elaboración de cuestionario
+	  + Temático: Economía, demografía
+	  + Teoría: 
+ - Resumen en una oración: se muestran los indicadores de bienestar en Costa Rica del 2023
+ - Argumento central: 
+ - Problemas con el argumento o tema:
+ - Resumen en un párrafo: es un informe que muestra el resultado de las mediciones sociodemográficas y económicas para determinar los indicadores de bienestar de Costa Rica. Se recopila información de los hogares y de los individuos, relacionada con el ingreso, el nivel educativo y la condición socioeconómica. 
 
 **Título: Impact of Education on Multidimensional Poverty Reduction at the Post-Poverty Alleviation Era in Xinjiang**
--Autor(es): Jian Qiu, Hongsen Wang, Ailida Aikerbayr
--Año: 2023
--Nombre del tema: impacto de la educación en la reducción de la pobreza multidimensional
--Forma de organizarlo:
-    +Cronológico: utiliza datos de una encuesta del 2022 realizada en Xinjiang, China
-    +Metodológico: Modelo Probit, Método Alkire-Foster
-    +Temático: Educación, Economía
-    +Teoría: Teoría de la pobreza multidimensional
--Resumen en una oración: se mide y analiza la incidencia de pobreza multidimensional en Xinjiang, y se considera el impacto de la educación en su aliviamiento.  
--Argumento central: si bien muchas personas se siguen enfrentando a desafíos significativos desde la perspectiva multidimensional de la pobreza, el mayor nivel de educación que tiene una persona está vinculada a una menor pobreza multidimensional.
--Problemas con el argumento o tema: evaluar el impacto de la educacion de la pobreza a través de mediciones del ingreso de las personas es problemático a la hora de determinar la verdadera condición socioeconómica de un individuo, por lo cual es necesario utilizar un método que valore esta condición desde una perspectiva multidimensional.
--Resumen en un párrafo: Se hace un estudio en Xinjiang, China, para determinar el impacto de la educación secundaria en la probabilidad de que un individuo sufra pobreza desde la perspectiva multidimensional a partir del método alkire-foster. Se encuentra que existe una correlación negativa entre el nivel educativo y la pobreza multidimensional medida a nivel individual. Empero, para la población  de menos de 35 años se encuentra que esta correlación no es significativa, lo cual se interpreta como una consecuencia de la implementación de educacion obligatoria general y la expansión de mayores oportunidades educativas en China tras la reforma y el periodo de apertura que experimentó el país, los cuales pudieron disminuir las disparidades en el acceso a la educación entre las personas jóvenes, lo cual permitiría a otros factores incidir más significativamente en la determinación de la condición socioeconómica.
+
+ - Autor(es): Jian Qiu, Hongsen Wang, Ailida Aikerbayr
+ - Año: 2023
+ - Nombre del tema: impacto de la educación en la reducción de la pobreza multidimensional
+ - Forma de organizarlo:
+    + Cronológico: utiliza datos de una encuesta del 2022 realizada en Xinjiang, China
+    + Metodológico: Modelo Probit, Método Alkire-Foster
+    + Temático: Educación, Economía
+    + Teoría: Teoría de la pobreza multidimensional
+ - Resumen en una oración: se mide y analiza la incidencia de pobreza multidimensional en Xinjiang, y se considera el impacto de la educación en su aliviamiento.  
+ - Argumento central: si bien muchas personas se siguen enfrentando a desafíos significativos desde la perspectiva multidimensional de la pobreza, el mayor nivel de educación que tiene una persona está vinculada a una menor pobreza multidimensional.
+ - Problemas con el argumento o tema: evaluar el impacto de la educacion de la pobreza a través de mediciones del ingreso de las personas es problemático a la hora de determinar la verdadera condición socioeconómica de un individuo, por lo cual es necesario utilizar un método que valore esta condición desde una perspectiva multidimensional.
+ - Resumen en un párrafo: Se hace un estudio en Xinjiang, China, para determinar el impacto de la educación secundaria en la probabilidad de que un individuo sufra pobreza desde la perspectiva multidimensional a partir del método alkire-foster. Se encuentra que existe una correlación negativa entre el nivel educativo y la pobreza multidimensional medida a nivel individual. Empero, para la población  de menos de 35 años se encuentra que esta correlación no es significativa, lo cual se interpreta como una consecuencia de la implementación de educacion obligatoria general y la expansión de mayores oportunidades educativas en China tras la reforma y el periodo de apertura que experimentó el país, los cuales pudieron disminuir las disparidades en el acceso a la educación entre las personas jóvenes, lo cual permitiría a otros factores incidir más significativamente en la determinación de la condición socioeconómica.
 
 **Título: ¿Mejora la distribución del ingreso con la educación?**
--Autor(es): Adolfo Figueroa
--Año: 2010
--Nombre del tema: impacto de la educación en la distribución del ingreso
--Forma de organizarlo:
+
+ - Autor(es): Adolfo Figueroa
+ - Año: 2010
+ - Nombre del tema: impacto de la educación en la distribución del ingreso
+ - Forma de organizarlo:
     +Cronológico: uso de datos que provienen de censos y encuestas realizadas en Perú en la primera década de los años 2000.
     +Metodológico: modelo teórico que vincula la educación y la distribución de ingresos
     +Temático: Educación, Economía, Sociología
     +Teoría: Teoría del Capital Humano
--Resumen en una oración: la educación no determina el nivel de igualdad en Perú.
--Argumento central: la educación, por sí sola, no es suficiente para nivelar la distribución del ingreso en un país como Perú, debido a factores como la identidad étnica, que perpetúan desigualdades preexistentes
--Problemas con el argumento o tema: medir el impacto real de la educación en la distribución del ingreso representa una tarea complicada debido a las desigualdades estructurales que van más allá de la educación.
--Resumen en un párrafo: el estudio se compromete a explicar por qué la expansión en la educación no se traduce directamente a una mayor igualdad en el ingreso, haciendo énfasis en el caso de Perú. Se concluye que la educación por sí sola no es suficiente para reducir la desigualdad del ingreso en economías con fuertes disparidades. Aunque la educación puede aumentar los ingresos individuales, no modifica la estructura económica subyacente, donde la concentración de activos y el poder de mercado perpetúan la desigualdad. En contextos de alta desigualdad, las clases altas se benefician más de la educación debido a su acceso a sistemas de mejor calidad, reforzando las disparidades existentes. Se dice que, para que la educación tenga un impacto significativo en la distribución del ingreso, debe ser acompañada de políticas redistributivas que aborden las desigualdades estructurales en el acceso a recursos y oportunidades.
+ - Resumen en una oración: la educación no determina el nivel de igualdad en Perú.
+ - Argumento central: la educación, por sí sola, no es suficiente para nivelar la distribución del ingreso en un país como Perú, debido a factores como la identidad étnica, que perpetúan desigualdades preexistentes
+ - Problemas con el argumento o tema: medir el impacto real de la educación en la distribución del ingreso representa una tarea complicada debido a las desigualdades estructurales que van más allá de la educación.
+ - Resumen en un párrafo: el estudio se compromete a explicar por qué la expansión en la educación no se traduce directamente a una mayor igualdad en el ingreso, haciendo énfasis en el caso de Perú. Se concluye que la educación por sí sola no es suficiente para reducir la desigualdad del ingreso en economías con fuertes disparidades. Aunque la educación puede aumentar los ingresos individuales, no modifica la estructura económica subyacente, donde la concentración de activos y el poder de mercado perpetúan la desigualdad. En contextos de alta desigualdad, las clases altas se benefician más de la educación debido a su acceso a sistemas de mejor calidad, reforzando las disparidades existentes. Se dice que, para que la educación tenga un impacto significativo en la distribución del ingreso, debe ser acompañada de políticas redistributivas que aborden las desigualdades estructurales en el acceso a recursos y oportunidades.
 
 **Título: Decomposing inequality and poverty in post-war Rwanda: The roles of gender, education, wealth and location**
--Autor(es): Kate Finnoff
--Año: 2015
--Nombre del tema: pobreza y desigualdad en la Ruanda de post-guerra
--Forma de organizarlo: 
-    +Cronológico: el análisis se realiza a partir de encuestas realizadas en el año 2000 y 2005
-    +Metodológico: se utiliza la estadística descriptiva para diferenciar a los hogares en condición de pobreza en diferentes grupos de acuerdo con características determinadas, como el nivel educativo del jefe del hogar, si se tiene ganado, etc. (Método de descomposición)
-    +Temático: Economía
-    +Teoría: Teoría del capital humano
--Resumen en una oración: se observan los cambios en elementos correlacionados con la pobreza y la desigualdad en Ruanda en dos periodos distintos.
--Argumento central: hay otros determinantes de la pobreza y la desigualdad de ingresos aparte de la educación, como la localización geográfica y la posesión de activos físicos, los cuales pueden tener mayor peso.
--Problemas con el argumento o tema: a partir de la multiplicidad de determinantes de la pobreza y desigualdad, es difícil encontrar una vía única de acción para mejorar la situación de Ruanda.
--Resumen en un párrafo: se analizan las variables pobreza y desigualdad con respecto a elementos relacionados con el hogar, educación, posesión de activos y localización geográfica. La autora encontró que la educación del jefe del hogar actuaba como un amortiguador contra la pobreza, pero los activos físicos y la localización geográfica eclipsaron esta variable. Con respecto a la desigualdad, se dice que hubo un declive en la proporción de desigualdad explicada por el nivel de educación, lo cual revela la disminución de la importancia del capital humano contra el capital físico. En el caso de Ruanda, la distribución de activos físicos era sumamente determinante para la distribución del ingreso, lo cual indica que los cambios en la estructura agraria y la distribución de activos que ocurrieron después de la guerra en Ruanda opacaron el papel de la educación en la reducción de la pobreza y la desigualdad.
+
+ - Autor(es): Kate Finnoff
+ - Año: 2015
+ - Nombre del tema: pobreza y desigualdad en la Ruanda de post-guerra
+ - Forma de organizarlo: 
+    + Cronológico: el análisis se realiza a partir de encuestas realizadas en el año 2000 y 2005
+    + Metodológico: se utiliza la estadística descriptiva para diferenciar a los hogares en condición de pobreza en diferentes grupos de acuerdo con características determinadas, como el nivel educativo del jefe del hogar, si se tiene ganado, etc. (Método de descomposición)
+    + Temático: Economía
+    + Teoría: Teoría del capital humano
+ - Resumen en una oración: se observan los cambios en elementos correlacionados con la pobreza y la desigualdad en Ruanda en dos periodos distintos.
+ - Argumento central: hay otros determinantes de la pobreza y la desigualdad de ingresos aparte de la educación, como la localización geográfica y la posesión de activos físicos, los cuales pueden tener mayor peso.
+ - Problemas con el argumento o tema: a partir de la multiplicidad de determinantes de la pobreza y desigualdad, es difícil encontrar una vía única de acción para mejorar la situación de Ruanda.
+ - Resumen en un párrafo: se analizan las variables pobreza y desigualdad con respecto a elementos relacionados con el hogar, educación, posesión de activos y localización geográfica. La autora encontró que la educación del jefe del hogar actuaba como un amortiguador contra la pobreza, pero los activos físicos y la localización geográfica eclipsaron esta variable. Con respecto a la desigualdad, se dice que hubo un declive en la proporción de desigualdad explicada por el nivel de educación, lo cual revela la disminución de la importancia del capital humano contra el capital físico. En el caso de Ruanda, la distribución de activos físicos era sumamente determinante para la distribución del ingreso, lo cual indica que los cambios en la estructura agraria y la distribución de activos que ocurrieron después de la guerra en Ruanda opacaron el papel de la educación en la reducción de la pobreza y la desigualdad.
 
 {{< pagebreak >}}
 
