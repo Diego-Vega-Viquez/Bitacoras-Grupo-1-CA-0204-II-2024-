@@ -391,7 +391,6 @@ Entre las posibles combinaciones de palabras clave se encuentran
 
 **Título: The Impact of COVID-19 on Education in Latin America: Long-Run Implications for Poverty and Inequality**
 
-<<<<<<< HEAD
  - Autor(es): Jessica Bracco, Matías Ciaschi, Leonardo Gasparini y Mariana Marchionni y Guido Neidhöfer
  - Año: 2024
  - Nombre del tema: impacto en los cierres de las instituciones educativas a causa del COVID en la pobreza y la desigualdad en América Latina.
@@ -404,20 +403,6 @@ Entre las posibles combinaciones de palabras clave se encuentran
  - Argumento central: 
  - Problemas con el argumento o tema: 
  - Resumen en un párrafo: Se argumenta que la pandemia tuvo un efecto significativo en la educación de la población joven en América Latina, pues obligó a que se interrumpieran los estudios, e incluso provocó que algunas personas se vieran forzadas a abandonar el sistema educativo. A partir de ello, se efectúan microsimulaciones para determinar el impacto de este paro educativo en los niveles de pobreza y desigualdad en el año 2045. Se encuentra que la interrupción en la formación de capital humano podría tener consecuencias negativas en los ingresos de las personas a largo plazo, y en consecuencia en los niveles de pobreza y desigualdad. En particular, se estima que la pobreza medida por nivel de ingreso podría incrementar de 8.4% a 20.7% dependiendo de la eficacia de las medidas implementadas por el gobierno y las familias para compensar el paro educativo; el impacto sería aún más severo para aquellas personas que abandonaran sus estudios, las cuales sufrirían un aumento de 22.7% a 38.5% de probabilidad de caer en pobreza.
-=======
--Autor(es): Jessica Bracco, Matías Ciaschi, Leonardo Gasparini y Mariana Marchionni y Guido Neidhöfer
--Año: 2024
--Nombre del tema: impacto en los cierres de las instituciones educativas a causa del COVID en la pobreza y la desigualdad en América Latina.
--Forma de organizarlo:
-    +Cronológico: Se usan los datos de encuestas nacionales de hogares de la mayoría de los países de América Latina, realizadas en 2020
-    +Metodológico: uso de microsimulaciones para estimar el impacto de la pandemia em ingresos futuros y en indicadores de pobreza y desigualdad
-    +Temático: Salud, Educación y Economía
-    +Teoría: teoría del capital humano
--Resumen en una oración: El COVID-19 exacerbó la desigualdad educativa en América Latina.
--Argumento central: Los autores sostienen que la pandemia de COVID-19 ha profundizado las desigualdades educativas preexistentes en América Latina, lo que tendrá implicaciones de largo plazo para la pobreza y la desigualdad económica. Las interrupciones en la educación, especialmente para los estudiantes más vulnerables, afectarán las oportunidades futuras, perpetuando las brechas sociales y económicas en la región.
--Problemas con el argumento o tema: es difícil determinar la precisión de los datos, puesto que se están realizando proyecciones a futuro que no podrán ser comprobadas hasta que sucedan los hechos.
--Resumen en un párrafo: Se argumenta que la pandemia tuvo un efecto significativo en la educación de la población joven en América Latina, pues obligó a que se interrumpieran los estudios, e incluso provocó que algunas personas se vieran forzadas a abandonar el sistema educativo. A partir de ello, se efectúan microsimulaciones para determinar el impacto de este paro educativo en los niveles de pobreza y desigualdad en el año 2045. Se encuentra que la interrupción en la formación de capital humano podría tener consecuencias negativas en los ingresos de las personas a largo plazo, y en consecuencia en los niveles de pobreza y desigualdad. En particular, se estima que la pobreza medida por nivel de ingreso podría incrementar de 8.4% a 20.7% dependiendo de la eficacia de las medidas implementadas por el gobierno y las familias para compensar el paro educativo; el impacto sería aún más severo para aquellas personas que abandonaran sus estudios, las cuales sufrirían un aumento de 22.7% a 38.5% de probabilidad de caer en pobreza.
->>>>>>> 3f0caa0ec4ffd84b05c00daba9620698581a9c3d
 
 **Título: Encuesta Nacional de Hogares Julio 2023: Resultados Generales**
 
@@ -480,32 +465,34 @@ Entre las posibles combinaciones de palabras clave se encuentran
  - Resumen en un párrafo: se analizan las variables pobreza y desigualdad con respecto a elementos relacionados con el hogar, educación, posesión de activos y localización geográfica. La autora encontró que la educación del jefe del hogar actuaba como un amortiguador contra la pobreza, pero los activos físicos y la localización geográfica eclipsaron esta variable. Con respecto a la desigualdad, se dice que hubo un declive en la proporción de desigualdad explicada por el nivel de educación, lo cual revela la disminución de la importancia del capital humano contra el capital físico. En el caso de Ruanda, la distribución de activos físicos era sumamente determinante para la distribución del ingreso, lo cual indica que los cambios en la estructura agraria y la distribución de activos que ocurrieron después de la guerra en Ruanda opacaron el papel de la educación en la reducción de la pobreza y la desigualdad.
 
 **Título: Aspectos teóricos y metodológicos involucrados en el estudio de la pobreza: una revisión**
--Autor(es): Adrian Rodríguez
--Año: s.f.
--Nombre del tema: definición de la pobreza
--Forma de organizarlo: 
+
+- Autor(es): Adrian Rodríguez
+- Año: s.f.
+- Nombre del tema: definición de la pobreza
+- Forma de organizarlo: 
     +Cronológico: se evalúan perpectivas de autores del siglo XX.
     +Metodológico: análisis teórico de la literatura relacionada al tema
     +Temático: Economía
     +Teórico: teoría del capital humano y concepción estructural de la pobreza
--Resumen en una oración: se revisa el enfoque estructural de la pobreza y sus factores
--Argumento central: la pobreza, desde su enfoque estructural, puede concebirse como el resultado de estructuras económicas y sociales, las cuales pueden ser ajenas al aparato educativo de un país.
--Problemas con el argumento central: es difícil brindar una única definición de pobreza a partir de elementos causales
--Resumen en un párrafo: el capítulo se dedica a revisar aspectos teóricos involucrados en el estudio de la pobreza, entre los cuales se destaca el enfoque estructural que se le da a la misma. Desde esta perspectiva, se afirma que la pobreza es el resultado de estructuras económicas y sociales, las cuales se pueden dividir en tres categorías: factores demográficos, factores relacionados con el mercado de trabajo y factores institucionales. Los factores demográficos están vinculados con lo que establece la teoría del capital humano: son todas las características que las personas se llevan al mercado de trabajo, entre las cuales destaca la educación y habilidades de un individuo. Por otra parte, se establece que los factores relacionados con el mercado de trabajo determinan el ingreso de una persona dada su dotación de capital humano, lo cual puede estar más vinculado con elementos de oferta y demanda de trabajo en lugar de las capacidades del individuo. Finalmente, los factores institucionales, como la discriminación basada en sexo, religión o grupo étnico, representan aquellas barreras ajenas al mercado que determinan la posibilidad de adquirir capital humano o de acceder al mercado de trabajo. 
+- Resumen en una oración: se revisa el enfoque estructural de la pobreza y sus factores
+- Argumento central: la pobreza, desde su enfoque estructural, puede concebirse como el resultado de estructuras económicas y sociales, las cuales pueden ser ajenas al aparato educativo de un país.
+- Problemas con el argumento central: es difícil brindar una única definición de pobreza a partir de elementos causales
+- Resumen en un párrafo: el capítulo se dedica a revisar aspectos teóricos involucrados en el estudio de la pobreza, entre los cuales se destaca el enfoque estructural que se le da a la misma. Desde esta perspectiva, se afirma que la pobreza es el resultado de estructuras económicas y sociales, las cuales se pueden dividir en tres categorías: factores demográficos, factores relacionados con el mercado de trabajo y factores institucionales. Los factores demográficos están vinculados con lo que establece la teoría del capital humano: son todas las características que las personas se llevan al mercado de trabajo, entre las cuales destaca la educación y habilidades de un individuo. Por otra parte, se establece que los factores relacionados con el mercado de trabajo determinan el ingreso de una persona dada su dotación de capital humano, lo cual puede estar más vinculado con elementos de oferta y demanda de trabajo en lugar de las capacidades del individuo. Finalmente, los factores institucionales, como la discriminación basada en sexo, religión o grupo étnico, representan aquellas barreras ajenas al mercado que determinan la posibilidad de adquirir capital humano o de acceder al mercado de trabajo. 
 
 **Título: Noveno Informe Estado de la Educación**
--Autor(es): Consejo Nacional de Rectores (Costa Rica)
--Año: 2023
--Nombre del temaa: estado de la educación en Costa Rica
--Forma de organizarlo: 
-    +Cronológico: utiliza datos de la Encuesta Nacional de Hogares del INEC del 2023 y años anteriores
-    +Metodológico: análisis descriptivo de los datos
-    +Temático: Educación
-    +Teórico: 
--Resumen en una oración: se analiza el estado de la educación costarricense
--Argumento central:
--Problemas con el argumento central:
--Resumen en un párrafo: ofrece un análisis exhaustivo del sistema educativo costarricense, resaltando sus avances y desafíos. Entre los aspectos positivos, destaca el incremento en la cobertura educativa, especialmente en la educación preescolar y secundaria. Sin embargo, también señala importantes retos, como las persistentes brechas en calidad y equidad, el rezago escolar, y los efectos de la pandemia de COVID-19, que profundizaron la desigualdad en el acceso y la calidad educativa. El informe subraya la necesidad de reformas estructurales para mejorar la eficiencia del sistema, aumentar la inversión en educación, y fortalecer la formación docente.
+
+- Autor(es): Consejo Nacional de Rectores (Costa Rica)
+- Año: 2023
+- Nombre del temaa: estado de la educación en Costa Rica
+- Forma de organizarlo: 
+    + Cronológico: utiliza datos de la Encuesta Nacional de Hogares del INEC del 2023 y años anteriores
+    + Metodológico: análisis descriptivo de los datos
+    + Temático: Educación
+    + Teórico: 
+- Resumen en una oración: se analiza el estado de la educación costarricense
+- Argumento central:
+- Problemas con el argumento central:
+- Resumen en un párrafo: ofrece un análisis exhaustivo del sistema educativo costarricense, resaltando sus avances y desafíos. Entre los aspectos positivos, destaca el incremento en la cobertura educativa, especialmente en la educación preescolar y secundaria. Sin embargo, también señala importantes retos, como las persistentes brechas en calidad y equidad, el rezago escolar, y los efectos de la pandemia de COVID-19, que profundizaron la desigualdad en el acceso y la calidad educativa. El informe subraya la necesidad de reformas estructurales para mejorar la eficiencia del sistema, aumentar la inversión en educación, y fortalecer la formación docente.
 
 {{< pagebreak >}}
 
