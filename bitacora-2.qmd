@@ -22,66 +22,100 @@
 
 ## Enlaces de la literatura
 
-Becker
+[@becker]
+
 Resumen: El texto analiza cómo el capital humano, medido por la escolaridad y la expectativa de vida, es clave en el crecimiento económico, especialmente en países pobres. Afirma que una población más educada y saludable acelera el desarrollo, destacando la educación primaria y secundaria como motores principales. Además, se dice que la educación es esencial para reducir la desigualdad y mejorar la movilidad económica, al proporcionar herramientas para superar la vulnerabilidad.
-Contraste: su base teórica se respalda en la teoría del capital humano, la cual establece que la educación, concebida como motor para el desarrollo de dicho capital, le permite a una persona tener los conocimientos y habilidades necesarias para aumentar su capacidad productiva, lo cual le conduce a ser más competitivo, ganar mejores ingresos y, en consecuencia, alcanzar una mejor calidad de vida. Dicha teoría respalda varios estudios que se abordarán en la presente investigación, como los de (insertar autores).
+
+Contraste: su base teórica se respalda en la teoría del capital humano, la cual establece que la educación, concebida como motor para el desarrollo de dicho capital, le permite a una persona tener los conocimientos y habilidades necesarias para aumentar su capacidad productiva, lo cual le conduce a ser más competitivo, ganar mejores ingresos y, en consecuencia, alcanzar una mejor calidad de vida. Dicha teoría respalda varios estudios que se abordarán en la presente investigación, como los de @Sanchez, @OrdazDiaz2009, y @Hernandez.
+
 Contribución propia: desde nuestra perspectiva, la teoría del capital humano resalta el vínculo entre educación y calidad de vida, lo cual destaca la necesidad de realizar estudios que analicen más a fondo dicha relación, en aras de tener un mayor fundamento para potencialmente invertir y proponer políticas dirigidas a mejorar el acceso a la educación. 
 
-Sanchez
+[@Sanchez]
+
 Resumen: El estudio analiza la población de entre 25 y 60 años de la ENAHO 2013, dividiéndola entre quienes completaron secundaria y quienes alcanzaron niveles educativos superiores. Se evalúan características personales, de vivienda y del hogar para medir su correlación con el nivel educativo. Los resultados indican que completar la secundaria disminuye en un 5,7% la probabilidad de caer en la pobreza, mientras que obtener estudios postsecundarios la reduce en un 8,4%.
-Contraste: el énfasis que se hace en la educación como motor para reducir la pobreza va en la misma línea que las ideas de [Becker] y el enfoque del capital humano. La investigación demuestra empíricamente la forma en que la educación secundaria y postsecundaria llegan a incidir en la condición socioeconómica de las personas, pero no se abarca el papel de la educación primaria a la cual alude [Becker].
+
+Contraste: el énfasis que se hace en la educación como motor para reducir la pobreza va en la misma línea que las ideas de @becker y el enfoque del capital humano. La investigación demuestra empíricamente la forma en que la educación secundaria y postsecundaria llegan a incidir en la condición socioeconómica de las personas, pero no se abarca el papel de la educación primaria a la cual alude @becker.
+
 Contribución propia: Consideramos que es necesario explorar el mayor número de dimensiones que contribuyan a comprender el vínculo entre la educación y la condición socioeconómica de una persona, por lo cual resulta necesario encontrar información empírica a partir de los tres niveles educativos: educación primaria, secundaria y postsecundaria.
 
-Pobreza rural
+[@OrdazDiaz2009]
+
 Resumen: El estudio analiza el impacto de la educación primaria y secundaria en la reducción de la pobreza en zonas rurales de México, considerando tres niveles: pobreza alimentaria, de capacidades y de patrimonio. A nivel nacional, se encuentra que la educación primaria reduce la pobreza alimentaria, de capacidades y de patrimonio en un 18%, 16% y 4%, respectivamente, mientras que la secundaria lo hace en un 30%, 27% y 15%, mostrando un mayor impacto en la mejora de las condiciones de vida.
+
 Contraste: esta fuente llega a la misma conclusión que las anteriores: la educación disminuye las probabilidades de caer en pobreza. En particular, este estudio hace la división entre tres niveles de pobreza, y cuantifica el impacto tanto de la educación primaria como secundaria en la reducción de estos, lo cual llena el vacío de conocimiento que se tenía con respecto a la influencia de la educación primaria. 
+
 Contribución propia: tener bien definido el concepto de pobreza y las dimensiones que esta involucra resulta imprescindible para poder llegar a conclusiones más precisas, pues, por ejemplo, no se puede decir que una familia que sólo no tenga acceso a internet tiene las mismas carencias que una familia que no tiene recursos para comer. 
 
-Sánchez y Arias
+[@Hernandez]
+
 Resumen: El texto concluye que la educación es un factor clave para determinar la condición socioeconómica de una persona, ya que permite reducir necesidades básicas de albergue, higiene, conocimiento y consumo. Se afirma que los estudios universitarios mejoran las oportunidades de acceder al mercado laboral en condiciones favorables, disminuyendo así el riesgo de sufrir privación material.
-Contraste: el estudio llega a conclusiones similares a las de [insertar autores], en tanto está a favor de la educación como motor para alcanzar una mejor calidad de vida, y hasta llega a mostrar el impacto de la educación en otros indicadores de bienestar, como las necesidades de albergue, higiene, conocimiento y consumo. 
+
+Contraste: el estudio llega a conclusiones similares a las de @becker y @Sanchez, en tanto está a favor de la educación como motor para alcanzar una mejor calidad de vida, y hasta llega a mostrar el impacto de la educación en otros indicadores de bienestar, como las necesidades de albergue, higiene, conocimiento y consumo. 
+
 Contribución propia: el mostrar el impacto de la educación en áreas ajenas al ingreso permite abordar la pobreza desde su perspectiva multidimensional, lo cual es esencial para que el estudio se apegue más fielmente a la realidad.
 
+[@ricardez]
 
-Ricárdez
 Resumen: se investiga el impacto de las 4 "A" de la educación—Accesibilidad, Aceptabilidad, Adaptabilidad y Disponibilidad—en la pobreza en México. Entre sus principales descubrimientos, se encuentra que una mayor accesibilidad educativa hacia las mujeres reduce su probabilidad de encontrarse en pobreza. Igualmente, se revela que, si se tienen profesores mejores capacitados y con salarios competitivos, o si se recibe una educación privada, se reduce también esta probabilidad. 
+
 Contraste: a pesar de llegar a la misma conclusión que los autores anteriores, este estudio llega a resultados más específicos, relacionando las variables principales de estudio con otras como el género y la calidad de la educación.
+
 Contribución propia: incorporar un enfoque cualitativo a la investigación sobre educación y pobreza podría añadir valor al análisis, en tanto podría permitir llegar a conclusiones secundarias que detallen el panorama de la educación y precisen su impacto en la pobreza en Costa Rica.
 
-COVID
+[@COVID]
+
 Resumen: se habla sobre el impacto de la pandemia en los sistemas educativos en países latinoamericanos, y cómo dicho impacto podría determinar los niveles de pobreza y desigualdad en el futuro. Se encuentra que la interrupción en la formación de capital humano podría tener consecuencias negativas en los ingresos de las personas a largo plazo, y, en consecuencia, en los niveles de pobreza y desigualdad; se estima que la pobreza medida por nivel de ingreso podría incrementar de 8.4% a 20.7%.
+
 Contraste: esta fuente sigue la línea de pensamiento de los autores anteriores de que el capital humano es un determinante de la condición económica de una persona, pero lo que la vuelve particular es que utiliza esta perspectiva para crear proyecciones a futuro sobre cómo la falta de educación podría afectar los niveles de pobreza.
+
 Contribución propia: este tipo de perspectivas destacan la necesidad que tenemos de investigar sobre la relación entre la educación y la pobreza, pues muestran que a partir del conocimiento que construimos hoy sobre el ayer podemos tomar acciones a futuro con el potencial de mejorar el bienestar de la sociedad.
 
-Aguado
+[@Aguado]
+
 Resumen: Se argumenta que la relación entre pobreza y educación se basa en una dinámica de reciprocidad, en donde la pobreza afecta a la educación y la educación a la pobreza. Se concluye que, si bien la educación es de los principales promotores de la movilidad económica, esta no garantiza que los individuos salgan de la pobreza, puesto que se necesitan de otros factores para generar un entorno económico favorable que permita mejorar la calidad de vida de las personas.
+
 Contraste: Este estudio se respalda de la teoría del capital humano al igual que los demás autores, pero a la vez muestra sus limitaciones: se establece que se necesitan de condiciones favorables, ajenas a la educación, para mejorar la situación de un individuo, como las condiciones del mercado laboral.
+
 Contribución propia: Esta investigación amplía el enfoque tradicional que vincula la educación con la pobreza, al incorporar una perspectiva integral que reconoce la necesidad de condiciones económicas favorables para que los beneficios de la educación puedan traducirse en mejoras de la condición socioeconómica de las personas.
 
-Libro pobreza
+[@Rodriguez]
+
 Resumen: se revisan aspectos teóricos involucrados en estudiar la pobreza, entre los cuales destaca su enfoque estructural. Este consiste en que la pobreza es el resultado de estructuras económicas y sociales, entre las que se incluye a la educación, pero también al mercado de trabajo y cuestiones como la discriminación. 
-Contraste: este estudio ahonda en la multiplicidad de factores que determinan la pobreza, algunos de los cuales fueron sugeridos por [Aguado]. Esta fuente es diferente a aquellas que se sustentan en la teoría del capital humano, dado que va más allá de la educación, ofreciendo explicaciones diversas al fenómeno de la pobreza desde una perspectiva más social.
+
+Contraste: este estudio ahonda en la multiplicidad de factores que determinan la pobreza, algunos de los cuales fueron sugeridos por @Aguado. Esta fuente es diferente a aquellas que se sustentan en la teoría del capital humano, dado que va más allá de la educación, ofreciendo explicaciones diversas al fenómeno de la pobreza desde una perspectiva más social.
+
 Contribución propia: es necesario reconocer las limitaciones de los sustentos teóricos que utilizamos para nuestra investigación, pues ello permite evaluar el alcance real de los resultados que se vayan a obtener, nos evita conclusiones simplistas y abre espacio para considerar variables no contempladas, fortaleciendo así la validez y rigor de la investigación.
 
+[@Bazdresch2001]
 
-Marxista
 Resumen: se analizan diferentes estudios relacionados con la educación en México a lo largo del tiempo. Se introducen diferentes teorías sobre el efecto de la educación en la pobreza, entre las que destacan la del capital humano y la marxista (la cual dicta que la educación no puede resolver la pobreza por sí sola). Concluye que las personas pobres sufren de desigualdad de oportunidades, que les conducen a tener una educación de baja calidad que refuerza su estado de pobreza.
-Contraste: esta fuente contrasta directamente con lo que postula la teoría del capital humano, en tanto afirma que la educación para las personas pobres bien puede existir, mas no es un medio efectivo para sacarlos de la pobreza. Estas ideas refuerzan la noción de [fuente anterior] de que la pobreza puede ser producto de circunstancias sociales ajenas al entorno educativo. 
+
+Contraste: esta fuente contrasta directamente con lo que postula la teoría del capital humano, en tanto afirma que la educación para las personas pobres bien puede existir, mas no es un medio efectivo para sacarlos de la pobreza. Estas ideas refuerzan la noción de [@Rodriguez] de que la pobreza puede ser producto de circunstancias sociales ajenas al entorno educativo. 
+
 Contribución propia: Esta investigación aporta al debate al integrar la teoría marxista con la noción de desigualdad estructural en México, mostrando cómo la educación, en su forma actual, no actúa como un mecanismo efectivo de movilidad social para las personas pobres. Empero, hay que tener presente que todo esto se hace en el caso particular de México, por lo que hay que tener presente que la situación en Costa Rica podría ser diferente. 
 
-Xinjiang
+[@Jiang]
+
 Resumen: se investiga el impacto de la educación secundaria en la probabilidad de sufrir pobreza multidimensional en Xinjiang, China. Existe una correlación negativa entre el nivel educativo y la pobreza medida a nivel individual. Empero, se encuentra que, para la población de menos de 35 años, esta correlación no es significativa, lo que se adjudica a la implementación de educación obligatoria general en años previos, lo cual, al disminuir la disparidad de acceso a la educación, permitiría a otros factores incidir más significativamente. 
-Contraste: al igual que [la fuente anterior], se enfatiza que el entorno educativo puede ser poco significativo a la hora de determinar la condición de vida de una persona. Particularmente, se revela que una menor disparidad educativa permite vislumbrar mejor la influencia de otros factores, de manera que mayor igualdad de acceso a la educación podría conducir a una reducción en su influencia.
+
+Contraste: al igual que @Bazdresch2001, se enfatiza que el entorno educativo puede ser poco significativo a la hora de determinar la condición de vida de una persona. Particularmente, se revela que una menor disparidad educativa permite vislumbrar mejor la influencia de otros factores, de manera que mayor igualdad de acceso a la educación podría conducir a una reducción en su influencia.
+
 Contribución propia: a partir de los resultados de este estudio se podría inferir que, si bien el rol de la educación en la condición de vida de las personas puede ser minimizado, la implementación de políticas dirigidas a aumentar la igualdad de acceso a la educación podría contribuir a que el nivel educativo no influya en la condición socioeconómica de las personas; es decir, que por lo menos las personas con carencias no estén en esa situación por causa de la falta de escolaridad.
 
-Figueroa
-Resumen: se explica por qué la expansión educativa no se traduce directamente en una mayor igualdad del ingreso en Perú. Se concluye que la educación por sí sola no es suficiente para reducir la desigualdad del ingreso en economías con fuertes disparidades. Aunque la educación puede aumentar los ingresos individuales, no modifica la estructura económica subyacente, donde la concentración de activos y el poder de mercado perpetúan la desigualdad. Para que la educación tenga un impacto significativo en la distribución del ingreso, debe ser acompañada de políticas redistributivas que aborden las desigualdades estructurales en el acceso a recursos y oportunidades.
-Contraste: Tanto [Figueroa] como [Xinjiang] y [Marxista] coinciden en que la educación por sí sola no es suficiente para reducir la pobreza o la desigualdad. Asimismo, coinciden en que, incluso cuando la educación se expande, las desigualdades estructurales limitan su efectividad. Sin embargo, el enfoque de [Figueroa] es en la distribución del ingreso en lugar de la pobreza. Particularmente, propone explícitamente que la educación debe estar acompañada de políticas redistributivas que aborden la desigualdad en la concentración de activos.
-Contribución propia: Aunque [Figueroa] acierta al destacar la necesidad de políticas redistributivas junto con la educación, es consideramos que podría ser importante ampliar su propuesta para incluir acceso a empleos de calidad y protección social. Una estrategia integral, que combine expansión educativa con otras políticas económicas, podría abordar más efectivamente las condiciones que perpetúan la desigualdad del ingreso.
+[@figueroa]
 
-Ruanda
+Resumen: se explica por qué la expansión educativa no se traduce directamente en una mayor igualdad del ingreso en Perú. Se concluye que la educación por sí sola no es suficiente para reducir la desigualdad del ingreso en economías con fuertes disparidades. Aunque la educación puede aumentar los ingresos individuales, no modifica la estructura económica subyacente, donde la concentración de activos y el poder de mercado perpetúan la desigualdad. Para que la educación tenga un impacto significativo en la distribución del ingreso, debe ser acompañada de políticas redistributivas que aborden las desigualdades estructurales en el acceso a recursos y oportunidades.
+
+Contraste: Tanto @figueroa como @Jiang y @Bazdresch2001 coinciden en que la educación por sí sola no es suficiente para reducir la pobreza o la desigualdad. Asimismo, coinciden en que, incluso cuando la educación se expande, las desigualdades estructurales limitan su efectividad. Sin embargo, el enfoque de @figueroa es en la distribución del ingreso en lugar de la pobreza. Particularmente, propone explícitamente que la educación debe estar acompañada de políticas redistributivas que aborden la desigualdad en la concentración de activos.
+
+Contribución propia: Aunque @figueroa acierta al destacar la necesidad de políticas redistributivas junto con la educación, es consideramos que podría ser importante ampliar su propuesta para incluir acceso a empleos de calidad y protección social. Una estrategia integral, que combine expansión educativa con otras políticas económicas, podría abordar más efectivamente las condiciones que perpetúan la desigualdad del ingreso.
+
+[@finnoff]
+
 Resumen: Se analizan las variables de pobreza y desigualdad en relación con factores como el hogar, la educación, la posesión de activos y la localización geográfica en Ruanda. En particular, se destaca que la educación del jefe del hogar actúa como un amortiguador frente a la pobreza, aunque su impacto es menor en comparación con otros factores, como la posesión de activos financieros y la localización geográfica. En cuanto a la distribución del ingreso, se concluye que en Ruanda la reforma agraria y la redistribución de activos tras la guerra civil tuvieron un papel más relevante que el desarrollo educativo.
-Contraste: este estudio refuerza la idea de que la educación es solo uno de muchos factores que afectan a la pobreza y la desigualdad. Se alinea especialmente con las ideas de [marxista] y [figueroa], en tanto sugiere que, para que haya un impacto real, deben haber cambios estructurales en la economía.
+
+Contraste: este estudio refuerza la idea de que la educación es solo uno de muchos factores que afectan a la pobreza y la desigualdad. Se alinea especialmente con las ideas de @Bazdresch2001 y @figueroa, en tanto sugiere que, para que haya un impacto real, deben haber cambios estructurales en la economía.
+
 Contribución propia: el análisis que se realiza en la situación de Ruanda es sumamente valioso para comprender los desafíos que enfrenta la educación para que llegue a tener un verdadero impacto en los países en vías de desarrollo. De manera aislada es muy difícil que la educación logre disminuir la pobreza y la desigualdad, por lo que es imprescindible que las reformas educativas vengan acompañadas de reformas estructurales para brindar mayor oportunidad a las personas que están en condición de pobreza y así el capital humano sea aprovechado de la mejor forma.  
 
   
