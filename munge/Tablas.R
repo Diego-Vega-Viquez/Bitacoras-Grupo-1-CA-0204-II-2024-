@@ -13,6 +13,12 @@ library(haven) # Para cargar el .sav
 library(scales)
 library(knitr)
 
+columnas_jc <- colnames(datos_jc)
+columnas_dv <- colnames(variables_utiles)
+columnas_comunes <- intersect(columnas_jc, columnas_dv)
+
+variables_comunes <- datos_con_tipo_de_varibles %>% select(all_of(columnas_comunes))
+
 # Formatear los valores en la columna Q_IPCN
 variables_comunes$Q_IPCN <- as.character(variables_comunes$Q_IPCN)
 variables_comunes$Q_IPCN <- variables_comunes$Q_IPCN %>% str_replace_all("\\d+", function(x) {
