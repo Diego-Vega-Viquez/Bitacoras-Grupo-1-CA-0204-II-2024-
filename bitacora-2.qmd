@@ -122,7 +122,16 @@ Contribución propia: el análisis que se realiza en la situación de Ruanda es 
 ## Análisis estadísticos
 
 ### Análisis descriptivo
+```{r}
+#| echo: false
+#| include: false
+library(tidyverse)
+library(scales)    # Para formatear los números como porcentajes
+library(knitr)     # Para mostrar tablas
+library(kableExtra)
+```
 
+#### Formato tidy
 ```{r}
 #| echo: false
 # Código que no se mostrará
@@ -130,6 +139,136 @@ variables_comunes <- readRDS("../Bitácoras/data/variables_comunes.rds")
 glimpse(variables_comunes)
 
 ```
+
+#### Análisis descriptivo 
+
+#### Cuadros
+
+{{< pagebreak >}}
+
+```{r}
+#| echo: false
+# Cargar los datos sin mostrar el código
+tabla1 <- variables_comunes %>% 
+  filter(!is.na(A15B) & A15B != 'Ignorado') %>% 
+  select(A15B, np)
+
+# Contar los valores y reorganizar los datos en formato ancho
+tabla1 <- tabla1 %>%
+  count(A15B, np) %>%
+  pivot_wider(names_from = np, 
+              values_from = n, 
+              values_fill = 0)
+
+# Añadir una columna de total
+tabla1 <- tabla1 %>% 
+  mutate(Total = `Pobreza extrema` + `Pobreza no extrema` + `No pobre`)
+
+# Añadir fila de totales generales
+tabla1 <- bind_rows(tabla1, 
+                    tabla1 %>% 
+                      summarise(A15B = "Total",
+                                `Pobreza extrema` = sum(`Pobreza extrema`),
+                                `Pobreza no extrema` = sum(`Pobreza no extrema`),
+                                `No pobre` = sum(`No pobre`),
+                                Total = sum(Total)))
+
+# Convertir valores a porcentajes
+tabla1 <- tabla1 %>% 
+  mutate(across(where(is.numeric), 
+                ~ percent(. / sum(!is.na(variables_comunes$A15B) & variables_comunes$A15B != 'Ignorado'))))
+
+# Renombrar columna
+tabla1 <- tabla1 %>% rename(Universidad = A15B)
+
+# Generar tabla con kable
+kable(tabla1, caption = "Distribución del nivel pobreza según universidad pública a la que asistió") %>%
+  kable_styling(position = "center", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+
+```
+```{r}
+#| echo: false
+# Código que no se mostrará
+
+### Preparación de la tabla
+
+# Filtrar las variables no faltantes
+tabla2 <- variables_comunes %>% 
+  filter(!is.na(Q_IPCN) & !is.na(A22A)) %>% 
+  select(Q_IPCN, A22A)
+
+# Contar los valores y reorganizar los datos en formato ancho
+tabla2 <- tabla2 %>%
+  count(Q_IPCN, A22A) %>%
+  pivot_wider(names_from = A22A, 
+              values_from = n, 
+              values_fill = 0)
+
+# Añadir columna de total
+tabla2 <- tabla2 %>% 
+  mutate(Total = `Sí` + `No`)
+
+# Añadir fila de totales generales
+tabla2 <- bind_rows(tabla2, 
+                    tabla2 %>% 
+                      summarise(Q_IPCN = "Total",
+                                `Sí` = sum(`Sí`),
+                                `No` = sum(`No`),
+                                Total = sum(Total)))
+
+# Convertir los valores a porcentajes
+tabla2 <- tabla2 %>% 
+  mutate(across(where(is.numeric), 
+                ~ percent(. / sum(!is.na(variables_comunes$Q_IPCN) & !is.na(variables_comunes$A22A)))))
+
+# Renombrar columnas
+tabla2 <- tabla2 %>% 
+  rename(Quintil = Q_IPCN,
+         'Si' = Sí,
+         'No' = No)
+
+# Crear la tabla usando kable y darle formato
+kable(tabla2, 
+      caption = "Distribución de pobreza según quintiles de ingreso y dominio de segundo idioma") %>%
+  kable_styling(position = "center", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  add_header_above(c(" " = 1, "Domina un segundo idioma" = 2, " " = 1)) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+
+```
+```{r}
+#| echo: false
+# Código que no se mostrará
+
+### TABLA
+tabla3 <- variables_comunes %>% filter(NivInst != 'Ignorado' & !is.na(itpn) & itpn != 0) %>% 
+                                select(NivInst,itpn) %>% 
+                                group_by(NivInst) %>% 
+                                summarize(Media = median(itpn, na.rm = TRUE),
+                                          Promedio = mean(itpn, na.rm = TRUE),
+                                          Desviación = sd(itpn, na.rm = TRUE)) %>% 
+                                rename('Nivel de instrucción' = NivInst)
+tabla3 <- tabla3 %>%
+  mutate(across(where(is.numeric), 
+                ~ number(., big.mark = ".", decimal.mark = ",", accuracy = 0.01, prefix = "₡")))
+
+kable(tabla3, 
+      caption = "Resumen del ingreso total por persona neto según nivel de instrucción", 
+      col.names = c("Nivel de instrucción", "Media", "Promedio", "Desviación estándar")) %>%
+  kable_styling(position = "center", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO 2023, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+
+
 
 
 ### Propuesta Metodológica

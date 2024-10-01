@@ -126,6 +126,21 @@ datos_con_tipo_de_varibles$Q_ZON_IPCN <- as_factor(datos_con_tipo_de_varibles$Q_
 datos_con_tipo_de_varibles$Q_REG_IPCN <- as_factor(datos_con_tipo_de_varibles$Q_REG_IPCN)
 datos_con_tipo_de_varibles$Q_IPCN <- as_factor(datos_con_tipo_de_varibles$Q_IPCN)
 
+# Formatear los valores en la columna Q_IPCN
+datos_con_tipo_de_varibles$Q_IPCN <- as.character(datos_con_tipo_de_varibles$Q_IPCN)
+datos_con_tipo_de_varibles$Q_IPCN <- datos_con_tipo_de_varibles$Q_IPCN %>% str_replace_all("\\d+", function(x) {
+  formatC(as.numeric(x), format = "f", big.mark = ".", digits = 0)
+})
+datos_con_tipo_de_varibles$Q_IPCN <- gsub("\\s([0-9]{3}\\.+)", " ₡\\1", datos_con_tipo_de_varibles$Q_IPCN)
+datos_con_tipo_de_varibles$Q_IPCN <- as_factor(datos_con_tipo_de_varibles$Q_IPCN)
+# Reordenar los niveles de Q_IPCN
+datos_con_tipo_de_varibles$Q_IPCN <- factor(datos_con_tipo_de_varibles$Q_IPCN, 
+                                  levels = c("Q1: ₡110.683 ó menos", 
+                                             "Q2: Más de ₡110.683 a ₡195.000", 
+                                             "Q3: Más de ₡195.000 a ₡321.523", 
+                                             "Q4: Más de ₡321.523 a ₡574.085", 
+                                             "Q5: Más de ₡574.085", 
+                                             "NA"))
 
 variables_utiles <- datos_con_tipo_de_varibles %>% select(A4,        A5,
                                                           LugNac,    A13,

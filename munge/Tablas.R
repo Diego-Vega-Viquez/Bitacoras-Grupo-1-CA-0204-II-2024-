@@ -12,6 +12,7 @@ library(openintro)
 library(haven) # Para cargar el .sav
 library(scales)
 library(knitr)
+library(kableExtra)
 
 columnas_jc <- colnames(datos_jc)
 columnas_dv <- colnames(variables_utiles)
@@ -73,6 +74,12 @@ tabla1 <- tabla1 %>%
                 ~ percent(. /sum(!is.na(variables_comunes$A15B) & variables_comunes$A15B != 'Ignorado'))))
 tabla1 <- tabla1 %>% rename(Universidad = A15B)
 
+kable(tabla1, caption = "Tabla 1: \nDistribución de la pobreza según universidades") %>%
+  kable_styling(position = "center", bootstrap_options = c("striped", "hover", "responsive")) %>%
+  add_header_above(c(" " = 1, "Distribución de la pobreza" = 4)) %>%
+  footnote(general = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")
+
+
 
 ###############
 #   TABLA 2   #
@@ -124,9 +131,7 @@ tabla4 <- variables_comunes %>% filter(!is.na(Q_IPCN) & !is.na(ipcn) & ipcn != 0
   group_by(Q_IPCN) %>% 
   summarize(Media = median(ipcn, na.rm = TRUE),
             Promedio = mean(ipcn, na.rm = TRUE),
-            Desviación = sd(ipcn, na.rm = TRUE),
-            Min = min(ipcn, na.rm = TRUE),
-            Max = max(ipcn, na.rm = TRUE)) %>% 
+            Desviación = sd(ipcn, na.rm = TRUE))
   rename('Quintil' = Q_IPCN)
 tabla4 <- tabla4 %>%
   mutate(across(where(is.numeric), 
