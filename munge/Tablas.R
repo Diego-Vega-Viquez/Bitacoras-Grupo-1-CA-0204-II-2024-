@@ -41,6 +41,17 @@ columnas_comunes <- intersect(columnas_jc, columnas_dv)
 
 variables_comunes <- datos_con_tipo_de_varibles %>% select(all_of(columnas_comunes))
 
+## Para la Unión
+columnas_unicas <- union(columnas_jc, columnas_dv)
+columnas_existentes <- columnas_unicas[columnas_unicas %in% colnames(datos_con_tipo_de_varibles)]
+variables_comunes <- datos_con_tipo_de_varibles %>% select(all_of(columnas_existentes))
+
+# Supongamos que tu data frame se llama 'mi_data_frame'
+saveRDS(variables_comunes, "../Bitácoras/data/variables_comunes.rds")
+
+
+
+
 ###############
 #   TABLA 1   #
 ###############

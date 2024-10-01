@@ -123,6 +123,13 @@ Contribución propia: el análisis que se realiza en la situación de Ruanda es 
 
 ### Análisis descriptivo
 
+```{r}
+#| echo: false
+# Código que no se mostrará
+variables_comunes <- readRDS("../Bitácoras/data/variables_comunes.rds")
+glimpse(variables_comunes)
+
+```
 
 
 ### Propuesta Metodológica
