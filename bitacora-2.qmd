@@ -22,7 +22,7 @@
 
 ## Enlaces de la literatura
 
-[@becker]
+[@becker]: **Human Capital and Poverty Alleviation**
 
 Resumen: El texto analiza cómo el capital humano, medido por la escolaridad y la expectativa de vida, es clave en el crecimiento económico, especialmente en países pobres. Afirma que una población más educada y saludable acelera el desarrollo, destacando la educación primaria y secundaria como motores principales. Además, se dice que la educación es esencial para reducir la desigualdad y mejorar la movilidad económica, al proporcionar herramientas para superar la vulnerabilidad.
 
@@ -30,7 +30,7 @@ Contraste: su base teórica se respalda en la teoría del capital humano, la cua
 
 Contribución propia: desde nuestra perspectiva, la teoría del capital humano resalta el vínculo entre educación y calidad de vida, lo cual destaca la necesidad de realizar estudios que analicen más a fondo dicha relación, en aras de tener un mayor fundamento para potencialmente invertir y proponer políticas dirigidas a mejorar el acceso a la educación. 
 
-[@Sanchez]
+[@Sanchez]: **Evaluación de impacto de la educación sobre la pobreza en Costa Rica (un análisis para educación secundaria y postsecundaria)**
 
 Resumen: El estudio analiza la población de entre 25 y 60 años de la ENAHO 2013, dividiéndola entre quienes completaron secundaria y quienes alcanzaron niveles educativos superiores. Se evalúan características personales, de vivienda y del hogar para medir su correlación con el nivel educativo. Los resultados indican que completar la secundaria disminuye en un 5,7% la probabilidad de caer en la pobreza, mientras que obtener estudios postsecundarios la reduce en un 8,4%.
 
@@ -38,7 +38,7 @@ Contraste: el énfasis que se hace en la educación como motor para reducir la p
 
 Contribución propia: Consideramos que es necesario explorar el mayor número de dimensiones que contribuyan a comprender el vínculo entre la educación y la condición socioeconómica de una persona, por lo cual resulta necesario encontrar información empírica a partir de los tres niveles educativos: educación primaria, secundaria y postsecundaria.
 
-[@OrdazDiaz2009]
+[@OrdazDiaz2009]: **Impacto de la educación en la pobreza rural**
 
 Resumen: El estudio analiza el impacto de la educación primaria y secundaria en la reducción de la pobreza en zonas rurales de México, considerando tres niveles: pobreza alimentaria, de capacidades y de patrimonio. A nivel nacional, se encuentra que la educación primaria reduce la pobreza alimentaria, de capacidades y de patrimonio en un 18%, 16% y 4%, respectivamente, mientras que la secundaria lo hace en un 30%, 27% y 15%, mostrando un mayor impacto en la mejora de las condiciones de vida.
 
@@ -46,7 +46,7 @@ Contraste: esta fuente llega a la misma conclusión que las anteriores: la educa
 
 Contribución propia: tener bien definido el concepto de pobreza y las dimensiones que esta involucra resulta imprescindible para poder llegar a conclusiones más precisas, pues, por ejemplo, no se puede decir que una familia que sólo no tenga acceso a internet tiene las mismas carencias que una familia que no tiene recursos para comer. 
 
-[@Hernandez]
+[@Hernandez]: **Principales conclusiones del Libro: Educación, pobreza y desigualdad en Costa Rica**
 
 Resumen: El texto concluye que la educación es un factor clave para determinar la condición socioeconómica de una persona, ya que permite reducir necesidades básicas de albergue, higiene, conocimiento y consumo. Se afirma que los estudios universitarios mejoran las oportunidades de acceder al mercado laboral en condiciones favorables, disminuyendo así el riesgo de sufrir privación material.
 
@@ -54,7 +54,7 @@ Contraste: el estudio llega a conclusiones similares a las de @becker y @Sanchez
 
 Contribución propia: el mostrar el impacto de la educación en áreas ajenas al ingreso permite abordar la pobreza desde su perspectiva multidimensional, lo cual es esencial para que el estudio se apegue más fielmente a la realidad.
 
-[@ricardez]
+[@ricardez]: **Las características de la educación y su efecto en la pobreza: un análisis para México**
 
 Resumen: se investiga el impacto de las 4 "A" de la educación—Accesibilidad, Aceptabilidad, Adaptabilidad y Disponibilidad—en la pobreza en México. Entre sus principales descubrimientos, se encuentra que una mayor accesibilidad educativa hacia las mujeres reduce su probabilidad de encontrarse en pobreza. Igualmente, se revela que, si se tienen profesores mejores capacitados y con salarios competitivos, o si se recibe una educación privada, se reduce también esta probabilidad. 
 
@@ -62,7 +62,7 @@ Contraste: a pesar de llegar a la misma conclusión que los autores anteriores, 
 
 Contribución propia: incorporar un enfoque cualitativo a la investigación sobre educación y pobreza podría añadir valor al análisis, en tanto podría permitir llegar a conclusiones secundarias que detallen el panorama de la educación y precisen su impacto en la pobreza en Costa Rica.
 
-[@COVID]
+[@COVID]: **The Impact of COVID-19 on Education in Latin America: Long-Run Implications for Poverty and Inequality**
 
 Resumen: se habla sobre el impacto de la pandemia en los sistemas educativos en países latinoamericanos, y cómo dicho impacto podría determinar los niveles de pobreza y desigualdad en el futuro. Se encuentra que la interrupción en la formación de capital humano podría tener consecuencias negativas en los ingresos de las personas a largo plazo, y, en consecuencia, en los niveles de pobreza y desigualdad; se estima que la pobreza medida por nivel de ingreso podría incrementar de 8.4% a 20.7%.
 
@@ -70,7 +70,7 @@ Contraste: esta fuente sigue la línea de pensamiento de los autores anteriores 
 
 Contribución propia: este tipo de perspectivas destacan la necesidad que tenemos de investigar sobre la relación entre la educación y la pobreza, pues muestran que a partir del conocimiento que construimos hoy sobre el ayer podemos tomar acciones a futuro con el potencial de mejorar el bienestar de la sociedad.
 
-[@Aguado]
+[@Aguado]: **Una aproximación empírica a la relación entre educación y pobreza**
 
 Resumen: Se argumenta que la relación entre pobreza y educación se basa en una dinámica de reciprocidad, en donde la pobreza afecta a la educación y la educación a la pobreza. Se concluye que, si bien la educación es de los principales promotores de la movilidad económica, esta no garantiza que los individuos salgan de la pobreza, puesto que se necesitan de otros factores para generar un entorno económico favorable que permita mejorar la calidad de vida de las personas.
 
@@ -78,7 +78,7 @@ Contraste: Este estudio se respalda de la teoría del capital humano al igual qu
 
 Contribución propia: Esta investigación amplía el enfoque tradicional que vincula la educación con la pobreza, al incorporar una perspectiva integral que reconoce la necesidad de condiciones económicas favorables para que los beneficios de la educación puedan traducirse en mejoras de la condición socioeconómica de las personas.
 
-[@Rodriguez]
+[@Rodriguez]: **Aspectos teóricos y metodológicos involucrados en el estudio de la pobreza: una revisión** 
 
 Resumen: se revisan aspectos teóricos involucrados en estudiar la pobreza, entre los cuales destaca su enfoque estructural. Este consiste en que la pobreza es el resultado de estructuras económicas y sociales, entre las que se incluye a la educación, pero también al mercado de trabajo y cuestiones como la discriminación. 
 
@@ -86,7 +86,7 @@ Contraste: este estudio ahonda en la multiplicidad de factores que determinan la
 
 Contribución propia: es necesario reconocer las limitaciones de los sustentos teóricos que utilizamos para nuestra investigación, pues ello permite evaluar el alcance real de los resultados que se vayan a obtener, nos evita conclusiones simplistas y abre espacio para considerar variables no contempladas, fortaleciendo así la validez y rigor de la investigación.
 
-[@Bazdresch2001]
+[@Bazdresch2001]: **Educación y pobreza: una relación conlictiva**
 
 Resumen: se analizan diferentes estudios relacionados con la educación en México a lo largo del tiempo. Se introducen diferentes teorías sobre el efecto de la educación en la pobreza, entre las que destacan la del capital humano y la marxista (la cual dicta que la educación no puede resolver la pobreza por sí sola). Concluye que las personas pobres sufren de desigualdad de oportunidades, que les conducen a tener una educación de baja calidad que refuerza su estado de pobreza.
 
@@ -94,7 +94,7 @@ Contraste: esta fuente contrasta directamente con lo que postula la teoría del 
 
 Contribución propia: Esta investigación aporta al debate al integrar la teoría marxista con la noción de desigualdad estructural en México, mostrando cómo la educación, en su forma actual, no actúa como un mecanismo efectivo de movilidad social para las personas pobres. Empero, hay que tener presente que todo esto se hace en el caso particular de México, por lo que hay que tener presente que la situación en Costa Rica podría ser diferente. 
 
-[@Jiang]
+[@Jiang]: **Impact of Education on Multidimensional Poverty Reduction at thePost-Poverty Alleviation Era in Xinjiang** 
 
 Resumen: se investiga el impacto de la educación secundaria en la probabilidad de sufrir pobreza multidimensional en Xinjiang, China. Existe una correlación negativa entre el nivel educativo y la pobreza medida a nivel individual. Empero, se encuentra que, para la población de menos de 35 años, esta correlación no es significativa, lo que se adjudica a la implementación de educación obligatoria general en años previos, lo cual, al disminuir la disparidad de acceso a la educación, permitiría a otros factores incidir más significativamente. 
 
@@ -102,7 +102,7 @@ Contraste: al igual que @Bazdresch2001, se enfatiza que el entorno educativo pue
 
 Contribución propia: a partir de los resultados de este estudio se podría inferir que, si bien el rol de la educación en la condición de vida de las personas puede ser minimizado, la implementación de políticas dirigidas a aumentar la igualdad de acceso a la educación podría contribuir a que el nivel educativo no influya en la condición socioeconómica de las personas; es decir, que por lo menos las personas con carencias no estén en esa situación por causa de la falta de escolaridad.
 
-[@figueroa]
+[@figueroa]: **¿Mejora la distribución del ingreso con la educación?**
 
 Resumen: se explica por qué la expansión educativa no se traduce directamente en una mayor igualdad del ingreso en Perú. Se concluye que la educación por sí sola no es suficiente para reducir la desigualdad del ingreso en economías con fuertes disparidades. Aunque la educación puede aumentar los ingresos individuales, no modifica la estructura económica subyacente, donde la concentración de activos y el poder de mercado perpetúan la desigualdad. Para que la educación tenga un impacto significativo en la distribución del ingreso, debe ser acompañada de políticas redistributivas que aborden las desigualdades estructurales en el acceso a recursos y oportunidades.
 
@@ -110,7 +110,7 @@ Contraste: Tanto @figueroa como @Jiang y @Bazdresch2001 coinciden en que la educ
 
 Contribución propia: Aunque @figueroa acierta al destacar la necesidad de políticas redistributivas junto con la educación, es consideramos que podría ser importante ampliar su propuesta para incluir acceso a empleos de calidad y protección social. Una estrategia integral, que combine expansión educativa con otras políticas económicas, podría abordar más efectivamente las condiciones que perpetúan la desigualdad del ingreso.
 
-[@finnoff]
+[@finnoff]: **Decomposing inequality and poverty in post-war Rwanda: The roles of gender, education, wealth and location**
 
 Resumen: Se analizan las variables de pobreza y desigualdad en relación con factores como el hogar, la educación, la posesión de activos y la localización geográfica en Ruanda. En particular, se destaca que la educación del jefe del hogar actúa como un amortiguador frente a la pobreza, aunque su impacto es menor en comparación con otros factores, como la posesión de activos financieros y la localización geográfica. En cuanto a la distribución del ingreso, se concluye que en Ruanda la reforma agraria y la redistribución de activos tras la guerra civil tuvieron un papel más relevante que el desarrollo educativo.
 
@@ -118,6 +118,7 @@ Contraste: este estudio refuerza la idea de que la educación es solo uno de muc
 
 Contribución propia: el análisis que se realiza en la situación de Ruanda es sumamente valioso para comprender los desafíos que enfrenta la educación para que llegue a tener un verdadero impacto en los países en vías de desarrollo. De manera aislada es muy difícil que la educación logre disminuir la pobreza y la desigualdad, por lo que es imprescindible que las reformas educativas vengan acompañadas de reformas estructurales para brindar mayor oportunidad a las personas que están en condición de pobreza y así el capital humano sea aprovechado de la mejor forma.  
 
+{{< pagebreak >}}
   
 ## Análisis estadísticos
 
@@ -695,6 +696,66 @@ datos_jc %>% filter(!is.na(A15B) & A15B != "Ignorado" & itpn > 0)%>%
   theme(legend.position = "none",
         axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
         plot.caption = element_text(size = 6, hjust = 0))
+```
+```{r eval=FALSE}
+##############
+# GRAFICO 12 #
+##############
+variables_utiles %>% ggplot(aes(x = NivInst,
+                                y = ipnh,
+                                fill = NivInst)) +
+                     geom_boxplot() +
+                     scale_y_log10(labels = label_number()) +
+                     labs( title = "Gráfico 12. \nComparación del Ingreso Principal Neto del Hogar según Nivel de Instrucción, en Costa Rica al 2023",
+                           subtitle = "Expresado en colones costarricenses",
+                           x = "Nivel de Instrucción",
+                           y = "Ingreso Principal Neto del Hogar",
+                           fill =  "Nivel de Instrucción",
+                           caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
+                     coord_flip() + 
+                     theme(legend.position = "none")
+```
+```{r eval=FALSE}
+##############
+# GRAFICO 13 #
+##############
+variables_utiles %>% filter(spmn > 0 &!is.na(A16B)) %>% ggplot(aes(x = spmn, 
+                                                     y = A16B, 
+                                                     fill = A16B, 
+                                                     color = A16B)) + 
+                     geom_density_ridges(alpha = 0.5) + 
+                     scale_x_log10(labels = label_number()) +
+                      labs( title = "Figura 13. \nDistribución del Ingreso Total por persona del Hogar según Grado Académico en Costa Rica, 2023",
+                            subtitle = "Expresado en colones costarricenses",
+                            x = "Ingreso total del hogar neto",
+                            y = "Título",
+                            fill = "Título",
+                            color = "Título",
+                            caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
+                      guides(
+                        fill = guide_legend(reverse = TRUE),  
+                        color = guide_legend(reverse = TRUE)) + 
+                     theme(axis.text.y = element_blank())
+```
+```{r eval=FALSE}
+##############
+# GRAFICO 14 #
+##############
+variables_utiles %>% filter(!is.na(Q_IPCN)) %>% 
+                     ggplot(aes(x = Escolari, 
+                                y = ipsnt, 
+                                colour = Q_IPCN)) +
+                      geom_jitter() +
+                      geom_smooth(method = "lm", se = FALSE, colour = "black") +
+                      facet_wrap(~Q_IPCN) +
+  labs(title = "Figura 14. \nRelación entre los años de escolaridad e ingreso salario neto",
+       x = "Años de escolaridad",
+       y = "Ingreso principal salario neto total",
+       colour = "Quintiles de ingreso per cápita \ndel hogar neto \npor región de planificación",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
+  scale_y_log10(labels = label_number()) +
+  scale_colour_brewer(palette = "Set1") +  # Paleta de colores para los quintiles
+  theme_cowplot()
 ```
 ```{r eval=FALSE}
 ###############
