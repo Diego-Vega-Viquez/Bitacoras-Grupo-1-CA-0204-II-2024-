@@ -266,6 +266,43 @@ kable(tabla3,
 
 #### Gráficos
 
+![](graphs/Grafico1.png)
+![](graphs/Grafico2.png)
+
+![](graphs/Grafico3.png)
+
+![](graphs/Grafico4.png)
+
+![](graphs/Grafico5.1.png)
+
+![](graphs/Grafico5.2.png)
+
+![](graphs/Grafico5.3.png)
+
+![](graphs/Grafico6.1.png)
+
+![](graphs/Grafico6.2.png)
+
+![](graphs/Grafico7.png)
+
+![](graphs/Grafico8.png)
+
+![](graphs/Grafico9.png)
+
+![](graphs/Grafico10.png)
+
+![](graphs/Grafico11.1.png)
+
+![](graphs/Grafico11.2.png)
+
+![](graphs/Grafico12.png)
+
+![](graphs/Grafico13.png)
+
+![](graphs/Grafico14.png)
+
+
+
 ### Construcción de fichas de resultados
 
 Para la presente investigación se utilizarán las variables de la ENAHO del 2023 que estén vinculadas con las variables de estudio principales: educación, pobreza e ingreso. La base de datos abarca múltiples de estos parámetros, los cuales podrían ser útiles para responder la pregunta de investigación y, por ende, se toman en cuenta a la hora de hacer la selección de columnas que se procesarán del conjunto de datos. En las siguientes líneas, se analizarán aquellas que consideremos más relevantes en este momento, pero eso no significa que, a futuro, las observaciones no puedan contemplar más variables.
