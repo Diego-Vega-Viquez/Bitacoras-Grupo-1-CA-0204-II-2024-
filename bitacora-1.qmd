@@ -286,18 +286,25 @@ Entre las posibles combinaciones de palabras clave se encuentran
 ### Fichas de literatura
 
 **Título: Human Capital and Poverty Alleviation**  
-- Autor(es): Gary S. Becker  
+- Autor(es): Gary S. Becker 
+
 - Año: 1995  
+
 - Nombre del tema: La importancia del capital humano para el bienestar de las personas  
+
 - Forma de organizarlo:
-    + Cronológico: Toma literatura en materia educativa y económica en diferentes países, elaborada entre los años cincuenta y noventa.
-    + Metodológico: Análisis de investigaciones elaboradas previamente.
-    + Temático: Economía, Salud, Educación.
-    + Teoría: Teoría del capital humano.
-- Resumen en una oración: Explora la relación entre el capital humano y el crecimiento económico, señalando que la educación y la salud son claves para el bienestar de los países.
-- Argumento Central: El desarrollo de capital humano es la principal vía para el progreso económico de los países.
-- Problemas con el argumento o tema: El desarrollo de capital humano es inútil si no hay una organización eficiente de la producción.
-- Resumen en un párrafo: Becker analiza la importancia del capital humano en el crecimiento económico de diferentes países, destacando la estrecha relación entre el rendimiento económico y variables como la educación y la expectativa de vida. Argumenta que en países pobres, una población más educada y saludable puede impulsar un crecimiento económico más rápido, especialmente con énfasis en la educación primaria y secundaria. Además, sostiene que la educación es determinante para la salud y expectativa de vida, ya que las personas educadas tienden a hacer mejores inversiones en su salud. Becker también subraya que la educación reduce la desigualdad y facilita la movilidad económica, siendo la vía más efectiva para superar situaciones de vulnerabilidad económica.
+    + Cronológico: Toma literatura en materia educativa y económica en diferentes países, elaborada entre los años cincuenta y noventa
+    + Metodológico: Análisis de investigaciones elaboradas previamente
+    + Temático: Economía, Salud, Educación
+    + Teoría: Teoría del capital humano
+    
+- Resumen en una oración: Explora la relación entre el capital humano y el crecimiento económico, señalando que la educación y la salud son claves para el bienestar de los países
+
+- Argumento Central: El desarrollo de capital humano es la principal vía para el progreso económico de los países
+
+- Problemas con el argumento o tema: El desarrollo de capital humano es inútil si no hay una organización eficiente de la producción
+
+- Resumen en un párrafo: Becker analiza la importancia del capital humano en el crecimiento económico de diferentes países, destacando la estrecha relación entre el rendimiento económico y variables como la educación y la expectativa de vida. Argumenta que en países pobres, una población más educada y saludable puede impulsar un crecimiento económico más rápido, especialmente con énfasis en la educación primaria y secundaria. Además, sostiene que la educación es determinante para la salud y expectativa de vida, ya que las personas educadas tienden a hacer mejores inversiones en su salud. Becker también subraya que la educación reduce la desigualdad y facilita la movilidad económica, siendo la vía más efectiva para superar situaciones de vulnerabilidad económica
 
 **Título: Una aproximación empírica a la relación entre educación y pobreza**
 
@@ -437,14 +444,19 @@ Entre las posibles combinaciones de palabras clave se encuentran
 **Título: ¿Mejora la distribución del ingreso con la educación?**
 
  - Autor(es): Adolfo Figueroa
+ 
  - Año: 2010
+ 
  - Nombre del tema: impacto de la educación en la distribución del ingreso
+ 
  - Forma de organizarlo:
-    +Cronológico: uso de datos que provienen de censos y encuestas realizadas en Perú en la primera década de los años 2000.
+ 
+    +Cronológico: uso de datos que provienen de censos y encuestas realizadas en Perú en la primera década de los años 2000
     +Metodológico: modelo teórico que vincula la educación y la distribución de ingresos
     +Temático: Educación, Economía, Sociología
     +Teoría: Teoría del Capital Humano
- - Resumen en una oración: la educación no determina el nivel de igualdad en Perú.
+    
+ - Resumen en una oración: la educación no determina el nivel de igualdad en Perú
  - Argumento central: la educación, por sí sola, no es suficiente para nivelar la distribución del ingreso en un país como Perú, debido a factores como la identidad étnica, que perpetúan desigualdades preexistentes
  - Problemas con el argumento o tema: medir el impacto real de la educación en la distribución del ingreso representa una tarea complicada debido a las desigualdades estructurales que van más allá de la educación.
  - Resumen en un párrafo: el estudio se compromete a explicar por qué la expansión en la educación no se traduce directamente a una mayor igualdad en el ingreso, haciendo énfasis en el caso de Perú. Se concluye que la educación por sí sola no es suficiente para reducir la desigualdad del ingreso en economías con fuertes disparidades. Aunque la educación puede aumentar los ingresos individuales, no modifica la estructura económica subyacente, donde la concentración de activos y el poder de mercado perpetúan la desigualdad. En contextos de alta desigualdad, las clases altas se benefician más de la educación debido a su acceso a sistemas de mejor calidad, reforzando las disparidades existentes. Se dice que, para que la educación tenga un impacto significativo en la distribución del ingreso, debe ser acompañada de políticas redistributivas que aborden las desigualdades estructurales en el acceso a recursos y oportunidades.
@@ -467,10 +479,13 @@ Entre las posibles combinaciones de palabras clave se encuentran
 **Título: Aspectos teóricos y metodológicos involucrados en el estudio de la pobreza: una revisión**
 
 - Autor(es): Adrian Rodríguez
+
 - Año: s.f.
+
 - Nombre del tema: definición de la pobreza
+
 - Forma de organizarlo: 
-    +Cronológico: se evalúan perpectivas de autores del siglo XX.
+    +Cronológico: se evalúan perpectivas de autores del siglo XX
     +Metodológico: análisis teórico de la literatura relacionada al tema
     +Temático: Economía
     +Teórico: teoría del capital humano y concepción estructural de la pobreza
