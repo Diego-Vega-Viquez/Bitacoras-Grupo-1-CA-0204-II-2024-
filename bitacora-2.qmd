@@ -144,8 +144,6 @@ glimpse(variables_comunes)
 
 #### Cuadros
 
-{{< pagebreak >}}
-
 ```{r}
 #| echo: false
 # Cargar los datos sin mostrar el código
@@ -712,32 +710,42 @@ tabla4 <- tabla4 %>%
 
 ### Construcción de fichas de resultados
 
-- Nombre de su hallazgo/resultado: 
-- Resumen en una oración: 
-- Principal característica: 
-- Problemas o posibles desafíos: 
-- Resumen en un párrafo:
+#### Hallazgo 1
 
-- Nombre de su hallazgo/resultado: 
-- Resumen en una oración: 
-- Principal característica: 
-- Problemas o posibles desafíos: 
-- Resumen en un párrafo:
+- Nombre de su hallazgo/resultado: Altos ingresos netos del hogar respecto al nivel de instrucción
+- Resumen en una oración: Existen ciertos valores máximos respecto al ingreso neto del hogar que son inesperados.
+- Principal característica: Distribución de los valores extremos
+- Problemas o posibles desafíos: La distribución de los valores extremos no es uniforme entre los diferentes niveles de instrucción presentes en la base de datos.
+- Resumen en un párrafo: Al analizar el gráfico 12, se observa la distribución del ingreso neto del hogar según el nivel de instrucción de las personas encuestadas mediante un diagrama de cajas. Este gráfico muestra puntos aislados que se alejan de la media, tanto por debajo como por encima. Entre los máximos globales, destacan las categorías de Educación superior de postgrado, Educación superior de pregrado y grado, secundaria académica completa e incompleta. Las primeras dos categorías no presentan hallazgos sorprendentes, ya que es esperado que las personas con un alto nivel de instrucción tengan mayores ingresos. Sin embargo, los valores máximos en las categorías de secundaria académica completa e incompleta son inesperados, ya que sugieren que, en algunos casos, personas sin formación universitaria han logrado ingresar a los niveles más altos de ingresos netos del hogar dentro de la muestra encuestada. Esto plantea dudas sobre el supuesto de que alcanzar un nivel universitario siempre garantiza un mayor ingreso a nivel doméstico.
 
-- Nombre de su hallazgo/resultado: 
-- Resumen en una oración: 
-- Principal característica: 
-- Problemas o posibles desafíos: 
-- Resumen en un párrafo:
+#### Hallazgo 2
 
-- Nombre de su hallazgo/resultado: 
-- Resumen en una oración: 
-- Principal característica: 
-- Problemas o posibles desafíos: 
-- Resumen en un párrafo:
+- Nombre de su hallazgo/resultado: Pendiente de la regresión lineal de la relación años de escolaridad e ingreso salarial neto respecto al quintil de ingreso per cápita del hogar neto.
+- Resumen en una oración: La pendiente de la regresión aumenta a medida que se incrementa el quintil de ingreso per cápita del hogar neto.
+- Principal característica: Pendiente de la regresión lineal.
+- Problemas o posibles desafíos: La representatividad de la interpretación respecto a la población.
+- Resumen en un párrafo: En la gráfica 14, que relaciona los años de escolaridad con el ingreso principal de salario neto, se aprecia que, según el análisis de regresión lineal, la pendiente inicia en el quintil 1 con un valor cercano a cero, casi horizontal. La regresión lineal, permite evaluar cómo una variable independiente (en este caso, los años de escolaridad) impacta sobre una variable dependiente (el ingreso salarial). En este quintil, la pendiente sugiere que un cambio en los años de escolaridad no tiene un efecto significativo sobre el ingreso salarial. Es decir, para las personas de este quintil, tener un año más o menos de escolaridad no genera un impacto importante en su salario. Esta interpretación es clave para identificar qué segmentos de la población se benefician o no de incrementos en su nivel educativo.
 
-- Nombre de su hallazgo/resultado: 
-- Resumen en una oración: 
-- Principal característica: 
+#### Hallazgo 3
+
+- Nombre de su hallazgo/resultado: Personas estudiadas en universidades públicas por debajo de la línea de pobreza.
+- Resumen en una oración: Existe un grupo de estudiantes o exestudiantes de universidades públicas que, al momento de ser encuestados, se encontraban bajo la línea de pobreza.
+- Principal característica: Población por debajo de la línea de pobreza.
+- Problemas o posibles desafíos: No se tiene certeza de si esta muestra es suficientemente representativa como para extraer conclusiones definitivas sobre esta parte de la población.
+- Resumen en un párrafo: Al observar la gráfica 11.2, se nota que en las cinco universidades públicas se presenta una proporción de estudiantes o exestudiantes cuya situación económica se encuentra por debajo de la línea de pobreza. Aunque este porcentaje varía entre las universidades, es evidente que la UNED tiene la mayor proporción de personas en esta situación, mientras que el TEC muestra la menor. Este hallazgo abre la puerta a múltiples preguntas e hipótesis sobre posibles relaciones causales entre la educación universitaria y variables exógenas que influyen en la situación económica de los graduados. Aunque generalmente se asume que estudiar en una universidad brinda oportunidades de ascenso social, los resultados de esta gráfica muestran que un grupo de personas que han pasado por las aulas de universidades públicas aún se encuentra bajo la línea de pobreza, lo que cuestiona esta afirmación común.
+
+#### Hallazgo 4
+
+- Nombre de su hallazgo/resultado: Estadísticas de ingreso total neto por persona según nivel de instrucción.
+- Resumen en una oración: Las personas con mayor nivel de instrucción presentan mayores cifras de ingreso total neto al momento de la encuesta.
+- Principal característica: Incremento notable en la mediana, el promedio y la desviación estándar del ingreso a medida que aumenta el nivel educativo.
+- Problemas o posibles desafíos: Las estadísticas de ingreso neto no son suficientes por sí solas para determinar el nivel socioeconómico de una persona.
+- Resumen en un párrafo: Al analizar la tabla 2.4, se pueden observar marcadas diferencias en el ingreso total por persona según el nivel de instrucción. Los datos reflejan que las personas con educación superior de posgrado tienen un ingreso promedio significativamente mayor, representando un incremento de más del 100% respecto a las personas sin ningún nivel de instrucción formal. Las cifras muestran cómo la mediana del ingreso se incrementa a medida que aumenta el nivel educativo. Por ejemplo, las personas con educación primaria completa tienen una mediana considerablemente superior a aquellas con educación primaria incompleta. Además, la desviación estándar crece de manera notable, particularmente en los niveles educativos superiores, lo que sugiere una mayor variabilidad en los ingresos en estos grupos. Este análisis refleja una clara relación entre el nivel de instrucción y el ingreso, aunque es importante considerar que el ingreso neto por sí solo no siempre captura de manera precisa el bienestar o el nivel socioeconómico general de una persona.
+
+#### Hallazgo 5
+
+- Nombre de su hallazgo/resultado: Relevancia del manejo de un segundo idioma en el nivel de pobreza.
+- Resumen en una oración: No parce que dominar un segundo idioma tenga un impacto en el nivel de pobreza de las personas encuestadas.
+- Principal característica: En genral, sin importar el quintil de increso al que pertenezcan las personas, el porcentage de personas que no dominan un segundo idioma es del 80%
 - Problemas o posibles desafíos: 
 - Resumen en un párrafo:
