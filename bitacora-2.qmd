@@ -135,7 +135,7 @@ library(kableExtra)
 ```{r}
 #| echo: false
 # Código que no se mostrará
-variables_comunes <- readRDS("../Bitácoras/data/variables_comunes.rds")
+variables_comunes <- readRDS("data/variables_comunes.rds")
 glimpse(variables_comunes)
 
 ```
@@ -272,6 +272,18 @@ kable(tabla3,
 
 
 ### Propuesta Metodológica
+
+La metodología de esta investigación se basará en un análisis descriptivo de cuadros y gráficos para visualizar las relaciones entre las principales variables de estudio: educación, pobreza e ingreso. Se plantea abordar estas relaciones de las siguientes maneras:
+
+En primer lugar, se generarán gráficos y cuadros que vinculen variables numéricas relacionadas con educación e ingreso, con el objetivo de crear regresiones lineales que ayuden a establecer una correlación visual entre estas dos variables. Por ejemplo, el gráfico 1 muestra la correlación entre los años de escolaridad y el ingreso.
+
+En segundo lugar, los gráficos 1 y 2 presentan otro enfoque, que consiste en analizar las relaciones entre variables considerando características como la región o zona. Este enfoque podría ofrecer observaciones más precisas sobre distintos segmentos de la población, y podría ampliarse en el futuro para incluir otras características como el género, la condición de migrante o el estado civil.
+
+Finalmente, se crearán elementos visuales que permitan observar la distribución de características de interés en relación con las variables principales. Por ejemplo, los gráficos 3 y 4 muestran la distribución de la pobreza en función del nivel educativo, el gráfico 5.2 refleja la distribución de títulos educativos según los quintiles de ingreso per cápita, y el gráfico 11.2 ilustra la distribución del ingreso según la universidad pública a la que se asistió.
+
+A partir de lo establecido anteriormente, se considera que los cálculos estadísticos que mejor se podrían aplicar son los relacionados con la media, desviación estándar, cuantiles y proporciones. Estos cálculos permitirán obtener una visión clara de las tendencias generales en los datos (media), la variabilidad de las observaciones (desviación estándar), así como una comprensión más detallada de la distribución de los valores a través de los cuantiles. Las proporciones, por su parte, facilitarán el análisis de categorías específicas como los niveles de pobreza y educación, ayudando a identificar patrones importantes dentro del grupo de estudio. Estos indicadores serán cruciales para comparar diferencias entre subgrupos y realizar inferencias sobre la relación entre educación, ingreso y pobreza.
+
+A continuación, se presenta el código para la creación de gráficos y cuadros que se ha desarrollado hasta el momento: 
 
 
 
