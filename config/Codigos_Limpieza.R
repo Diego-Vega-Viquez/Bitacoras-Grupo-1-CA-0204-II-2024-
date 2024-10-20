@@ -280,3 +280,7 @@ datos_jc$np <- factor(datos_jc$np,
                                      "Pobreza no extrema",
                                      "Pobreza extrema"))
 
+saveRDS(datos_jc, file = "./data/datos_jc.rds")
+
+
+

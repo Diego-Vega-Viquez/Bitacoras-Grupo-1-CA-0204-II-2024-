@@ -56,4 +56,6 @@ ENAHO <- ENAHO %>% select(REGION, ZONA,
                           ipcn) %>% 
   filter(A5 >= 18 & A5 <= 60) #filtrar personas entre 18 y 60 años
 
+saveRDS(ENAHO, file = "./data/ENAHO.rds")
+
 

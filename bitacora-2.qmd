@@ -130,6 +130,26 @@ library(tidyverse)
 library(scales)    # Para formatear los números como porcentajes
 library(knitr)     # Para mostrar tablas
 library(kableExtra)
+library(GGally)
+
+################################
+# Librerías de carga_de_datos.R
+################################
+
+library("digest")
+library("tibble")
+library(ProjectTemplate)
+library(cowplot)
+# Estos son necesarios para cargar openintro
+library(airports)
+library(cherryblossom)
+library(usdata)
+library(openintro)
+library(haven) 
+library(ggridges) # Para usar geom_density_ridges
+library(sf) 
+library(RColorBrewer)
+library(see)
 ```
 
 #### Formato tidy
@@ -143,7 +163,7 @@ glimpse(variables_comunes)
 
 #### Cuadros
 
-```{r}
+```{r Tabla1}
 #| echo: false
 # Cargar los datos sin mostrar el código
 tabla1 <- variables_comunes %>% 
@@ -187,7 +207,7 @@ kable(tabla1, caption = "Distribución del nivel pobreza según universidad púb
            general_title = "Fuente: ")
 
 ```
-```{r}
+```{r Tabla2}
 #| echo: false
 # Código que no se mostrará
 
@@ -239,7 +259,7 @@ kable(tabla2,
            general_title = "Fuente: ")
 
 ```
-```{r}
+```{r Tabla3}
 #| echo: false
 # Código que no se mostrará
 
@@ -265,42 +285,409 @@ kable(tabla3,
            general_title = "Fuente: ")
 ```
 
+```{r  Carga Datos, echo=FALSE, include=FALSE}
+datos_jc <- readRDS("data/datos_jc.rds")
+ENAHO <- readRDS("data/ENAHO.rds")
+```
+
+
 #### Gráficos
 
-![](graphs/Grafico1.png)
-![](graphs/Grafico2.png)
+```{r GRAFICO 1, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
+#############
+# GRAFICO 1 #
+#############
 
-![](graphs/Grafico3.png)
+#Grafico de ingreso total personal neto por años de escolaridad segun zona
+datos_jc %>% ggplot(aes(x = Escolari, y = itpn, group = ZONA)) +
+  geom_hex(alpha = 0.8) + 
+  geom_smooth(method = "lm", se = FALSE, colour = "red") +
+  facet_wrap(~ZONA) +
+  labs(title = "Gráfico 1. \nRelación entre años de escolaridad e ingreso personal neto",
+       subtitle = "Distribución del ingreso según zona urbana y rural en Costa Rica",
+       x = "Escolaridad",
+       y = "Ingreso",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")+
+  scale_y_log10(labels = label_number()) +
+  cowplot::theme_cowplot() +
+  theme(legend.position = "none",
+        plot.caption = element_text(size = 6))
+```
+```{r GRAFICO 2, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
+#############
+# GRAFICO 2 #
+#############
 
-![](graphs/Grafico4.png)
+#Grafico de ingreso total personal neto por años de escolaridad segun region de planificacion 
 
-![](graphs/Grafico5.1.png)
+datos_jc$REGION <- as_factor(datos_jc$REGION) 
 
-![](graphs/Grafico5.2.png)
+datos_jc %>% ggplot(aes(x = Escolari, y = itpn, group = REGION, colour = REGION)) +
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE, colour = "black") +
+  facet_wrap(~REGION) +
+  labs(title = "Gráfico 2. \nRelación entre escolaridad e ingreso personal neto según región de planificación",
+       subtitle = "Comparativa de ingresos por años de escolaridad en las distintas regiones de planificación de Costa Rica",
+       x = "Escolaridad",
+       y = "Ingreso",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")+
+  scale_y_log10(labels = label_number()) +
+  cowplot::theme_cowplot() +
+  theme(legend.position = "none",
+        plot.caption = element_text(size = 6))
+```
+```{r GRAFICO 3, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
 
-![](graphs/Grafico5.3.png)
+#############
+# GRAFICO 3 #
+#############
 
-![](graphs/Grafico6.1.png)
+#Grafico de pobreza segun nivel de instrucción
+datos_jc %>% filter(!is.na(np)) %>% 
+  ggplot(aes(x = np, fill = NivInst)) +
+  geom_bar(position = "fill") +
+  labs(title = "Grafico 3. \nDistribución de la Pobreza según Nivel de Instrucción en Costa Rica",
+       subtitle = "Comparación entre Pobreza Extrema, Pobreza No Extrema y No Pobreza según el Nivel Educativo",
+       x = "Nivel de pobreza",
+       y = NULL, # Eliminar el título del eje y
+       fill = "Nivel de instrucción",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")+  
+  scale_fill_brewer(palette = "GnBu") +  # Paleta de colores 
+  cowplot::theme_cowplot() +
+  theme(legend.text = element_text(size = 8),
+        axis.text.x = element_text(size = 8),
+        plot.caption = element_text(size = 6, hjust = 0))  # Cambiar el tamaño del texto del eje x
+```
+```{r GRAFICO 4, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
+#############
+# GRAFICO 4 #
+#############
 
-![](graphs/Grafico6.2.png)
+#Grafico de pobreza multidimensional segun nivel de instruccion
+datos_jc %>% filter(!is.na(IPM_Pobreza)) %>% 
+  ggplot(aes(x = IPM_Pobreza, fill = NivInst)) +
+  geom_bar(position = "fill") +
+  labs(title = "Gráfico 4. \nDistribución de la Pobreza Multidimensional según Nivel de Instrucción en Costa Rica",
+       subtitle = "Comparación entre Pobreza Multidimensional y No Pobreza Multidimensional por Nivel Educativo en 2023",
+       x = "Nivel de pobreza",
+       y = NULL, # Eliminar el título del eje y
+       fill = "Nivel de instrucción",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")+  
+  scale_fill_brewer(palette = "Greens") +  # Paleta de colores 
+  cowplot::theme_cowplot() +
+  theme(legend.text = element_text(size = 8),
+        axis.text.x = element_text(size = 8),
+        plot.caption = element_text(size = 6, hjust = 0))  # Cambiar el tamaño del texto del eje x
 
-![](graphs/Grafico7.png)
+```
+```{r GRAFICO 5.1, echo=FALSE, warning=FALSE, fig.width=12, fig.height=6, message = FALSE}
+#############
+# GRAFICO 5.1 #
+#############
 
-![](graphs/Grafico8.png)
+#Numero de titulos obtenidos segun quintil de ingreso per capita
+datos_jc %>% filter(!is.na(A16B)) %>%
+  ggplot(aes(x = Q_IPCN, fill = A16B)) +
+  geom_bar(position = "dodge") +  # Colocar barras separadas dentro de cada cuartil
+  labs(title = "Gráfico 5.1. \nDistribución de Títulos Obtenidos según Quintil de Ingreso Per Cápita en Costa Rica",
+       subtitle = "Cantidad de títulos obtenidos en cada nivel educativo, clasificados por quintiles de ingreso per cápita al 2023",
+       x = NULL,  # Eliminar el título del eje x
+       y = NULL,  # Eliminar el título del eje y
+       fill = "Título obtenido",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")+  # Título de la leyenda
+  coord_polar() +  # Gráfico circular
+  scale_y_log10() +  # Aplicar la transformación de raíz cuadrada a la escala de y
+  scale_fill_brewer(palette = "Set3") +  # Paleta de colores 
+  cowplot::theme_cowplot() +
+  theme(legend.text = element_text(size = 8),  # Tamaño de texto de la leyenda
+        axis.text.x = element_text(size = 8, hjust = 5),
+        plot.caption = element_text(size = 6, hjust = 0))  # Tamaño del texto en el eje x
+```
+```{r GRAFICO 5.2, echo=FALSE, warning=FALSE, fig.width=14, fig.height=8, message = FALSE}
+#############
+# GRAFICO 5.2 #
+#############
 
-![](graphs/Grafico9.png)
+ENAHO %>% 
+  filter(!is.na(A16B) & !is.na(Q_IPCN) & A16B != "Ignorado") %>%  # Filtrar valores NA
+  group_by(A16B, Q_IPCN) %>%  # Agrupar por título y quintil
+  summarise(conteo = n()) %>%  # Contar el número de personas en cada grupo
+  pivot_wider(names_from = Q_IPCN, values_from = conteo, values_fill = 0) %>% #view() # Convertir a formato ancho
+  ggparcoord(columns = 2:6, groupColumn = 1, scale = "uniminmax") +
+    labs(title = "Gráfico 5.2. \nDistribución de títulos académicos obtenidos por quintil de ingreso per cápita Costa Rica, 2023",
+         subtitle = "Relación entre nivel educativo y nivel de ingreso per cápita según quintiles de ingresos",
+         x = "Quintil de ingreso per cápita",
+         y = NULL,
+         caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
+    scale_color_discrete(name = "Título") +
+    scale_x_discrete(labels = c("Q1: 110683 ó menos" = "1", 
+                              "Q2: Más de 110683 a 195000" = "2", 
+                              "Q3: Más de 195000 a 321523" = "3", 
+                              "Q4: Más de 321523 a 574085" = "4", 
+                              "Q5: Más de 574085" = "5")) +
+    cowplot::theme_cowplot() +
+    theme(legend.text = element_text(size = 8),
+          plot.caption = element_text(size = 6, hjust = 0),
+          axis.text.x = element_text(angle = 20, hjust = 1))
+```
+```{r GRAFICO 5.3, echo=FALSE, warning=FALSE, fig.width=14, fig.height=8, message = FALSE}
+#############
+# GRAFICO 5.3 #
+#############
 
-![](graphs/Grafico10.png)
+ENAHO %>% 
+  filter(!is.na(A16B) & !is.na(Q_IPCN) & A16B != "Ignorado") %>%  # Filtrar valores NA
+  group_by(A16B, Q_IPCN) %>%  # Agrupar por título y quintil
+  summarise(conteo = n()) %>%  # Contar el número de personas en cada grupo
+  pivot_wider(names_from = Q_IPCN, values_from = conteo, values_fill = 0) %>% #view() # Convertir a formato ancho
+  ggparcoord(columns = 2:6, groupColumn = 1, scale = "globalminmax") +
+  labs(title = "Gráfico 5.3. \nNúmero de títulos académicos obtenidos por quintil de ingreso per cápita Costa Rica, 2023",
+       subtitle = "Comparación de la cantidad de títulos académicos obtenidos según quintiles de ingreso per cápita",
+       x = "Quintil de ingreso per cápita",
+       y = "Cantidad de títulos obtenidos",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
+  scale_color_discrete(name = "Título") +
+  scale_x_discrete(labels = c("Q1: 110683 ó menos" = "1", 
+                              "Q2: Más de 110683 a 195000" = "2", 
+                              "Q3: Más de 195000 a 321523" = "3", 
+                              "Q4: Más de 321523 a 574085" = "4", 
+                              "Q5: Más de 574085" = "5")) +
+  cowplot::theme_cowplot() +
+  theme(legend.text = element_text(size = 8),
+        plot.caption = element_text(size = 6, hjust = 0),
+        axis.text.x = element_text(angle = 20, hjust = 1))
+```
+```{r GRAFICO 6.1, echo=FALSE, warning=FALSE, fig.width=14, fig.height=8, message = FALSE}
+#############
+# GRAFICO 6.1 #
+#############
 
-![](graphs/Grafico11.1.png)
+#Grafico de distribucion del ingreso segun dominio de un segundo idioma
+datos_jc %>% 
+  ggplot(aes(x = A22A, y = itpn, fill = A22A)) +
+  geom_boxplot() +  # Omitir valores extremos
+  geom_hline(yintercept = 129038, color = "red", linetype = "dashed", size = 1) +  # Línea horizontal
+  annotate("text", x = 0.5, y = 150000, label = "Línea de pobreza", color = "black", size = 2, hjust = 0) +  # Texto
+  scale_y_log10(labels = scales::comma) +  scale_fill_manual(values = c("#f7a072", "#0fa3b1")) +
+  labs(title = "Gráfico 6.1. \nDistribución del ingreso total neto por persona según el dominio de un segundo idioma en Costa Rica",
+       subtitle = "Comparación entre personas que dominan y no dominan un segundo idioma al 2023",
+       x = "Dominio de un segundo idioma",
+       y = "Ingreso total personal neto",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")+
+  cowplot::theme_cowplot() +
+  theme(legend.position = "none",
+        plot.caption = element_text(size = 6, hjust = 0))
+```
+```{r GRAFICO 6.2, echo=FALSE, warning=FALSE, fig.width=12, fig.height=6, message = FALSE}
+#############
+# GRAFICO 6.2 #
+#############
 
-![](graphs/Grafico11.2.png)
+datos_jc %>% 
+  ggplot(aes(x = A22A, y = itpn, fill = A22A)) +
+  geom_violin(outlier.shape = NA) +  # Omitir valores extremos
+  geom_hline(yintercept = 129038, color = "red", linetype = "dashed", size = 1) +  # Línea horizontal
+  annotate("text", x = 0.5, y = 150000, label = "Línea de pobreza", color = "black", size = 2, hjust = 0) +  # Texto
+  scale_y_log10(labels = scales::comma) +
+  scale_fill_manual(values = c("#22577a", "#57cc99")) +
+  labs(title = "Gráfico 6.2. \nDistribución del ingreso total personal neto según dominio de un segundo idioma en Costa Rica",
+       subtitle = "Comparación de la distribución de ingresos entre personas que dominan o no un segundo idioma en 2023",
+       x = "Dominio de un segundo idioma",
+       y = "Ingreso total personal neto",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")+
+  cowplot::theme_cowplot() +
+  theme(legend.position = "none",
+        plot.caption = element_text(size = 6, hjust = 0))
+```
+```{r GRAFICO 7, echo=FALSE, warning=FALSE, fig.width=12, fig.height=6, message = FALSE}
+#############
+# GRAFICO 7 #
+#############
 
-![](graphs/Grafico12.png)
+#Grafico de ingreso segun formacion educativa forma
 
-![](graphs/Grafico13.png)
+ENAHO %>% 
+  filter(!is.na(ForReg) & itpn > 0 & ForReg != "Ignorada" & ForReg != "No definida") %>%  # Filtrar valores NA y menores o iguales a 0
+  ggplot(aes(x = itpn, y = ForReg, fill = ForReg, color = ForReg)) +
+  geom_density_ridges(alpha = 0.5) +
+  geom_vline(xintercept = 129038, color = "red", linetype = "dashed", size = 1) +  # Línea horizontal
+  annotate("text", y = 0.7, x = 150000, label = "Línea de pobreza", color = "black", size = 2, hjust = 0) +  # Texto
+  labs(title = "Gráfico 7. \nDistribución del ingreso total personal neto según formación educativa en Costa Rica",
+       subtitle = "Comparación entre los niveles de formación educativa y el ingreso en 2023",
+       x = "Ingreso",
+       y = "Formación educativa",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")+
+  scale_x_log10(labels = scales::comma) +  # Mostrar en millones
+  scale_fill_brewer(palette = "Dark2") +  # Paleta cualitativa ordinal
+  scale_color_brewer(palette = "Dark2") +  # Paleta cualitativa ordinal
+  cowplot::theme_cowplot() +
+  theme(legend.position = "none",
+        axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
+        plot.caption = element_text(size = 6, hjust = 0))
+```
+```{r GRAFICO 8, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
+#############
+# GRAFICO 8 #
+#############
+  
+#Graficos de porcentaje de pobreza segun si se tiene secundaria o primaria completa
+datos_jc %>% filter(!is.na(np))%>% 
+  ggplot(aes(x = Tiene_prim_completa, fill = np)) +
+  geom_bar(position = "fill") +
+  labs(title = "Gráfico 8. \nDistribución de la Pobreza Multidimensional por Nivel de Educación en Costa Rica",
+       subtitle = "Análisis comparativo entre pobrezas según la completitud de primaria en 2023.",
+       x = NULL,
+       y = "Porcentaje",
+       fill = "Nivel de pobreza",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")+
+  scale_fill_brewer(palette = "OrRd") +  # Paleta de colores 
+  cowplot::theme_cowplot() +
+  theme(plot.caption = element_text(size = 6, hjust = 0))
+```
+```{r GRAFICO 9, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
+#############
+# GRAFICO 9 #
+#############
 
-![](graphs/Grafico14.png)
+datos_jc %>% filter(!is.na(np))%>% 
+  ggplot(aes(x = Tiene_sec_completa, fill = np)) +
+  geom_bar(position = "fill") +
+  labs(title = "Gráfico 9. \nDistribución de la Pobreza según Nivel de Educación Secundaria en Costa Rica",
+       subtitle = "Comparación del porcentaje de pobreza extrema, pobreza no extrema y no pobreza según la finalización de la educación secundaria, 2023.",
+       x = NULL,
+       y = "Porcentaje",
+       fill = "Nivel de pobreza",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")+
+  scale_fill_brewer(palette = "YlOrBr") +  # Paleta de colores 
+  cowplot::theme_cowplot() +
+  theme(axis.text.x = element_text(size = 10),
+        plot.caption = element_text(size = 6, hjust = 0))
+```
+```{r GRAFICO 10, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
+##############
+# GRAFICO 10 #
+##############
+
+datos_jc %>% filter(!is.na(np))%>% 
+  ggplot(aes(x = Tiene_est_postsec, fill = np)) +
+  geom_bar(position = "fill") +
+  labs(title = "Gráfico 10. \nDistribución de la Pobreza según Nivel de Educación Postsecundaria en Costa Rica",
+       subtitle = "Comparación del porcentaje de pobreza extrema, pobreza no extrema y no pobreza según la finalización de estudios postsecundarios, 2023.",
+       x = NULL,
+       y = "Porcentaje",
+       fill = "Nivel de pobreza",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")+
+  scale_fill_brewer(palette = "Purples") +  # Paleta de colores 
+  cowplot::theme_cowplot() +
+  theme(axis.text.x = element_text(size = 9),
+        plot.caption = element_text(size = 6, hjust = 0))
+```
+```{r GRAFICO 11.1, echo=FALSE, warning=FALSE, fig.width=11.5, fig.height=6, message = FALSE}
+##############
+# GRAFICO 11.1 #
+##############
+
+#Grafico de distribucion de ingreso por universidad publica
+
+datos_jc %>% filter(!is.na(A15B) & A15B != "Ignorado")%>% 
+  ggplot(aes(x = A15B, y = itpn, fill = A15B)) +
+  geom_violin() +
+  geom_hline(yintercept = 129038, color = "red", linetype = "dashed", size = 1) +  # Línea horizontal
+  annotate("text", x = 1.15, y = 150000, label = "Línea de pobreza", color = "black", size = 2, hjust = 0) +  # Texto
+  labs(title = "Gráfico 11.1 \nDistribución del Ingreso Neto Total por Persona según Universidad Pública en Costa Rica",
+       subtitle = "Comparación del ingreso total por persona neto entre egresados de universidades públicas, considerando la línea de pobreza en 2023.",
+       x = "Universidad",
+       y = "Ingreso total por persona neto",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")+
+  scale_y_log10(labels = scales::comma) +
+  scale_fill_brewer(palette = "Set1") +  # Paleta de colores
+  cowplot::theme_cowplot() +
+  theme(legend.position = "none",
+        axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
+        plot.caption = element_text(size = 6, hjust = 0))
+```
+```{r GRAFICO 11.2, echo=FALSE, warning=FALSE, fig.width=11.5, fig.height=6, message = FALSE}
+##############
+# GRAFICO 11.2 #
+##############
+
+datos_jc %>% filter(!is.na(A15B) & A15B != "Ignorado" & itpn > 0)%>% 
+  ggplot(aes(x = itpn, y = A15B, fill = A15B)) +
+  geom_density_ridges() +
+  geom_vline(xintercept = 129038, color = "red", linetype = "dashed", size = 1) +  # Línea horizontal
+  annotate("text", y = 0.7, x = 150000, label = "Línea de pobreza", color = "black", size = 2, hjust = 0) +  # Texto
+  labs(title = "Gráfico 11.2. \nDistribución del Ingreso Neto Total por Persona según Universidad Pública en Costa Rica",
+       subtitle = "Comparación del ingreso total por persona neto entre egresados de universidades públicas, considerando la línea de pobreza en 2023.",
+       x = "Universidad",
+       y = "Ingreso total por persona neto",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")+
+  scale_fill_brewer(palette = "Set1") +  # Paleta de colores
+  scale_x_log10(labels = scales::comma) +
+  cowplot::theme_cowplot() +
+  theme(legend.position = "none",
+        axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
+        plot.caption = element_text(size = 6, hjust = 0))
+```
+```{r GRAFICO 12, echo=FALSE, warning=FALSE, fig.width=11.5, fig.height=6, message = FALSE}
+##############
+# GRAFICO 12 #
+##############
+variables_comunes %>% ggplot(aes(x = NivInst,
+                                y = ipnh,
+                                fill = NivInst)) +
+                     geom_boxplot() +
+                     scale_y_log10(labels = label_number()) +
+                     labs( title = "Gráfico 12. \nComparación del Ingreso Principal Neto del Hogar según Nivel de Instrucción, en Costa Rica al 2023",
+                           subtitle = "Expresado en colones costarricenses",
+                           x = "Nivel de Instrucción",
+                           y = "Ingreso Principal Neto del Hogar",
+                           fill =  "Nivel de Instrucción",
+                           caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
+                     coord_flip() + 
+                     theme(legend.position = "none")
+```
+```{r GRAFICO 13, echo=FALSE, warning=FALSE, fig.width=13, fig.height=8, message = FALSE}
+##############
+# GRAFICO 13 #
+##############
+variables_comunes %>% filter(spmn > 0 &!is.na(A16B)) %>% ggplot(aes(x = spmn, 
+                                                     y = A16B, 
+                                                     fill = A16B, 
+                                                     color = A16B)) + 
+                     geom_density_ridges(alpha = 0.5) + 
+                     scale_x_log10(labels = label_number()) +
+                      labs( title = "Figura 13. \nDistribución del Ingreso Total por persona del Hogar según Grado Académico en Costa Rica, 2023",
+                            subtitle = "Expresado en colones costarricenses",
+                            x = "Ingreso total del hogar neto",
+                            y = "Título",
+                            fill = "Título",
+                            color = "Título",
+                            caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
+                      guides(
+                        fill = guide_legend(reverse = TRUE),  
+                        color = guide_legend(reverse = TRUE)) + 
+                     theme(axis.text.y = element_blank())
+```
+```{r GRAFICO 14, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8, message = FALSE}
+##############
+# GRAFICO 14 #
+##############
+variables_comunes %>% filter(!is.na(Q_IPCN)) %>% 
+                     ggplot(aes(x = Escolari, 
+                                y = ipsnt, 
+                                colour = Q_IPCN)) +
+                      geom_jitter() +
+                      geom_smooth(method = "lm", se = FALSE, colour = "black") +
+                      facet_wrap(~Q_IPCN) +
+  labs(title = "Figura 14. \nRelación entre los años de escolaridad e ingreso salario neto",
+       x = "Años de escolaridad",
+       y = "Ingreso principal salario neto total",
+       colour = "Quintiles de ingreso per cápita \ndel hogar neto \npor región de planificación",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
+  scale_y_log10(labels = label_number()) +
+  scale_colour_brewer(palette = "Set1") +  # Paleta de colores para los quintiles
+  theme_cowplot()
+```
 
 
 
@@ -362,7 +749,7 @@ A partir de lo establecido anteriormente, se considera que los cálculos estadí
 
 A continuación, se presenta el código para la creación de gráficos y cuadros que se ha desarrollado hasta el momento: 
 
-```{r eval=FALSE}
+```{r código GRAFICO 1, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 #############
 # GRAFICO 1 #
 #############
@@ -382,7 +769,7 @@ datos_jc %>% ggplot(aes(x = Escolari, y = itpn, group = ZONA)) +
   theme(legend.position = "none",
         plot.caption = element_text(size = 6))
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 2, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 #############
 # GRAFICO 2 #
 #############
@@ -405,7 +792,7 @@ datos_jc %>% ggplot(aes(x = Escolari, y = itpn, group = REGION, colour = REGION)
   theme(legend.position = "none",
         plot.caption = element_text(size = 6))
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 3, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 
 #############
 # GRAFICO 3 #
@@ -427,7 +814,7 @@ datos_jc %>% filter(!is.na(np)) %>%
         axis.text.x = element_text(size = 8),
         plot.caption = element_text(size = 6, hjust = 0))  # Cambiar el tamaño del texto del eje x
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 4, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 #############
 # GRAFICO 4 #
 #############
@@ -449,7 +836,7 @@ datos_jc %>% filter(!is.na(IPM_Pobreza)) %>%
         plot.caption = element_text(size = 6, hjust = 0))  # Cambiar el tamaño del texto del eje x
 
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 5.1, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 #############
 # GRAFICO 5.1 #
 #############
@@ -472,12 +859,12 @@ datos_jc %>% filter(!is.na(A16B)) %>%
         axis.text.x = element_text(size = 8, hjust = 5),
         plot.caption = element_text(size = 6, hjust = 0))  # Tamaño del texto en el eje x
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 5.2, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 #############
 # GRAFICO 5.2 #
 #############
 
-datos_jc %>% 
+ENAHO %>% 
   filter(!is.na(A16B) & !is.na(Q_IPCN) & A16B != "Ignorado") %>%  # Filtrar valores NA
   group_by(A16B, Q_IPCN) %>%  # Agrupar por título y quintil
   summarise(conteo = n()) %>%  # Contar el número de personas en cada grupo
@@ -499,12 +886,12 @@ datos_jc %>%
           plot.caption = element_text(size = 6, hjust = 0),
           axis.text.x = element_text(angle = 20, hjust = 1))
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 5.3, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 #############
 # GRAFICO 5.3 #
 #############
 
-datos_jc %>% 
+ENAHO %>% 
   filter(!is.na(A16B) & !is.na(Q_IPCN) & A16B != "Ignorado") %>%  # Filtrar valores NA
   group_by(A16B, Q_IPCN) %>%  # Agrupar por título y quintil
   summarise(conteo = n()) %>%  # Contar el número de personas en cada grupo
@@ -526,7 +913,7 @@ datos_jc %>%
         plot.caption = element_text(size = 6, hjust = 0),
         axis.text.x = element_text(angle = 20, hjust = 1))
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 6.1, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 #############
 # GRAFICO 6.1 #
 #############
@@ -547,7 +934,7 @@ datos_jc %>%
   theme(legend.position = "none",
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 6.2, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 #############
 # GRAFICO 6.2 #
 #############
@@ -568,14 +955,14 @@ datos_jc %>%
   theme(legend.position = "none",
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 7, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 #############
 # GRAFICO 7 #
 #############
 
 #Grafico de ingreso segun formacion educativa forma
 
-datos_jc %>% 
+ENAHO %>% 
   filter(!is.na(ForReg) & itpn > 0 & ForReg != "Ignorada" & ForReg != "No definida") %>%  # Filtrar valores NA y menores o iguales a 0
   ggplot(aes(x = itpn, y = ForReg, fill = ForReg, color = ForReg)) +
   geom_density_ridges(alpha = 0.5) +
@@ -594,7 +981,7 @@ datos_jc %>%
         axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 8, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 #############
 # GRAFICO 8 #
 #############
@@ -613,7 +1000,7 @@ datos_jc %>% filter(!is.na(np))%>%
   cowplot::theme_cowplot() +
   theme(plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 9, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 #############
 # GRAFICO 9 #
 #############
@@ -632,7 +1019,7 @@ datos_jc %>% filter(!is.na(np))%>%
   theme(axis.text.x = element_text(size = 10),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 10, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 ##############
 # GRAFICO 10 #
 ##############
@@ -651,7 +1038,7 @@ datos_jc %>% filter(!is.na(np))%>%
   theme(axis.text.x = element_text(size = 9),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 11.1, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 ##############
 # GRAFICO 11.1 #
 ##############
@@ -675,7 +1062,7 @@ datos_jc %>% filter(!is.na(A15B) & A15B != "Ignorado")%>%
         axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 11.2, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 ##############
 # GRAFICO 11.2 #
 ##############
@@ -697,11 +1084,11 @@ datos_jc %>% filter(!is.na(A15B) & A15B != "Ignorado" & itpn > 0)%>%
         axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 12, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 ##############
 # GRAFICO 12 #
 ##############
-variables_utiles %>% ggplot(aes(x = NivInst,
+variables_comunes %>% ggplot(aes(x = NivInst,
                                 y = ipnh,
                                 fill = NivInst)) +
                      geom_boxplot() +
@@ -715,11 +1102,11 @@ variables_utiles %>% ggplot(aes(x = NivInst,
                      coord_flip() + 
                      theme(legend.position = "none")
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 13, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 ##############
 # GRAFICO 13 #
 ##############
-variables_utiles %>% filter(spmn > 0 &!is.na(A16B)) %>% ggplot(aes(x = spmn, 
+variables_comunes %>% filter(spmn > 0 &!is.na(A16B)) %>% ggplot(aes(x = spmn, 
                                                      y = A16B, 
                                                      fill = A16B, 
                                                      color = A16B)) + 
@@ -737,11 +1124,11 @@ variables_utiles %>% filter(spmn > 0 &!is.na(A16B)) %>% ggplot(aes(x = spmn,
                         color = guide_legend(reverse = TRUE)) + 
                      theme(axis.text.y = element_blank())
 ```
-```{r eval=FALSE}
+```{r código GRAFICO 14, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 ##############
 # GRAFICO 14 #
 ##############
-variables_utiles %>% filter(!is.na(Q_IPCN)) %>% 
+variables_comunes %>% filter(!is.na(Q_IPCN)) %>% 
                      ggplot(aes(x = Escolari, 
                                 y = ipsnt, 
                                 colour = Q_IPCN)) +
@@ -757,7 +1144,7 @@ variables_utiles %>% filter(!is.na(Q_IPCN)) %>%
   scale_colour_brewer(palette = "Set1") +  # Paleta de colores para los quintiles
   theme_cowplot()
 ```
-```{r eval=FALSE}
+```{r código TABLA 1, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 ###############
 #   TABLA 1   #
 ###############
@@ -784,7 +1171,7 @@ kable(tabla1, caption = "Tabla 1: \nDistribución de la pobreza según universid
   add_header_above(c(" " = 1, "Distribución de la pobreza" = 4)) %>%
   footnote(general = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")
 ```
-```{r eval=FALSE}
+```{r código TABLA 2, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 ###############
 #   TABLA 2   #
 ###############
@@ -808,7 +1195,7 @@ tabla2 <- tabla2 %>% rename(Quintil = Q_IPCN,
                             'No domina un segundo idioma' = No
                             )
 ```
-```{r eval=FALSE}
+```{r código TABLA 3, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 ###############
 #   TABLA 3   #
 ###############
@@ -826,7 +1213,7 @@ tabla3 <- tabla3 %>%
   mutate(across(where(is.numeric), 
                 ~ number(., big.mark = ".", decimal.mark = ",", accuracy = 0.01, prefix = "₡")))
 ```
-```{r eval=FALSE}
+```{r código TABLA 4, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
 ###############
 #   TABLA 4   #
 ###############
@@ -843,7 +1230,3 @@ tabla4 <- tabla4 %>%
   mutate(across(where(is.numeric), 
                 ~ number(., big.mark = ".", decimal.mark = ",", accuracy = 0.01, prefix = "₡")))
 ```
-
-{{< pagebreak >}}
-
-# Bibliografía

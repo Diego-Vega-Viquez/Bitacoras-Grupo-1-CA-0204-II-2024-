@@ -28,7 +28,7 @@ variables_comunes$Q_IPCN <- variables_comunes$Q_IPCN %>% str_replace_all("\\d+",
 variables_comunes$Q_IPCN <- gsub("\\s([0-9]{3}\\.+)", " ₡\\1", variables_comunes$Q_IPCN)
 variables_comunes$Q_IPCN <- as_factor(variables_comunes$Q_IPCN)
 # Reordenar los niveles de Q_IPCN 
-variables_comunes$Q_IPCN <- factor(variable`s_comunes$Q_IPCN, 
+variables_comunes$Q_IPCN <- factor(variables_comunes$Q_IPCN, 
                                    levels = c("Q1: ₡110.683 ó menos", 
                                               "Q2: Más de ₡110.683 a ₡195.000", 
                                               "Q3: Más de ₡195.000 a ₡321.523", 

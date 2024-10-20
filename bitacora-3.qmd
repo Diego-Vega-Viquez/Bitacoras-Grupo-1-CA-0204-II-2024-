@@ -12,7 +12,7 @@ source("./config/carga_de_datos.R")
 #Cargar la base de datos
 ```
 
-```{r, fig.width=10, fig.height=6}
+```{r, fig.width=10, fig.height=6, warning=FALSE}
 as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>% 
   filter(Var2 != "Ignorado") %>% 
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
@@ -52,4 +52,8 @@ as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>%
 ## Parte de escritura
 
 ## Parte de reflexión
+
+{{< pagebreak >}}
+
+# Bibliografía
 
