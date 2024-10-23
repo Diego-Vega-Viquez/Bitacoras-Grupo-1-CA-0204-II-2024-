@@ -123,7 +123,7 @@ Contribución propia: el análisis que se realiza en la situación de Ruanda es 
 ## Análisis estadísticos
 
 ### Análisis descriptivo
-```{r}
+```{r Librerías}
 #| echo: false
 #| include: false
 library(tidyverse)
@@ -153,7 +153,7 @@ library(see)
 ```
 
 #### Formato tidy
-```{r}
+```{r Carga de datos}
 #| echo: false
 # Código que no se mostrará
 variables_comunes <- readRDS("data/variables_comunes.rds")
@@ -285,7 +285,7 @@ kable(tabla3,
            general_title = "Fuente: ")
 ```
 
-```{r  Carga Datos, echo=FALSE, include=FALSE}
+```{r  Carga Datos (datos_jc & ENAHO), echo=FALSE, include=FALSE}
 datos_jc <- readRDS("data/datos_jc.rds")
 ENAHO <- readRDS("data/ENAHO.rds")
 ```
@@ -701,7 +701,7 @@ Para la presente investigación se utilizarán las variables de la ENAHO del 202
 - Resumen en una oración: Existen ciertos valores máximos respecto al ingreso neto del hogar que son inesperados.
 - Principal característica: Distribución de los valores extremos
 - Problemas o posibles desafíos: La distribución de los valores extremos no es uniforme entre los diferentes niveles de instrucción presentes en la base de datos.
-- Resumen en un párrafo: Al analizar el gráfico 12, se observa la distribución del ingreso neto del hogar según el nivel de instrucción de las personas encuestadas mediante un diagrama de cajas. Este gráfico muestra puntos aislados que se alejan de la media, tanto por debajo como por encima. Entre los máximos globales, destacan las categorías de Educación superior de postgrado, Educación superior de pregrado y grado, secundaria académica completa e incompleta. Las primeras dos categorías no presentan hallazgos sorprendentes, ya que es esperado que las personas con un alto nivel de instrucción tengan mayores ingresos. Sin embargo, los valores máximos en las categorías de secundaria académica completa e incompleta son inesperados, ya que sugieren que, en algunos casos, personas sin formación universitaria han logrado ingresar a los niveles más altos de ingresos netos del hogar dentro de la muestra encuestada. Esto plantea dudas sobre el supuesto de que alcanzar un nivel universitario siempre garantiza un mayor ingreso a nivel doméstico.
+- Resumen en un párrafo: Al analizar el gráfico 12, se observa la distribución del ingreso neto del hogar según el nivel de instrucción de las personas encuestadas mediante un diagrama de cajas. Este gráfico muestra puntos aislados que se alejan de la media, tanto por debajo como por encima. Entre los máximos globales, destacan las categorías de Educación superior de postgrado, Educación superior de pregrado y grado, secundaria académica completa e incompleta. Las primeras dos categorías no presentan hallazgos sorprendentes, ya que es esperado que las personas con un alto nivel de instrucción tengan mayores ingresos. Sin embargo, los valores máximos en las categorías de secundaria académica completa e incompleta son inesperados, ya que sugieren que, en algunos casos, personas sin formación universitaria han logrado ingresar a los niveles más altos de ingresos netos del hogar dentro de la muestra encuestada. Esto plantea dudas sobre la creencia de que alcanzar un nivel universitario siempre garantiza un mayor ingreso a nivel doméstico.
 
 #### Hallazgo 2
 
@@ -735,6 +735,8 @@ Para la presente investigación se utilizarán las variables de la ENAHO del 202
 - Problemas o posibles desafíos: La educación en el manejo de un segundo idioma podría no tener un impacto relevante en la condición socioeconómica de las personas, al menos según la información proporcionada en la base de datos actual.
 - Resumen en un párrafo: Al observar los datos de la tabla 2.3, se puede notar que el dominio de un segundo idioma no parece ser un factor determinante para mejorar la situación de pobreza. De hecho, el porcentaje de personas que no dominan un segundo idioma se mantiene consistentemente alto en todos los quintiles, superando el 80% en total. Esto sugiere que la falta de habilidades en un segundo idioma no es una causa clara de pobreza, ya que la mayoría de las personas, independientemente de su nivel de ingreso, no dominan una segunda lengua. Además, los datos sugieren que la mejora en las condiciones socioeconómicas no está directamente vinculada a esta habilidad, lo que podría llevar a cuestionar si la enseñanza de un segundo idioma tiene el impacto esperado en el contexto de la pobreza.
 
+
+<!-- Comentario del foro: De igual manera, podrían relacionarse los hallazgos, por ejemplo, el hallazgo 4 con el 1, aclarando que la generalización de los resultados en el hallazgo 4 es desmentida por el hallazgo 1, ya que no es cierto para todos los casos. -->
 ### Propuesta Metodológica
 
 La metodología de esta investigación se basará en un análisis descriptivo de cuadros y gráficos para visualizar las relaciones entre las principales variables de estudio: educación, pobreza e ingreso. Se plantea abordar estas relaciones de las siguientes maneras:
