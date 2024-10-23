@@ -8,17 +8,18 @@
 #| message: false
 #| echo: false
 #| warning: false
+#| #Cargar la base de datos
 source("./config/carga_de_datos.R")
-#Cargar la base de datos
+ENAHO <- readRDS("data/ENAHO.rds")
 ```
 
-```{r, fig.width=10, fig.height=6, warning=FALSE}
+```{r Grafico 1, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>% 
   filter(Var2 != "Ignorado") %>% 
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
   geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Gráfico de área
   labs(
-    title = "Gráfico 1.\nNivel de pobreza según tipo de\ncentro educativo al que se asistió",
+    title = "Gráfico 1.\nNivel de pobreza según tipo de centro educativo al que se asistió",
     subtitle = "Relación entre tipo de centro educativo y nivel de pobreza (Costa Rica, 2023)",
     x = "Tipo de centro educativo al que asistió",
     y = "Proporción acumulada",
@@ -37,6 +38,34 @@ as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>%
     axis.title.y = element_text(size = 12, margin = margin(t = 10)),
     axis.text.y = element_text(size = 10, color = "gray20", face = "bold"),
     axis.text.x = element_text(size = 10, color = "gray20"),
+    plot.caption = element_text(size = 8, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+```
+```{r Grafico 2.1, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+ENAHO %>% 
+  filter(A15A != "Ignorado" & itpn > 0) %>% 
+  ggplot(aes(x = itpn, y = fct_reorder(A15A, itpn, median), fill = A15A)) +
+  geom_density_ridges(alpha = 0.8, color = "white", size = 0.3) +  # Ajuste en las curvas de densidad
+  geom_vline(xintercept = 129038, color = "red", linetype = "dotted", size = 0.8) +  # Línea de pobreza mejorada
+  annotate("text", y = 0.5, x = 180000, label = "Línea de pobreza", color = "red", 
+           size = 3, hjust = 0, vjust = -0.5, fontface = "italic") +  # Texto mejorado
+  labs(
+    title = "Gráfico 2.1.\nDistribución del Ingreso Neto Personal por Tipo de Centro Educativo Asistido",
+    subtitle = "Ingreso expresado en colones costarricenses",
+    x = "Ingreso Personal Neto(log10)",
+    y = "Tipo de centro educativo",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
+  ) +
+  scale_x_log10(labels = scales::comma) +
+  scale_fill_viridis_d(option = "C") +  # Paleta de colores viridis
+  theme_minimal(base_size = 14) +  # Tema minimalista
+  theme(
+    legend.position = "none",  # Sin leyenda
+    axis.text.y = element_text(size = 10, color = "gray20", face = "bold"),
+    axis.text.x = element_text(size = 10, color = "gray20"),  # Ajuste de texto en eje X
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
     plot.caption = element_text(size = 8, hjust = 0),
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
