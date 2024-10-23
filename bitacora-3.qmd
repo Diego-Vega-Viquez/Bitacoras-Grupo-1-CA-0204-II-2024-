@@ -102,7 +102,7 @@ ENAHO %>%
            size = 3, hjust = 0, vjust = -0.5, fontface = "italic") +  # Texto mejorado
   labs(
     title = "Gráfico 2.1.\nDistribución del Ingreso Neto Personal por Tipo de Centro Educativo Asistido",
-    subtitle = "Ingreso expresado en colones costarricenses",
+    subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
     x = "Ingreso Personal Neto(log10)",
     y = "Tipo de centro educativo",
     caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
@@ -130,7 +130,7 @@ ENAHO %>%
            size = 3, hjust = 0, vjust = -0.5, fontface = "italic") +  # Texto mejorado
   labs(
     title = "Gráfico 2.2.\nDistribución del ingreso total neto por persona según tipo de centro educativo al que se asistió",
-    subtitle = "Ingreso expresado en colones costarricenses",
+    subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
     x = "Ingreso Personal Neto (log10)",
     y = "Tipo de centro educativo",
     caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
@@ -230,7 +230,7 @@ ENAHO %>%
   geom_bar(alpha = 0.85, color = "white", size = 0.3) +  # Ajuste visual en las barras
   labs(
     title = "Gráfico 5.\nCantidad de personas en condición de pobreza por universidad",
-    subtitle = "según formación educativa formal",
+    subtitle = "Según formación educativa formal (Costa Rica, 2023)",
     x = "Universidad pública a la que se asistió",
     y = "Cantidad de personas en condición de pobreza",
     fill = "Formación educativa formal",
@@ -258,7 +258,7 @@ ENAHO %>%
   geom_bar(alpha = 0.85, color = "white", size = 0.3) +  # Ajuste en las barras
   labs(
     title = "Gráfico 6.\nCantidad de personas en condición de no pobreza por universidad",
-    subtitle = "según formación educativa formal",
+    subtitle = "Según formación educativa formal (Costa Rica, 2023)",
     x = "Universidad pública a la que se asistió",
     y = "Cantidad de personas en condición de no pobreza",
     fill = "Formación educativa formal",
@@ -289,8 +289,9 @@ ENAHO %>%
   annotate("text", y = 0.5, x = 180000, label = "Línea de pobreza", color = "red", 
            size = 3, hjust = 0, vjust = -0.5, fontface = "italic") +  # Texto mejorado
   labs(
-    title = "Gráfico 7.1.\nDistribución del ingreso total neto por persona\nsegún universidad pública a la que se asistió",
-    x = "Ingreso Personal Neto (₡, log10)",
+    title = "Gráfico 7.1.\nDistribución del ingreso total neto por persona según universidad pública a la que se asistió",
+    subtitle = "Ingreso expresado en colones costarricenses",
+    x = "Ingreso Personal Neto (log10)",
     y = "Universidad pública a la que se asistió",
     caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
   ) +
@@ -316,8 +317,9 @@ ENAHO %>%
   annotate("text", y = 2.5, x = 25000, label = "Línea de pobreza", color = "red", 
            size = 3, hjust = 0, vjust = -0.5, fontface = "italic") +  # Texto mejorado
   labs(
-    title = "Gráfico 7.2.\nDistribución del ingreso total neto por persona\nsegún universidad pública a la que se asistió",
-    x = "Ingreso Personal Neto (₡, log10)",
+    title = "Gráfico 7.2.\nDistribución del ingreso total neto por persona según universidad pública a la que se asistió",
+    subtitle = "Ingreso expresado en colones costarricenses",
+    x = "Ingreso Personal Neto (log10)",
     y = "Universidad pública a la que se asistió",
     caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
   ) +
@@ -432,7 +434,7 @@ as.data.frame(prop.table(table(ENAHO$InsLab, fct_collapse(ENAHO$NivInst,
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 11, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 11, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(NivInst != "Ignorado" & itpn > 0) %>%
   mutate(NivInst = fct_collapse(NivInst,
@@ -444,9 +446,9 @@ ENAHO %>%
   geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
   # Etiquetas y títulos mejorados
   labs(
-    title = "Grafico 11.\nDistribución del ingreso total neto por persona \nsegún nivel de instrucción",
-    subtitle = "Costa Rica, 2023",
-    x = "Ingreso Personal Neto (₡, log10)",
+    title = "Grafico 11.\nDistribución del ingreso total neto por persona según nivel de instrucción",
+    subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
+    x = "Ingreso Personal Neto (log10)",
     y = "Nivel de instrucción",
     caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
   ) +
@@ -515,9 +517,9 @@ ENAHO %>%
   facet_wrap(~ZONA) +
   # Etiquetas y títulos mejorados
   labs(title = "Gráfico 13. \nRelación entre años de escolaridad e ingreso personal neto",
-       subtitle = "Distribución del ingreso según zona urbana y rural en Costa Rica",
+       subtitle = "Distribución del ingreso, expresado en colones costarricenses, según zona urbana y rural (Costa Rica, 2023)",
        x = "Escolaridad (Años)",
-       y = "Ingreso Personal Neto (₡, log10)",
+       y = "Ingreso Personal Neto (log10)",
        caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
   # Escala logarítmica en el eje Y con etiquetas más claras y separadores de miles
   scale_y_log10(labels = label_number(scale = 1, big.mark = ",")) +
@@ -615,8 +617,8 @@ as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>%
   rename(titulo = Var2) %>% 
   ggplot(aes(x = titulo, y = Freq, fill = Nivel_de_pobreza)) + 
   geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Transparencia y bordes
-  labs(title = "Gráfico 16.\nNivel de pobreza según título obtenido",
-       subtitle = "en porcentajes",
+  labs(title = "Gráfico 16.\nDistribución de pobreza según nivel académico",
+       subtitle = "Porcentaje de la población en pobreza , clasificado por nivel de estudios alcanzado (Costa Rica, 2023)",
        x = "Título",
        y = NULL,
        fill = "Nivel de pobreza",
@@ -674,7 +676,7 @@ as.data.frame(prop.table(table(ENAHO$InsLab, ENAHO$A16B), margin = 2)) %>%
   theme(plot.caption = element_text(size = 6, hjust = 0),
         axis.text.x = element_text(hjust = 0, size = 8, angle = -20, color = "gray20", face = "bold"))
 ```
-```{r Grafico 19.1, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 19.1, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A16B != "Ignorado" & itpn > 0) %>%
   ggplot(aes(x = itpn, y = fct_reorder(A16B, itpn, median), fill = A16B)) +
@@ -682,9 +684,9 @@ ENAHO %>%
   geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
   # Etiquetas y títulos mejorados
   labs(
-    title = "Grafico 19.1.\nDistribución del ingreso total neto por persona \nsegún título obtenido",
-    subtitle = "Costa Rica, 2023",
-    x = "Ingreso Personal Neto (₡, log10)",
+    title = "Grafico 19.1.\nDistribución del ingreso total neto por persona según título obtenido",
+    subtitle = "Expresado en colones costarricenses (Costa Rica, 2023)",
+    x = "Ingreso Personal Neto (log10)",
     y = "Título obtenido",
     caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
   ) +
@@ -714,8 +716,8 @@ ENAHO %>%
   geom_boxplot(outlier.size = 1.5, outlier.shape = 21, outlier.fill = "white", alpha = 0.8) +
   # Títulos mejorados con mayor tamaño y alineación
   labs(title = "Gráfico 19.2.\nDistribución del ingreso total neto por persona según título obtenido",
-       subtitle = "Relación entre ingreso total neto y el tipo de título académico alcanzado",
-       x = "Ingreso Personal Neto (₡, log10)",
+       subtitle = "Relación entre ingreso total neto, expresado en colones, y el tipo de título académico alcanzado",
+       x = "Ingreso Personal Neto (log10)",
        y = "Tipo de título académico",
        caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
   # Escala logarítmica en el eje X con separadores de miles
@@ -808,7 +810,8 @@ as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>%
   mutate(Var2 = parse_number(Var2)) %>% 
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
   geom_area(alpha = 0.8) +  # Añade transparencia para el área
-  labs(title = "Gráfico 22. \nDistribución de personas que dominan un segundo idioma por quintil de ingreso per cápita Costa Rica, 2023",
+  labs(title = "Gráfico 22. \nRelación entre el dominio de un segundo idioma y el ingreso per cápita",
+       subtitle = "Porcentaje de personas que dominan un segundo idioma en cada quintil de ingreso per cápita (Costa Rica, 2023)",
        x = "Quintil de ingreso per cápita",
        y = NULL,
        fill = "Dominio de un segundo idioma",
@@ -837,8 +840,8 @@ ENAHO %>%
   # Etiquetas y títulos mejorados
   labs(
     title = "Grafico 23.\nDistribución del ingreso total neto por persona según dominio de un segundo idioma",
-    subtitle = "Costa Rica, 2023",
-    x = "Ingreso Personal Neto (₡, log10)",
+    subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
+    x = "Ingreso Personal Neto (log10)",
     y = "Dominio de un segundo idioma",
     caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
   ) +
