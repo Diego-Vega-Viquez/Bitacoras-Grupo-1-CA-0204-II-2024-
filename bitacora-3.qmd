@@ -31,7 +31,6 @@ library(GGally)
 library(kableExtra)
 ```
 
-
 ```{r Limpieza Datos}
 #| message: false
 #| echo: true
@@ -61,7 +60,9 @@ ENAHO <- ENAHO %>% select(ZONA,
                           ipcn) %>% 
   filter(A5 >= 18 & A5 <= 60) #filtrar personas entre 18 y 60 años
 ```
+
 <!-- Gráficos relacionados con el tipo de centro educativo -->
+
 ```{r Grafico 1, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>% 
   filter(Var2 != "Ignorado") %>% 
@@ -92,6 +93,7 @@ as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 2.1, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A15A != "Ignorado" & itpn > 0) %>% 
@@ -120,6 +122,7 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 2.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A15A != "Ignorado" & itpn > 0) %>% 
@@ -149,6 +152,7 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 3, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
@@ -189,7 +193,9 @@ as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2)) %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 <!-- Gráficos relacionados con universidad pública -->
+
 ```{r Grafico 4, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
@@ -223,6 +229,7 @@ as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 5, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(!is.na(A15B) & !is.na(ForReg) & np != "No pobre" & A15B != "Ignorado") %>% 
@@ -251,6 +258,7 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 6, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(!is.na(A15B) & !is.na(ForReg) & np == "No pobre" & A15B != "Ignorado" & ForReg != "Ignorada" & ForReg != "No definida") %>% 
@@ -280,6 +288,7 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 7.1, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A15B != "Ignorado" & itpn > 0) %>% 
@@ -308,6 +317,7 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 7.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A15B != "Ignorado" & itpn > 0) %>% 
@@ -336,7 +346,9 @@ ENAHO %>%
     panel.grid.minor = element_blank()  # Se eliminan las cuadrículas menores
   )
 ```
+
 <!-- Gráficos relacionados con nivel de instruccion -->
+
 ```{r Grafico 8, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst, 
                                            "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
@@ -372,6 +384,7 @@ as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst,
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 9, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$Estabili, fct_collapse(ENAHO$NivInst, 
                                                             "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
@@ -403,6 +416,7 @@ as.data.frame(prop.table(table(ENAHO$Estabili, fct_collapse(ENAHO$NivInst,
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 10, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$InsLab, fct_collapse(ENAHO$NivInst, 
                                                           "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
@@ -434,6 +448,7 @@ as.data.frame(prop.table(table(ENAHO$InsLab, fct_collapse(ENAHO$NivInst,
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 11, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(NivInst != "Ignorado" & itpn > 0) %>%
@@ -470,6 +485,7 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 12, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
                                             "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
@@ -505,7 +521,9 @@ as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst,
     panel.grid.minor = element_blank()
   )
 ```
+
 <!-- Gráficos relacionados con escolaridad -->
+
 ```{r Grafico 13, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   ggplot(aes(x = Escolari, y = itpn, color = ZONA)) +
@@ -542,6 +560,7 @@ ENAHO %>%
     plot.caption = element_text(size = 7, hjust = 0)
   )
 ```
+
 ```{r Grafico 14, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   ggplot(aes(x = Escolari, y = IPM_Intensidad, color = ZONA)) +
@@ -577,6 +596,7 @@ ENAHO %>%
     plot.caption = element_text(size = 7, hjust = 0)
   )
 ```
+
 ```{r Grafico 15, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% filter(!is.na(Q_IPCN)) %>% 
   ggplot(aes(x = Escolari, 
@@ -609,7 +629,9 @@ ENAHO %>% filter(!is.na(Q_IPCN)) %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 <!-- Gráficos relacionados con título obtenido -->
+
 ```{r Grafico 16, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>% 
   rename(Nivel_de_pobreza = Var1) %>% 
@@ -640,6 +662,7 @@ as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 17, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$Estabili, ENAHO$A16B), margin = 2)) %>% 
   rename(Estabilidad = Var1) %>% 
@@ -658,6 +681,7 @@ as.data.frame(prop.table(table(ENAHO$Estabili, ENAHO$A16B), margin = 2)) %>%
   theme(plot.caption = element_text(size = 6, hjust = 0),
         axis.text.x = element_text(hjust = 0, size = 8, angle = -20, face = "bold", color = "gray20"))
 ```
+
 ```{r Grafico 18, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$InsLab, ENAHO$A16B), margin = 2)) %>% 
   rename(Satisfaccion = Var1) %>% 
@@ -676,6 +700,7 @@ as.data.frame(prop.table(table(ENAHO$InsLab, ENAHO$A16B), margin = 2)) %>%
   theme(plot.caption = element_text(size = 6, hjust = 0),
         axis.text.x = element_text(hjust = 0, size = 8, angle = -20, color = "gray20", face = "bold"))
 ```
+
 ```{r Grafico 19.1, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A16B != "Ignorado" & itpn > 0) %>%
@@ -708,6 +733,7 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 19.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A16B != "Ignorado" & itpn > 0) %>%
@@ -744,6 +770,7 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 20, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
@@ -772,7 +799,9 @@ as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 2)) %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 <!-- Gráficos relacionados con dominio de segundo idioma -->
+
 ```{r Grafico 21, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>% 
   filter(Var2 != "Ignorado") %>% 
@@ -803,6 +832,7 @@ as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 22, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
@@ -831,6 +861,7 @@ as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>%
     panel.grid.minor = element_blank()
   )
 ```
+
 ```{r Grafico 23, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A22A != "Ignorado" & itpn > 0) %>%
@@ -865,265 +896,285 @@ ENAHO %>%
 ```
 
 ### Construcción de fichas de resultados
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 1 (Tabla y Gráfico 1)
 
-- **Nombre del hallazgo o resultado:** Las personas que asistieron a colegios privados tienen menor incidencia de pobreza que aquellos que nunca asistieron a un centro educativo.
+-   **Nombre del hallazgo o resultado:** Las personas que asistieron a colegios privados tienen menor incidencia de pobreza que aquellos que nunca asistieron a un centro educativo.
 
-- **Resumen en una oración:** La distribución de la pobreza varía según el tipo de centro educativo, mostrando que quienes asistieron a centros privados y semipúblicos tienen menores niveles de pobreza, mientras que aquellos que nunca asistieron presentan mayores niveles de pobreza.
+-   **Resumen en una oración:** La distribución de la pobreza varía según el tipo de centro educativo, mostrando que quienes asistieron a centros privados y semipúblicos tienen menores niveles de pobreza, mientras que aquellos que nunca asistieron presentan mayores niveles de pobreza.
 
-- **Principal característica:**  El 18.21% de los adultos que nunca asistieron a un centro educativo están en pobreza extrema, mientras que quienes asistieron a centros privados y semipúblicos tienen los menores índices de pobreza extrema (1.46% y 4%, respectivamente).
+-   **Principal característica:** El 18.21% de los adultos que nunca asistieron a un centro educativo están en pobreza extrema, mientras que quienes asistieron a centros privados y semipúblicos tienen los menores índices de pobreza extrema (1.46% y 4%, respectivamente).
 
-- **Problemas o posibles desafíos:**  La categorización no distingue la calidad educativa ni las diferencias regionales dentro de cada tipo de centro educativo, lo que puede sesgar la interpretación.
+-   **Problemas o posibles desafíos:** La categorización no distingue la calidad educativa ni las diferencias regionales dentro de cada tipo de centro educativo, lo que puede sesgar la interpretación.
 
-- **Resumen en un párrafo:**  Los resultados muestran que la ausencia total de educación formal está claramente asociada con un mayor nivel de pobreza extrema, ya que el 18.21% de los adultos que nunca asistieron a un centro educativo se encuentran en esta categoría. Sin embargo, la pobreza disminuye considerablemente entre aquellos que asistieron a centros educativos, especialmente privados (1.46% en pobreza extrema) y semipúblicos (4%). Por otro lado, los centros públicos, con un 7.40% de pobreza extrema, se ubican entre los extremos del espectro, indicando que, si bien la educación pública proporciona una vía para mejorar la situación económica, su impacto en la reducción de la pobreza es menor en comparación con los centros privados. Esto refleja cómo la calidad y el tipo de centro al que se asistió tienen un impacto significativo en la situación socioeconómica de las personas, sugiriendo que la educación de calidad juega un papel crucial en la movilidad social.
+-   **Resumen en un párrafo:** Los resultados muestran que la ausencia total de educación formal está claramente asociada con un mayor nivel de pobreza extrema, ya que el 18.21% de los adultos que nunca asistieron a un centro educativo se encuentran en esta categoría. Sin embargo, la pobreza disminuye considerablemente entre aquellos que asistieron a centros educativos, especialmente privados (1.46% en pobreza extrema) y semipúblicos (4%). Por otro lado, los centros públicos, con un 7.40% de pobreza extrema, se ubican entre los extremos del espectro, indicando que, si bien la educación pública proporciona una vía para mejorar la situación económica, su impacto en la reducción de la pobreza es menor en comparación con los centros privados. Esto refleja cómo la calidad y el tipo de centro al que se asistió tienen un impacto significativo en la situación socioeconómica de las personas, sugiriendo que la educación de calidad juega un papel crucial en la movilidad social.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 2 (Tabla y Gráfico 2)
 
-- **Nombre del hallazgo o resultado:** Ingresos y su distribución por tipo de centro educativo asistido.
+-   **Nombre del hallazgo o resultado:** Ingresos y su distribución por tipo de centro educativo asistido.
 
-- **Resumen en una oración:** Los ingresos netos por persona muestran grandes diferencias según el tipo de centro educativo al que se asistió, siendo mayores en centros privados y semi-públicos, mientras que los centros públicos presentan una variabilidad interna significativa que refleja una distribución desigual de los ingresos.
+-   **Resumen en una oración:** Los ingresos netos por persona muestran grandes diferencias según el tipo de centro educativo al que se asistió, siendo mayores en centros privados y semi-públicos, mientras que los centros públicos presentan una variabilidad interna significativa que refleja una distribución desigual de los ingresos.
 
-- **Principal característica:** Los adultos que asistieron a centros privados tienen los ingresos más altos, con una media de ₡846,691.2, y los ingresos en centros públicos muestran una mayor dispersión, con un ingreso máximo que llega a ₡20 millones, lo que refleja una gran variabilidad interna.
+-   **Principal característica:** Los adultos que asistieron a centros privados tienen los ingresos más altos, con una media de ₡846,691.2, y los ingresos en centros públicos muestran una mayor dispersión, con un ingreso máximo que llega a ₡20 millones, lo que refleja una gran variabilidad interna.
 
-- **Problemas o posibles desafíos:** El análisis no toma en cuenta factores como la calidad educativa, la duración de los estudios o el contexto socioeconómico inicial, lo que puede distorsionar la relación entre el tipo de centro educativo y los ingresos. Además, la presencia de valores atípicos, especialmente en los centros públicos, podría estar influyendo en las medias y las desviaciones estándar, lo que limita la precisión de las conclusiones.
+-   **Problemas o posibles desafíos:** El análisis no toma en cuenta factores como la calidad educativa, la duración de los estudios o el contexto socioeconómico inicial, lo que puede distorsionar la relación entre el tipo de centro educativo y los ingresos. Además, la presencia de valores atípicos, especialmente en los centros públicos, podría estar influyendo en las medias y las desviaciones estándar, lo que limita la precisión de las conclusiones.
 
-- **Resumen en un párrafo:** El tipo de centro educativo al que se asistió tiene una influencia significativa en el ingreso total personal neto de las personas. Los mayores ingresos se observan entre quienes asistieron a centros privados, con una media de ₡846,691.2, seguidos de los centros semi-públicos (₡783,109.0). Esto podría sugerir que las personas que asistieron a estos centros tuvieron acceso a mejores oportunidades o contaron con ventajas socioeconómicas desde el inicio, lo que les permitió obtener mayores ingresos. Por otro lado, los centros públicos presentan una media de ingresos considerablemente menor (₡405,861.1), pero con una distribución mucho más desigual, reflejada en una desviación estándar de ₡503,840.6 y un ingreso máximo de ₡20 millones, lo que indica que dentro de este grupo hay personas que alcanzan niveles de ingresos muy altos, aunque la mayoría no lo hace. En contraste, los adultos que nunca asistieron a un centro educativo tienen los ingresos más bajos, con una media de ₡222,138.6, lo que destaca la importancia de la educación formal en la mejora de los ingresos. A pesar de estas diferencias en los ingresos medios, la gran variabilidad interna dentro de algunos grupos, especialmente en los centros públicos, sugiere que no solo el tipo de centro educativo influye en los ingresos, sino que otros factores.
+-   **Resumen en un párrafo:** El tipo de centro educativo al que se asistió tiene una influencia significativa en el ingreso total personal neto de las personas. Los mayores ingresos se observan entre quienes asistieron a centros privados, con una media de ₡846,691.2, seguidos de los centros semi-públicos (₡783,109.0). Esto podría sugerir que las personas que asistieron a estos centros tuvieron acceso a mejores oportunidades o contaron con ventajas socioeconómicas desde el inicio, lo que les permitió obtener mayores ingresos. Por otro lado, los centros públicos presentan una media de ingresos considerablemente menor (₡405,861.1), pero con una distribución mucho más desigual, reflejada en una desviación estándar de ₡503,840.6 y un ingreso máximo de ₡20 millones, lo que indica que dentro de este grupo hay personas que alcanzan niveles de ingresos muy altos, aunque la mayoría no lo hace. En contraste, los adultos que nunca asistieron a un centro educativo tienen los ingresos más bajos, con una media de ₡222,138.6, lo que destaca la importancia de la educación formal en la mejora de los ingresos. A pesar de estas diferencias en los ingresos medios, la gran variabilidad interna dentro de algunos grupos, especialmente en los centros públicos, sugiere que no solo el tipo de centro educativo influye en los ingresos, sino que otros factores.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 3 (Tabla y Gráfico 3)
 
-- **Nombre del hallazgo o resultado:** Distribución de centros educativos según quintil de ingreso per cápita.
+-   **Nombre del hallazgo o resultado:** Distribución de centros educativos según quintil de ingreso per cápita.
 
-- **Resumen en una oración:** A medida que aumenta el ingreso per cápita, la asistencia a colegios privados incrementa, mientras que la asistencia a colegios públicos disminuye notablemente, con una tendencia inversa marcada entre los extremos de los quintiles.
+-   **Resumen en una oración:** A medida que aumenta el ingreso per cápita, la asistencia a colegios privados incrementa, mientras que la asistencia a colegios públicos disminuye notablemente, con una tendencia inversa marcada entre los extremos de los quintiles.
 
-- **Principal característica:** El 87.52% de las personas del primer quintil (los de menores ingresos) asistieron a un colegio público, mientras que solo el 51.78% de los del quinto quintil (los de mayores ingresos) lo hicieron; en cambio, la asistencia a colegios privados crece del 4.12% en el primer quintil al 44.59% en el último quintil.
+-   **Principal característica:** El 87.52% de las personas del primer quintil (los de menores ingresos) asistieron a un colegio público, mientras que solo el 51.78% de los del quinto quintil (los de mayores ingresos) lo hicieron; en cambio, la asistencia a colegios privados crece del 4.12% en el primer quintil al 44.59% en el último quintil.
 
-- **Problemas o posibles desafíos:** El análisis no toma en cuenta variaciones en la calidad de los colegios públicos ni privados, lo que podría influir en los resultados.
+-   **Problemas o posibles desafíos:** El análisis no toma en cuenta variaciones en la calidad de los colegios públicos ni privados, lo que podría influir en los resultados.
 
-- **Resumen en un párrafo:** La distribución del tipo de centro educativo asistido varía considerablemente entre los quintiles de ingreso per cápita, revelando una tendencia clara: las personas de menores ingresos, en su mayoría, asistieron a colegios públicos (87.52% en el primer quintil), mientras que los de mayores ingresos lo hicieron con menos frecuencia (51.78% en el quinto quintil). Este patrón refleja una tendencia de movilidad hacia los colegios privados a medida que aumenta el ingreso, con un 44.59% de las personas del quinto quintil habiendo asistido a un centro privado, en comparación con solo el 4.12% del primer quintil. Esta diferencia puede sugerir una relación entre el nivel socioeconómico y la capacidad para acceder a instituciones educativas privadas, que en muchos casos ofrecen ventajas adicionales como redes de contactos o calidad educativa superior, aunque este último factor no está explícitamente considerado en la tabla.
+-   **Resumen en un párrafo:** La distribución del tipo de centro educativo asistido varía considerablemente entre los quintiles de ingreso per cápita, revelando una tendencia clara: las personas de menores ingresos, en su mayoría, asistieron a colegios públicos (87.52% en el primer quintil), mientras que los de mayores ingresos lo hicieron con menos frecuencia (51.78% en el quinto quintil). Este patrón refleja una tendencia de movilidad hacia los colegios privados a medida que aumenta el ingreso, con un 44.59% de las personas del quinto quintil habiendo asistido a un centro privado, en comparación con solo el 4.12% del primer quintil. Esta diferencia puede sugerir una relación entre el nivel socioeconómico y la capacidad para acceder a instituciones educativas privadas, que en muchos casos ofrecen ventajas adicionales como redes de contactos o calidad educativa superior, aunque este último factor no está explícitamente considerado en la tabla.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 4 (Tabla y Gráfico 4)
 
-- **Nombre del hallazgo o resultado:** Distribución de pobreza según la universidad pública asistida.
+-   **Nombre del hallazgo o resultado:** Distribución de pobreza según la universidad pública asistida.
 
-- **Resumen en una oración:** La mayoría de las personas que asistieron a universidades públicas como la UCR, UNA y el TEC no son pobres, mientras que las personas que asistieron a la UNED y la UTN presentan mayores niveles de pobreza, en particular la pobreza extrema.
+-   **Resumen en una oración:** La mayoría de las personas que asistieron a universidades públicas como la UCR, UNA y el TEC no son pobres, mientras que las personas que asistieron a la UNED y la UTN presentan mayores niveles de pobreza, en particular la pobreza extrema.
 
-- **Principal característica:** El 93.5% de quienes asistieron a la UCR no son pobres, mientras que solo el 80.49% de quienes asistieron a la UNED se encuentran fuera de la pobreza; además, la UNED presenta un porcentaje relativamente alto de pobreza extrema (7.93%) en comparación con otras universidades.
+-   **Principal característica:** El 93.5% de quienes asistieron a la UCR no son pobres, mientras que solo el 80.49% de quienes asistieron a la UNED se encuentran fuera de la pobreza; además, la UNED presenta un porcentaje relativamente alto de pobreza extrema (7.93%) en comparación con otras universidades.
 
-- **Problemas o posibles desafíos:** La diferencia en la distribución de la pobreza entre universidades podría estar influida por factores no considerados en el análisis, como la ubicación geográfica de las universidades, las condiciones de trabajo de los estudiantes, o la duración de los estudios. Además, la muestra de personas que asistieron a universidades públicas es relativamente pequeña, por lo cual puede no ser representativa.
+-   **Problemas o posibles desafíos:** La diferencia en la distribución de la pobreza entre universidades podría estar influida por factores no considerados en el análisis, como la ubicación geográfica de las universidades, las condiciones de trabajo de los estudiantes, o la duración de los estudios. Además, la muestra de personas que asistieron a universidades públicas es relativamente pequeña, por lo cual puede no ser representativa.
 
-- **Resumen en un párrafo:** Los resultados muestran una marcada diferencia en la distribución de la pobreza entre las personas que asistieron a distintas universidades públicas. La Universidad de Costa Rica (UCR) y el Tecnológico de Costa Rica (TEC) destacan con los menores niveles de pobreza extrema y no extrema (1.1% y 0.66% respectivamente para pobreza extrema), mientras que la Universidad Estatal a Distancia (UNED) presenta la mayor proporción de personas en pobreza extrema (7.93%) y pobreza no extrema (11.59%). Estos datos podrían estar asociados con las características particulares de cada universidad. Por ejemplo, la UNED, al ser una universidad a distancia, podría atraer a una población con menores ingresos y mayores restricciones económicas, lo cual explicaría su mayor nivel de pobreza. Otro aspecto importante a destacar es que el hecho de que la asistencia a la universidad no necesariamente evita que las personas se encuentren en condición de pobreza.
+-   **Resumen en un párrafo:** Los resultados muestran una marcada diferencia en la distribución de la pobreza entre las personas que asistieron a distintas universidades públicas. La Universidad de Costa Rica (UCR) y el Tecnológico de Costa Rica (TEC) destacan con los menores niveles de pobreza extrema y no extrema (1.1% y 0.66% respectivamente para pobreza extrema), mientras que la Universidad Estatal a Distancia (UNED) presenta la mayor proporción de personas en pobreza extrema (7.93%) y pobreza no extrema (11.59%). Estos datos podrían estar asociados con las características particulares de cada universidad. Por ejemplo, la UNED, al ser una universidad a distancia, podría atraer a una población con menores ingresos y mayores restricciones económicas, lo cual explicaría su mayor nivel de pobreza. Otro aspecto importante a destacar es que el hecho de que la asistencia a la universidad no necesariamente evita que las personas se encuentren en condición de pobreza.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 5 (Tabla 5 y Gráfico 7)
 
-- **Nombre del hallazgo o resultado:** Comparación del ingreso total por persona neto entre universidades públicas.
+-   **Nombre del hallazgo o resultado:** Comparación del ingreso total por persona neto entre universidades públicas.
 
-- **Resumen en una oración:** La Universidad de Costa Rica (UCR) y el Tecnológico de Costa Rica (TEC) presentan los ingresos per cápita más altos en comparación con las otras universidades, mientras que la UNED tiene el ingreso promedio más bajo.
+-   **Resumen en una oración:** La Universidad de Costa Rica (UCR) y el Tecnológico de Costa Rica (TEC) presentan los ingresos per cápita más altos en comparación con las otras universidades, mientras que la UNED tiene el ingreso promedio más bajo.
 
-- **Principal característica:** La UCR muestra una media de ingreso total por persona neto de ₡950,480.4, y el TEC tiene el ingreso más alto con ₡1,146,155.2, destacando un rango amplio de ingresos (mín 35,000 y máx 20,000,000) en el TEC, lo que indica una gran disparidad entre los estudiantes.
+-   **Principal característica:** La UCR muestra una media de ingreso total por persona neto de ₡950,480.4, y el TEC tiene el ingreso más alto con ₡1,146,155.2, destacando un rango amplio de ingresos (mín 35,000 y máx 20,000,000) en el TEC, lo que indica una gran disparidad entre los estudiantes.
 
-- **Problemas o posibles desafíos:** La media de ingresos puede no ser representativa de la realidad de todos los estudiantes, ya que puede estar sesgada por un número reducido de observaciones en algunas universidades, como el TEC (152).
+-   **Problemas o posibles desafíos:** La media de ingresos puede no ser representativa de la realidad de todos los estudiantes, ya que puede estar sesgada por un número reducido de observaciones en algunas universidades, como el TEC (152).
 
-- **Resumen en un párrafo:** La comparación del ingreso total por persona neto revela diferencias significativas entre las universidades públicas de Costa Rica. La Universidad de Costa Rica (UCR) presenta un ingreso promedio de ₡950,480.4, mientras que el Tecnológico de Costa Rica (TEC) tiene la media más alta de ₡1,146,155.2. Estos ingresos son notablemente superiores a los de otras universidades, como la Universidad Nacional (UNA) y la Universidad Estatal a Distancia (UNED), cuyos promedios son de ₡785,263.1 y ₡560,280.2, respectivamente. La UCR y el TEC parecen atraer a estudiantes que, al ingresar al mercado laboral, logran obtener ingresos más altos, lo que podría ser un indicativo de la calidad educativa o de las oportunidades laborales que brindan sus programas.
+-   **Resumen en un párrafo:** La comparación del ingreso total por persona neto revela diferencias significativas entre las universidades públicas de Costa Rica. La Universidad de Costa Rica (UCR) presenta un ingreso promedio de ₡950,480.4, mientras que el Tecnológico de Costa Rica (TEC) tiene la media más alta de ₡1,146,155.2. Estos ingresos son notablemente superiores a los de otras universidades, como la Universidad Nacional (UNA) y la Universidad Estatal a Distancia (UNED), cuyos promedios son de ₡785,263.1 y ₡560,280.2, respectivamente. La UCR y el TEC parecen atraer a estudiantes que, al ingresar al mercado laboral, logran obtener ingresos más altos, lo que podría ser un indicativo de la calidad educativa o de las oportunidades laborales que brindan sus programas.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 6 (Tabla 6 y Gráfico 8)
 
-- **Nombre del hallazgo o resultado:** Relación entre el nivel de instrucción y la pobreza.
+-   **Nombre del hallazgo o resultado:** Relación entre el nivel de instrucción y la pobreza.
 
-- **Resumen en una oración:** A medida que aumenta el nivel de instrucción, disminuye la proporción de personas en situación de pobreza extrema y no extrema.
+-   **Resumen en una oración:** A medida que aumenta el nivel de instrucción, disminuye la proporción de personas en situación de pobreza extrema y no extrema.
 
-- **Principal característica:** La tabla revela que las personas con menor nivel de instrucción (sin o poco nivel de instrucción) presentan la mayor proporción de pobreza extrema (13.64%) y pobreza no extrema (23.75%), mientras que aquellos con educación superior de posgrado muestran porcentajes significativamente más bajos en ambas categorías (0.23% de pobreza extrema y 0% de pobreza no extrema).
+-   **Principal característica:** La tabla revela que las personas con menor nivel de instrucción (sin o poco nivel de instrucción) presentan la mayor proporción de pobreza extrema (13.64%) y pobreza no extrema (23.75%), mientras que aquellos con educación superior de posgrado muestran porcentajes significativamente más bajos en ambas categorías (0.23% de pobreza extrema y 0% de pobreza no extrema).
 
-- **Problemas o posibles desafíos:** La relación observada entre el nivel de instrucción y la pobreza puede estar sujeta a sesgos, ya que no se consideran factores estructurales que podrían influir en la situación socioeconómica, como el contexto geográfico, la calidad de la educación recibida, o las condiciones del mercado de trabajo.
+-   **Problemas o posibles desafíos:** La relación observada entre el nivel de instrucción y la pobreza puede estar sujeta a sesgos, ya que no se consideran factores estructurales que podrían influir en la situación socioeconómica, como el contexto geográfico, la calidad de la educación recibida, o las condiciones del mercado de trabajo.
 
-- **Resumen en un párrafo:** La distribución de la pobreza según el nivel de instrucción muestra una tendencia clara: a medida que el nivel educativo aumenta, la proporción de personas en situación de pobreza disminuye. Entre aquellos con nulo o poco nivel de instrucción, el 13.64% se encuentra en pobreza extrema, y el 23.75% en pobreza no extrema, en contraste con los que poseen educación superior de posgrado, donde solo el 0.23% está en pobreza extrema y ningún individuo se clasifica en pobreza no extrema. Este patrón resalta la importancia de la educación como un factor crítico para salir de la pobreza. Las personas con educación secundaria completa, por ejemplo, tienen una reducción notable en la pobreza, con solo el 5.71% en pobreza extrema y 12.44% en pobreza no extrema.
+-   **Resumen en un párrafo:** La distribución de la pobreza según el nivel de instrucción muestra una tendencia clara: a medida que el nivel educativo aumenta, la proporción de personas en situación de pobreza disminuye. Entre aquellos con nulo o poco nivel de instrucción, el 13.64% se encuentra en pobreza extrema, y el 23.75% en pobreza no extrema, en contraste con los que poseen educación superior de posgrado, donde solo el 0.23% está en pobreza extrema y ningún individuo se clasifica en pobreza no extrema. Este patrón resalta la importancia de la educación como un factor crítico para salir de la pobreza. Las personas con educación secundaria completa, por ejemplo, tienen una reducción notable en la pobreza, con solo el 5.71% en pobreza extrema y 12.44% en pobreza no extrema.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 7 (Tabla 7, 8 y Gráfico 9, 10)
 
-- **Nombre del hallazgo o resultado:** Impacto del nivel educativo en la estabilidad y satisfacción laboral.
+-   **Nombre del hallazgo o resultado:** Impacto del nivel educativo en la estabilidad y satisfacción laboral.
 
-- **Resumen en una oración:** A mayor nivel educativo, aumenta tanto la estabilidad laboral como la satisfacción con el trabajo, reflejando una menor incidencia de empleos temporales e insatisfacción laboral, aunque pueden surgir nuevas expectativas no satisfechas en los niveles educativos más altos.
+-   **Resumen en una oración:** A mayor nivel educativo, aumenta tanto la estabilidad laboral como la satisfacción con el trabajo, reflejando una menor incidencia de empleos temporales e insatisfacción laboral, aunque pueden surgir nuevas expectativas no satisfechas en los niveles educativos más altos.
 
-- **Principal característica:** La estabilidad laboral es mayor entre quienes tienen educación superior, con un 99.75% de empleos permanentes para aquellos con posgrado, en comparación con un 95.31% entre los que no tienen educación superior. De manera similar, la satisfacción laboral alcanza el 97.75% en los niveles de posgrado, mientras que es del 82.51% en personas con nulo o poco nivel de instrucción.
+-   **Principal característica:** La estabilidad laboral es mayor entre quienes tienen educación superior, con un 99.75% de empleos permanentes para aquellos con posgrado, en comparación con un 95.31% entre los que no tienen educación superior. De manera similar, la satisfacción laboral alcanza el 97.75% en los niveles de posgrado, mientras que es del 82.51% en personas con nulo o poco nivel de instrucción.
 
-- **Problemas o posibles desafíos:** Aunque la tabla refleja una correlación positiva entre la educación, la estabilidad y la satisfacción laboral, no se consideran factores contextuales como el tipo de empleo, sector laboral o las condiciones de trabajo, lo que puede limitar la interpretación de los datos.
+-   **Problemas o posibles desafíos:** Aunque la tabla refleja una correlación positiva entre la educación, la estabilidad y la satisfacción laboral, no se consideran factores contextuales como el tipo de empleo, sector laboral o las condiciones de trabajo, lo que puede limitar la interpretación de los datos.
 
-- **Resumen en un párrafo:** El análisis unificado evidencia que a medida que aumenta el nivel educativo, también lo hace la proporción de empleos permanentes y la satisfacción laboral. Las personas con educación superior de posgrado reportan una tasa del 99.75% de empleos permanentes y un 97.75% de satisfacción laboral, en contraste con un 95.31% y 82.51%, respectivamente, para aquellos con nulo o poco nivel de instrucción. De igual forma, la proporción de personas con empleos temporales o de corta duración disminuye con mayor educación, al igual que la insatisfacción relacionada con la remuneración, que es más alta entre los menos educados.
+-   **Resumen en un párrafo:** El análisis unificado evidencia que a medida que aumenta el nivel educativo, también lo hace la proporción de empleos permanentes y la satisfacción laboral. Las personas con educación superior de posgrado reportan una tasa del 99.75% de empleos permanentes y un 97.75% de satisfacción laboral, en contraste con un 95.31% y 82.51%, respectivamente, para aquellos con nulo o poco nivel de instrucción. De igual forma, la proporción de personas con empleos temporales o de corta duración disminuye con mayor educación, al igual que la insatisfacción relacionada con la remuneración, que es más alta entre los menos educados.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 8 (Tabla 9 y Gráfico 11)
 
-- **Nombre del hallazgo o resultado:** Incremento progresivo de los ingresos netos según el nivel educativo alcanzado.
+-   **Nombre del hallazgo o resultado:** Incremento progresivo de los ingresos netos según el nivel educativo alcanzado.
 
-- **Resumen en una oración:** Los ingresos netos aumentan significativamente con el nivel de instrucción, alcanzando su punto máximo entre quienes tienen posgrado, pero también se observa una mayor dispersión en los niveles más altos de educación.
+-   **Resumen en una oración:** Los ingresos netos aumentan significativamente con el nivel de instrucción, alcanzando su punto máximo entre quienes tienen posgrado, pero también se observa una mayor dispersión en los niveles más altos de educación.
 
-- **Principal característica:** Las personas con posgrado tienen ingresos promedio sustancialmente más altos (₡1,541,922), mientras que quienes poseen nulo o poco nivel de instrucción perciben ingresos mucho más bajos (₡249,387), revelando una fuerte correlación entre educación e ingresos. Además, la desviación estándar se incrementa a medida que aumenta el nivel educativo, indicando una creciente desigualdad dentro de cada grupo educativo.
+-   **Principal característica:** Las personas con posgrado tienen ingresos promedio sustancialmente más altos (₡1,541,922), mientras que quienes poseen nulo o poco nivel de instrucción perciben ingresos mucho más bajos (₡249,387), revelando una fuerte correlación entre educación e ingresos. Además, la desviación estándar se incrementa a medida que aumenta el nivel educativo, indicando una creciente desigualdad dentro de cada grupo educativo.
 
-- **Problemas o posibles desafíos:** Aunque el incremento de los ingresos con el nivel educativo es evidente, la considerable variabilidad interna en cada nivel sugiere que otros factores influyen en el acceso a salarios altos. Por ejemplo, las personas con educación superior pueden experimentar diferencias salariales importantes debido a la especialización, la industria en la que trabajan o la región geográfica.
+-   **Problemas o posibles desafíos:** Aunque el incremento de los ingresos con el nivel educativo es evidente, la considerable variabilidad interna en cada nivel sugiere que otros factores influyen en el acceso a salarios altos. Por ejemplo, las personas con educación superior pueden experimentar diferencias salariales importantes debido a la especialización, la industria en la que trabajan o la región geográfica.
 
-- **Resumen en un párrafo:** El análisis revela que el nivel educativo es un determinante clave de los ingresos, con una tendencia clara al alza a medida que aumenta el nivel de instrucción. Las personas con educación superior de posgrado presentan los ingresos más altos, con un promedio de ₡1,541,922, que supera por más de seis veces el promedio de ₡249,387 de quienes tienen nulo o poco nivel de instrucción. Sin embargo, esta relación también está acompañada de una creciente dispersión en los ingresos dentro de cada grupo educativo, como lo evidencia la mayor desviación estándar en los niveles más altos, particularmente en el posgrado (₡1,089,738). Esto sugiere que, aunque la educación superior ofrece una mejor oportunidad para acceder a ingresos más elevados, las diferencias salariales dentro de estos grupos pueden ser considerables. Factores como la especialización profesional, el tipo de empleo o la región podrían influir en estas variaciones.
+-   **Resumen en un párrafo:** El análisis revela que el nivel educativo es un determinante clave de los ingresos, con una tendencia clara al alza a medida que aumenta el nivel de instrucción. Las personas con educación superior de posgrado presentan los ingresos más altos, con un promedio de ₡1,541,922, que supera por más de seis veces el promedio de ₡249,387 de quienes tienen nulo o poco nivel de instrucción. Sin embargo, esta relación también está acompañada de una creciente dispersión en los ingresos dentro de cada grupo educativo, como lo evidencia la mayor desviación estándar en los niveles más altos, particularmente en el posgrado (₡1,089,738). Esto sugiere que, aunque la educación superior ofrece una mejor oportunidad para acceder a ingresos más elevados, las diferencias salariales dentro de estos grupos pueden ser considerables. Factores como la especialización profesional, el tipo de empleo o la región podrían influir en estas variaciones.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 9 (Tabla 10 y Gráfico 12)
 
-- **Nombre del hallazgo o resultado:** Concentración educativa en quintiles bajos y altos de ingreso.
+-   **Nombre del hallazgo o resultado:** Concentración educativa en quintiles bajos y altos de ingreso.
 
-- **Resumen en una oración:** Los quintiles de ingreso más bajos tienen una mayor proporción de personas con niveles educativos más bajos, mientras que los quintiles de ingreso más altos concentran a quienes han alcanzado mayores niveles de educación.
+-   **Resumen en una oración:** Los quintiles de ingreso más bajos tienen una mayor proporción de personas con niveles educativos más bajos, mientras que los quintiles de ingreso más altos concentran a quienes han alcanzado mayores niveles de educación.
 
-- **Principal característica:** Un 71.12% de las personas en el primer quintil tienen solo primaria o menos, mientras que en el último quintil, el 66.13% tiene educación superior de pregrado o posgrado, lo que destaca una relación entre el acceso a mayores ingresos y un mayor nivel de instrucción.
+-   **Principal característica:** Un 71.12% de las personas en el primer quintil tienen solo primaria o menos, mientras que en el último quintil, el 66.13% tiene educación superior de pregrado o posgrado, lo que destaca una relación entre el acceso a mayores ingresos y un mayor nivel de instrucción.
 
-- **Problemas o posibles desafíos:** El análisis no considera la posible interacción entre otros aspectos como la calidad de la educación obtenida en cada nivel, lo que puede generar una visión parcial de las disparidades educativas y de ingreso.
+-   **Problemas o posibles desafíos:** El análisis no considera la posible interacción entre otros aspectos como la calidad de la educación obtenida en cada nivel, lo que puede generar una visión parcial de las disparidades educativas y de ingreso.
 
-- **Resumen en un párrafo:** La relación entre el nivel de instrucción y el ingreso es evidente en la tabla, donde se observa una mayor concentración de personas con niveles educativos bajos (sin instrucción o primaria completa) en los quintiles de ingreso más bajos. En el primer quintil, que incluye a quienes perciben ingresos más bajos (₡110,683 o menos), un 52.98% de las personas tienen solo primaria completa, y un 18.14% tiene poco o ningún nivel educativo. Esto contrasta con el último quintil (más de ₡574,085), donde el 54.87% de las personas ha completado la educación superior de pregrado, y un 11.26% tiene estudios de posgrado. Esto sugiere que las personas con mayores niveles educativos tienden a ubicarse en los quintiles más altos de ingreso. Sin embargo, esta disparidad también refleja desafíos estructurales relacionados con el acceso desigual a la educación y las oportunidades laborales. Bajo el supuesto de pobreza estructural, las personas con bajos niveles educativos parecen estar atrapadas en los quintiles de ingresos más bajos, lo que dificulta su movilidad social y económica, perpetuando un ciclo de pobreza difícil de romper.
+-   **Resumen en un párrafo:** La relación entre el nivel de instrucción y el ingreso es evidente en la tabla, donde se observa una mayor concentración de personas con niveles educativos bajos (sin instrucción o primaria completa) en los quintiles de ingreso más bajos. En el primer quintil, que incluye a quienes perciben ingresos más bajos (₡110,683 o menos), un 52.98% de las personas tienen solo primaria completa, y un 18.14% tiene poco o ningún nivel educativo. Esto contrasta con el último quintil (más de ₡574,085), donde el 54.87% de las personas ha completado la educación superior de pregrado, y un 11.26% tiene estudios de posgrado. Esto sugiere que las personas con mayores niveles educativos tienden a ubicarse en los quintiles más altos de ingreso. Sin embargo, esta disparidad también refleja desafíos estructurales relacionados con el acceso desigual a la educación y las oportunidades laborales. Bajo el supuesto de pobreza estructural, las personas con bajos niveles educativos parecen estar atrapadas en los quintiles de ingresos más bajos, lo que dificulta su movilidad social y económica, perpetuando un ciclo de pobreza difícil de romper.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 10 (Tabla 11 y Gráfico 16)
 
-- **Nombre del hallazgo o resultado:** Relación entre la titulación académica y la incidencia de pobreza.
+-   **Nombre del hallazgo o resultado:** Relación entre la titulación académica y la incidencia de pobreza.
 
-- **Resumen en una oración:** A mayor nivel educativo, menor es la proporción de personas en situación de pobreza extrema o no extrema.
+-   **Resumen en una oración:** A mayor nivel educativo, menor es la proporción de personas en situación de pobreza extrema o no extrema.
 
-- **Principal característica:** Las personas con títulos universitarios, como bachillerato y licenciatura, tienen una proporción mucho menor de pobreza en comparación con quienes no tienen títulos o poseen títulos técnicos.
+-   **Principal característica:** Las personas con títulos universitarios, como bachillerato y licenciatura, tienen una proporción mucho menor de pobreza en comparación con quienes no tienen títulos o poseen títulos técnicos.
 
-- **Problemas o posibles desafíos:** Aunque el nivel educativo está claramente relacionado con menores tasas de pobreza, persisten brechas para los que alcanzan títulos técnicos o intermedios, donde la pobreza aún afecta a más del 10%.
+-   **Problemas o posibles desafíos:** Aunque el nivel educativo está claramente relacionado con menores tasas de pobreza, persisten brechas para los que alcanzan títulos técnicos o intermedios, donde la pobreza aún afecta a más del 10%.
 
-- **Resumen en un párrafo:** La tabla muestra una correlación significativa entre el nivel educativo y la probabilidad de encontrarse en una situación de pobreza. Mientras que el 86% de las personas sin título no son pobres, la tasa de pobreza extrema entre este grupo es de 3.69%, y un 10.31% vive en pobreza no extrema. Por el contrario, entre quienes alcanzaron títulos universitarios de mayor rango, como licenciatura, especialización, maestría o doctorado, las tasas de pobreza son prácticamente inexistentes, con la gran mayoría en la categoría de "no pobre". Los que alcanzaron una licenciatura tienen un 98.12% de probabilidades de no ser pobres, con solo un 0.45% en pobreza extrema. Esta distribución refleja cómo el nivel educativo sigue siendo un factor clave para mejorar las condiciones socioeconómicas, aunque los desafíos son más evidentes para aquellos con títulos técnicos o intermedios, donde las tasas de pobreza no extrema aún alcanzan alrededor del 10%.
+-   **Resumen en un párrafo:** La tabla muestra una correlación significativa entre el nivel educativo y la probabilidad de encontrarse en una situación de pobreza. Mientras que el 86% de las personas sin título no son pobres, la tasa de pobreza extrema entre este grupo es de 3.69%, y un 10.31% vive en pobreza no extrema. Por el contrario, entre quienes alcanzaron títulos universitarios de mayor rango, como licenciatura, especialización, maestría o doctorado, las tasas de pobreza son prácticamente inexistentes, con la gran mayoría en la categoría de "no pobre". Los que alcanzaron una licenciatura tienen un 98.12% de probabilidades de no ser pobres, con solo un 0.45% en pobreza extrema. Esta distribución refleja cómo el nivel educativo sigue siendo un factor clave para mejorar las condiciones socioeconómicas, aunque los desafíos son más evidentes para aquellos con títulos técnicos o intermedios, donde las tasas de pobreza no extrema aún alcanzan alrededor del 10%.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 11 (Tabla 12, 13 y Gráfico 17, 18)
 
-- **Nombre del hallazgo o resultado:** Relación entre el nivel educativo, la estabilidad laboral y la satisfacción en el empleo.
+-   **Nombre del hallazgo o resultado:** Relación entre el nivel educativo, la estabilidad laboral y la satisfacción en el empleo.
 
-- **Resumen en una oración:** Las personas con titulación más avanzada tienden a tener empleos permanentes y una mayor satisfacción laboral, mientras que quienes poseen titulación más baja muestran mayor vulnerabilidad a empleos inestables e insatisfacción.
+-   **Resumen en una oración:** Las personas con titulación más avanzada tienden a tener empleos permanentes y una mayor satisfacción laboral, mientras que quienes poseen titulación más baja muestran mayor vulnerabilidad a empleos inestables e insatisfacción.
 
-- **Principal característica:** La estabilidad laboral y la satisfacción con el trabajo están positivamente correlacionadas con el nivel de educación. Mientras que el 100% de las personas con doctorado y especialización tiene empleos permanentes y reporta satisfacción laboral completa, las personas sin título o con formación técnica presentan tanto mayor insatisfacción, principalmente por razones salariales, como una mayor proporción de empleos no permanentes. A pesar de que la mayoría de los individuos, incluso en los niveles educativos más bajos, cuentan con empleos permanentes (97.4% sin título y 97.78% técnicos), los trabajos de corta duración y las actividades ocasionales siguen siendo más frecuentes entre estos grupos.
+-   **Principal característica:** La estabilidad laboral y la satisfacción con el trabajo están positivamente correlacionadas con el nivel de educación. Mientras que el 100% de las personas con doctorado y especialización tiene empleos permanentes y reporta satisfacción laboral completa, las personas sin título o con formación técnica presentan tanto mayor insatisfacción, principalmente por razones salariales, como una mayor proporción de empleos no permanentes. A pesar de que la mayoría de los individuos, incluso en los niveles educativos más bajos, cuentan con empleos permanentes (97.4% sin título y 97.78% técnicos), los trabajos de corta duración y las actividades ocasionales siguen siendo más frecuentes entre estos grupos.
 
-- **Problemas o posibles desafíos:** Aunque los datos indican una clara tendencia hacia una mayor estabilidad laboral y satisfacción entre quienes tienen niveles educativos más altos, existen algunas limitaciones. La información no especifica las condiciones laborales de manera detallada, lo que podría ocultar problemas subyacentes en la calidad del empleo.
+-   **Problemas o posibles desafíos:** Aunque los datos indican una clara tendencia hacia una mayor estabilidad laboral y satisfacción entre quienes tienen niveles educativos más altos, existen algunas limitaciones. La información no especifica las condiciones laborales de manera detallada, lo que podría ocultar problemas subyacentes en la calidad del empleo.
 
-- **Resumen en un párrafo:** El nivel de instrucción influye fuertemente tanto en la estabilidad laboral como en la satisfacción con el empleo. Las personas con educación superior (licenciatura, maestría, doctorado) gozan de empleos permanentes en su gran mayoría, con porcentajes cercanos al 100%, y reportan una alta satisfacción laboral. En contraste, quienes no poseen título o tienen formación técnica, aunque en su mayoría también están en empleos permanentes, enfrentan más frecuentemente trabajos de corta duración o actividades ocasionales. Asimismo, la satisfacción laboral es menor en estos grupos, con insatisfacción relacionada principalmente con salarios insuficientes y el desaprovechamiento de competencias.
+-   **Resumen en un párrafo:** El nivel de instrucción influye fuertemente tanto en la estabilidad laboral como en la satisfacción con el empleo. Las personas con educación superior (licenciatura, maestría, doctorado) gozan de empleos permanentes en su gran mayoría, con porcentajes cercanos al 100%, y reportan una alta satisfacción laboral. En contraste, quienes no poseen título o tienen formación técnica, aunque en su mayoría también están en empleos permanentes, enfrentan más frecuentemente trabajos de corta duración o actividades ocasionales. Asimismo, la satisfacción laboral es menor en estos grupos, con insatisfacción relacionada principalmente con salarios insuficientes y el desaprovechamiento de competencias.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 12 (Tabla 14 y Gráfico 19)
 
-- **Nombre del hallazgo o resultado:** Ingreso promedio por nivel de educación.
+-   **Nombre del hallazgo o resultado:** Ingreso promedio por nivel de educación.
 
-- **Resumen en una oración:** Los ingresos promedio aumentan significativamente con el nivel educativo, alcanzando su máximo entre quienes tienen títulos de especialización, maestría y doctorado.
+-   **Resumen en una oración:** Los ingresos promedio aumentan significativamente con el nivel educativo, alcanzando su máximo entre quienes tienen títulos de especialización, maestría y doctorado.
 
-- **Principal característica:** Las personas con educación superior de especialización, maestría o doctorado tienen un ingreso promedio notablemente mayor, con un promedio que alcanza más de un millón de unidades monetarias, mientras que quienes no tienen título o tienen educación técnica perciben ingresos considerablemente menores.
+-   **Principal característica:** Las personas con educación superior de especialización, maestría o doctorado tienen un ingreso promedio notablemente mayor, con un promedio que alcanza más de un millón de unidades monetarias, mientras que quienes no tienen título o tienen educación técnica perciben ingresos considerablemente menores.
 
-- **Problemas o posibles desafíos:** La falta de información detallada sobre las ocupaciones específicas impide comprender completamente cómo se distribuyen los ingresos dentro de cada nivel educativo, pues dos personas con el mismo grado académico en diferentes industrias pueden tener ingresos muy diferentes.
+-   **Problemas o posibles desafíos:** La falta de información detallada sobre las ocupaciones específicas impide comprender completamente cómo se distribuyen los ingresos dentro de cada nivel educativo, pues dos personas con el mismo grado académico en diferentes industrias pueden tener ingresos muy diferentes.
 
-- **Resumen en un párrafo:** El análisis de los ingresos promedio según nivel educativo muestra una correlación positiva entre la formación académica y el ingreso. Las personas con títulos avanzados, como especialización, maestría y doctorado, presentan los ingresos más altos, superando los 1.4 millones de unidades monetarias en promedio para maestrías y doctorados. En particular, aquellos con especialización tienen el promedio más alto, cercano a los 1.95 millones. Por el contrario, los individuos sin título o con formación técnica media presentan ingresos sustancialmente más bajos, con un promedio de aproximadamente 444 mil y 527 mil colones, respectivamente. Esta disparidad refleja la importancia de la educación en el acceso a mejores oportunidades económicas, aunque también señala desafíos para quienes no alcanzan niveles educativos superiores, limitando su acceso a trabajos mejor remunerados.
+-   **Resumen en un párrafo:** El análisis de los ingresos promedio según nivel educativo muestra una correlación positiva entre la formación académica y el ingreso. Las personas con títulos avanzados, como especialización, maestría y doctorado, presentan los ingresos más altos, superando los 1.4 millones de unidades monetarias en promedio para maestrías y doctorados. En particular, aquellos con especialización tienen el promedio más alto, cercano a los 1.95 millones. Por el contrario, los individuos sin título o con formación técnica media presentan ingresos sustancialmente más bajos, con un promedio de aproximadamente 444 mil y 527 mil colones, respectivamente. Esta disparidad refleja la importancia de la educación en el acceso a mejores oportunidades económicas, aunque también señala desafíos para quienes no alcanzan niveles educativos superiores, limitando su acceso a trabajos mejor remunerados.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 13 (Tabla 15 y Gráfico 20)
 
-- **Nombre del hallazgo o resultado:** Distribución del ingreso por quintiles y nivel educativo.
+-   **Nombre del hallazgo o resultado:** Distribución del ingreso por quintiles y nivel educativo.
 
-- **Resumen en una oración:** A medida que el nivel educativo aumenta, también lo hace la proporción de personas en los quintiles de ingreso más altos, destacando una concentración de aquellos con títulos avanzados en los quintiles superiores.
+-   **Resumen en una oración:** A medida que el nivel educativo aumenta, también lo hace la proporción de personas en los quintiles de ingreso más altos, destacando una concentración de aquellos con títulos avanzados en los quintiles superiores.
 
-- **Principal característica:** Las personas con títulos de licenciatura, maestría o doctorado están fuertemente representadas en los quintiles de ingreso más altos (quintiles 4 y 5), mientras que quienes no tienen título o tienen niveles de educación menores tienden a concentrarse en los quintiles más bajos (quintiles 1 y 2).
+-   **Principal característica:** Las personas con títulos de licenciatura, maestría o doctorado están fuertemente representadas en los quintiles de ingreso más altos (quintiles 4 y 5), mientras que quienes no tienen título o tienen niveles de educación menores tienden a concentrarse en los quintiles más bajos (quintiles 1 y 2).
 
-- **Problemas o posibles desafíos:** La variabilidad en el nivel de ingreso entre la población que ha alcanzado un mismo grado académico puede afectar la precisión de los resultados.
+-   **Problemas o posibles desafíos:** La variabilidad en el nivel de ingreso entre la población que ha alcanzado un mismo grado académico puede afectar la precisión de los resultados.
 
-- **Resumen en un párrafo:** El análisis revela una clara asociación entre el nivel educativo y la distribución del ingreso, mostrando que quienes no tienen título o tienen educación técnica media tienden a concentrarse en los quintiles de ingreso más bajos, especialmente en el primer y segundo quintil, donde más del 50% de aquellos sin título se encuentran. En contraste, a medida que aumenta el nivel educativo, se observa un incremento en la proporción de personas en los quintiles más altos, con un 42.83% de quienes tienen una licenciatura ubicados en el quinto quintil, y más del 12% de los que poseen una maestría o doctorado también en este quintil. Esto resalta cómo la educación es un factor clave para acceder a mayores ingresos.
+-   **Resumen en un párrafo:** El análisis revela una clara asociación entre el nivel educativo y la distribución del ingreso, mostrando que quienes no tienen título o tienen educación técnica media tienden a concentrarse en los quintiles de ingreso más bajos, especialmente en el primer y segundo quintil, donde más del 50% de aquellos sin título se encuentran. En contraste, a medida que aumenta el nivel educativo, se observa un incremento en la proporción de personas en los quintiles más altos, con un 42.83% de quienes tienen una licenciatura ubicados en el quinto quintil, y más del 12% de los que poseen una maestría o doctorado también en este quintil. Esto resalta cómo la educación es un factor clave para acceder a mayores ingresos.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 14 (Tabla 16 y Gráfico 21)
 
-- **Nombre del hallazgo o resultado:** Relación entre el nivel de pobreza y el dominio de un segundo idioma.
+-   **Nombre del hallazgo o resultado:** Relación entre el nivel de pobreza y el dominio de un segundo idioma.
 
-- **Resumen en una oración:** La falta de dominio de un segundo idioma está asociada con mayores tasas de pobreza, evidenciada por un incremento en la proporción de personas en situación de pobreza extrema y no extrema en comparación con quienes sí dominan un segundo idioma.
+-   **Resumen en una oración:** La falta de dominio de un segundo idioma está asociada con mayores tasas de pobreza, evidenciada por un incremento en la proporción de personas en situación de pobreza extrema y no extrema en comparación con quienes sí dominan un segundo idioma.
 
-- **Principal característica:** Un 7.3% de las personas que no dominan un segundo idioma se encuentran en pobreza extrema, en contraste con solo un 1.79% de quienes sí lo dominan. Asimismo, la pobreza no extrema afecta al 15.4% de los que no dominan un segundo idioma, comparado con el 3.11% de los que sí lo hacen.
+-   **Principal característica:** Un 7.3% de las personas que no dominan un segundo idioma se encuentran en pobreza extrema, en contraste con solo un 1.79% de quienes sí lo dominan. Asimismo, la pobreza no extrema afecta al 15.4% de los que no dominan un segundo idioma, comparado con el 3.11% de los que sí lo hacen.
 
-- **Problemas o posibles desafíos:** Si bien se piensa que el dominio de un segundo idioma está vinculado con un mayor desarrollo educativo general, es posible que algunas personas dominen un segundo idioma meramente por cuestiones culturales, como, por ejemplo, que alguno de los padres hable ese segundo idioma. Además, el hecho de no dominar un segundo idioma no significa que la persona tenga una desventaja significativa, puesto que muchas personas con ingresos significativamente altos no dominan un segundo idioma.
+-   **Problemas o posibles desafíos:** Si bien se piensa que el dominio de un segundo idioma está vinculado con un mayor desarrollo educativo general, es posible que algunas personas dominen un segundo idioma meramente por cuestiones culturales, como, por ejemplo, que alguno de los padres hable ese segundo idioma. Además, el hecho de no dominar un segundo idioma no significa que la persona tenga una desventaja significativa, puesto que muchas personas con ingresos significativamente altos no dominan un segundo idioma.
 
-- **Resumen en un párrafo:** El análisis indica que el dominio de un segundo idioma tiene un impacto significativo en la distribución de la pobreza. Entre las personas que no dominan un segundo idioma, el 7.3% se encuentra en pobreza extrema y el 15.4% en pobreza no extrema, mientras que entre quienes sí lo dominan, solo el 1.79% está en pobreza extrema y el 3.11% en pobreza no extrema. Esto resalta cómo el acceso a habilidades lingüísticas puede estar vinculado a mejores condiciones socioeconómicas.
+-   **Resumen en un párrafo:** El análisis indica que el dominio de un segundo idioma tiene un impacto significativo en la distribución de la pobreza. Entre las personas que no dominan un segundo idioma, el 7.3% se encuentra en pobreza extrema y el 15.4% en pobreza no extrema, mientras que entre quienes sí lo dominan, solo el 1.79% está en pobreza extrema y el 3.11% en pobreza no extrema. Esto resalta cómo el acceso a habilidades lingüísticas puede estar vinculado a mejores condiciones socioeconómicas.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 15 (Tabla 17 y Gráfico 22)
 
-- **Nombre del hallazgo o resultado:** Proporción de personas en quintiles de ingreso según el dominio de un segundo idioma.
+-   **Nombre del hallazgo o resultado:** Proporción de personas en quintiles de ingreso según el dominio de un segundo idioma.
 
-- **Resumen en una oración:** La mayoría de las personas que no dominan un segundo idioma se concentran en los quintiles de ingreso más bajos, mientras que quienes sí lo dominan tienen una representación significativa en los quintiles más altos.
+-   **Resumen en una oración:** La mayoría de las personas que no dominan un segundo idioma se concentran en los quintiles de ingreso más bajos, mientras que quienes sí lo dominan tienen una representación significativa en los quintiles más altos.
 
-- **Principal característica:** El 96.6% de las personas que no dominan un segundo idioma se encuentran en el primer quintil de ingreso, mientras que solo el 3.4% de las personas que sí dominan un segundo idioma se ubican en este quintil. Por el contrario, el 39.74% de los que sí dominan un segundo idioma están en el quintil más alto.
+-   **Principal característica:** El 96.6% de las personas que no dominan un segundo idioma se encuentran en el primer quintil de ingreso, mientras que solo el 3.4% de las personas que sí dominan un segundo idioma se ubican en este quintil. Por el contrario, el 39.74% de los que sí dominan un segundo idioma están en el quintil más alto.
 
-- **Problemas o posibles desafíos:** Si bien se piensa que el dominio de un segundo idioma está vinculado con un mayor desarrollo educativo general, es posible que algunas personas dominen un segundo idioma meramente por cuestiones culturales, como, por ejemplo, que alguno de los padres hable ese segundo idioma. Además, el hecho de no dominar un segundo idioma no significa que la persona tenga una desventaja significativa, puesto que muchas personas con ingresos significativamente altos no dominan un segundo idioma.
+-   **Problemas o posibles desafíos:** Si bien se piensa que el dominio de un segundo idioma está vinculado con un mayor desarrollo educativo general, es posible que algunas personas dominen un segundo idioma meramente por cuestiones culturales, como, por ejemplo, que alguno de los padres hable ese segundo idioma. Además, el hecho de no dominar un segundo idioma no significa que la persona tenga una desventaja significativa, puesto que muchas personas con ingresos significativamente altos no dominan un segundo idioma.
 
-- **Resumen en un párrafo:** El análisis muestra una clara disparidad en la distribución del ingreso entre quienes dominan un segundo idioma y quienes no. La gran mayoría de las personas que no dominan un segundo idioma (96.6%) se concentran en el primer quintil de ingreso, con una reducción progresiva en las proporciones a medida que se avanza hacia quintiles más altos. En contraste, quienes sí dominan un segundo idioma presentan una representación notable en los quintiles superiores, con un 39.74% ubicándose en el quintil más alto. Este hallazgo sugiere que el dominio de un segundo idioma puede estar vinculado a mejores oportunidades económicas, aunque se deben considerar las limitaciones en la calidad y representación de los datos para una interpretación precisa.
+-   **Resumen en un párrafo:** El análisis muestra una clara disparidad en la distribución del ingreso entre quienes dominan un segundo idioma y quienes no. La gran mayoría de las personas que no dominan un segundo idioma (96.6%) se concentran en el primer quintil de ingreso, con una reducción progresiva en las proporciones a medida que se avanza hacia quintiles más altos. En contraste, quienes sí dominan un segundo idioma presentan una representación notable en los quintiles superiores, con un 39.74% ubicándose en el quintil más alto. Este hallazgo sugiere que el dominio de un segundo idioma puede estar vinculado a mejores oportunidades económicas, aunque se deben considerar las limitaciones en la calidad y representación de los datos para una interpretación precisa.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 16 (Tabla 18 y Gráfico 23)
 
-- **Nombre del hallazgo o resultado:** Relación entre el dominio de un segundo idioma y la distribución del ingreso.
+-   **Nombre del hallazgo o resultado:** Relación entre el dominio de un segundo idioma y la distribución del ingreso.
 
-- **Resumen en una oración:** El dominio de un segundo idioma se asocia con un ingreso promedio significativamente más alto, evidenciado por la media de ingreso de quienes sí dominan un segundo idioma en comparación con aquellos que no.
+-   **Resumen en una oración:** El dominio de un segundo idioma se asocia con un ingreso promedio significativamente más alto, evidenciado por la media de ingreso de quienes sí dominan un segundo idioma en comparación con aquellos que no.
 
-- **Principal característica:** Las personas que dominan un segundo idioma presentan una media de ingreso de 894084.2, en contraste con una media de 417943.3 para aquellos que no lo dominan. Además, el rango de ingreso (de mínimo a máximo) también es considerablemente mayor para quienes sí dominan un segundo idioma.
+-   **Principal característica:** Las personas que dominan un segundo idioma presentan una media de ingreso de 894084.2, en contraste con una media de 417943.3 para aquellos que no lo dominan. Además, el rango de ingreso (de mínimo a máximo) también es considerablemente mayor para quienes sí dominan un segundo idioma.
 
-- **Problemas o posibles desafíos:** Si bien se piensa que el dominio de un segundo idioma está vinculado con un mayor desarrollo educativo general, es posible que algunas personas dominen un segundo idioma meramente por cuestiones culturales, como, por ejemplo, que alguno de los padres hable ese segundo idioma. Además, el hecho de no dominar un segundo idioma no significa que la persona tenga una desventaja significativa, puesto que muchas personas con ingresos significativamente altos podrían no dominar un segundo idioma.
+-   **Problemas o posibles desafíos:** Si bien se piensa que el dominio de un segundo idioma está vinculado con un mayor desarrollo educativo general, es posible que algunas personas dominen un segundo idioma meramente por cuestiones culturales, como, por ejemplo, que alguno de los padres hable ese segundo idioma. Además, el hecho de no dominar un segundo idioma no significa que la persona tenga una desventaja significativa, puesto que muchas personas con ingresos significativamente altos podrían no dominar un segundo idioma.
 
-- **Resumen en un párrafo:** El análisis revela una notable diferencia en la distribución del ingreso basada en el dominio de un segundo idioma. Las personas que no dominan un segundo idioma tienen una media de ingreso de 417943.3, mientras que aquellas que sí lo dominan alcanzan una media de 894084.2. Esta diferencia no solo se refleja en el promedio, sino también en el rango de ingresos, donde los que dominan un segundo idioma reportan valores máximos de hasta 13399500, en comparación con 20000000 para quienes no lo dominan. Esto sugiere que el dominio de habilidades lingüísticas puede ser un factor determinante en el acceso a mayores ingresos, aunque la calidad de los datos y la representación de diferentes grupos deben ser consideradas para asegurar una interpretación precisa.
+-   **Resumen en un párrafo:** El análisis revela una notable diferencia en la distribución del ingreso basada en el dominio de un segundo idioma. Las personas que no dominan un segundo idioma tienen una media de ingreso de 417943.3, mientras que aquellas que sí lo dominan alcanzan una media de 894084.2. Esta diferencia no solo se refleja en el promedio, sino también en el rango de ingresos, donde los que dominan un segundo idioma reportan valores máximos de hasta 13399500, en comparación con 20000000 para quienes no lo dominan. Esto sugiere que el dominio de habilidades lingüísticas puede ser un factor determinante en el acceso a mayores ingresos, aunque la calidad de los datos y la representación de diferentes grupos deben ser consideradas para asegurar una interpretación precisa.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 17 (Gráfico 15)
 
-- **Nombre del hallazgo o resultado:** Relación entre los años de escolaridad e ingreso total por persona neto por quintiles de ingreso.
+-   **Nombre del hallazgo o resultado:** Relación entre los años de escolaridad e ingreso total por persona neto por quintiles de ingreso.
 
-- **Resumen en una oración:** La relación entre los años de escolaridad y el ingreso personal neto varía según el quintil de ingreso, mostrando una tendencia creciente más pronunciada en los quintiles de mayores ingresos.
+-   **Resumen en una oración:** La relación entre los años de escolaridad y el ingreso personal neto varía según el quintil de ingreso, mostrando una tendencia creciente más pronunciada en los quintiles de mayores ingresos.
 
-- **Principal característica:** La pendiente de la regresión aumenta a medida que se avanza por quintil de ingreso per cápita.
+-   **Principal característica:** La pendiente de la regresión aumenta a medida que se avanza por quintil de ingreso per cápita.
 
-- **Problemas o posibles desafíos:** La estabilidad de los ingresos en los quintiles bajos podría dificultar el análisis de la relación entre escolaridad e ingreso, ya que los datos no muestran variabilidad significativa.
+-   **Problemas o posibles desafíos:** La estabilidad de los ingresos en los quintiles bajos podría dificultar el análisis de la relación entre escolaridad e ingreso, ya que los datos no muestran variabilidad significativa.
 
-- **Resumen en un párrafo:** El gráfico 15 muestra cómo los años de escolaridad se relacionan con el ingreso personal neto, desagregado por quintiles de ingreso. En los quintiles de menores ingresos (1 y 2), el nivel de ingresos parece ser homogéneo a lo largo de diferentes niveles de escolaridad, lo que indica que la educación no genera grandes diferencias en estos casos. Sin embargo, en los quintiles superiores (4 y 5), se observa una relación positiva entre los años de escolaridad y el ingreso neto, sugiriendo que la escolaridad tiene un impacto mayor en los individuos de ingresos altos.
+-   **Resumen en un párrafo:** El gráfico 15 muestra cómo los años de escolaridad se relacionan con el ingreso personal neto, desagregado por quintiles de ingreso. En los quintiles de menores ingresos (1 y 2), el nivel de ingresos parece ser homogéneo a lo largo de diferentes niveles de escolaridad, lo que indica que la educación no genera grandes diferencias en estos casos. Sin embargo, en los quintiles superiores (4 y 5), se observa una relación positiva entre los años de escolaridad y el ingreso neto, sugiriendo que la escolaridad tiene un impacto mayor en los individuos de ingresos altos.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 18 (Gráfico 13)
 
-- **Nombre del hallazgo o resultado:** Relación general entre escolaridad e ingreso por zonas urbana y rural.
+-   **Nombre del hallazgo o resultado:** Relación general entre escolaridad e ingreso por zonas urbana y rural.
 
-- **Resumen en una oración:** A pesar de que se observa un incremento del ingreso conforme aumenta la escolaridad, las diferencias entre zonas urbana y rural no muestran una pendiente significativamente distinta.
+-   **Resumen en una oración:** A pesar de que se observa un incremento del ingreso conforme aumenta la escolaridad, las diferencias entre zonas urbana y rural no muestran una pendiente significativamente distinta.
 
-- **Principal característica:** En ambas zonas, el aumento en los años de escolaridad tiende a correlacionarse con mayores ingresos, pero la relación parece ser similar en términos de pendiente.
+-   **Principal característica:** En ambas zonas, el aumento en los años de escolaridad tiende a correlacionarse con mayores ingresos, pero la relación parece ser similar en términos de pendiente.
 
-- **Problemas o posibles desafíos:** La muestra para niveles extremos de escolaridad es pequeña, lo que podría afectar la fiabilidad de los resultados en esos casos.
+-   **Problemas o posibles desafíos:** La muestra para niveles extremos de escolaridad es pequeña, lo que podría afectar la fiabilidad de los resultados en esos casos.
 
-- **Resumen en un párrafo:** El análisis de la tabla revela una relación positiva entre el nivel de escolaridad y el ingreso total personal neto tanto en zonas urbanas como rurales. Aunque las zonas presentan diferencias en los valores absolutos de los ingresos promedio, con mayores ingresos en la zona urbana a medida que aumenta la escolaridad, la pendiente de esta correlación no parece variar significativamente entre ambas zonas. Esto sugiere que el impacto de la educación en el aumento de los ingresos sigue un patrón general similar, sin importar la ubicación geográfica. Aunque en niveles altos de escolaridad pueden observarse diferencias en las medias, la similitud en la relación general indica que el acceso a la educación podría beneficiar a ambas zonas de manera comparable.
+-   **Resumen en un párrafo:** El análisis de la tabla revela una relación positiva entre el nivel de escolaridad y el ingreso total personal neto tanto en zonas urbanas como rurales. Aunque las zonas presentan diferencias en los valores absolutos de los ingresos promedio, con mayores ingresos en la zona urbana a medida que aumenta la escolaridad, la pendiente de esta correlación no parece variar significativamente entre ambas zonas. Esto sugiere que el impacto de la educación en el aumento de los ingresos sigue un patrón general similar, sin importar la ubicación geográfica. Aunque en niveles altos de escolaridad pueden observarse diferencias en las medias, la similitud en la relación general indica que el acceso a la educación podría beneficiar a ambas zonas de manera comparable.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 19 (Gráfico 14)
 
-- **Nombre del hallazgo o resultado:** Relación inversa entre la escolaridad y la intensidad de pobreza en zonas urbanas y rurales.
+-   **Nombre del hallazgo o resultado:** Relación inversa entre la escolaridad y la intensidad de pobreza en zonas urbanas y rurales.
 
-- **Resumen en una oración:** Se observa que a medida que aumenta el nivel educativo, la intensidad de pobreza tiende a disminuir, siendo más marcada esta tendencia en zonas urbanas.
+-   **Resumen en una oración:** Se observa que a medida que aumenta el nivel educativo, la intensidad de pobreza tiende a disminuir, siendo más marcada esta tendencia en zonas urbanas.
 
-- **Principal característica:** En la zona urbana, la intensidad de pobreza multidimensional disminuye conforme se incrementa el nivel de escolaridad. En la zona rural, aunque también se presenta una tendencia a la baja, los niveles de intensidad son generalmente más altos en comparación con las zonas urbanas.
+-   **Principal característica:** En la zona urbana, la intensidad de pobreza multidimensional disminuye conforme se incrementa el nivel de escolaridad. En la zona rural, aunque también se presenta una tendencia a la baja, los niveles de intensidad son generalmente más altos en comparación con las zonas urbanas.
 
-- **Problemas o posibles desafíos:** Los datos de la tabla parecen estar muy dispersos, lo cual podría afectar la precisión de las conclusiones.
+-   **Problemas o posibles desafíos:** Los datos de la tabla parecen estar muy dispersos, lo cual podría afectar la precisión de las conclusiones.
 
-- **Resumen en un párrafo:** El análisis de la tabla revela una relación inversa clara entre la escolaridad y la intensidad de pobreza tanto en zonas urbanas como rurales. En las áreas urbanas, los individuos con niveles educativos más bajos muestran medias de intensidad de pobreza que superan el 27%, mientras que aquellos con niveles más altos de escolaridad experimentan una reducción notable en esta medida. Esta tendencia sugiere que un mayor nivel educativo se asocia con una mejor situación económica, reflejando un impacto positivo en la disminución de la pobreza. En el contexto rural, aunque se observa una tendencia similar, las medias de intensidad de pobreza son más elevadas en todos los niveles de escolaridad, lo que podría indicar que los beneficios de la educación son menos efectivos en estas áreas en comparación con las urbanas. La persistencia de la pobreza en la zona rural subraya la necesidad de políticas que no solo fomenten la educación, sino que también aborden las condiciones socioeconómicas específicas que afectan a estas comunidades.
+-   **Resumen en un párrafo:** El análisis de la tabla revela una relación inversa clara entre la escolaridad y la intensidad de pobreza tanto en zonas urbanas como rurales. En las áreas urbanas, los individuos con niveles educativos más bajos muestran medias de intensidad de pobreza que superan el 27%, mientras que aquellos con niveles más altos de escolaridad experimentan una reducción notable en esta medida. Esta tendencia sugiere que un mayor nivel educativo se asocia con una mejor situación económica, reflejando un impacto positivo en la disminución de la pobreza. En el contexto rural, aunque se observa una tendencia similar, las medias de intensidad de pobreza son más elevadas en todos los niveles de escolaridad, lo que podría indicar que los beneficios de la educación son menos efectivos en estas áreas en comparación con las urbanas. La persistencia de la pobreza en la zona rural subraya la necesidad de políticas que no solo fomenten la educación, sino que también aborden las condiciones socioeconómicas específicas que afectan a estas comunidades.
 :::
+
 ::: {.callout-note appearance="minimal"}
 ## Hallazgo 20 (Gráficos 5 y 6)
 
-- **Nombre del hallazgo o resultado:** Comparación de la distribución de personas en condición de pobreza y no pobreza en universidades públicas por área de estudio.
+-   **Nombre del hallazgo o resultado:** Comparación de la distribución de personas en condición de pobreza y no pobreza en universidades públicas por área de estudio.
 
-- **Resumen en una oración:** Las áreas de ciencias sociales, educación comercial y derecho tienen la mayor concentración de personas tanto en condición de pobreza como no pobres, mientras que las ingenierías y ciencias están más presentes en las personas no pobres.
+-   **Resumen en una oración:** Las áreas de ciencias sociales, educación comercial y derecho tienen la mayor concentración de personas tanto en condición de pobreza como no pobres, mientras que las ingenierías y ciencias están más presentes en las personas no pobres.
 
-- **Principal característica:** La UCR y la UNA destacan por tener la mayor cantidad de personas no pobres en ciencias sociales y derecho, mientras que las personas en condición de pobreza están más distribuidas en áreas como la educación y humanidades.
+-   **Principal característica:** La UCR y la UNA destacan por tener la mayor cantidad de personas no pobres en ciencias sociales y derecho, mientras que las personas en condición de pobreza están más distribuidas en áreas como la educación y humanidades.
 
-- **Problemas o posibles desafíos:** La baja representación de algunas disciplinas en la categoría de personas en condición de pobreza limita el análisis sobre el impacto educativo en sectores como la agricultura y salud.
+-   **Problemas o posibles desafíos:** La baja representación de algunas disciplinas en la categoría de personas en condición de pobreza limita el análisis sobre el impacto educativo en sectores como la agricultura y salud.
 
-- **Resumen en un párrafo:** Al analizar la distribución de personas en condición de pobreza y no pobreza en universidades públicas, se observa una concentración en las áreas de ciencias sociales, educación comercial y derecho, tanto para personas no pobres como para aquellas en condición de pobreza. En el caso de personas no pobres, la UCR lidera con 250 personas en ciencias sociales y 95 en ciencias, mientras que el TEC destaca con 53 personas en ingeniería. Por otro lado, las personas en condición de pobreza están más repartidas en áreas como la educación y humanidades, con la UNED y la UCR teniendo una participación considerable en estos campos. Sin embargo, en disciplinas como la agricultura y salud, tanto en personas no pobres como en pobreza, la representación es escasa. Esto sugiere que las áreas de ciencias sociales y educación están asociadas con una movilidad social más visible, mientras que las ingenierías, aunque con menor representación entre personas en condición de pobreza, parecen ofrecer una ventaja económica considerable, reflejada en la mayor proporción de personas no pobres en estos campos.
+-   **Resumen en un párrafo:** Al analizar la distribución de personas en condición de pobreza y no pobreza en universidades públicas, se observa una concentración en las áreas de ciencias sociales, educación comercial y derecho, tanto para personas no pobres como para aquellas en condición de pobreza. En el caso de personas no pobres, la UCR lidera con 250 personas en ciencias sociales y 95 en ciencias, mientras que el TEC destaca con 53 personas en ingeniería. Por otro lado, las personas en condición de pobreza están más repartidas en áreas como la educación y humanidades, con la UNED y la UCR teniendo una participación considerable en estos campos. Sin embargo, en disciplinas como la agricultura y salud, tanto en personas no pobres como en pobreza, la representación es escasa. Esto sugiere que las áreas de ciencias sociales y educación están asociadas con una movilidad social más visible, mientras que las ingenierías, aunque con menor representación entre personas en condición de pobreza, parecen ofrecer una ventaja económica considerable, reflejada en la mayor proporción de personas no pobres en estos campos.
 :::
 
 ### Ordenamiento de los elementos de reporte
@@ -1132,25 +1183,82 @@ ENAHO %>%
 
 ### Introducción
 
-  De manera muy simplificada, se podría decir que la dinámica socioeconómica que rige actualmente tanto en Costa Rica como en gran parte de la sociedad occidental consiste en recompensar a los individuos según el valor que aportan a la sociedad. Así, aquellos que aportan y producen más suelen ser mejor remunerados que aquellos cuya capacidad productiva es menor. A partir de esta premisa, si se desea estudiar los factores que determinan quién recibe más y quién recibe menos, resulta imprescindible profundizar en los elementos que permiten a una persona mejorar su condición socioeconómica dentro de este sistema.
+De manera muy simplificada, se podría decir que la dinámica socioeconómica que rige actualmente tanto en Costa Rica como en gran parte de la sociedad occidental consiste en recompensar a los individuos según el valor que aportan a la sociedad. Así, aquellos que aportan y producen más suelen ser mejor remunerados que aquellos cuya capacidad productiva es menor. A partir de esta premisa, si se desea estudiar los factores que determinan quién recibe más y quién recibe menos, resulta imprescindible profundizar en los elementos que permiten a una persona mejorar su condición socioeconómica dentro de este sistema.
 
-  En este trabajo, se postula que el elemento que, por excelencia, determina en mayor medida la condición socioeconómica de una persona es la educación. Este enfoque tiene sus raíces en la teoría del capital humano, la cual explica cómo los individuos aumentan su valor productivo a través de la adquisición de conocimientos y habilidades. A grandes rasgos, la teoría sostiene que la educación es una inversión en el ser humano que, al igual que el capital físico en una empresa, genera retornos económicos tanto para el individuo como para la sociedad. 
-  
-  @Bazdresch2001 establece que mayor educación proporciona más “capital humano” (socialización, conocimientos y significados) a los miembros de la sociedad, lo cual les hace más productivos y, como consecuencia, les permiten competir por mejores puestos de trabajo y mejores ingresos. En otras palabras, cuanto más capital humano posea una persona, mayor será su capacidad para generar ingresos. Así pues, la teoría sugiere que la desigualdad en la distribución de los ingresos se debe, en gran parte, a las diferencias en las habilidades y en los niveles educativos de las personas. 
+En este trabajo, se postula que el elemento que, por excelencia, determina en mayor medida la condición socioeconómica de una persona es la educación. Este enfoque tiene sus raíces en la teoría del capital humano, la cual explica cómo los individuos aumentan su valor productivo a través de la adquisición de conocimientos y habilidades. A grandes rasgos, la teoría sostiene que la educación es una inversión en el ser humano que, al igual que el capital físico en una empresa, genera retornos económicos tanto para el individuo como para la sociedad.
+
+@Bazdresch2001 establece que mayor educación proporciona más “capital humano” (socialización, conocimientos y significados) a los miembros de la sociedad, lo cual les hace más productivos y, como consecuencia, les permiten competir por mejores puestos de trabajo y mejores ingresos. En otras palabras, cuanto más capital humano posea una persona, mayor será su capacidad para generar ingresos. Así pues, la teoría sugiere que la desigualdad en la distribución de los ingresos se debe, en gran parte, a las diferencias en las habilidades y en los niveles educativos de las personas.
 
 De esta manera, en un sistema socioeconómico basado en el valor productivo, la educación se presenta como un motor clave para ascender socialmente, y mejorar las condiciones de vida de las personas. Por tanto, para mermar las desigualdades sociales y económicas prevalentes en la sociedad, una solución inspirada en la teoría del capital humano podría consistir en promover políticas educativas enfocadas en ayudar a las personas en condición de pobreza, con el fin de facilitar su integración en el mercado laboral en el futuro, con mejores ingresos.
 
 No obstante, aunque la teoría del capital humano ofrece una perspectiva útil para entender las disparidades socioeconómicas, esta visión por si sola no logra explicar completamente las dinámicas de la pobreza y la desigualdad. Mientras los defensores de esta teoría tienden a enfatizar la responsabilidad individual en el éxito económico, otros enfoques, como el estructural, argumentan que existen factores externos —económicos, sociales e institucionales— que limitan las oportunidades de los individuos, independientemente de su nivel educativo. En particular, @Rodriguez sostiene que la pobreza es el resultado de estructuras económicas y sociales, que incluyen factores demográficos (educación y habilidades de las personas), factores relacionados con el mercado laboral (oferta y demanda de trabajo), y factores institucionales (barreras ajenas al mercado, como la discriminación).
-	
+
 Uno de los problemas centrales que enfrenta la teoría del capital humano, según @Bazdresch2001, es que las personas en condición de pobreza sufren una marcada desigualdad de oportunidades, lo que les impide aprovechar el sistema educativo de manera plena. Estas personas tienen menor posibilidad de ingresar oportunamente a las instituciones educativas, de completar los ciclos escolares y de alcanzar un aprovechamiento escolar satisfactorio. En este sentido, la falta de educación de las personas en condición de pobreza no es solo una causa de su situación, sino también una consecuencia directa de las barreras estructurales que enfrentan. Esto crea un círculo vicioso en el que la falta de oportunidades educativas genera una "educación empobrecida", que a su vez limita aún más las posibilidades de movilidad económica.
-	
+
 En consecuencia, la teoría del capital humano queda en una posición cuestionable, ya que, aunque la educación formal y no formal proporcionan conocimientos y habilidades, esta no necesariamente se traduce en ingresos más elevados o movilidad económica a quienes provienen de entornos más desfavorecidos. Esto sugiere que, si bien la educación es crucial para mejorar las condiciones socioeconómicas, su impacto puede estar profundamente condicionado por las estructuras económicas y sociales preexistentes. En otras palabras, no basta con proporcionar acceso a la educación si las condiciones que permiten aprovecharla siguen siendo desiguales.
-	
+
 Por lo tanto, aunque la educación y la acumulación de capital humano son fundamentales para mejorar la condición socioeconómica de una persona, estos elementos no operan en un vacío. La capacidad de traducir la educación en mejores oportunidades e ingresos está mediada por las condiciones del mercado laboral y las instituciones que determinan el acceso a dichas oportunidades. Factores como la segmentación del mercado laboral, las fluctuaciones en la oferta y demanda de empleo, y las barreras institucionales —por ejemplo, la discriminación por género o etnia— pueden frenar el impacto positivo de la educación en la movilidad social.
+
+### Metodología
+#### Descripción de los datos
+
+```{r Tabla 1, warning=FALSE, message=FALSE}
+tab_np_vs_tipo_colegio <- as.data.frame(prop.table(table(ENAHO$np, 
+                                                         ENAHO$A15A), 
+                                                   margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100,2)) %>% 
+  rename(Nivel_de_pobreza = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq) %>% 
+  rename('Nivel de pobreza' = Nivel_de_pobreza)
+
+# Generar tabla con kable
+kable(tab_np_vs_tipo_colegio, caption = "Proporción del nivel de pobreza segun tipo de centro educativo al que se asistio ") %>%
+  kable_styling(position = "center", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 2, warning=FALSE, message=FALSE}
+tab_dist_itpn_tipo_colegio <- ENAHO %>% 
+  filter(A15A != "Ignorado", itpn != 0) %>% 
+  group_by(A15A) %>%
+  summarize(
+    n = n(),                      # Conteo de observaciones
+    media_itpn = mean(itpn, na.rm = TRUE),   # Media de itpn, omitiendo NA
+    ds_itpn = sd(itpn, na.rm = TRUE),       # Desviación estándar de itpn
+    min_itpn = min(itpn, na.rm = TRUE),     # Mínimo de itpn
+    Q1_itpn = quantile(itpn, 0.25, na.rm = TRUE),  # Primer cuartil
+    Q2_itpn = quantile(itpn, 0.50, na.rm = TRUE),  # Mediana (segundo cuartil)
+    Q3_itpn = quantile(itpn, 0.75, na.rm = TRUE),    
+    max_itpn = max(itpn, na.rm = TRUE)      # Máximo de itpn
+  ) %>% 
+  rename('Media' = media_itpn,
+         'Desv' = ds_itpn,
+         'Mín' = min_itpn,
+         'Q1' = Q1_itpn,
+         'Q2' = Q2_itpn,
+         'Q3' = Q3_itpn,
+         'Máx' = max_itpn,) %>%
+  mutate(across(where(is.numeric), 
+                ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
+  
+# Generar tabla con kable
+kable(tab_dist_itpn_tipo_colegio, caption = "Distribucion del ingreso segun tipo de centro educativo al que se asistió") %>%
+  kable_styling(position = "center", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+
+
+
 
 ## Parte de reflexión
 
 {{< pagebreak >}}
 
 # Bibliografía
-
