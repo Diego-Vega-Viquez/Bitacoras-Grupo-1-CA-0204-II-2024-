@@ -123,7 +123,7 @@ Contribución propia: el análisis que se realiza en la situación de Ruanda es 
 ## Análisis estadísticos
 
 ### Análisis descriptivo
-```{r Librerías}
+```{r Librerías, warning=FALSE, message=FALSE}
 #| echo: false
 #| include: false
 library(tidyverse)
@@ -198,6 +198,11 @@ tabla1 <- tabla1 %>%
 # Renombrar columna
 tabla1 <- tabla1 %>% rename(Universidad = A15B)
 
+# Correcciones
+tabla1 <- tabla1 %>% mutate(across(`Pobreza extrema`:`Total`,
+                                   ~ round(parse_number(.), 
+                                           2)))
+
 # Generar tabla con kable
 kable(tabla1, caption = "Distribución del nivel pobreza según universidad pública a la que asistió") %>%
   kable_styling(position = "center", 
@@ -207,6 +212,7 @@ kable(tabla1, caption = "Distribución del nivel pobreza según universidad púb
            general_title = "Fuente: ")
 
 ```
+Esta tabla muestra la distribución de estudiantes en situación de pobreza, diferenciada entre extrema, no extrema y no pobre, según la universidad pública de Costa Rica a la que asistieron. La Universidad de Costa Rica (UCR) tiene la mayor proporción de estudiantes que no son pobres, representando el 46.3% de sus estudiantes, seguida por la Universidad Nacional (UNA) con un 19.5%. La Universidad Estatal a Distancia (UNED) y la Universidad Técnica Nacional (UTN) tienen una mayor proporción de estudiantes en pobreza extrema en comparación con las demás instituciones. Esta distribución sugiere que los estudiantes de la UCR y la UNA, en su mayoría, pertenecen a sectores con menor incidencia de pobreza en comparación con aquellos de la UNED y la UTN.
 ```{r Tabla2}
 #| echo: false
 # Código que no se mostrará
@@ -248,6 +254,11 @@ tabla2 <- tabla2 %>%
          'Si' = Sí,
          'No' = No)
 
+# Correciones
+tabla2 <- tabla2 %>% mutate(Quintil = str_remove(Quintil, "^Q\\d+: "),
+                            across(No:Total,
+                                   ~ round(parse_number(.), 2)))
+
 # Crear la tabla usando kable y darle formato
 kable(tabla2, 
       caption = "Distribución de pobreza según quintiles de ingreso y dominio de segundo idioma") %>%
@@ -259,6 +270,7 @@ kable(tabla2,
            general_title = "Fuente: ")
 
 ```
+En esta tabla se presenta la relación entre los quintiles de ingreso, el nivel de pobreza y el dominio de un segundo idioma. Los estudiantes en el quintil más bajo (Q1) representan el 21.80% de la muestra total, con una proporción baja de personas que dominan un segundo idioma (0.55%). A medida que aumentan los ingresos (quintiles más altos), también aumenta el porcentaje de personas que dominan un segundo idioma. El quintil más alto (Q5) tiene la mayor proporción de personas que dominan un segundo idioma (5.73%), lo que sugiere una posible correlación entre mayores ingresos y la probabilidad de hablar un segundo idioma.
 ```{r Tabla3}
 #| echo: false
 # Código que no se mostrará
@@ -273,7 +285,7 @@ tabla3 <- variables_comunes %>% filter(NivInst != 'Ignorado' & !is.na(itpn) & it
                                 rename('Nivel de instrucción' = NivInst)
 tabla3 <- tabla3 %>%
   mutate(across(where(is.numeric), 
-                ~ number(., big.mark = ".", decimal.mark = ",", accuracy = 0.01, prefix = "₡")))
+                ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
 
 kable(tabla3, 
       caption = "Resumen del ingreso total por persona neto según nivel de instrucción", 
@@ -284,6 +296,7 @@ kable(tabla3,
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
+Esta tabla ofrece un resumen de los ingresos netos promedio por persona, clasificados según el nivel de instrucción alcanzado. Los niveles educativos superiores, como educación universitaria de posgrado, muestran un ingreso promedio significativamente mayor (₡1,548,859,68) en comparación con los niveles de educación básica o secundaria. La diferencia en el promedio de ingresos según el nivel educativo sugiere que a mayor nivel de instrucción, mayores son los ingresos netos promedio y menor es la desviación en los ingresos de los individuos.
 
 ```{r  Carga Datos (datos_jc & ENAHO), echo=FALSE, include=FALSE}
 datos_jc <- readRDS("data/datos_jc.rds")
