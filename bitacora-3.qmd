@@ -1202,7 +1202,7 @@ Por lo tanto, aunque la educación y la acumulación de capital humano son funda
 ### Metodología
 #### Descripción de los datos
 
-```{r Tabla 1, warning=FALSE, message=FALSE}
+```{r Tabla 1, echo=FALSE, warning=FALSE, message=FALSE}
 tab_np_vs_tipo_colegio <- as.data.frame(prop.table(table(ENAHO$np, 
                                                          ENAHO$A15A), 
                                                    margin = 2)) %>% 
@@ -1221,7 +1221,7 @@ kable(tab_np_vs_tipo_colegio, caption = "Proporción del nivel de pobreza segun 
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 2, warning=FALSE, message=FALSE}
+```{r Tabla 2, echo=FALSE, warning=FALSE, message=FALSE}
 tab_dist_itpn_tipo_colegio <- ENAHO %>% 
   filter(A15A != "Ignorado", itpn != 0) %>% 
   group_by(A15A) %>%
@@ -1247,7 +1247,7 @@ tab_dist_itpn_tipo_colegio <- ENAHO %>%
   
 # Generar tabla con kable
 kable(tab_dist_itpn_tipo_colegio, caption = "Distribucion del ingreso segun tipo de centro educativo al que se asistió") %>%
-  kable_styling(position = "center", 
+  kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
            footnote_as_chunk = TRUE,
