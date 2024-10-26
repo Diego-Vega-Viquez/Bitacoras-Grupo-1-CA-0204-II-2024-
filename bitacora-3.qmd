@@ -62,7 +62,6 @@ ENAHO <- ENAHO %>% select(ZONA,
 ```
 
 <!-- Gráficos relacionados con el tipo de centro educativo -->
-
 ```{r Grafico 1, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>% 
   filter(Var2 != "Ignorado") %>% 
@@ -93,7 +92,6 @@ as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 2.1, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A15A != "Ignorado" & itpn > 0) %>% 
@@ -122,7 +120,6 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 2.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A15A != "Ignorado" & itpn > 0) %>% 
@@ -152,7 +149,6 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 3, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
@@ -193,9 +189,7 @@ as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 <!-- Gráficos relacionados con universidad pública -->
-
 ```{r Grafico 4, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
@@ -229,7 +223,6 @@ as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 5, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(!is.na(A15B) & !is.na(ForReg) & np != "No pobre" & A15B != "Ignorado") %>% 
@@ -258,7 +251,6 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 6, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(!is.na(A15B) & !is.na(ForReg) & np == "No pobre" & A15B != "Ignorado" & ForReg != "Ignorada" & ForReg != "No definida") %>% 
@@ -288,7 +280,6 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 7.1, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A15B != "Ignorado" & itpn > 0) %>% 
@@ -317,7 +308,6 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 7.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A15B != "Ignorado" & itpn > 0) %>% 
@@ -346,9 +336,7 @@ ENAHO %>%
     panel.grid.minor = element_blank()  # Se eliminan las cuadrículas menores
   )
 ```
-
 <!-- Gráficos relacionados con nivel de instruccion -->
-
 ```{r Grafico 8, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst, 
                                            "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
@@ -384,7 +372,6 @@ as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst,
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 9, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$Estabili, fct_collapse(ENAHO$NivInst, 
                                                             "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
@@ -416,7 +403,6 @@ as.data.frame(prop.table(table(ENAHO$Estabili, fct_collapse(ENAHO$NivInst,
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 10, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$InsLab, fct_collapse(ENAHO$NivInst, 
                                                           "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
@@ -448,7 +434,6 @@ as.data.frame(prop.table(table(ENAHO$InsLab, fct_collapse(ENAHO$NivInst,
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 11, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(NivInst != "Ignorado" & itpn > 0) %>%
@@ -485,7 +470,6 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 12, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
                                             "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
@@ -521,9 +505,7 @@ as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst,
     panel.grid.minor = element_blank()
   )
 ```
-
 <!-- Gráficos relacionados con escolaridad -->
-
 ```{r Grafico 13, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   ggplot(aes(x = Escolari, y = itpn, color = ZONA)) +
@@ -560,7 +542,6 @@ ENAHO %>%
     plot.caption = element_text(size = 7, hjust = 0)
   )
 ```
-
 ```{r Grafico 14, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   ggplot(aes(x = Escolari, y = IPM_Intensidad, color = ZONA)) +
@@ -596,7 +577,6 @@ ENAHO %>%
     plot.caption = element_text(size = 7, hjust = 0)
   )
 ```
-
 ```{r Grafico 15, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% filter(!is.na(Q_IPCN)) %>% 
   ggplot(aes(x = Escolari, 
@@ -629,9 +609,7 @@ ENAHO %>% filter(!is.na(Q_IPCN)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 <!-- Gráficos relacionados con título obtenido -->
-
 ```{r Grafico 16, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>% 
   rename(Nivel_de_pobreza = Var1) %>% 
@@ -662,7 +640,6 @@ as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 17, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$Estabili, ENAHO$A16B), margin = 2)) %>% 
   rename(Estabilidad = Var1) %>% 
@@ -681,7 +658,6 @@ as.data.frame(prop.table(table(ENAHO$Estabili, ENAHO$A16B), margin = 2)) %>%
   theme(plot.caption = element_text(size = 6, hjust = 0),
         axis.text.x = element_text(hjust = 0, size = 8, angle = -20, face = "bold", color = "gray20"))
 ```
-
 ```{r Grafico 18, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$InsLab, ENAHO$A16B), margin = 2)) %>% 
   rename(Satisfaccion = Var1) %>% 
@@ -700,7 +676,6 @@ as.data.frame(prop.table(table(ENAHO$InsLab, ENAHO$A16B), margin = 2)) %>%
   theme(plot.caption = element_text(size = 6, hjust = 0),
         axis.text.x = element_text(hjust = 0, size = 8, angle = -20, color = "gray20", face = "bold"))
 ```
-
 ```{r Grafico 19.1, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A16B != "Ignorado" & itpn > 0) %>%
@@ -733,7 +708,6 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 19.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A16B != "Ignorado" & itpn > 0) %>%
@@ -770,7 +744,6 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 20, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
@@ -799,9 +772,7 @@ as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 2)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 <!-- Gráficos relacionados con dominio de segundo idioma -->
-
 ```{r Grafico 21, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>% 
   filter(Var2 != "Ignorado") %>% 
@@ -832,7 +803,6 @@ as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 22, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
@@ -861,7 +831,6 @@ as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-
 ```{r Grafico 23, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 ENAHO %>% 
   filter(A22A != "Ignorado" & itpn > 0) %>%
@@ -893,6 +862,59 @@ ENAHO %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+```
+<!-- Tablas -->
+```{r Tabla 1, echo=FALSE, warning=FALSE, message=FALSE}
+tab_np_vs_tipo_colegio <- as.data.frame(prop.table(table(ENAHO$np, 
+                                                         ENAHO$A15A), 
+                                                   margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100,2)) %>% 
+  rename(Nivel_de_pobreza = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq) %>% 
+  rename('Nivel de pobreza' = Nivel_de_pobreza)
+
+# Generar tabla con kable
+kable(tab_np_vs_tipo_colegio, caption = "Proporción del nivel de pobreza segun tipo de centro educativo al que se asistio ") %>%
+  kable_styling(position = "center", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 2, echo=FALSE, warning=FALSE, message=FALSE}
+tab_dist_itpn_tipo_colegio <- ENAHO %>% 
+  filter(A15A != "Ignorado", itpn != 0) %>% 
+  group_by(A15A) %>%
+  summarize(
+    n = n(),                      # Conteo de observaciones
+    media_itpn = mean(itpn, na.rm = TRUE),   # Media de itpn, omitiendo NA
+    ds_itpn = sd(itpn, na.rm = TRUE),       # Desviación estándar de itpn
+    min_itpn = min(itpn, na.rm = TRUE),     # Mínimo de itpn
+    Q1_itpn = quantile(itpn, 0.25, na.rm = TRUE),  # Primer cuartil
+    Q2_itpn = quantile(itpn, 0.50, na.rm = TRUE),  # Mediana (segundo cuartil)
+    Q3_itpn = quantile(itpn, 0.75, na.rm = TRUE),    
+    max_itpn = max(itpn, na.rm = TRUE)      # Máximo de itpn
+  ) %>% 
+  rename('Tipo' = A15A,
+         'Media' = media_itpn,
+         'Desv' = ds_itpn,
+         'Mín' = min_itpn,
+         'Q1' = Q1_itpn,
+         'Q2' = Q2_itpn,
+         'Q3' = Q3_itpn,
+         'Máx' = max_itpn,) %>%
+  mutate(across(where(is.numeric), 
+                ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
+  
+# Generar tabla con kable
+kable(tab_dist_itpn_tipo_colegio, caption = "Distribucion del ingreso segun tipo de centro educativo al que se asistió") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
 ```
 
 ### Construcción de fichas de resultados
@@ -1201,61 +1223,6 @@ Por lo tanto, aunque la educación y la acumulación de capital humano son funda
 
 ### Metodología
 #### Descripción de los datos
-
-```{r Tabla 1, echo=FALSE, warning=FALSE, message=FALSE}
-tab_np_vs_tipo_colegio <- as.data.frame(prop.table(table(ENAHO$np, 
-                                                         ENAHO$A15A), 
-                                                   margin = 2)) %>% 
-  mutate(Freq = round(Freq * 100,2)) %>% 
-  rename(Nivel_de_pobreza = Var1) %>% 
-  filter(Var2 != "Ignorado") %>% 
-  mutate(Freq = paste0(Freq, "%")) %>% 
-  pivot_wider(names_from = Var2, values_from = Freq) %>% 
-  rename('Nivel de pobreza' = Nivel_de_pobreza)
-
-# Generar tabla con kable
-kable(tab_np_vs_tipo_colegio, caption = "Proporción del nivel de pobreza segun tipo de centro educativo al que se asistio ") %>%
-  kable_styling(position = "center", 
-                bootstrap_options = c("striped", "hover", "responsive")) %>%
-  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
-           footnote_as_chunk = TRUE,
-           general_title = "Fuente: ")
-```
-```{r Tabla 2, echo=FALSE, warning=FALSE, message=FALSE}
-tab_dist_itpn_tipo_colegio <- ENAHO %>% 
-  filter(A15A != "Ignorado", itpn != 0) %>% 
-  group_by(A15A) %>%
-  summarize(
-    n = n(),                      # Conteo de observaciones
-    media_itpn = mean(itpn, na.rm = TRUE),   # Media de itpn, omitiendo NA
-    ds_itpn = sd(itpn, na.rm = TRUE),       # Desviación estándar de itpn
-    min_itpn = min(itpn, na.rm = TRUE),     # Mínimo de itpn
-    Q1_itpn = quantile(itpn, 0.25, na.rm = TRUE),  # Primer cuartil
-    Q2_itpn = quantile(itpn, 0.50, na.rm = TRUE),  # Mediana (segundo cuartil)
-    Q3_itpn = quantile(itpn, 0.75, na.rm = TRUE),    
-    max_itpn = max(itpn, na.rm = TRUE)      # Máximo de itpn
-  ) %>% 
-  rename('Media' = media_itpn,
-         'Desv' = ds_itpn,
-         'Mín' = min_itpn,
-         'Q1' = Q1_itpn,
-         'Q2' = Q2_itpn,
-         'Q3' = Q3_itpn,
-         'Máx' = max_itpn,) %>%
-  mutate(across(where(is.numeric), 
-                ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
-  
-# Generar tabla con kable
-kable(tab_dist_itpn_tipo_colegio, caption = "Distribucion del ingreso segun tipo de centro educativo al que se asistió") %>%
-  kable_styling(position = "left", 
-                bootstrap_options = c("striped", "hover", "responsive")) %>%
-  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
-           footnote_as_chunk = TRUE,
-           general_title = "Fuente: ")
-```
-
-
-
 
 ## Parte de reflexión
 
