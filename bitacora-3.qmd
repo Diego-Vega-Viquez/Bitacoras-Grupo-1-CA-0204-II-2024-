@@ -64,6 +64,7 @@ ENAHO <- ENAHO %>% select(ZONA,
 
 <!-- Gráficos relacionados con el tipo de centro educativo -->
 ```{r Grafico 1, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+#| echo: false
 as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>% 
   filter(Var2 != "Ignorado") %>% 
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
@@ -337,7 +338,7 @@ ENAHO %>%
     panel.grid.minor = element_blank()  # Se eliminan las cuadrículas menores
   )
 ```
-<!-- Gráficos relacionados con nivel de instruccion -->
+<!-- Gráficos relacionados con nivel de instrucción -->
 ```{r Grafico 8, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
 as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst, 
                                            "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
@@ -865,6 +866,7 @@ ENAHO %>%
   )
 ```
 <!-- Tablas -->
+<!-- Tablas relacionadas con el tipo de centro educativo -->
 ```{r Tabla 1, echo=FALSE, warning=FALSE, message=FALSE}
 tab_np_vs_tipo_colegio <- as.data.frame(prop.table(table(ENAHO$np, 
                                                          ENAHO$A15A), 
@@ -888,7 +890,7 @@ kable(tab_np_vs_tipo_colegio, caption = "Proporción del nivel de pobreza segun 
 tab_dist_itpn_tipo_colegio <- ENAHO %>% 
   filter(A15A != "Ignorado", itpn != 0) %>% 
   group_by(A15A) %>%
-  summarize(
+  dplyr::summarize(
     n = n(),                      # Conteo de observaciones
     media_itpn = mean(itpn, na.rm = TRUE),   # Media de itpn, omitiendo NA
     ds_itpn = sd(itpn, na.rm = TRUE),       # Desviación estándar de itpn
@@ -906,11 +908,412 @@ tab_dist_itpn_tipo_colegio <- ENAHO %>%
          'Q2' = Q2_itpn,
          'Q3' = Q3_itpn,
          'Máx' = max_itpn,) %>%
-  mutate(across(where(is.numeric), 
+  mutate(across(where(is.numeric) & !c(n), 
                 ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
   
 # Generar tabla con kable
-kable(tab_dist_itpn_tipo_colegio, caption = "Distribucion del ingreso segun tipo de centro educativo al que se asistió") %>%
+kable(tab_dist_itpn_tipo_colegio, caption = "distribución del ingreso segun tipo de centro educativo al que se asistió") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 3, echo=FALSE, warning=FALSE, message=FALSE}
+tab_evol_tipo_colegio_QIPCN <- as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado") %>% 
+  mutate(Freq = round(Freq * 100,2)) %>% 
+  rename(Nivel_de_pobreza = Var1) %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq) %>% 
+  rename('Nivel de Pobreza' = Nivel_de_pobreza,
+         'Q1' = "Q1: 110683 ó menos",
+         'Q2' = "Q2: Más de 110683 a 195000",
+         'Q3' = "Q3: Más de 195000 a 321523",
+         'Q4' = "Q4: Más de 321523 a 574085",
+         'Q5' = "Q5: Más de 574085") 
+# Generar tabla con kable
+kable(tab_evol_tipo_colegio_QIPCN, caption = "Distribución del Nivel de Instrucción por Quintil de Ingreso en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 4, echo=FALSE, warning=FALSE, message=FALSE}
+tab_np_vs_univ <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename(Nivel_de_pobreza = Var1) %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+# Generar tabla con kable
+kable(tab_np_vs_univ, caption = " Distribución del nivel de pobreza segun universidad pública a la que se asistió en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 5, echo=FALSE, warning=FALSE, message=FALSE}
+tab_dist_itpn_univ <- ENAHO %>% 
+  filter(A15B != "Ignorado") %>% 
+  mutate(A15B = forcats::fct_reorder(A15B, itpn, median, .desc = TRUE)) %>% 
+  group_by(A15B) %>%
+  summarise(
+    n = n(),
+    media_itpn = mean(itpn, na.rm = TRUE),
+    ds_itpn = sd(itpn, na.rm = TRUE),
+    min_itpn = min(itpn, na.rm = TRUE),
+    Q1_itpn = quantile(itpn, 0.25, na.rm = TRUE),
+    Q2_itpn = quantile(itpn, 0.50, na.rm = TRUE),
+    Q3_itpn = quantile(itpn, 0.75, na.rm = TRUE),
+    max_itpn = max(itpn, na.rm = TRUE),
+    .groups = "drop_last") %>% 
+  rename('Universidad' = A15B,
+         'Media' = media_itpn,
+         'Desv' = ds_itpn,
+         'Mín' = min_itpn,
+         'Q1' = Q1_itpn,
+         'Q2' = Q2_itpn,
+         'Q3' = Q3_itpn,
+         'Máx' = max_itpn) %>%
+  mutate(across(where(is.numeric) & !c(n), 
+                ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
+
+# Generar tabla con kable
+kable(tab_dist_itpn_univ, caption = " Distribución del ingreso segun tipo de centro educativo al que se asistió en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+<!-- Tablas relacionadas con nivel de instrucción -->
+```{r Tabla 6, echo=FALSE, warning=FALSE, message=FALSE}
+tab_np_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$np, 
+                                                    fct_collapse(ENAHO$NivInst, 
+                                                                 "Primaria completa" = c("Primaria completa",
+                                                                                         "Secundaria académica incompleta",
+                                                                                         "Secundaria técnica incompleta"),
+                                                                 "Secundaria completa" = c("Secundaria académica completa",
+                                                                                           "Secundaria técnica completa"),
+                                                                 "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción",
+                                                                                                       "Primaria incompleta"))),
+                                              margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Nivel de pobreza" = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+# Generar tabla con kable
+kable(tab_np_vs_nivinst, caption = " Distribución del nivel de pobreza segun nivel de instrucción en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 7, echo=FALSE, warning=FALSE, message=FALSE}
+tab_estabili_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$Estabili, 
+                                                          fct_collapse(ENAHO$NivInst, 
+                                                                       "Primaria completa" = c("Primaria completa", 
+                                                                                               "Secundaria académica incompleta",
+                                                                                               "Secundaria técnica incompleta"),
+                                                                       "Secundaria completa" = c("Secundaria académica completa",
+                                                                                                 "Secundaria técnica completa"),
+                                                                       "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción",
+                                                                                                             "Primaria incompleta"))), 
+                                                    margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Estabilidad laboral" = Var1) %>% 
+  filter(Var2 != "Ignorado", "Estabilidad laboral" != "Estabilidad Ignorada") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+
+# Generar tabla con kable
+kable(tab_estabili_vs_nivinst, caption = " Distribución de la estabilidad laboral segun nivel de instrucción en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 8, echo=FALSE, warning=FALSE, message=FALSE}
+tab_satisf_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$InsLab, 
+                                                        fct_collapse(ENAHO$NivInst, 
+                                                                     "Primaria completa" = c("Primaria completa", 
+                                                                                             "Secundaria académica incompleta", 
+                                                                                             "Secundaria técnica incompleta"),
+                                                                     "Secundaria completa" = c("Secundaria académica completa", 
+                                                                                               "Secundaria técnica completa"),
+                                                                     "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", 
+                                                                                                           "Primaria incompleta"))), 
+                                                  margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Satisfaccion laboral" = Var1) %>% 
+  filter(Var2 != "Ignorado", "Satisfaccion laboral" != "Satisfacción ignorada") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+
+# Generar tabla con kable
+kable(tab_satisf_vs_nivinst, caption = " Distribución de la satisfaccion laboral segun nivel de instrucción en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 9, echo=FALSE, warning=FALSE, message=FALSE}
+tab_dist_itpn_nivinst <- ENAHO %>% 
+  filter(NivInst != "Ignorado", itpn != 0) %>% 
+  mutate(NivInst = fct_collapse(NivInst,
+                                "Primaria completa" = c("Primaria completa", 
+                                                        "Secundaria académica incompleta", 
+                                                        "Secundaria técnica incompleta"),
+                                "Secundaria completa" = c("Secundaria académica completa", 
+                                                          "Secundaria técnica completa"),
+                                "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", 
+                                                                      "Primaria incompleta"))) %>% 
+  group_by(NivInst) %>%
+  dplyr::summarize(
+    n = n(),                      # Conteo de observaciones
+    media_itpn = mean(itpn, na.rm = TRUE),   # Media de itpn, omitiendo NA
+    ds_itpn = sd(itpn, na.rm = TRUE),       # Desviación estándar de itpn
+    min_itpn = min(itpn, na.rm = TRUE),     # Mínimo de itpn
+    Q1_itpn = quantile(itpn, 0.25, na.rm = TRUE),  # Primer cuartil
+    Q2_itpn = quantile(itpn, 0.50, na.rm = TRUE),  # Mediana (segundo cuartil)
+    Q3_itpn = quantile(itpn, 0.75, na.rm = TRUE),    
+    max_itpn = max(itpn, na.rm = TRUE)      # Máximo de itpn
+  ) %>% 
+  rename('Nivel' = NivInst,
+         'Media' = media_itpn,
+         'Desv' = ds_itpn,
+         'Mín' = min_itpn,
+         'Q1' = Q1_itpn,
+         'Q2' = Q2_itpn,
+         'Q3' = Q3_itpn,
+         'Máx' = max_itpn,) %>%
+  mutate(across(where(is.numeric) & !c(n), 
+                ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
+
+# Generar tabla con kable
+kable(tab_dist_itpn_nivinst, caption = " Distribución del ingreso por nivel de instrucción en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 10, echo=FALSE, warning=FALSE, message=FALSE}
+tab_evol_nivinst_QIPCN <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
+                                                                      "Primaria completa" = c("Primaria completa", 
+                                                                                              "Secundaria académica incompleta",
+                                                                                              "Secundaria técnica incompleta"),
+                                                                      "Secundaria completa" = c("Secundaria académica completa",
+                                                                                                "Secundaria técnica completa"),
+                                                                      "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción",
+                                                                                                            "Primaria incompleta")), 
+                                                         ENAHO$Q_IPCN), margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Nivel de instrucción" = Var1) %>% 
+  filter("Nivel de instrucción" != "Ignorado") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq) %>% 
+  rename('Q1' = "Q1: 110683 ó menos",
+         'Q2' = "Q2: Más de 110683 a 195000",
+         'Q3' = "Q3: Más de 195000 a 321523",
+         'Q4' = "Q4: Más de 321523 a 574085",
+         'Q5' = "Q5: Más de 574085") 
+
+# Generar tabla con kable
+kable(tab_evol_nivinst_QIPCN, caption = "Evolucion de la distribución del nivel de instrucción por quintil de ingreso per capita neto en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+<!-- Tablas relacionadas con título obtenido -->
+```{r Tabla 11, echo=FALSE, warning=FALSE, message=FALSE}
+tab_evol_nivinst_QIPCN <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
+                                                                      "Primaria completa" = c("Primaria completa", 
+                                                                                              "Secundaria académica incompleta", 
+                                                                                              "Secundaria técnica incompleta"),
+                                                                      "Secundaria completa" = c("Secundaria académica completa", 
+                                                                                                "Secundaria técnica completa"),
+                                                                      "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción",
+                                                                                                            "Primaria incompleta")), 
+                                                         ENAHO$Q_IPCN), margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Nivel de instrucción" = Var1) %>% 
+  filter("Nivel de instrucción" != "Ignorado") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq) %>% 
+  rename('Q1' = "Q1: 110683 ó menos",
+         'Q2' = "Q2: Más de 110683 a 195000",
+         'Q3' = "Q3: Más de 195000 a 321523",
+         'Q4' = "Q4: Más de 321523 a 574085",
+         'Q5' = "Q5: Más de 574085") 
+
+# Generar tabla con kable
+kable(tab_evol_nivinst_QIPCN, caption = "Distribución del nivel de pobreza segun titulo obtenido en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 12, echo=FALSE, warning=FALSE, message=FALSE}
+tab_estabili_vs_titulo <- as.data.frame(prop.table(table(ENAHO$Estabili, ENAHO$A16B), margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Estabilidad aboral" = Var1) %>% 
+  filter(Var2 != "Ignorado", "Estabilidad laboral" != "Estabilidad Ignorada") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+
+# Generar tabla con kable
+kable(tab_estabili_vs_titulo, caption = "Distribución de la estabilidad laboral segun titulo obtenido en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 13, echo=FALSE, warning=FALSE, message=FALSE}
+tab_satisf_vs_titulo <- as.data.frame(prop.table(table(ENAHO$InsLab, ENAHO$A16B), margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename(Satisfaccion_laboral = Var1) %>% 
+  filter(Var2 != "Ignorado", Satisfaccion_laboral != "Satisfacción ignorada") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+
+# Generar tabla con kable
+kable(tab_satisf_vs_titulo, caption = "Satisfaccion laboral segun titulo obtenido en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 14, echo=FALSE, warning=FALSE, message=FALSE}
+tab_dist_itpn_titulo <- ENAHO %>% 
+  filter(A16B != "Ignorado", itpn != 0) %>% 
+  group_by(A16B) %>%
+  dplyr::summarize(
+    n = n(),                      # Conteo de observaciones
+    media_itpn = mean(itpn, na.rm = TRUE),   # Media de itpn, omitiendo NA
+    ds_itpn = sd(itpn, na.rm = TRUE),       # Desviación estándar de itpn
+    min_itpn = min(itpn, na.rm = TRUE),     # Mínimo de itpn
+    Q1_itpn = quantile(itpn, 0.25, na.rm = TRUE),  # Primer cuartil
+    Q2_itpn = quantile(itpn, 0.50, na.rm = TRUE),  # Mediana (segundo cuartil)
+    Q3_itpn = quantile(itpn, 0.75, na.rm = TRUE),    
+    max_itpn = max(itpn, na.rm = TRUE)      # Máximo de itpn
+  ) %>% 
+  rename('Nivel' = A16B,
+         'Media' = media_itpn,
+         'Desv' = ds_itpn,
+         'Mín' = min_itpn,
+         'Q1' = Q1_itpn,
+         'Q2' = Q2_itpn,
+         'Q3' = Q3_itpn,
+         'Máx' = max_itpn,) %>%
+  mutate(across(where(is.numeric) & !c(n), 
+                ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
+
+# Generar tabla con kable
+kable(tab_dist_itpn_titulo, caption = "distribución del ingreso segun titulo obtenido en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 15, echo=FALSE, warning=FALSE, message=FALSE}
+tab_evol_titulo_QIPCN <- as.data.frame(prop.table(table(ENAHO$A16B,ENAHO$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado") %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename(Titulo = Var1) %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq) %>% 
+  rename('Q1' = "Q1: 110683 ó menos",
+         'Q2' = "Q2: Más de 110683 a 195000",
+         'Q3' = "Q3: Más de 195000 a 321523",
+         'Q4' = "Q4: Más de 321523 a 574085",
+         'Q5' = "Q5: Más de 574085") 
+
+# Generar tabla con kable
+kable(tab_evol_titulo_QIPCN, caption = "Evolucion de la distribución de los titulos obtenidos por quintil de ingreso per capita neto en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+<!-- Tablas relacionadas con dominio segundo idioma -->
+```{r Tabla 16, echo=FALSE, warning=FALSE, message=FALSE}
+tab_np_vs_dom_2_idiom <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A22A), margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Nivel de pobreza" = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+
+# Generar tabla con kable
+kable(tab_np_vs_dom_2_idiom, caption = "Nivel de pobreza segun nivel de instrucción en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 17, echo=FALSE, warning=FALSE, message=FALSE}
+tab_evol_dom_2_idiom_QIPCN <- as.data.frame(prop.table(table(ENAHO$A22A,ENAHO$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado") %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename(Dominio_segundo_idioma = Var1) %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq) %>% 
+  rename('Q1' = "Q1: 110683 ó menos",
+         'Q2' = "Q2: Más de 110683 a 195000",
+         'Q3' = "Q3: Más de 195000 a 321523",
+         'Q4' = "Q4: Más de 321523 a 574085",
+         'Q5' = "Q5: Más de 574085") 
+
+# Generar tabla con kable
+kable(tab_evol_dom_2_idiom_QIPCN, caption = "Nivel de pobreza segun nivel de instrucción en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 18, echo=FALSE, warning=FALSE, message=FALSE}
+tab_dist_itpn_dom_2_idiom <- ENAHO %>% 
+  filter(A22A != "Ignorado", itpn!=0) %>% 
+  group_by(A22A) %>%
+  dplyr::summarize(
+    n = n(),                      # Conteo de observaciones
+    media_itpn = mean(itpn, na.rm = TRUE),   # Media de itpn, omitiendo NA
+    ds_itpn = sd(itpn, na.rm = TRUE),       # Desviación estándar de itpn
+    min_itpn = min(itpn, na.rm = TRUE),     # Mínimo de itpn
+    Q1_itpn = quantile(itpn, 0.25, na.rm = TRUE),  # Primer cuartil
+    Q2_itpn = quantile(itpn, 0.50, na.rm = TRUE),  # Mediana (segundo cuartil)
+    Q3_itpn = quantile(itpn, 0.75, na.rm = TRUE),    
+    max_itpn = max(itpn, na.rm = TRUE)      # Máximo de itpn
+  ) %>% 
+  rename('Domina' = A22A,
+         'Media' = media_itpn,
+         'Desv' = ds_itpn,
+         'Mín' = min_itpn,
+         'Q1' = Q1_itpn,
+         'Q2' = Q2_itpn,
+         'Q3' = Q3_itpn,
+         'Máx' = max_itpn,) %>%
+  mutate(across(where(is.numeric) & !c(n), 
+                ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
+
+# Generar tabla con kable
+kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dominio segundo idioma en Costa Rica (2023)") %>%
   kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
@@ -1203,7 +1606,6 @@ kable(tab_dist_itpn_tipo_colegio, caption = "Distribucion del ingreso segun tipo
 ### Ordenamiento de los elementos de reporte
 
 ## Parte de escritura
-
 ### Introducción
 
 De manera muy simplificada, se podría decir que la dinámica socioeconómica que rige actualmente tanto en Costa Rica como en gran parte de la sociedad occidental consiste en recompensar a los individuos según el valor que aportan a la sociedad. Así, aquellos que aportan y producen más suelen ser mejor remunerados que aquellos cuya capacidad productiva es menor. A partir de esta premisa, si se desea estudiar los factores que determinan quién recibe más y quién recibe menos, resulta imprescindible profundizar en los elementos que permiten a una persona mejorar su condición socioeconómica dentro de este sistema.
@@ -1265,10 +1667,9 @@ La tabla anterior presenta los códigos y nombres de las variables más represen
 
 De estas variables cabe destacar que de acuerdo a @ENAHO2023, Zona se refiere a aspectos demográficos como  lo son zona urbana o rural; educativos, como lo son la formación educativa formal la cual clasifica la especialidad o carrera que una persona ha estudiado y Título que se refiere al máximo nivel académico adquirido. Por su parte la Estabilidad en el empleo se refiere a la clasificación de la estabilidad laboral de los trabajadores en categorías que van desde empleo permanente hasta actividad ocasional; y la Insatisfacción laboral que se refiere a  los motivos de insatisfacción laboral, tales como baja remuneración, sobrecarga de horas, y desaprovechamiento de competencias, esta variable proporciona información sobre la calidad del empleo y las condiciones laborales.
 
-
-
-
 #### Métodos
+
+
 
 ### Resultados
 
