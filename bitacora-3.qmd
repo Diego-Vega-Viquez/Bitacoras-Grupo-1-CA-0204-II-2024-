@@ -912,7 +912,7 @@ tab_dist_itpn_tipo_colegio <- ENAHO %>%
                 ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
   
 # Generar tabla con kable
-kable(tab_dist_itpn_tipo_colegio, caption = "distribución del ingreso segun tipo de centro educativo al que se asistió") %>%
+kable(tab_dist_itpn_tipo_colegio, caption = "Distribución del ingreso segun tipo de centro educativo al que se asistió") %>%
   kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
@@ -923,10 +923,10 @@ kable(tab_dist_itpn_tipo_colegio, caption = "distribución del ingreso segun tip
 tab_evol_tipo_colegio_QIPCN <- as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Freq = round(Freq * 100,2)) %>% 
-  rename(Nivel_de_pobreza = Var1) %>% 
+  rename("Nivel de pobreza" = Var1) %>% 
   mutate(Freq = paste0(Freq, "%")) %>% 
   pivot_wider(names_from = Var2, values_from = Freq) %>% 
-  rename('Nivel de Pobreza' = Nivel_de_pobreza,
+  rename('Nivel de Pobreza' = "Nivel de pobreza",
          'Q1' = "Q1: 110683 ó menos",
          'Q2' = "Q2: Más de 110683 a 195000",
          'Q3' = "Q3: Más de 195000 a 321523",
@@ -943,7 +943,7 @@ kable(tab_evol_tipo_colegio_QIPCN, caption = "Distribución del Nivel de Instruc
 ```{r Tabla 4, echo=FALSE, warning=FALSE, message=FALSE}
 tab_np_vs_univ <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
-  rename(Nivel_de_pobreza = Var1) %>% 
+  rename("Nivel de pobreza" = Var1) %>% 
   mutate(Freq = paste0(Freq, "%")) %>% 
   filter(Var2 != "Ignorado") %>% 
   pivot_wider(names_from = Var2, values_from = Freq)
@@ -1173,7 +1173,7 @@ tab_estabili_vs_titulo <- as.data.frame(prop.table(table(ENAHO$Estabili, ENAHO$A
   pivot_wider(names_from = Var2, values_from = Freq)
 
 # Generar tabla con kable
-kable(tab_estabili_vs_titulo, caption = "Distribución de la estabilidad laboral segun titulo obtenido en Costa Rica (2023)") %>%
+kable(tab_estabili_vs_titulo, caption = "Estabilidad laboral segun titulo obtenido en Costa Rica (2023)") %>%
   kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
@@ -1183,8 +1183,8 @@ kable(tab_estabili_vs_titulo, caption = "Distribución de la estabilidad laboral
 ```{r Tabla 13, echo=FALSE, warning=FALSE, message=FALSE}
 tab_satisf_vs_titulo <- as.data.frame(prop.table(table(ENAHO$InsLab, ENAHO$A16B), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
-  rename(Satisfaccion_laboral = Var1) %>% 
-  filter(Var2 != "Ignorado", Satisfaccion_laboral != "Satisfacción ignorada") %>% 
+  rename("Satisfaccion laboral" = Var1) %>% 
+  filter(Var2 != "Ignorado", "Satisfaccion laboral" != "Satisfacción ignorada") %>% 
   mutate(Freq = paste0(Freq, "%")) %>% 
   pivot_wider(names_from = Var2, values_from = Freq)
 
@@ -1222,7 +1222,7 @@ tab_dist_itpn_titulo <- ENAHO %>%
                 ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
 
 # Generar tabla con kable
-kable(tab_dist_itpn_titulo, caption = "distribución del ingreso segun titulo obtenido en Costa Rica (2023)") %>%
+kable(tab_dist_itpn_titulo, caption = "Distribución del ingreso segun titulo obtenido en Costa Rica (2023)") %>%
   kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
@@ -1270,7 +1270,7 @@ kable(tab_np_vs_dom_2_idiom, caption = "Nivel de pobreza segun nivel de instrucc
 tab_evol_dom_2_idiom_QIPCN <- as.data.frame(prop.table(table(ENAHO$A22A,ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
-  rename(Dominio_segundo_idioma = Var1) %>% 
+  rename("Dominio segundo idioma" = Var1) %>% 
   mutate(Freq = paste0(Freq, "%")) %>% 
   pivot_wider(names_from = Var2, values_from = Freq) %>% 
   rename('Q1' = "Q1: 110683 ó menos",
@@ -1324,7 +1324,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 ### Construcción de fichas de resultados
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 1 (Tabla y Gráfico 1)
+#### Hallazgo 1 (Tabla y Gráfico 1)
 
 -   **Nombre del hallazgo o resultado:** Las personas que asistieron a colegios privados tienen menor incidencia de pobreza que aquellos que nunca asistieron a un centro educativo.
 
@@ -1338,7 +1338,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 2 (Tabla y Gráfico 2)
+#### Hallazgo 2 (Tabla y Gráfico 2)
 
 -   **Nombre del hallazgo o resultado:** Ingresos y su distribución por tipo de centro educativo asistido.
 
@@ -1352,7 +1352,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 3 (Tabla y Gráfico 3)
+#### Hallazgo 3 (Tabla y Gráfico 3)
 
 -   **Nombre del hallazgo o resultado:** Distribución de centros educativos según quintil de ingreso per cápita.
 
@@ -1366,7 +1366,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 4 (Tabla y Gráfico 4)
+#### Hallazgo 4 (Tabla y Gráfico 4)
 
 -   **Nombre del hallazgo o resultado:** Distribución de pobreza según la universidad pública asistida.
 
@@ -1380,7 +1380,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 5 (Tabla 5 y Gráfico 7)
+#### Hallazgo 5 (Tabla 5 y Gráfico 7)
 
 -   **Nombre del hallazgo o resultado:** Comparación del ingreso total por persona neto entre universidades públicas.
 
@@ -1394,7 +1394,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 6 (Tabla 6 y Gráfico 8)
+#### Hallazgo 6 (Tabla 6 y Gráfico 8)
 
 -   **Nombre del hallazgo o resultado:** Relación entre el nivel de instrucción y la pobreza.
 
@@ -1408,7 +1408,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 7 (Tabla 7, 8 y Gráfico 9, 10)
+#### Hallazgo 7 (Tabla 7, 8 y Gráfico 9, 10)
 
 -   **Nombre del hallazgo o resultado:** Impacto del nivel educativo en la estabilidad y satisfacción laboral.
 
@@ -1422,7 +1422,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 8 (Tabla 9 y Gráfico 11)
+#### Hallazgo 8 (Tabla 9 y Gráfico 11)
 
 -   **Nombre del hallazgo o resultado:** Incremento progresivo de los ingresos netos según el nivel educativo alcanzado.
 
@@ -1436,7 +1436,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 9 (Tabla 10 y Gráfico 12)
+#### Hallazgo 9 (Tabla 10 y Gráfico 12)
 
 -   **Nombre del hallazgo o resultado:** Concentración educativa en quintiles bajos y altos de ingreso.
 
@@ -1450,7 +1450,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 10 (Tabla 11 y Gráfico 16)
+#### Hallazgo 10 (Tabla 11 y Gráfico 16)
 
 -   **Nombre del hallazgo o resultado:** Relación entre la titulación académica y la incidencia de pobreza.
 
@@ -1464,7 +1464,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 11 (Tabla 12, 13 y Gráfico 17, 18)
+#### Hallazgo 11 (Tabla 12, 13 y Gráfico 17, 18)
 
 -   **Nombre del hallazgo o resultado:** Relación entre el nivel educativo, la estabilidad laboral y la satisfacción en el empleo.
 
@@ -1478,7 +1478,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 12 (Tabla 14 y Gráfico 19)
+#### Hallazgo 12 (Tabla 14 y Gráfico 19)
 
 -   **Nombre del hallazgo o resultado:** Ingreso promedio por nivel de educación.
 
@@ -1492,7 +1492,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 13 (Tabla 15 y Gráfico 20)
+#### Hallazgo 13 (Tabla 15 y Gráfico 20)
 
 -   **Nombre del hallazgo o resultado:** Distribución del ingreso por quintiles y nivel educativo.
 
@@ -1506,7 +1506,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 14 (Tabla 16 y Gráfico 21)
+#### Hallazgo 14 (Tabla 16 y Gráfico 21)
 
 -   **Nombre del hallazgo o resultado:** Relación entre el nivel de pobreza y el dominio de un segundo idioma.
 
@@ -1520,7 +1520,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 15 (Tabla 17 y Gráfico 22)
+#### Hallazgo 15 (Tabla 17 y Gráfico 22)
 
 -   **Nombre del hallazgo o resultado:** Proporción de personas en quintiles de ingreso según el dominio de un segundo idioma.
 
@@ -1534,7 +1534,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 16 (Tabla 18 y Gráfico 23)
+#### Hallazgo 16 (Tabla 18 y Gráfico 23)
 
 -   **Nombre del hallazgo o resultado:** Relación entre el dominio de un segundo idioma y la distribución del ingreso.
 
@@ -1548,7 +1548,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 17 (Gráfico 15)
+#### Hallazgo 17 (Gráfico 15)
 
 -   **Nombre del hallazgo o resultado:** Relación entre los años de escolaridad e ingreso total por persona neto por quintiles de ingreso.
 
@@ -1562,7 +1562,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 18 (Gráfico 13)
+#### Hallazgo 18 (Gráfico 13)
 
 -   **Nombre del hallazgo o resultado:** Relación general entre escolaridad e ingreso por zonas urbana y rural.
 
@@ -1576,7 +1576,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 19 (Gráfico 14)
+#### Hallazgo 19 (Gráfico 14)
 
 -   **Nombre del hallazgo o resultado:** Relación inversa entre la escolaridad y la intensidad de pobreza en zonas urbanas y rurales.
 
@@ -1590,7 +1590,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-## Hallazgo 20 (Gráficos 5 y 6)
+#### Hallazgo 20 (Gráficos 5 y 6)
 
 -   **Nombre del hallazgo o resultado:** Comparación de la distribución de personas en condición de pobreza y no pobreza en universidades públicas por área de estudio.
 
@@ -1628,15 +1628,15 @@ Por lo tanto, aunque la educación y la acumulación de capital humano son funda
 ### Metodología
 #### Descripción de los datos
 
-*Fuente de la informació́n:* La fuente de la cual fueron recolectados los datos corresponde al Instituto Nacional de Estadística y Censos (INEC), más especídficamente los datos corresponden a los recolectados en la @ENAHO2023.
+*Fuente de la información:* La fuente de la cual fueron recolectados los datos corresponde al Instituto Nacional de Estadística y Censos (INEC), más especídficamente los datos corresponden a los recolectados en la @ENAHO2023.
 
-*Població́n de estudio:* De acuerdo a @ENAHO2023, la poblaciónde estudio corresponde al conjunto de viviendas individuales ocupadas y sus ocupantes residentes habituales, tanto del área urbana como del área rural de Costa Rica. Es importantes destacar que se excluyó del estudio a la población residente en las viviendas colectivas (hoteles, hospitales, asilos, cárceles, conventos, residencias colectivas para estudiantes y trabajadores).
+*Población de estudio:* De acuerdo a @ENAHO2023, la poblaciónde estudio corresponde al conjunto de viviendas individuales ocupadas y sus ocupantes residentes habituales, tanto del área urbana como del área rural de Costa Rica. Es importantes destacar que se excluyó del estudio a la población residente en las viviendas colectivas (hoteles, hospitales, asilos, cárceles, conventos, residencias colectivas para estudiantes y trabajadores).
 
 *Contexto temporal y espacial de los datos:* Los datos utilizados en este análisis fueron recolectados durante el año 2023, como parte de la Encuesta Nacional de Hogares realizada en julio. Este periodo permite observar la situación económica actual de los hogares costarricenses, especialmente relevante en el contexto pospandemia. A nivel espacial, los datos son representativos a nivel nacional e incluyen un desglose por regiones y áreas urbanas y rurales. Esta distribución geográfica es crucial para identificar disparidades en la distribución del ingreso y el acceso a la educación entre diferentes zonas del país.
 
 *Unidad estadística o individuos:* La unidad estadística de este estudio es el individuo (persona) dentro de un hogar encuestado en una vivienda ubicada en Costa Rica en el año 2023. Cada individuo representa una persona en la muestra, de la cual se recaban datos sobre variables socioeconómicas, demográficas, educativas, entre otras.
 
-*Descripció́n de las variable:*
+*Descripción de las variable:*
 ```{r Agrega label, echo=FALSE, message=FALSE, warning=FALSE}
 # install.packages("Hmisc")
 library(Hmisc)
