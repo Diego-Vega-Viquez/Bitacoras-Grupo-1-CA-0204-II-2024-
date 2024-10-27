@@ -29,6 +29,7 @@ library(RColorBrewer)
 library(see)
 library(GGally)
 library(kableExtra)
+library(purrr)
 ```
 
 ```{r Limpieza Datos}
@@ -1224,6 +1225,50 @@ Por lo tanto, aunque la educación y la acumulación de capital humano son funda
 
 ### Metodología
 #### Descripción de los datos
+
+*Fuente de la informació́n:* La fuente de la cual fueron recolectados los datos corresponde al Instituto Nacional de Estadística y Censos (INEC), más especídficamente los datos corresponden a los recolectados en la @ENAHO2023.
+
+*Població́n de estudio:* De acuerdo a @ENAHO2023, la poblaciónde estudio corresponde al conjunto de viviendas individuales ocupadas y sus ocupantes residentes habituales, tanto del área urbana como del área rural de Costa Rica. Es importantes destacar que se excluyó del estudio a la población residente en las viviendas colectivas (hoteles, hospitales, asilos, cárceles, conventos, residencias colectivas para estudiantes y trabajadores).
+
+*Contexto temporal y espacial de los datos:* Los datos utilizados en este análisis fueron recolectados durante el año 2023, como parte de la Encuesta Nacional de Hogares realizada en julio. Este periodo permite observar la situación económica actual de los hogares costarricenses, especialmente relevante en el contexto pospandemia. A nivel espacial, los datos son representativos a nivel nacional e incluyen un desglose por regiones y áreas urbanas y rurales. Esta distribución geográfica es crucial para identificar disparidades en la distribución del ingreso y el acceso a la educación entre diferentes zonas del país.
+
+*Unidad estadística o individuos:* La unidad estadística de este estudio es el individuo (persona) dentro de un hogar encuestado en una vivienda ubicada en Costa Rica en el año 2023. Cada individuo representa una persona en la muestra, de la cual se recaban datos sobre variables socioeconómicas, demográficas, educativas, entre otras.
+
+*Descripció́n de las variable:*
+```{r Agrega label, echo=FALSE, message=FALSE, warning=FALSE}
+# install.packages("Hmisc")
+library(Hmisc)
+label(ENAHO$Escolari) <- "Años de escolaridad"
+# Esto lo hice ya que la variable Escolari en su estructura no contiene el label por tanto, hay que agregársela manualmente
+```
+
+```{r Tabla Variables, echo=FALSE, warning=FALSE, message=FALSE}
+labels <- as.data.frame(tibble(Código = names(ENAHO),
+                              Variable = map_chr(ENAHO, 
+                                               ~ attr(.x, 
+                                                      "label", 
+                                                      exact = TRUE
+                                                      ) %||% NA
+                                               ) # Extrae el label o NA si no existe
+                               )
+                        )
+# Generar tabla con kable
+kable(labels, caption = "Descripción de códigos y nombres de las variables de la base de datos") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+
+La tabla anterior presenta los códigos y nombres de las variables más representativas que se consideran relevantes para el análisis en este trabajo. Es importante destacar que la base de datos de la ENAHO cuenta con 595 variables, de la totalidad de variables estas 11 fueron seleccionadas de la Encuesta Nacional de Hogares (ENAHO) 2023 de Costa Rica. Cada fila de la tabla corresponde a una variable específica con su código. 
+
+De estas variables cabe destacar que de acuerdo a @ENAHO2023, Zona se refiere a aspectos demográficos como  lo son zona urbana o rural; educativos, como lo son la formación educativa formal la cual clasifica la especialidad o carrera que una persona ha estudiado y Título que se refiere al máximo nivel académico adquirido. Por su parte la Estabilidad en el empleo se refiere a la clasificación de la estabilidad laboral de los trabajadores en categorías que van desde empleo permanente hasta actividad ocasional; y la Insatisfacción laboral que se refiere a  los motivos de insatisfacción laboral, tales como baja remuneración, sobrecarga de horas, y desaprovechamiento de competencias, esta variable proporciona información sobre la calidad del empleo y las condiciones laborales.
+
+
+
+
+#### Métodos
 
 ### Resultados
 
