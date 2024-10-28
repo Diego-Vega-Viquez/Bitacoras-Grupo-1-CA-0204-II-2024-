@@ -1680,9 +1680,9 @@ De estas variables cabe destacar que de acuerdo a @ENAHO2023, Zona se refiere a 
 
 #### Métodos
 
-Para el presente estudio, se emplearon diversos métodos orientados al análisis y síntesis de datos, con un enfoque particular en técnicas de análisis exploratorio. Estas herramientas permitieron obtener una visión inicial de la estructura, distribución y relaciones de las variables, facilitando así la identificación de patrones y tendencias clave en el conjunto de datos. A lo largo de las tablas y gráficos presentados, se aplicaron métricas descriptivas como medidas de tendencia central, dispersión y posición, complementadas con visualizaciones que aportan una comprensión más detallada de los datos. Este enfoque no solo proporciona un resumen integral de la información, sino que también establece las bases para un análisis más profundo en fases posteriores del estudio. En la presente sección se emplearán las fórmulas y definiciones planteadas por @CA0203 en su sitio web, específicamente en el apartado dedicado al análisis exploratorio de datos. 
+Para el presente estudio, se emplearon diversos métodos orientados al análisis y síntesis de datos, con un enfoque particular en técnicas de análisis exploratorio. Estas herramientas permitieron obtener una visión inicial de la estructura, distribución y relaciones de las variables, facilitando así la identificación de patrones y tendencias clave en el conjunto de datos. A lo largo de las tablas y gráficos presentados, se aplicaron métricas descriptivas como medidas de tendencia central, dispersión y posición, complementadas con visualizaciones que aportan una comprensión más detallada de los datos. Este enfoque no solo proporciona un resumen integral de la información, sino que también establece las bases para un análisis más profundo en fases posteriores del estudio. En la presente sección se emplearán las fórmulas y definiciones planteadas por @CA0204 en su sitio web, específicamente en el apartado dedicado al análisis exploratorio de datos. 
 
-::: {.definition #def:media_empirica}
+::: {.callout-tip}
 ##### Definición 3.1 (Media empírica)
 
 Asumiendo que la serie de datos para una variable es \( x_1, x_2, \ldots, x_n \),
@@ -1694,7 +1694,7 @@ $$
 
 Esta medida de tendencia central es la más común y estandarizada. Aunque existen diferentes tipos de medias, para la presente investigación se empleará la definición presentada anteriormente.
 
-::: {.definition #def:media_empirica}
+::: {.callout-tip}
 ##### Definición 3.2 (Desviación Estándar)
 
 Asumiendo que la serie de datos para una variable es \( X_1, X_2, \ldots, X_n \), se define la desviación estandar como la raíz cuadrada de la varianza.
@@ -1708,7 +1708,8 @@ $$
 $$
 :::
 La desviación estándar es una de las principales medidas de dispersión, que indica, en promedio, cuánto se alejan los datos de la media. Esta medida se ha empleado en diversos contextos a lo largo del estudio para analizar la variabilidad de los datos.
-::: {.definition #def:media_empirica}
+
+::: {.callout-tip}
 ##### Definición 3.3 (Quintiles)
 
 Un quantil de valor $\alpha$ es el valor que tal que:
@@ -1723,14 +1724,19 @@ $$
 :::
 Esta defición corresponde a la versión general del quantil, en el presente trabajo se utilizan los quinitles 1,2 y 3 que se definen como
 $$
-\mathbb{P}[ X \leq Q_1] = 0.25 \\
-\mathbb{P}[ X \leq Q_2] = 0.5 \\
+\mathbb{P}[ X \leq Q_1] = 0.25
+$$
+$$
+\mathbb{P}[ X \leq Q_2] = 0.5
+$$
+$$
 \mathbb{P}[ X \leq Q_3] = 0.75
 $$
 En este caso \(Q_2\) corresponde a la mediana de los datos.
 
 De acuerdo a @camacho2006regresion se tiene la siguiente definición
-::: {.definition #def:regresion_lineal}
+
+::: {.callout-tip}
 ##### Definición 3.2 (Regresión lineal simple)
 
 La regresión lineal simple es un modelo estadístico que describe la relación entre una variable dependiente \( Y \) y una variable independiente \( X \). Este modelo asume que la relación entre ambas variables puede expresarse mediante la ecuación:
