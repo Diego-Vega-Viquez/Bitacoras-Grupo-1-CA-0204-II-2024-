@@ -865,6 +865,7 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
+\newpage
 <!-- Tablas -->
 <!-- Tablas relacionadas con el tipo de centro educativo -->
 ```{r Tabla 1, echo=FALSE, warning=FALSE, message=FALSE}
@@ -887,6 +888,7 @@ kable(tab_np_vs_tipo_colegio, caption = "Proporción del nivel de pobreza segun 
            general_title = "Fuente: ")
 ```
 ```{r Tabla 2, echo=FALSE, warning=FALSE, message=FALSE}
+# Diverge a la derecha lo úlitmo que sale es Q2
 tab_dist_itpn_tipo_colegio <- ENAHO %>% 
   filter(A15A != "Ignorado", itpn != 0) %>% 
   group_by(A15A) %>%
@@ -956,6 +958,7 @@ kable(tab_np_vs_univ, caption = " Distribución del nivel de pobreza segun unive
            general_title = "Fuente: ")
 ```
 ```{r Tabla 5, echo=FALSE, warning=FALSE, message=FALSE}
+# Diverge a la derecha lo úlitmo que sale es Q2
 tab_dist_itpn_univ <- ENAHO %>% 
   filter(A15B != "Ignorado") %>% 
   mutate(A15B = forcats::fct_reorder(A15B, itpn, median, .desc = TRUE)) %>% 
@@ -991,6 +994,7 @@ kable(tab_dist_itpn_univ, caption = " Distribución del ingreso segun tipo de ce
 ```
 <!-- Tablas relacionadas con nivel de instrucción -->
 ```{r Tabla 6, echo=FALSE, warning=FALSE, message=FALSE}
+# Diverge a la derecha lo úlitmo que sale es "Secundaria Completa"
 tab_np_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$np, 
                                                     fct_collapse(ENAHO$NivInst, 
                                                                  "Primaria completa" = c("Primaria completa",
@@ -1015,6 +1019,7 @@ kable(tab_np_vs_nivinst, caption = " Distribución del nivel de pobreza segun ni
            general_title = "Fuente: ")
 ```
 ```{r Tabla 7, echo=FALSE, warning=FALSE, message=FALSE}
+# Diverge a la derecha lo úlitmo que sale es "Primaria completa"
 tab_estabili_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$Estabili, 
                                                           fct_collapse(ENAHO$NivInst, 
                                                                        "Primaria completa" = c("Primaria completa", 
@@ -1040,6 +1045,7 @@ kable(tab_estabili_vs_nivinst, caption = " Distribución de la estabilidad labor
            general_title = "Fuente: ")
 ```
 ```{r Tabla 8, echo=FALSE, warning=FALSE, message=FALSE}
+# Diverge a la derecha lo úlitmo que sale es "Primaria completa"
 tab_satisf_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$InsLab, 
                                                         fct_collapse(ENAHO$NivInst, 
                                                                      "Primaria completa" = c("Primaria completa", 
@@ -1065,6 +1071,7 @@ kable(tab_satisf_vs_nivinst, caption = " Distribución de la satisfaccion labora
            general_title = "Fuente: ")
 ```
 ```{r Tabla 9, echo=FALSE, warning=FALSE, message=FALSE}
+# Diverge a la derecha lo úlitmo que sale es Q1
 tab_dist_itpn_nivinst <- ENAHO %>% 
   filter(NivInst != "Ignorado", itpn != 0) %>% 
   mutate(NivInst = fct_collapse(NivInst,
@@ -1165,6 +1172,7 @@ kable(tab_evol_nivinst_QIPCN, caption = "Distribución del nivel de pobreza segu
            general_title = "Fuente: ")
 ```
 ```{r Tabla 12, echo=FALSE, warning=FALSE, message=FALSE}
+# Diverge a la derecha lo úlitmo que sale es "Técnico medio, perito o diplomado..."
 tab_estabili_vs_titulo <- as.data.frame(prop.table(table(ENAHO$Estabili, ENAHO$A16B), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
   rename("Estabilidad aboral" = Var1) %>% 
@@ -1181,6 +1189,7 @@ kable(tab_estabili_vs_titulo, caption = "Estabilidad laboral segun titulo obteni
            general_title = "Fuente: ")
 ```
 ```{r Tabla 13, echo=FALSE, warning=FALSE, message=FALSE}
+# Diverge a la derecha lo úlitmo que sale es "Técnico medio, perito o diplomado..."
 tab_satisf_vs_titulo <- as.data.frame(prop.table(table(ENAHO$InsLab, ENAHO$A16B), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
   rename("Satisfaccion laboral" = Var1) %>% 
@@ -1197,6 +1206,7 @@ kable(tab_satisf_vs_titulo, caption = "Satisfaccion laboral segun titulo obtenid
            general_title = "Fuente: ")
 ```
 ```{r Tabla 14, echo=FALSE, warning=FALSE, message=FALSE}
+# Diverge a la derecha lo úlitmo que sale es "Min"
 tab_dist_itpn_titulo <- ENAHO %>% 
   filter(A16B != "Ignorado", itpn != 0) %>% 
   group_by(A16B) %>%
@@ -1288,6 +1298,7 @@ kable(tab_evol_dom_2_idiom_QIPCN, caption = "Nivel de pobreza segun nivel de ins
            general_title = "Fuente: ")
 ```
 ```{r Tabla 18, echo=FALSE, warning=FALSE, message=FALSE}
+# Diverge a la derecha lo úlitmo que sale es "Q3"
 tab_dist_itpn_dom_2_idiom <- ENAHO %>% 
   filter(A22A != "Ignorado", itpn!=0) %>% 
   group_by(A22A) %>%
@@ -1668,6 +1679,80 @@ La tabla anterior presenta los códigos y nombres de las variables más represen
 De estas variables cabe destacar que de acuerdo a @ENAHO2023, Zona se refiere a aspectos demográficos como  lo son zona urbana o rural; educativos, como lo son la formación educativa formal la cual clasifica la especialidad o carrera que una persona ha estudiado y Título que se refiere al máximo nivel académico adquirido. Por su parte la Estabilidad en el empleo se refiere a la clasificación de la estabilidad laboral de los trabajadores en categorías que van desde empleo permanente hasta actividad ocasional; y la Insatisfacción laboral que se refiere a  los motivos de insatisfacción laboral, tales como baja remuneración, sobrecarga de horas, y desaprovechamiento de competencias, esta variable proporciona información sobre la calidad del empleo y las condiciones laborales.
 
 #### Métodos
+
+Para el presente estudio, se emplearon diversos métodos orientados al análisis y síntesis de datos, con un enfoque particular en técnicas de análisis exploratorio. Estas herramientas permitieron obtener una visión inicial de la estructura, distribución y relaciones de las variables, facilitando así la identificación de patrones y tendencias clave en el conjunto de datos. A lo largo de las tablas y gráficos presentados, se aplicaron métricas descriptivas como medidas de tendencia central, dispersión y posición, complementadas con visualizaciones que aportan una comprensión más detallada de los datos. Este enfoque no solo proporciona un resumen integral de la información, sino que también establece las bases para un análisis más profundo en fases posteriores del estudio. En la presente sección se emplearán las fórmulas y definiciones planteadas por @CA0203 en su sitio web, específicamente en el apartado dedicado al análisis exploratorio de datos. 
+
+::: {.definition #def:media_empirica}
+##### Definición 3.1 (Media empírica)
+
+Asumiendo que la serie de datos para una variable es \( x_1, x_2, \ldots, x_n \),
+
+$$
+\hat{\mu} = \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i
+$$
+:::
+
+Esta medida de tendencia central es la más común y estandarizada. Aunque existen diferentes tipos de medias, para la presente investigación se empleará la definición presentada anteriormente.
+
+::: {.definition #def:media_empirica}
+##### Definición 3.2 (Desviación Estándar)
+
+Asumiendo que la serie de datos para una variable es \( X_1, X_2, \ldots, X_n \), se define la desviación estandar como la raíz cuadrada de la varianza.
+
+$$
+s = \sqrt{\hat{s}^2}=\sqrt{\dfrac{1}{n-1}\sum_{i=1}^n(X_i - \hat{\mu})^2}
+$$
+En este caso se toma la varianza insesgada que se define como
+$$
+\hat{s}^2 = \dfrac{1}{n-1}\sum_{i=1}^n(X_i - \hat{\mu})^2
+$$
+:::
+La desviación estándar es una de las principales medidas de dispersión, que indica, en promedio, cuánto se alejan los datos de la media. Esta medida se ha empleado en diversos contextos a lo largo del estudio para analizar la variabilidad de los datos.
+::: {.definition #def:media_empirica}
+##### Definición 3.3 (Quintiles)
+
+Un quantil de valor $\alpha$ es el valor que tal que:
+
+$$
+\mathbb{P}[ X \leq q] = \alpha
+$$
+Sea \(0<p<1\) tal que 
+$$
+q(\alpha) = F^{-1}(p) = \inf x : F(x) \geq p 
+$$
+:::
+Esta defición corresponde a la versión general del quantil, en el presente trabajo se utilizan los quinitles 1,2 y 3 que se definen como
+$$
+\mathbb{P}[ X \leq Q_1] = 0.25 \\
+\mathbb{P}[ X \leq Q_2] = 0.5 \\
+\mathbb{P}[ X \leq Q_3] = 0.75
+$$
+En este caso \(Q_2\) corresponde a la mediana de los datos.
+
+De acuerdo a @camacho2006regresion se tiene la siguiente definición
+::: {.definition #def:regresion_lineal}
+##### Definición 3.2 (Regresión lineal simple)
+
+La regresión lineal simple es un modelo estadístico que describe la relación entre una variable dependiente \( Y \) y una variable independiente \( X \). Este modelo asume que la relación entre ambas variables puede expresarse mediante la ecuación:
+
+$$
+Y = \alpha + \beta X + \varepsilon
+$$
+
+donde \( \alpha \) representa el intercepto, \( \beta \) la pendiente del modelo, y \( \varepsilon \) el término de error o perturbación, que captura la variabilidad no explicada por \( X \). La puntuación predicha \( \hat{Y} \) para cada valor de \( X \) es:
+
+$$
+\hat{Y} = \alpha + \beta X
+$$
+
+El error en la predicción se define como la diferencia entre el valor observado \( Y \) y el valor predicho \( \hat{Y} \):
+
+$$
+\varepsilon = Y - \hat{Y}
+$$
+:::
+
+Este modelo se utiliza para estimar los parámetros \( \alpha \) y \( \beta \) en una muestra, permitiendo inferir sobre la población y realizar predicciones. Aunque en este trabajo no se realiza el cálculo exacto, el modelo ha sido útil en el apartado de gráficos para analizar la relación lineal entre dos variables.
 
 
 
