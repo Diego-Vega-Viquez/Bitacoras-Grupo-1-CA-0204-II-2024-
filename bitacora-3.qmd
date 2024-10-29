@@ -2089,6 +2089,8 @@ El gráfico 15 ilustra la relación entre los años de escolaridad y el ingreso 
 
 ## Parte de reflexión
 
+![UVE Heurística](UVE_Gowing_3raBitacora.png)
+
 {{< pagebreak >}}
 
 # Bibliografía
