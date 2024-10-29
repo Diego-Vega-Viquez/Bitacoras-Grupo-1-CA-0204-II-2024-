@@ -238,8 +238,36 @@ grafico5 <- ENAHO %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
-grafico5
 ```
+```{r Grafico 5.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+ENAHO %>% 
+  filter(A15B != "Ignorado" & itpn > 0) %>% 
+  ggplot(aes(x = itpn, y = fct_reorder(A15B, itpn, median), fill = A15B)) +
+  geom_density_ridges(alpha = 0.85, color = "white") +  # Ajuste en las curvas de densidad
+  geom_vline(xintercept = 129038, color = "red", linetype = "dotted", size = 0.8) +  # Línea de pobreza mejorada
+  annotate("text", y = 0.5, x = 180000, label = "Línea de pobreza", color = "red", 
+           size = 3, hjust = 0, vjust = -0.5, fontface = "italic") +  # Texto mejorado
+  labs(
+    title = "Gráfico 5.\nDistribución del ingreso total neto por persona según universidad pública a la que se asistió",
+    subtitle = "Ingreso expresado en colones costarricenses",
+    x = "Ingreso Personal Neto (log10)",
+    y = "Universidad pública a la que se asistió",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
+  ) +
+  scale_x_log10(labels = scales::comma) +  # Escala logarítmica
+  scale_fill_brewer(palette = "Set1") +  # Paleta de colores
+  theme_minimal(base_size = 14) +  # Tema minimalista
+  theme(
+    legend.position = "none",  # Sin leyenda
+    axis.text.y = element_text(size = 10, hjust = 1, color = "gray20", face = "bold"),  # Texto eje Y ajustado
+    axis.text.x = element_text(size = 10, color = "gray20"),  # Texto eje X ajustado
+    plot.caption = element_text(size = 6, hjust = 0),  # Fuente de datos
+    plot.title = element_text(size = 14, face = "bold", margin = margin(b = 10)),  # Ajuste del título
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+```
+
 <!-- Gráficos relacionados con nivel de instrucción -->
 ```{r Grafico 6, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico6 <- as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst, 
@@ -275,8 +303,43 @@ grafico6 <- as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst,
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
-grafico6
 ```
+```{r Grafico 6.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst, 
+                                           "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
+                                           "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
+                                           "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", "Primaria incompleta")))) %>% 
+  rename(Nivel_de_pobreza = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  rename(NivInst = Var2) %>% 
+  ggplot(aes(x = NivInst, y = Freq, fill = Nivel_de_pobreza)) + 
+  geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Ajustes visuales
+  labs(
+    title = "Gráfico 6.\nNivel de pobreza según nivel de instrucción",
+    subtitle = "Relación entre nivel de instrucción y nivel de pobreza (Costa Rica, 2023)",
+    x = "Nivel de instrucción",
+    y = "Proporción acumulada",
+    fill = "Nivel de pobreza",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
+  ) +
+  scale_fill_viridis_d(option = "G") +  # Paleta de colores viridis
+  coord_flip() +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "right",  # Posición de la leyenda
+    legend.title = element_text(size = 10, color = "gray20", face = "bold"),
+    legend.text = element_text(size = 8),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 12, hjust = 0, margin = margin(b = 20)),
+    axis.title.y = element_text(size = 12, margin = margin(t = 10)),
+    axis.text.y = element_text(size = 10, color = "gray20", face = "bold"),
+    axis.text.x = element_text(size = 10, color = "gray20"),
+    plot.caption = element_text(size = 8, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+```
+
 ```{r Grafico 7, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico7 <- ENAHO %>% 
   filter(NivInst != "Ignorado" & itpn > 0) %>%
@@ -312,8 +375,45 @@ grafico7 <- ENAHO %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
-grafico7
 ```
+
+```{r Grafico 7.2, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+ENAHO %>% 
+  filter(NivInst != "Ignorado" & itpn > 0) %>%
+  mutate(NivInst = fct_collapse(NivInst,
+                                "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
+                                "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
+                                "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", "Primaria incompleta"))) %>%
+  ggplot(aes(x = itpn, y = fct_reorder(NivInst, itpn, median), fill = NivInst)) +
+  # Mejorar la visualización con densidades y lineas más detalladas
+  geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
+  # Etiquetas y títulos mejorados
+  labs(
+    title = "Grafico 7.\nDistribución del ingreso total neto por persona según nivel\nde instrucción",
+    subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
+    x = "Ingreso Personal Neto (log10)",
+    y = "Nivel de instrucción",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
+  ) +
+  # Ajuste de escala con formato de coma en el eje x
+  scale_x_log10(labels = scales::comma) +
+  # Mejora de la paleta de colores con gradientes suaves
+  scale_fill_viridis_d(option = "C") +
+  # Temas mejorados con mayor atención a los detalles visuales
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",  # Ocultar leyenda
+    plot.title = element_text(size = 18, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 14, hjust = 0, margin = margin(b = 20)),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 10, color = "gray20"),
+    axis.text.y = element_text(size = 10, color = "gray20", face = "bold"),
+    plot.caption = element_text(size = 8, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+```
+
 ```{r Grafico 8, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico8 <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
                                             "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
@@ -348,7 +448,41 @@ grafico8 <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst,
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
-grafico8
+```
+```{r Grafico 8.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
+                                            "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
+                                            "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
+                                            "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", "Primaria incompleta")), 
+                               ENAHO$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado") %>% 
+  mutate(Var2 = str_extract(Var2, "\\d")) %>% 
+  mutate(Var2 = parse_number(Var2)) %>% 
+  ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
+  geom_area(alpha = 0.7, color = "white") +  # Agregar color de borde y ajustar opacidad
+  labs(
+    title = "Gráfico 8.\nDistribución del nivel de instrucción por quintil de ingreso per cápita Costa Rica, 2023",
+    subtitle = "Relación entre el nivel de instrucción y nivel de ingreso per cápita según quintiles de ingresos",
+    x = "Quintil de ingreso per cápita",
+    y = "Proporción acumulada",
+    fill = "Nivel de instrucción",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
+  ) +
+  scale_fill_viridis_d(option = "G") +  # Paleta de colores viridis
+  theme_minimal(base_size = 14) +  # Tema minimalista
+  theme(
+    legend.position = "right",  # Mover la leyenda a la derecha
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 8),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 12, hjust = 0, margin = margin(b = 20)),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 10, color = "gray20", face = "bold"),
+    axis.text.y = element_text(size = 10, color = "gray20"),
+    plot.caption = element_text(size = 8, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
 ```
 <!-- Gráficos relacionados con escolaridad -->
 ```{r Grafico 9, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
@@ -386,7 +520,42 @@ grafico9 <- ENAHO %>%
     legend.text = element_text(size = 9),
     plot.caption = element_text(size = 7, hjust = 0)
   )
-grafico9
+```
+```{r Grafico 9.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+ENAHO %>% 
+  ggplot(aes(x = Escolari, y = itpn, color = ZONA)) +
+  # Cambiar a puntos con transparencia para evitar solapamientos y tamaño adecuado
+  geom_point(alpha = 0.6, size = 2) +
+  # Línea de regresión más destacada, con mayor grosor
+  geom_smooth(method = "lm", se = FALSE, colour = "black", size = 1) +
+  # Facetas según la zona
+  facet_wrap(~ZONA) +
+  # Etiquetas y títulos mejorados
+  labs(title = "Gráfico 9. \nRelación entre años de escolaridad e ingreso personal neto",
+       subtitle = "Distribución del ingreso, expresado en colones costarricenses, según zona urbana y rural (Costa Rica, 2023)",
+       x = "Escolaridad (Años)",
+       y = "Ingreso Personal Neto (log10)",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
+  # Escala logarítmica en el eje Y con etiquetas más claras y separadores de miles
+  scale_y_log10(labels = label_number(scale = 1, big.mark = ",")) +
+  # Colores diferenciados para las zonas
+  scale_color_brewer(palette = "Set1", name = "Zona") +
+  # Aplicar un tema profesional de cowplot con algunos ajustes personalizados
+  cowplot::theme_cowplot() +
+  theme(
+    # Ajustar la posición y el tamaño del título y subtítulo
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    # Redimensionar y ajustar las etiquetas de los ejes
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    # Ajustes en la leyenda y el pie de página
+    legend.position = "none",
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 9),
+    plot.caption = element_text(size = 7, hjust = 0)
+  )
 ```
 ```{r Grafico 10, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico10 <- ENAHO %>% 
@@ -422,7 +591,41 @@ grafico10 <- ENAHO %>%
     legend.text = element_text(size = 9),
     plot.caption = element_text(size = 7, hjust = 0)
   )
-grafico10
+```
+```{r Grafico 10.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+ENAHO %>% 
+  ggplot(aes(x = Escolari, y = IPM_Intensidad, color = ZONA)) +
+  # Cambiar a puntos con transparencia para evitar solapamientos y tamaño adecuado
+  geom_point(alpha = 0.6, size = 2) +
+  # Línea de regresión más destacada, con mayor grosor
+  geom_smooth(method = "lm", se = FALSE, colour = "black", size = 1) +
+  # Facetas según la zona
+  facet_wrap(~ZONA) +
+  # Etiquetas y títulos mejorados
+  labs(title = "Gráfico 10. \nRelación entre años de escolaridad y la intensidad de la pobreza",
+       x = "Escolaridad (Años)",
+       y = "Intensidad de la pobreza",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
+  # Escala logarítmica en el eje Y con etiquetas más claras y separadores de miles
+  scale_y_log10(labels = label_number(scale = 1, big.mark = ",")) +
+  # Colores diferenciados para las zonas
+  scale_color_brewer(palette = "Set1", name = "Zona") +
+  # Aplicar un tema profesional de cowplot con algunos ajustes personalizados
+  cowplot::theme_cowplot() +
+  theme(
+    # Ajustar la posición y el tamaño del título y subtítulo
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    # Redimensionar y ajustar las etiquetas de los ejes
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    # Ajustes en la leyenda y el pie de página
+    legend.position = "none",
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 9),
+    plot.caption = element_text(size = 7, hjust = 0)
+  )
 ```
 ```{r Grafico 11, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico11 <- ENAHO %>% filter(!is.na(Q_IPCN)) %>% 
@@ -455,7 +658,38 @@ grafico11 <- ENAHO %>% filter(!is.na(Q_IPCN)) %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
-grafico11
+```
+```{r Grafico 11.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+ENAHO %>% filter(!is.na(Q_IPCN)) %>% 
+  ggplot(aes(x = Escolari, 
+             y = itpn, 
+             color = Q_IPCN)) +
+  geom_jitter(alpha = 0.6, size = 1.5, width = 0.2) +  # Ajustar tamaño y opacidad
+  geom_smooth(method = "lm", se = FALSE, colour = "black") +
+  facet_wrap(~Q_IPCN) +
+  labs(
+    title = "Gráfico 11.\nRelación entre los años de escolaridad e ingreso total por persona neto",
+    x = "Años de escolaridad",
+    y = "Ingreso Personal Neto (₡, log10)",
+    colour = "Quintiles de ingreso per cápita \ndel hogar neto \npor región de planificación",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
+  ) +
+  scale_y_log10(labels = scales::label_number()) +
+  scale_colour_brewer(palette = "Set1") +  # Paleta de colores para los quintiles
+  theme_minimal(base_size = 14) +  # Tema minimalista
+  theme(
+    legend.position = "right",  # Mover la leyenda a la derecha
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 8),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 12, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 10, color = "gray20"),
+    axis.text.y = element_text(size = 10, color = "gray20"),
+    plot.caption = element_text(size = 8, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
 ```
 <!-- Gráficos relacionados con título obtenido -->
 ```{r Grafico 12, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
@@ -487,7 +721,36 @@ grafico12 <- as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
-grafico12
+```
+```{r Grafico 12.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>% 
+  rename(Nivel_de_pobreza = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  rename(titulo = Var2) %>% 
+  ggplot(aes(x = titulo, y = Freq, fill = Nivel_de_pobreza)) + 
+  geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Transparencia y bordes
+  labs(title = "Gráfico 12.\nDistribución de pobreza según nivel académico",
+       subtitle = "Porcentaje de la población en pobreza , clasificado por nivel de estudios alcanzado (Costa Rica, 2023)",
+       x = "Título",
+       y = NULL,
+       fill = "Nivel de pobreza",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
+  scale_fill_brewer(palette = "Set1") +
+  coord_flip() +
+  theme_minimal(base_size = 14) +  # Estilo minimalista
+  theme(
+    legend.position = "right",  # Mover la leyenda a la derecha
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 8),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 12, hjust = 0, margin = margin(b = 20)),
+    axis.title.y = element_text(size = 12, margin = margin(t = 10)),
+    axis.text.y = element_text(size = 10, color = "gray20", face = "bold"),
+    axis.text.x = element_text(size = 10, color = "gray20"),
+    plot.caption = element_text(size = 8, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
 ```
 ```{r Grafico 13, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico13 <- ENAHO %>% 
@@ -520,7 +783,38 @@ grafico13 <- ENAHO %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
-grafico13
+```
+```{r Grafico 13.2, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+ENAHO %>% 
+  filter(A16B != "Ignorado" & itpn > 0) %>%
+  ggplot(aes(x = itpn, y = fct_reorder(A16B, itpn, median), fill = A16B)) +
+  # Mejorar la visualización con densidades y lineas más detalladas
+  geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
+  # Etiquetas y títulos mejorados
+  labs(
+    title = "Grafico 13.\nDistribución del ingreso total neto por persona según\ntítulo obtenido",
+    subtitle = "Expresado en colones costarricenses (Costa Rica, 2023)",
+    x = "Ingreso Personal Neto (log10)",
+    y = "Título obtenido",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
+  ) +
+  # Ajuste de escala con formato de coma en el eje x
+  scale_x_log10(labels = scales::comma) +
+  # Mejora de la paleta de colores con gradientes suaves
+  scale_fill_viridis_d(option = "H") +
+  # Temas mejorados con mayor atención a los detalles visuales
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",  # Ocultar leyenda
+    plot.title = element_text(size = 18, face = "bold", margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 10, color = "gray20"),
+    axis.text.y = element_text(size = 10, color = "gray20", face = "bold"),
+    plot.caption = element_text(size = 8, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
 ```
 ```{r Grafico 14, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico14 <- as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 2)) %>% 
@@ -549,7 +843,34 @@ grafico14 <- as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
-grafico14
+```
+```{r Grafico 14.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado") %>% 
+  mutate(Var2 = str_extract(Var2, "\\d")) %>% 
+  mutate(Var2 = parse_number(Var2)) %>% 
+  ggplot(aes(x = Var2, y = Freq, fill = fct_reorder(Var1, Freq, median))) +
+  geom_area(alpha = 0.8) +  # Transparencia para el área
+  labs(title = "Gráfico 14. \nDistribución de títulos obtenidos por quintil de ingreso per cápita Costa Rica, 2023",
+       x = "Quintil de ingreso per cápita",
+       y = NULL,
+       fill = "Título",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
+  # Mejora de la paleta de colores con gradientes suaves
+  scale_fill_viridis_d(option = "H") +  
+  theme_minimal(base_size = 14) +  # Estilo minimalista
+  theme(
+    legend.position = "right",  # Mover la leyenda a la derecha
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 8),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 10, color = "gray20"),
+    axis.text.y = element_text(size = 10, color = "gray20"),
+    plot.caption = element_text(size = 8, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
 ```
 <!-- Gráficos relacionados con dominio de segundo idioma -->
 ```{r Grafico 15, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
@@ -581,7 +902,36 @@ grafico15 <- as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
-grafico15
+```
+```{r Grafico 15.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
+  geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Gráfico de área
+  labs(
+    title = "Gráfico 15.\nNivel de pobreza según dominio de un segundo idioma",
+    subtitle = "Relación entre el dominio de un segundo idioma y nivel de pobreza (Costa Rica, 2023)",
+    x = "Dominio de un segundo idioma",
+    y = "Proporción acumulada",
+    fill = "Nivel de pobreza",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
+  ) +
+  scale_fill_viridis_d(option = "D") +  # Paleta de colores viridis
+  coord_flip() +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "right",  # Mover la leyenda a la derecha
+    legend.title = element_text(size = 10, face = "bold"),
+    legend.text = element_text(size = 8),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 12, hjust = 0, margin = margin(b = 20)),
+    axis.title.y = element_text(size = 12, margin = margin(t = 10)),
+    axis.text.y = element_text(size = 10, color = "gray20", face = "bold"),
+    axis.text.x = element_text(size = 10, color = "gray20"),
+    plot.caption = element_text(size = 8, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
 ```
 ```{r Grafico 16, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico16 <- as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>% 
@@ -610,7 +960,34 @@ grafico16 <- as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
-grafico16
+```
+```{r Grafico 16.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado") %>% 
+  mutate(Var2 = str_extract(Var2, "\\d")) %>% 
+  mutate(Var2 = parse_number(Var2)) %>% 
+  ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
+  geom_area(alpha = 0.8) +  # Añade transparencia para el área
+  labs(title = "Gráfico 16. \nRelación entre el dominio de un segundo idioma y el ingreso per cápita",
+       subtitle = "Porcentaje de personas que dominan un segundo idioma en cada quintil de ingreso per cápita (Costa Rica, 2023)",
+       x = "Quintil de ingreso per cápita",
+       y = NULL,
+       fill = "Dominio de un segundo idioma",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
+  scale_fill_brewer(palette = "Set1") +  # Cambia a una paleta más uniforme
+  theme_minimal(base_size = 14) +  # Estilo minimalista
+  theme(
+    legend.position = "right",  # Mover la leyenda a la derecha
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 8),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 10, color = "gray20"),
+    axis.text.y = element_text(size = 10, color = "gray20"),
+    plot.caption = element_text(size = 8, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
 ```
 ```{r Grafico 17, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico17 <- ENAHO %>% 
@@ -643,7 +1020,38 @@ grafico17 <- ENAHO %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
-grafico17
+```
+```{r Grafico 17.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+ENAHO %>% 
+  filter(A22A != "Ignorado" & itpn > 0) %>%
+  ggplot(aes(x = itpn, y = fct_reorder(A22A, itpn, median), fill = A22A)) +
+  # Mejorar la visualización con densidades y lineas más detalladas
+  geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
+  # Etiquetas y títulos mejorados
+  labs(
+    title = "Grafico 17.\nDistribución del ingreso total neto por persona según dominio de un segundo idioma",
+    subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
+    x = "Ingreso Personal Neto (log10)",
+    y = "Dominio de un segundo idioma",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
+  ) +
+  # Ajuste de escala con formato de coma en el eje x
+  scale_x_log10(labels = scales::comma) +
+  # Mejora de la paleta de colores con gradientes suaves
+  scale_fill_viridis_d(option = "C") +
+  # Temas mejorados con mayor atención a los detalles visuales
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",  # Ocultar leyenda
+    plot.title = element_text(size = 18, face = "bold", margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+    axis.title.x = element_text(size = 12, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 10, color = "gray20"),
+    axis.text.y = element_text(size = 10, color = "gray20", face = "bold"),
+    plot.caption = element_text(size = 8, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
 ```
 \newpage
 A continuación, se presentará una serie de tablas que proporcionan información específica utilizada en los gráficos mostrados anteriormente. Debido a consideraciones estéticas, no fue posible lograr un ajuste óptimo de las tablas en el PDF; por ello, se hará un uso predominante de los gráficos elaborados previamente. Sin embargo, estas tablas han sido fundamentales para el análisis, ya que facilitaron la aplicación de los métodos estadísticos que respaldan toda la investigación.
