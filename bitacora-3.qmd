@@ -1386,15 +1386,15 @@ Por lo tanto, aunque la educación y la acumulación de capital humano son funda
 ### Metodología
 #### Descripción de los datos
 
-*Fuente de la información:* La fuente de la cual fueron recolectados los datos corresponde al Instituto Nacional de Estadística y Censos (INEC), más especídficamente los datos corresponden a los recolectados en la @ENAHO2023.
+**Fuente de la información:** La fuente de la cual fueron recolectados los datos corresponde al Instituto Nacional de Estadística y Censos (INEC), más especídficamente los datos corresponden a los recolectados en la @ENAHO2023.
 
 *Población de estudio:* De acuerdo a @ENAHO2023, la poblaciónde estudio corresponde al conjunto de viviendas individuales ocupadas y sus ocupantes residentes habituales, tanto del área urbana como del área rural de Costa Rica. Es importantes destacar que se excluyó del estudio a la población residente en las viviendas colectivas (hoteles, hospitales, asilos, cárceles, conventos, residencias colectivas para estudiantes y trabajadores).
 
-*Contexto temporal y espacial de los datos:* Los datos utilizados en este análisis fueron recolectados durante el año 2023, como parte de la Encuesta Nacional de Hogares realizada en julio. Este periodo permite observar la situación económica actual de los hogares costarricenses, especialmente relevante en el contexto pospandemia. A nivel espacial, los datos son representativos a nivel nacional e incluyen un desglose por regiones y áreas urbanas y rurales. Esta distribución geográfica es crucial para identificar disparidades en la distribución del ingreso y el acceso a la educación entre diferentes zonas del país.
+**Contexto temporal y espacial de los datos:** Los datos utilizados en este análisis fueron recolectados durante el año 2023, como parte de la Encuesta Nacional de Hogares realizada en julio. Este periodo permite observar la situación económica actual de los hogares costarricenses, especialmente relevante en el contexto pospandemia. A nivel espacial, los datos son representativos a nivel nacional e incluyen un desglose por regiones y áreas urbanas y rurales. Esta distribución geográfica es crucial para identificar disparidades en la distribución del ingreso y el acceso a la educación entre diferentes zonas del país.
 
-*Unidad estadística o individuos:* La unidad estadística de este estudio es el individuo (persona) dentro de un hogar encuestado en una vivienda ubicada en Costa Rica en el año 2023. Cada individuo representa una persona en la muestra, de la cual se recaban datos sobre variables socioeconómicas, demográficas, educativas, entre otras.
+**Unidad estadística o individuos:** La unidad estadística de este estudio es el individuo (persona) dentro de un hogar encuestado en una vivienda ubicada en Costa Rica en el año 2023. Cada individuo representa una persona en la muestra, de la cual se recaban datos sobre variables socioeconómicas, demográficas, educativas, entre otras.
 
-*Descripción de las variables:*
+**Descripción de las variables:**
 ```{r Agrega label, echo=FALSE, message=FALSE, warning=FALSE}
 # install.packages("Hmisc")
 library(Hmisc)
@@ -1425,17 +1425,19 @@ Es importante mencionar que algunas variables fueron creadas por la casa encuest
 
 De las variables mencionadas en la tabla cabe destacar que de acuerdo a @ENAHO2023, Zona se refiere a aspectos demográficos como  son la zona urbana o rural; educativos, como lo son la formación educativa formal la cual clasifica la especialidad o carrera que una persona ha estudiado y Título que se refiere al máximo nivel académico adquirido.Por su parte la variable del Valor de la Línea de Pobreza corresponde a un indicador que representa el monto mínimo requerido para que una persona pueda satisfacer las necesidades básicas “alimentarias y no alimentarias”, esta tiene solo 2 valores, uno para las zonas urbanas (₡128.406) y otra para las personas habitantes de zonas rurales (₡99.140). Por la misma línea se encuentra la variable correspondiente a nivel de pobreza la cual clasifica a las personas encuestadas en tres categorías que como @ENAHO2023 lo indica son:
 
-* Pobreza extrema: Se clasifica aquí aquellos hogares con un ingreso per cápita igual o inferior al costo per cápita de la canasta básica alimentaria (cba), i.e, si
+ * Pobreza extrema: Se clasifica aquí aquellos hogares con un ingreso per cápita igual o inferior al costo per cápita de la canasta básica alimentaria (cba), i.e, si
 
 $$
 0\leq ipcn \leq CBA
 $$
-* Pobreza no extrema:Se clasifican aquellos hogares que tienen un ingreso per cápita igual o inferior a la línea de pobreza pero superior al costo per cápita de la canasta básica alimentaria (cba), i.e, si
+
+ * Pobreza no extrema: Se clasifican aquellos hogares que tienen un ingreso per cápita igual o inferior a la línea de pobreza pero superior al costo per cápita de la canasta básica alimentaria (cba), i.e, si
 
 $$
 CBA < ipcn \leq lp
 $$
-* No pobre:Se clasifican aquellos hogares con un ingreso per cápita que les permite cubrir sus necesidades básicas alimentarias y no alimentarias. Es decir, su ingreso per cápita es superior al valor de la línea de pobreza, i.e, si
+
+ * No pobre: Se clasifican aquellos hogares con un ingreso per cápita que les permite cubrir sus necesidades básicas alimentarias y no alimentarias. Es decir, su ingreso per cápita es superior al valor de la línea de pobreza, i.e, si
 
 $$
 ipcn > lp

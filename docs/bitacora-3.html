@@ -2113,11 +2113,11 @@ Hallazgo 17 (Gráfico 10)
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="metodología"><span class="header-section-number">3.1.2</span> Metodología</h3>
 <section id="descripción-de-los-datos" class="level4" data-number="3.1.2.1">
 <h4 data-number="3.1.2.1" class="anchored" data-anchor-id="descripción-de-los-datos"><span class="header-section-number">3.1.2.1</span> Descripción de los datos</h4>
-<p><em>Fuente de la información:</em> La fuente de la cual fueron recolectados los datos corresponde al Instituto Nacional de Estadística y Censos (INEC), más especídficamente los datos corresponden a los recolectados en la <span class="citation" data-cites="ENAHO2023"><span>«Encuesta <span>Nacional</span> de <span>Hogares</span>: <span>Resultados</span> <span>Generales</span> [recurso electrónico]»</span> (<a href="#ref-ENAHO2023" role="doc-biblioref">2023</a>)</span>.</p>
+<p><strong>Fuente de la información:</strong> La fuente de la cual fueron recolectados los datos corresponde al Instituto Nacional de Estadística y Censos (INEC), más especídficamente los datos corresponden a los recolectados en la <span class="citation" data-cites="ENAHO2023"><span>«Encuesta <span>Nacional</span> de <span>Hogares</span>: <span>Resultados</span> <span>Generales</span> [recurso electrónico]»</span> (<a href="#ref-ENAHO2023" role="doc-biblioref">2023</a>)</span>.</p>
 <p><em>Población de estudio:</em> De acuerdo a <span class="citation" data-cites="ENAHO2023"><span>«Encuesta <span>Nacional</span> de <span>Hogares</span>: <span>Resultados</span> <span>Generales</span> [recurso electrónico]»</span> (<a href="#ref-ENAHO2023" role="doc-biblioref">2023</a>)</span>, la poblaciónde estudio corresponde al conjunto de viviendas individuales ocupadas y sus ocupantes residentes habituales, tanto del área urbana como del área rural de Costa Rica. Es importantes destacar que se excluyó del estudio a la población residente en las viviendas colectivas (hoteles, hospitales, asilos, cárceles, conventos, residencias colectivas para estudiantes y trabajadores).</p>
-<p><em>Contexto temporal y espacial de los datos:</em> Los datos utilizados en este análisis fueron recolectados durante el año 2023, como parte de la Encuesta Nacional de Hogares realizada en julio. Este periodo permite observar la situación económica actual de los hogares costarricenses, especialmente relevante en el contexto pospandemia. A nivel espacial, los datos son representativos a nivel nacional e incluyen un desglose por regiones y áreas urbanas y rurales. Esta distribución geográfica es crucial para identificar disparidades en la distribución del ingreso y el acceso a la educación entre diferentes zonas del país.</p>
-<p><em>Unidad estadística o individuos:</em> La unidad estadística de este estudio es el individuo (persona) dentro de un hogar encuestado en una vivienda ubicada en Costa Rica en el año 2023. Cada individuo representa una persona en la muestra, de la cual se recaban datos sobre variables socioeconómicas, demográficas, educativas, entre otras.</p>
-<p><em>Descripción de las variables:</em></p>
+<p><strong>Contexto temporal y espacial de los datos:</strong> Los datos utilizados en este análisis fueron recolectados durante el año 2023, como parte de la Encuesta Nacional de Hogares realizada en julio. Este periodo permite observar la situación económica actual de los hogares costarricenses, especialmente relevante en el contexto pospandemia. A nivel espacial, los datos son representativos a nivel nacional e incluyen un desglose por regiones y áreas urbanas y rurales. Esta distribución geográfica es crucial para identificar disparidades en la distribución del ingreso y el acceso a la educación entre diferentes zonas del país.</p>
+<p><strong>Unidad estadística o individuos:</strong> La unidad estadística de este estudio es el individuo (persona) dentro de un hogar encuestado en una vivienda ubicada en Costa Rica en el año 2023. Cada individuo representa una persona en la muestra, de la cual se recaban datos sobre variables socioeconómicas, demográficas, educativas, entre otras.</p>
+<p><strong>Descripción de las variables:</strong></p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="table-responsive">
@@ -2211,10 +2211,16 @@ Hallazgo 17 (Gráfico 10)
 </ul>
 <p><span class="math display">\[
 0\leq ipcn \leq CBA
-\]</span> * Pobreza no extrema:Se clasifican aquellos hogares que tienen un ingreso per cápita igual o inferior a la línea de pobreza pero superior al costo per cápita de la canasta básica alimentaria (cba), i.e, si</p>
+\]</span></p>
+<ul>
+<li>Pobreza no extrema: Se clasifican aquellos hogares que tienen un ingreso per cápita igual o inferior a la línea de pobreza pero superior al costo per cápita de la canasta básica alimentaria (cba), i.e, si</li>
+</ul>
 <p><span class="math display">\[
 CBA &lt; ipcn \leq lp
-\]</span> * No pobre:Se clasifican aquellos hogares con un ingreso per cápita que les permite cubrir sus necesidades básicas alimentarias y no alimentarias. Es decir, su ingreso per cápita es superior al valor de la línea de pobreza, i.e, si</p>
+\]</span></p>
+<ul>
+<li>No pobre: Se clasifican aquellos hogares con un ingreso per cápita que les permite cubrir sus necesidades básicas alimentarias y no alimentarias. Es decir, su ingreso per cápita es superior al valor de la línea de pobreza, i.e, si</li>
+</ul>
 <p><span class="math display">\[
 ipcn &gt; lp
 \]</span> En el mismo contexto de las variables que miden el nivel de pobreza en la muestra se encuentran las variables de Pobreza multidimensional y la Intensidad de la pobreza multidimensional, la primera indica solo si la unidad estadística se encuantra o no en pobreza multidimensional y la segunda, según <span class="citation" data-cites="ENAHO2023"><span>«Encuesta <span>Nacional</span> de <span>Hogares</span>: <span>Resultados</span> <span>Generales</span> [recurso electrónico]»</span> (<a href="#ref-ENAHO2023" role="doc-biblioref">2023</a>)</span>, aplica para las unidades estadísticas pobres según el criterio de medición del IPM, el valor de esta variable corresponde a las privaciones ponderadas por el peso de cada indicador, el IPM_Intensidad que obtiene cada hogar, oscila entre cero (ninguna privación) y uno (todas las privaciones).</p>
