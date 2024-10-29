@@ -30,6 +30,7 @@ library(see)
 library(GGally)
 library(kableExtra)
 library(purrr)
+library(gridExtra)
 ```
 
 ```{r Limpieza Datos}
@@ -95,14 +96,14 @@ grafico1 <- as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>%
 ```
 ```{r Grafico 2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico2 <- ENAHO %>% 
-  filter(A15A != "Ignorado" & itpn >= 0) %>% 
+  filter(A15A != "Ignorado" & itpn > 0) %>% 
   ggplot(aes(x = itpn, y = fct_reorder(A15A, itpn, median), fill = A15A)) +
-  geom_boxplot(outlier.size = 1.5, outlier.shape = 21, outlier.fill = "white", alpha = 0.7) +  # Boxplot con opacidad
-  geom_vline(xintercept = 129038, color = "red", linetype = "dotted", size = 0.8) +  # Línea de pobreza
-  annotate("text", y = 2.5, x = 15000, label = "Línea de pobreza", color = "red", 
+  geom_density_ridges(alpha = 0.8, color = "white", size = 0.3) +  # Ajuste en las curvas de densidad
+  geom_vline(xintercept = 129038, color = "red", linetype = "dotted", size = 0.8) +  # Línea de pobreza mejorada
+  annotate("text", y = 0.5, x = 180000, label = "Línea de pobreza", color = "red", 
            size = 3, hjust = 0, vjust = -0.5, fontface = "italic") +  # Texto mejorado
   labs(
-    title = "Gráfico 2.\nDistribución del ingreso total neto por persona según tipo de centro educativo al que se asistió",
+    title = "Gráfico 2.\nDistribución del ingreso total neto por persona según tipo de centro educativo al que\nse asistió",
     subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
     x = "Ingreso Personal Neto (log10)",
     y = "Tipo de centro educativo",
@@ -110,17 +111,17 @@ grafico2 <- ENAHO %>%
   ) +
   scale_x_log10(labels = scales::comma) +
   scale_fill_viridis_d(option = "C") +  # Paleta de colores viridis
-  theme_minimal(base_size = 14) +  # Tema minimalista para variar
+  theme_minimal(base_size = 14) +  # Tema minimalista
   theme(
     legend.position = "none",  # Sin leyenda
     axis.text.y = element_text(size = 10, color = "gray20", face = "bold"),
     axis.text.x = element_text(size = 10, color = "gray20"),  # Ajuste de texto en eje X
     plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
-    plot.title.position = "plot",
     plot.caption = element_text(size = 8, hjust = 0),
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico2
 ```
 ```{r Grafico 3, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico3 <- as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2)) %>% 
@@ -272,7 +273,7 @@ grafico7 <- ENAHO %>%
   geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
   # Etiquetas y títulos mejorados
   labs(
-    title = "Grafico 7.\nDistribución del ingreso total neto por persona según nivel de instrucción",
+    title = "Grafico 7.\nDistribución del ingreso total neto por persona según nivel\nde instrucción",
     subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
     x = "Ingreso Personal Neto (log10)",
     y = "Nivel de instrucción",
@@ -474,7 +475,7 @@ grafico13 <- ENAHO %>%
   geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
   # Etiquetas y títulos mejorados
   labs(
-    title = "Grafico 13.\nDistribución del ingreso total neto por persona según título obtenido",
+    title = "Grafico 13.\nDistribución del ingreso total neto por persona según\ntítulo obtenido",
     subtitle = "Expresado en colones costarricenses (Costa Rica, 2023)",
     x = "Ingreso Personal Neto (log10)",
     y = "Título obtenido",
@@ -1412,47 +1413,116 @@ Este modelo se utiliza para estimar los parámetros \( \alpha \) y \( \beta \) e
 
 Tras analizar la distribución de la población en condición de pobreza y no pobreza a través de diferentes categorías, se puede hacer la afirmación preliminar de que la educación es un determinante clave de la condición socioeconómica de las personas, ya que influye de manera directa en las probabilidades de que un individuo se encuentre en situación de pobreza.
 
-En este sentido, el análisis de la tabla 6 revela una relación inversa clara entre la escolaridad y la intensidad de pobreza tanto en zonas urbanas como rurales. En las áreas urbanas, los individuos con niveles educativos más bajos muestran medias de intensidad de pobreza que superan el 27%, mientras que aquellos con niveles más altos de escolaridad experimentan una reducción notable en esta medida. Esto sugiere que un mayor nivel educativo contribuye a una mejor situación económica y refleja un impacto positivo en la disminución de la pobreza. Sin embargo, en el contexto rural, aunque se observa una tendencia similar, las medias de intensidad de pobreza son más elevadas en todos los niveles de escolaridad. Este contraste podría indicar que los beneficios de la educación son menos efectivos en estas áreas en comparación con las urbanas, subrayando la necesidad de políticas que no solo fomenten la educación, sino que también aborden las condiciones socioeconómicas específicas que afectan a estas comunidades.
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico10.png")
+```
 
-Este patrón de relación inversa entre educación y pobreza también se observa al examinar la distribución de la pobreza según el nivel de instrucción, donde destaca cómo a medida que el nivel educativo aumenta, la proporción de personas en situación de pobreza disminuye. Entre aquellos con nulo o bajo nivel de instrucción, el 13.64% se encuentra en pobreza extrema, y el 23.75% en pobreza no extrema. En contraste, en los grupos con educación superior de posgrado, solo el 0.23% está en pobreza extrema y ningún individuo se clasifica en pobreza no extrema. Este hallazgo resalta aún más la importancia de la educación como un factor crítico para salir de la pobreza. Por ejemplo, quienes completan la educación secundaria muestran una reducción considerable en los niveles de pobreza, con solo el 5.71% en pobreza extrema y un 12.44% en pobreza no extrema.
+
+En este sentido, el análisis del gráfico 10 revela una relación inversa clara entre la escolaridad y la intensidad de pobreza tanto en zonas urbanas como rurales. En las áreas urbanas, los individuos con niveles educativos más bajos muestran medias de intensidad de pobreza que superan el 27%, mientras que aquellos con niveles más altos de escolaridad experimentan una reducción notable en esta medida. Esto sugiere que un mayor nivel educativo contribuye a una mejor situación económica y refleja un impacto positivo en la disminución de la pobreza. Sin embargo, en el contexto rural, aunque se observa una tendencia similar, las medias de intensidad de pobreza son más elevadas en todos los niveles de escolaridad. Este contraste podría indicar que los beneficios de la educación son menos efectivos en estas áreas en comparación con las urbanas, subrayando la necesidad de políticas que no solo fomenten la educación, sino que también aborden las condiciones socioeconómicas específicas que afectan a estas comunidades.
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico6.png")
+```
+
+Este patrón de relación inversa entre educación y pobreza también se observa al examinar la distribución de la pobreza según el nivel de instrucción (gráfico 6), donde destaca cómo a medida que el nivel educativo aumenta, la proporción de personas en situación de pobreza disminuye. Entre aquellos con nulo o bajo nivel de instrucción, el 13.64% se encuentra en pobreza extrema, y el 23.75% en pobreza no extrema. En contraste, en los grupos con educación superior de posgrado, solo el 0.23% está en pobreza extrema y ningún individuo se clasifica en pobreza no extrema. Este hallazgo resalta aún más la importancia de la educación como un factor crítico para salir de la pobreza. Por ejemplo, quienes completan la educación secundaria muestran una reducción considerable en los niveles de pobreza, con solo el 5.71% en pobreza extrema y un 12.44% en pobreza no extrema.
 
 Este análisis es concordante con lo que han encontrado diversos autores. Por un lado, @becker afirma que una población más educada y saludable acelera el desarrollo económico de un país, destacando a la educación primaria y secundaria como motores principales. Por otro lado, @Sanchez encuentra que el hecho de completar la secundaria disminuye en un 5.7% la probabilidad de caer en pobreza, mientras que obtener estudios post-secundarios la reduce en un 8.4%. Además, @OrdazDiaz2009 concluye que la educación primaria reduce la pobreza alimentaria, de capacidades y de patrimonio en un 18%, 16% y 4% respectivamente, mientras que la secundaria lo hace en un 30%, 27% y 15%, mostrando un mayor impacto en las condiciones de vida. En conjunto, estos resultados subrayan que una educación de mayor calidad y alcance es esencial no solo para disminuir la pobreza, sino también para mejorar la estabilidad económica en el largo plazo.
 
-En cuanto al impacto de la educación primaria y secundaria, los datos revelan una marcada diferencia entre las personas según el tipo de centro educativo al que asistieron. Los resultados muestran que la ausencia total de educación formal está claramente asociada con un mayor nivel de pobreza extrema, ya que el 18.21% de los adultos que nunca asistieron a un centro educativo se encuentran en esta categoría. Sin embargo, la pobreza disminuye considerablemente entre aquellos que asistieron a centros educativos, especialmente privados (1.46% en pobreza extrema) y semipúblicos (4%). Por otro lado, los centros públicos, con un 7.40% de pobreza extrema, se ubican entre los extremos del espectro, indicando que, si bien la educación pública proporciona una vía para mejorar la situación económica, su impacto en la reducción de la pobreza es menor en comparación con los centros privados. Esto refleja cómo la calidad y el tipo de centro al que se asistió tienen un impacto significativo en la situación socioeconómica de las personas, sugiriendo que la educación de calidad juega un papel crucial en la movilidad social. Esto es reforzado por lo que dicen @ricardez: si se tienen profesores mejores capacitados y con salarios competitivos, o si se recibe una educación privada, se reduce la probabilidad de encontrarse en pobreza.
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico1.png")
+```
+
+En cuanto al impacto de la educación primaria y secundaria, los datos revelan una marcada diferencia entre las personas según el tipo de centro educativo al que asistieron (gráfico 1). Los resultados muestran que la ausencia total de educación formal está claramente asociada con un mayor nivel de pobreza extrema, ya que el 18.21% de los adultos que nunca asistieron a un centro educativo se encuentran en esta categoría. Sin embargo, la pobreza disminuye considerablemente entre aquellos que asistieron a centros educativos, especialmente privados (1.46% en pobreza extrema) y semipúblicos (4%). Por otro lado, los centros públicos, con un 7.40% de pobreza extrema, se ubican entre los extremos del espectro, indicando que, si bien la educación pública proporciona una vía para mejorar la situación económica, su impacto en la reducción de la pobreza es menor en comparación con los centros privados. Esto refleja cómo la calidad y el tipo de centro al que se asistió tienen un impacto significativo en la situación socioeconómica de las personas, sugiriendo que la educación de calidad juega un papel crucial en la movilidad social. Esto es reforzado por lo que dicen @ricardez: si se tienen profesores mejores capacitados y con salarios competitivos, o si se recibe una educación privada, se reduce la probabilidad de encontrarse en pobreza.
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico12.png")
+```
 
 Además de las diferencias por tipo de centro educativo, el nivel de titulación también muestra una relación clara con la situación socioeconómica de las personas. La tabla 11 evidencia una correlación significativa entre el nivel educativo alcanzado y la probabilidad de encontrarse en situación de pobreza. Mientras que el 86% de las personas sin título no son pobres, la tasa de pobreza extrema en este grupo es de 3.69%, y un 10.31% vive en pobreza no extrema. Por el contrario, entre quienes alcanzaron títulos universitarios de mayor rango, como licenciatura, especialización, maestría o doctorado, las tasas de pobreza son prácticamente inexistentes, con la gran mayoría en la categoría de "no pobre".
 
-Además de las diferencias por nivel de titulación, también se observa una notable variación en la distribución de la pobreza entre personas que asistieron a diferentes universidades públicas. Los resultados destacan que la Universidad de Costa Rica (UCR) y el Tecnológico de Costa Rica (TEC) presentan los menores niveles de pobreza extrema y no extrema (1.1% y 0.66% respectivamente para pobreza extrema), mientras que la Universidad Estatal a Distancia (UNED) muestra la mayor proporción de personas en pobreza extrema (7.93%) y pobreza no extrema (11.59%). Estas diferencias podrían relacionarse con las características particulares de cada institución. Por ejemplo, la UNED, al ser una universidad a distancia, podría atraer a una población con menores ingresos y mayores restricciones económicas, lo cual explicaría su mayor nivel de pobreza. Otro aspecto importante a destacar es que el hecho de que la asistencia a la universidad no necesariamente evita que las personas se encuentren en condición de pobreza.
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico4.png")
+```
 
-Asimismo, el dominio de un segundo idioma se presenta como un factor relevante en la distribución de la pobreza, sugiriendo una relación clara entre las habilidades lingüísticas y las condiciones socioeconómicas. Según los datos, el 7.3% de las personas que no dominan un segundo idioma vive en pobreza extrema y el 15.4% en pobreza no extrema. En contraste, quienes sí poseen esta habilidad presentan cifras significativamente menores, con solo el 1.79% en pobreza extrema y el 3.11% en pobreza no extrema. Estos resultados subrayan la importancia del dominio de un segundo idioma como una ventaja que puede mejorar las oportunidades económicas y reducir la probabilidad de caer en pobreza.
+Además de las diferencias por nivel de titulación, también se observa una notable variación en la distribución de la pobreza entre personas que asistieron a diferentes universidades públicas (gráfico 4). Los resultados destacan que la Universidad de Costa Rica (UCR) y el Tecnológico de Costa Rica (TEC) presentan los menores niveles de pobreza extrema y no extrema (1.1% y 0.66% respectivamente para pobreza extrema), mientras que la Universidad Estatal a Distancia (UNED) muestra la mayor proporción de personas en pobreza extrema (7.93%) y pobreza no extrema (11.59%). Estas diferencias podrían relacionarse con las características particulares de cada institución. Por ejemplo, la UNED, al ser una universidad a distancia, podría atraer a una población con menores ingresos y mayores restricciones económicas, lo cual explicaría su mayor nivel de pobreza. Otro aspecto importante a destacar es que el hecho de que la asistencia a la universidad no necesariamente evita que las personas se encuentren en condición de pobreza.
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico15.png")
+```
+
+Asimismo, el dominio de un segundo idioma se presenta como un factor relevante en la distribución de la pobreza, sugiriendo una relación clara entre las habilidades lingüísticas y las condiciones socioeconómicas. Según los datos del gráfico 15, el 7.3% de las personas que no dominan un segundo idioma vive en pobreza extrema y el 15.4% en pobreza no extrema. En contraste, quienes sí poseen esta habilidad presentan cifras significativamente menores, con solo el 1.79% en pobreza extrema y el 3.11% en pobreza no extrema. Estos resultados subrayan la importancia del dominio de un segundo idioma como una ventaja que puede mejorar las oportunidades económicas y reducir la probabilidad de caer en pobreza.
 
 **Distribución del ingreso**
 
 A continuación, se examina la relación entre el nivel educativo y el ingreso, explorando cómo el nivel educativo impacta las posibilidades económicas de los individuos. Esta sección no solo revela las diferencias en los ingresos promedio según diferentes categorías educativas, sino también la variabilidad dentro de cada una, mostrando distintas oportunidades y desafíos económicos que enfrentan las personas en función de su formación académica.
 
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico9.png")
+```
+
 Al analizar esta relación entre escolaridad e ingresos, se observa un patrón consistente en zonas urbanas y rurales. Aunque los ingresos promedio tienden a ser más altos en áreas urbanas y aumentan con el nivel educativo, la pendiente de esta correlación se mantiene estable en ambas zonas. Esto sugiere que, independientemente de la ubicación geográfica, la educación ejerce un impacto similar en el incremento de los ingresos. Si bien existen diferencias en los promedios de ingresos para niveles educativos más altos, la uniformidad en la tendencia general indica que el acceso a la educación beneficia a ambas zonas de forma comparable, reafirmando su importancia como motor de movilidad económica.
 
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico7.png")
+```
+
 Por otro lado, el análisis muestra que el nivel educativo es un determinante clave de los ingresos, evidenciado en un incremento claro a medida que aumenta el nivel de instrucción. Las personas con educación superior de posgrado presentan los ingresos más altos, con un promedio de ₡1,541,922, lo que supera en más de seis veces el promedio de ₡249,387 de quienes tienen nulo o poco nivel de instrucción. Sin embargo, esta relación también revela una creciente dispersión en los ingresos dentro de cada grupo educativo, especialmente en los niveles más altos, donde la desviación estándar es considerablemente alta, como en el posgrado (₡1,089,738). Esto indica que, si bien la educación superior ofrece acceso a mejores ingresos, existen diferencias significativas dentro de estos grupos, posiblemente influidas por la especialización profesional, el tipo de empleo y la región de residencia.
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico2.png")
+```
 
 Además de la relación entre el nivel educativo y los ingresos, es crucial examinar cómo el tipo de centro educativo al que se asistió influye en el ingreso total personal neto. Los datos revelan que quienes asistieron a centros privados disfrutan de los ingresos más altos, con una media de ₡846,691.2, seguidos de los que fueron estudiantes de centros semi-públicos, que presentan una media de ₡783,109.0. Esta tendencia sugiere que aquellos que cursaron estudios en estos centros no solo accedieron a una educación de calidad, sino que también pudieron contar con ventajas socioeconómicas desde el inicio, lo que les permitió alcanzar mayores niveles de ingresos. Esto lo refuerza la idea de que, si bien la educación puede aumentar los ingresos individuales, no modifica la estructura económica subyacente, donde la concentración de activos y el poder de mercado perpetúan la desigualdad, como lo explica @figueroa. 
 
 En contraste, los centros públicos exhiben una media de ingresos significativamente más baja, de ₡405,861.1, y una distribución mucho más desigual, reflejada en una desviación estándar de ₡503,840.6 y un ingreso máximo de ₡20 millones. Esto indica que, aunque existe una minoría en este grupo que logra niveles de ingresos muy altos, la mayoría no llega a ese umbral. Por otro lado, los adultos que nunca asistieron a un centro educativo presentan los ingresos más bajos, con una media de ₡222,138.6, destacando así la importancia de la educación formal para mejorar las perspectivas económicas.
 
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico13.png")
+```
+
 Al observar los ingresos promedio según la titulación obtenida, se evidencia una correlación positiva entre la formación académica y el ingreso. Las personas con títulos avanzados, como especialización, maestría y doctorado, son quienes alcanzan los ingresos más altos, superando los 1.4 millones de colones en promedio para los niveles de maestría y doctorado. En particular, quienes han completado una especialización muestran el promedio de ingresos más elevado, cercano a los 1.95 millones. En contraste, aquellos sin título o con formación técnica media obtienen ingresos considerablemente menores, con promedios de aproximadamente 444 mil y 527 mil colones, respectivamente. Esta disparidad subraya la importancia de la educación como vía para acceder a mejores oportunidades económicas; sin embargo, también pone de manifiesto los desafíos que enfrentan aquellos que no alcanzan niveles educativos superiores, limitando su acceso a empleos mejor remunerados y a una mayor movilidad económica.
 
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico5.png")
+```
+
 La comparación del ingreso total personal neto entre las universidades públicas de Costa Rica revela marcadas diferencias. La Universidad de Costa Rica (UCR) muestra un ingreso promedio de ₡950,480.4, mientras que el Tecnológico de Costa Rica (TEC) registra el promedio más alto, alcanzando ₡1,146,155.2. Estos ingresos superan ampliamente los de otras universidades, como la Universidad Nacional (UNA) y la Universidad Estatal a Distancia (UNED), cuyos promedios son de ₡785,263.1 y ₡560,280.2, respectivamente. Estas cifras sugieren que la UCR y el TEC podrían estar preparando a sus estudiantes para obtener mejores ingresos en el mercado laboral, posiblemente reflejando tanto la calidad educativa de sus programas como las oportunidades laborales que ofrecen a sus egresados.
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico17.png")
+```
 
 El análisis del dominio de un segundo idioma muestra también una influencia notable en la distribución de ingresos. Las personas que no dominan un segundo idioma tienen un ingreso promedio de ₡417,943.3, mientras que aquellas que sí lo dominan logran una media significativamente mayor, de ₡894,084.2. Además de esta variación en el promedio, se observan diferencias en los rangos de ingresos: quienes dominan un segundo idioma reportan ingresos máximos de hasta ₡13,399,500, en comparación con los ₡20,000,000 entre aquellos sin dicha habilidad. Esto sugiere que el dominio de un segundo idioma puede ser determinante para acceder a mayores ingresos, pero hay que tomar en cuenta que esto no lo es todo, pues también hay evidencia de muchas personas con ingresos altos que no dominan un segundo idioma.
 
 **Distribución de las categorías educativas por quintil de ingreso per cápita neto del hogar**
 
-La tabla 10 revela que los niveles educativos bajos, como sin instrucción o primaria completa, se concentran en los quintiles de ingresos más bajos. En el primer quintil (₡110,683 o menos), el 52.98% completó solo la primaria y el 18.14% tiene poca o ninguna instrucción. En contraste, en el quinto quintil (más de ₡574,085), el 54.87% completó educación de pregrado y el 11.26% tiene estudios de posgrado. Esto sugiere que el acceso a niveles educativos superiores tiende a ubicarse en los quintiles altos, aunque existen barreras estructurales que limitan la movilidad social, como se ha visto anteriormente.
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico8.png")
+```
+
+El gráfico 8 revela que los niveles educativos bajos, como sin instrucción o primaria completa, se concentran en los quintiles de ingresos más bajos. En el primer quintil (₡110,683 o menos), el 52.98% completó solo la primaria y el 18.14% tiene poca o ninguna instrucción. En contraste, en el quinto quintil (más de ₡574,085), el 54.87% completó educación de pregrado y el 11.26% tiene estudios de posgrado. Esto sugiere que el acceso a niveles educativos superiores tiende a ubicarse en los quintiles altos, aunque existen barreras estructurales que limitan la movilidad social, como se ha visto anteriormente.
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico3.png")
+```
 
 Además, el tipo de centro educativo asistido muestra una tendencia similar: el 87.52% de las personas en el primer quintil asistieron a colegios públicos, mientras que el 44.59% de las personas del quinto quintil asistieron a colegios privados. Esto refleja cómo el nivel socioeconómico puede influir en el acceso a instituciones privadas, que suelen ofrecer beneficios adicionales.
 
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico14.png")
+```
+
 Quienes tienen formación técnica media o sin título se concentran principalmente en los quintiles bajos, mientras que la educación superior facilita la presencia en los quintiles altos. Por ejemplo, el 42.83% de quienes cuentan con una licenciatura se encuentran en el quinto quintil, y más del 12% de quienes poseen un posgrado también están en este grupo. Esto resalta la importancia de la educación como un motor de movilidad social, evidenciando que el acceso a niveles educativos superiores es fundamental para mejorar las oportunidades económicas y romper el ciclo de pobreza.
 
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico16.png")
+```
+
 El análisis revela una clara disparidad en la distribución del ingreso según el dominio de un segundo idioma. Mientras que el 96.6% de las personas que no dominan un segundo idioma se agrupan en el primer quintil de ingreso, aquellos que sí lo dominan tienen una representación significativa en los quintiles superiores, con un 39.74% en el quintil más alto. Esto refuerza el hecho de que las habilidades lingüísticas pueden estar asociadas con mejores oportunidades económicas, destacando su importancia para mejorar la situación laboral y económica de una persona.
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("graphs/Grafico11.png")
+```
 
 El gráfico 15 ilustra la relación entre los años de escolaridad y el ingreso personal neto, mostrando que, en los quintiles de menores ingresos (1 y 2), la educación no genera grandes diferencias en los niveles de ingreso. En contraste, en los quintiles superiores (4 y 5), se evidencia una relación positiva, donde a mayor escolaridad corresponde un mayor ingreso neto. En otras palabras, mientras que la educación tiene un impacto limitado en los ingresos bajos, su efecto es más significativo entre aquellos con mayores ingresos, resaltando su papel como un factor determinante en la movilidad económica.
 
