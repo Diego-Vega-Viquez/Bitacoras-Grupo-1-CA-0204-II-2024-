@@ -1,8 +1,11 @@
 # Bitácora 3
 
+Comentario con respecto a la bitácora pasada: para mejorar la parte de análisis descriptivo de la base de datos que se está utilizando, se incluyó más información sobre esto en el apartado de metodología de la parte de escritura de la presente bitácora. Asimismo, se añadieron y modificaron diferentes gráficos, cuyo código va a aparecer en el análisis de modelación.
 ## Parte de planificación
 
 ### Análisis de modelación
+
+Con respecto al código de carga de los datos, lo destacable resulta ser las variables seleccionadas. Estas se pueden agrupar en 4 categorías: educación, pobreza, ingreso e identificación adicional. El desglose de qué es cada variable aparecerá en el apartado metodológico de la parte de escritura, pero lo esencial de entender a priori es que se vincularán las variables educativas con aquellas relacionadas con pobreza e ingreso, con el objetivo de explorar la relación entre la educación, la condición socioeconómica de las personas y las desigualdades a nivel de ingreso en Costa Rica. 
 
 ```{r Librerías y Datos}
 #| message: false
@@ -43,8 +46,8 @@ ENAHO <- read_sav("data/GPES-ELAB-GEBD-ENAHO-2023_BdBasePublica.sav")
 
 # Convertir columnas categóricas a factores y ajustar años de escolaridad
 cols_to_factor <- c("ZONA", "A15A", "A15B", 
-                    "NivInst", "ForReg", "A16B", "A22A", 
-                    "Estabili", "InsLab", "np", "IPM_Pobreza", "Q_IPCN")
+                    "NivInst", "A16B", "A22A", 
+                    "np", "Q_IPCN")
 ENAHO[cols_to_factor] <- lapply(ENAHO[cols_to_factor], as_factor)
 ENAHO$Escolari <- ifelse(ENAHO$Escolari == 99, NA, as.integer(ENAHO$Escolari))
 
@@ -53,15 +56,23 @@ ENAHO <- ENAHO %>% select(ZONA,
                           A5,
                           A15A, A15B,
                           NivInst, Escolari,
-                          ForReg, A16B,
+                          A16B,
                           A22A,
-                          Estabili, InsLab,
                           itpn, lp, 
-                          np, IPM_Pobreza,
+                          np,
                           IPM_Intensidad, Q_IPCN,
-                          ipcn) %>% 
+                          ) %>% 
   filter(A5 >= 18 & A5 <= 60) #filtrar personas entre 18 y 60 años
 ```
+Se utilizarán diversos tipos de gráficos en este análisis: gráficos de barras, gráficos de densidad, gráficos de área y gráficos de dispersión.
+
+**Gráficos de barras**: Estos se emplearán para caracterizar las "poblaciones educativas" según la proporción que se encuentra en situación de pobreza, tanto extrema como no extrema. Esto permitirá determinar si las personas con menor nivel educativo enfrentan una pobreza significativamente mayor en comparación con aquellas con un nivel educativo más alto, utilizando diferentes categorías como medida.
+
+**Gráficos de densidad**: Se utilizarán para visualizar la distribución de ingresos en distintas categorías, lo cual será fundamental para establecer un vínculo entre la educación y el ingreso.
+
+**Gráficos de área**: Estos gráficos servirán para ilustrar la evolución de las categorías educativas en función de los quintiles de ingreso per cápita, lo que permitirá identificar si las personas con mayores ingresos presentan características educativas particulares.
+
+**Gráficos de dispersión**: Serán útiles para investigar la posible correlación entre los años de escolaridad y la intensidad de la pobreza, así como el nivel de ingreso.
 
 <!-- Gráficos relacionados con el tipo de centro educativo -->
 ```{r Grafico 1, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
@@ -93,6 +104,7 @@ grafico1 <- as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico1
 ```
 ```{r Grafico 2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico2 <- ENAHO %>% 
@@ -162,6 +174,7 @@ grafico3 <- as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   ) 
+grafico3
 ```
 <!-- Gráficos relacionados con universidad pública -->
 ```{r Grafico 4, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
@@ -196,6 +209,7 @@ grafico4 <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   ) 
+grafico4
 ```
 ```{r Grafico 5, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico5 <- ENAHO %>% 
@@ -224,6 +238,7 @@ grafico5 <- ENAHO %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico5
 ```
 <!-- Gráficos relacionados con nivel de instrucción -->
 ```{r Grafico 6, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
@@ -260,6 +275,7 @@ grafico6 <- as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst,
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico6
 ```
 ```{r Grafico 7, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico7 <- ENAHO %>% 
@@ -296,6 +312,7 @@ grafico7 <- ENAHO %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico7
 ```
 ```{r Grafico 8, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico8 <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
@@ -331,6 +348,7 @@ grafico8 <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst,
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico8
 ```
 <!-- Gráficos relacionados con escolaridad -->
 ```{r Grafico 9, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
@@ -368,6 +386,7 @@ grafico9 <- ENAHO %>%
     legend.text = element_text(size = 9),
     plot.caption = element_text(size = 7, hjust = 0)
   )
+grafico9
 ```
 ```{r Grafico 10, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico10 <- ENAHO %>% 
@@ -403,6 +422,7 @@ grafico10 <- ENAHO %>%
     legend.text = element_text(size = 9),
     plot.caption = element_text(size = 7, hjust = 0)
   )
+grafico10
 ```
 ```{r Grafico 11, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico11 <- ENAHO %>% filter(!is.na(Q_IPCN)) %>% 
@@ -435,6 +455,7 @@ grafico11 <- ENAHO %>% filter(!is.na(Q_IPCN)) %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico11
 ```
 <!-- Gráficos relacionados con título obtenido -->
 ```{r Grafico 12, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
@@ -466,6 +487,7 @@ grafico12 <- as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico12
 ```
 ```{r Grafico 13, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico13 <- ENAHO %>% 
@@ -498,6 +520,7 @@ grafico13 <- ENAHO %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico13
 ```
 ```{r Grafico 14, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico14 <- as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 2)) %>% 
@@ -526,6 +549,7 @@ grafico14 <- as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico14
 ```
 <!-- Gráficos relacionados con dominio de segundo idioma -->
 ```{r Grafico 15, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
@@ -557,6 +581,7 @@ grafico15 <- as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico15
 ```
 ```{r Grafico 16, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico16 <- as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>% 
@@ -585,6 +610,7 @@ grafico16 <- as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico16
 ```
 ```{r Grafico 17, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
 grafico17 <- ENAHO %>% 
@@ -617,30 +643,14 @@ grafico17 <- ENAHO %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
-```
-```{r Acomodo, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
-grafico1
-grafico2
-grafico3
-grafico4
-grafico5
-grafico6
-grafico7
-grafico8
-grafico9
-grafico10
-grafico11
-grafico12
-grafico13
-grafico14
-grafico15
-grafico16
 grafico17
 ```
 \newpage
+A continuación, se presentará una serie de tablas que proporcionan información específica utilizada en los gráficos mostrados anteriormente. Debido a consideraciones estéticas, no fue posible lograr un ajuste óptimo de las tablas en el PDF; por ello, se hará un uso predominante de los gráficos elaborados previamente. Sin embargo, estas tablas han sido fundamentales para el análisis, ya que facilitaron la aplicación de los métodos estadísticos que respaldan toda la investigación.
+
 <!-- Tablas -->
 <!-- Tablas relacionadas con el tipo de centro educativo -->
-```{r Tabla 1, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 1, warning=FALSE, message=FALSE}
 tab_np_vs_tipo_colegio <- as.data.frame(prop.table(table(ENAHO$np, 
                                                          ENAHO$A15A), 
                                                    margin = 2)) %>% 
@@ -652,14 +662,14 @@ tab_np_vs_tipo_colegio <- as.data.frame(prop.table(table(ENAHO$np,
   rename('Nivel de pobreza' = Nivel_de_pobreza)
 
 # Generar tabla con kable
-kable(tab_np_vs_tipo_colegio, caption = "Proporción del nivel de pobreza segun tipo de centro educativo al que se asistio ") %>%
+kable(tab_np_vs_tipo_colegio, caption = "Proporción del nivel de pobreza según tipo de centro educativo al que se asistio ") %>%
   kable_styling(position = "center", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 2, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 2, warning=FALSE, message=FALSE}
 # Diverge a la derecha lo úlitmo que sale es Q2
 tab_dist_itpn_tipo_colegio <- ENAHO %>% 
   filter(A15A != "Ignorado", itpn != 0) %>% 
@@ -686,14 +696,14 @@ tab_dist_itpn_tipo_colegio <- ENAHO %>%
                 ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
   
 # Generar tabla con kable
-kable(tab_dist_itpn_tipo_colegio, caption = "Distribución del ingreso segun tipo de centro educativo al que se asistió") %>%
+kable(tab_dist_itpn_tipo_colegio, caption = "Distribución del ingreso según tipo de centro educativo al que se asistió") %>%
   kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 3, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 3, warning=FALSE, message=FALSE}
 tab_evol_tipo_colegio_QIPCN <- as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Freq = round(Freq * 100,2)) %>% 
@@ -714,7 +724,7 @@ kable(tab_evol_tipo_colegio_QIPCN, caption = "Distribución del Nivel de Instruc
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 4, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 4, warning=FALSE, message=FALSE}
 tab_np_vs_univ <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
   rename("Nivel de pobreza" = Var1) %>% 
@@ -722,14 +732,14 @@ tab_np_vs_univ <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin =
   filter(Var2 != "Ignorado") %>% 
   pivot_wider(names_from = Var2, values_from = Freq)
 # Generar tabla con kable
-kable(tab_np_vs_univ, caption = " Distribución del nivel de pobreza segun universidad pública a la que se asistió en Costa Rica (2023)") %>%
+kable(tab_np_vs_univ, caption = " Distribución del nivel de pobreza según universidad pública a la que se asistió en Costa Rica (2023)") %>%
   kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 5, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 5, warning=FALSE, message=FALSE}
 # Diverge a la derecha lo úlitmo que sale es Q2
 tab_dist_itpn_univ <- ENAHO %>% 
   filter(A15B != "Ignorado") %>% 
@@ -757,7 +767,7 @@ tab_dist_itpn_univ <- ENAHO %>%
                 ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
 
 # Generar tabla con kable
-kable(tab_dist_itpn_univ, caption = " Distribución del ingreso segun tipo de centro educativo al que se asistió en Costa Rica (2023)") %>%
+kable(tab_dist_itpn_univ, caption = " Distribución del ingreso según tipo de centro educativo al que se asistió en Costa Rica (2023)") %>%
   kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
@@ -765,7 +775,7 @@ kable(tab_dist_itpn_univ, caption = " Distribución del ingreso segun tipo de ce
            general_title = "Fuente: ")
 ```
 <!-- Tablas relacionadas con nivel de instrucción -->
-```{r Tabla 6, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 6, warning=FALSE, message=FALSE}
 # Diverge a la derecha lo úlitmo que sale es "Secundaria Completa"
 tab_np_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$np, 
                                                     fct_collapse(ENAHO$NivInst, 
@@ -783,14 +793,14 @@ tab_np_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$np,
   mutate(Freq = paste0(Freq, "%")) %>% 
   pivot_wider(names_from = Var2, values_from = Freq)
 # Generar tabla con kable
-kable(tab_np_vs_nivinst, caption = " Distribución del nivel de pobreza segun nivel de instrucción en Costa Rica (2023)") %>%
+kable(tab_np_vs_nivinst, caption = " Distribución del nivel de pobreza según nivel de instrucción en Costa Rica (2023)") %>%
   kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 7, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 7, warning=FALSE, message=FALSE}
 # Diverge a la derecha lo úlitmo que sale es Q1
 tab_dist_itpn_nivinst <- ENAHO %>% 
   filter(NivInst != "Ignorado", itpn != 0) %>% 
@@ -832,7 +842,7 @@ kable(tab_dist_itpn_nivinst, caption = " Distribución del ingreso por nivel de 
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 10, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 10, warning=FALSE, message=FALSE}
 tab_evol_nivinst_QIPCN <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
                                                                       "Primaria completa" = c("Primaria completa", 
                                                                                               "Secundaria académica incompleta",
@@ -862,36 +872,23 @@ kable(tab_evol_nivinst_QIPCN, caption = "Evolucion de la distribución del nivel
            general_title = "Fuente: ")
 ```
 <!-- Tablas relacionadas con título obtenido -->
-```{r Tabla 11, echo=FALSE, warning=FALSE, message=FALSE}
-tab_evol_nivinst_QIPCN <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
-                                                                      "Primaria completa" = c("Primaria completa", 
-                                                                                              "Secundaria académica incompleta", 
-                                                                                              "Secundaria técnica incompleta"),
-                                                                      "Secundaria completa" = c("Secundaria académica completa", 
-                                                                                                "Secundaria técnica completa"),
-                                                                      "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción",
-                                                                                                            "Primaria incompleta")), 
-                                                         ENAHO$Q_IPCN), margin = 2)) %>% 
+```{r Tabla 11, warning=FALSE, message=FALSE}
+tab_np_vs_titulo <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A16B), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
-  rename("Nivel de instrucción" = Var1) %>% 
-  filter("Nivel de instrucción" != "Ignorado") %>% 
+  rename(Nivel_de_pobreza = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
   mutate(Freq = paste0(Freq, "%")) %>% 
-  pivot_wider(names_from = Var2, values_from = Freq) %>% 
-  rename('Q1' = "Q1: 110683 ó menos",
-         'Q2' = "Q2: Más de 110683 a 195000",
-         'Q3' = "Q3: Más de 195000 a 321523",
-         'Q4' = "Q4: Más de 321523 a 574085",
-         'Q5' = "Q5: Más de 574085") 
+  pivot_wider(names_from = Var2, values_from = Freq)
 
 # Generar tabla con kable
-kable(tab_evol_nivinst_QIPCN, caption = "Distribución del nivel de pobreza segun titulo obtenido en Costa Rica (2023)") %>%
+kable(tab_np_vs_titulo, caption = "Distribución del nivel de pobreza según título obtenido en Costa Rica (2023)") %>%
   kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 14, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 14, warning=FALSE, message=FALSE}
 # Diverge a la derecha lo úlitmo que sale es "Min"
 tab_dist_itpn_titulo <- ENAHO %>% 
   filter(A16B != "Ignorado", itpn != 0) %>% 
@@ -918,14 +915,14 @@ tab_dist_itpn_titulo <- ENAHO %>%
                 ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
 
 # Generar tabla con kable
-kable(tab_dist_itpn_titulo, caption = "Distribución del ingreso segun titulo obtenido en Costa Rica (2023)") %>%
+kable(tab_dist_itpn_titulo, caption = "Distribución del ingreso según titulo obtenido en Costa Rica (2023)") %>%
   kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 15, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 15, warning=FALSE, message=FALSE}
 tab_evol_titulo_QIPCN <- as.data.frame(prop.table(table(ENAHO$A16B,ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
@@ -947,7 +944,7 @@ kable(tab_evol_titulo_QIPCN, caption = "Evolucion de la distribución de los tit
            general_title = "Fuente: ")
 ```
 <!-- Tablas relacionadas con dominio segundo idioma -->
-```{r Tabla 16, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 16, warning=FALSE, message=FALSE}
 tab_np_vs_dom_2_idiom <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A22A), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
   rename("Nivel de pobreza" = Var1) %>% 
@@ -955,14 +952,14 @@ tab_np_vs_dom_2_idiom <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A22A), m
   pivot_wider(names_from = Var2, values_from = Freq)
 
 # Generar tabla con kable
-kable(tab_np_vs_dom_2_idiom, caption = "Nivel de pobreza segun nivel de instrucción en Costa Rica (2023)") %>%
+kable(tab_np_vs_dom_2_idiom, caption = "Nivel de pobreza según dominio de un segundo en Costa Rica (2023)") %>%
   kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 17, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 17, warning=FALSE, message=FALSE}
 tab_evol_dom_2_idiom_QIPCN <- as.data.frame(prop.table(table(ENAHO$A22A,ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
@@ -976,14 +973,14 @@ tab_evol_dom_2_idiom_QIPCN <- as.data.frame(prop.table(table(ENAHO$A22A,ENAHO$Q_
          'Q5' = "Q5: Más de 574085") 
 
 # Generar tabla con kable
-kable(tab_evol_dom_2_idiom_QIPCN, caption = "Nivel de pobreza segun nivel de instrucción en Costa Rica (2023)") %>%
+kable(tab_evol_dom_2_idiom_QIPCN, caption = "Nivel de pobreza según dominio de un segundo idioma en Costa Rica (2023)") %>%
   kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 18, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 18, warning=FALSE, message=FALSE}
 # Diverge a la derecha lo úlitmo que sale es "Q3"
 tab_dist_itpn_dom_2_idiom <- ENAHO %>% 
   filter(A22A != "Ignorado", itpn!=0) %>% 
@@ -1010,7 +1007,7 @@ tab_dist_itpn_dom_2_idiom <- ENAHO %>%
                 ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
 
 # Generar tabla con kable
-kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dominio segundo idioma en Costa Rica (2023)") %>%
+kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso según dominio segundo idioma en Costa Rica (2023)") %>%
   kable_styling(position = "left", 
                 bootstrap_options = c("striped", "hover", "responsive")) %>%
   footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
@@ -1021,7 +1018,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 ### Construcción de fichas de resultados
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 1 (Gráfico 1)
+#### Hallazgo 1 (Gráfico 1 y Tabla 1)
 
 -   **Nombre del hallazgo o resultado:** Las personas que asistieron a colegios privados tienen menor incidencia de pobreza que aquellos que nunca asistieron a un centro educativo.
 
@@ -1035,7 +1032,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 2 (Gráfico 2)
+#### Hallazgo 2 (Gráfico 2 y Tabla 2)
 
 -   **Nombre del hallazgo o resultado:** Ingresos y su distribución por tipo de centro educativo asistido.
 
@@ -1049,7 +1046,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 3 (Gráfico 3)
+#### Hallazgo 3 (Gráfico 3 y Tabla 3)
 
 -   **Nombre del hallazgo o resultado:** Distribución de centros educativos según quintil de ingreso per cápita.
 
@@ -1063,7 +1060,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 4 (Gráfico 4)
+#### Hallazgo 4 (Gráfico 4 y Tabla 4)
 
 -   **Nombre del hallazgo o resultado:** Distribución de pobreza según la universidad pública asistida.
 
@@ -1077,7 +1074,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 5 (Gráfico 5)
+#### Hallazgo 5 (Gráfico 5 y Tabla 5)
 
 -   **Nombre del hallazgo o resultado:** Comparación del ingreso total por persona neto entre universidades públicas.
 
@@ -1091,7 +1088,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 6 (Gráfico 6)
+#### Hallazgo 6 (Gráfico 6 y Tabla 6)
 
 -   **Nombre del hallazgo o resultado:** Relación entre el nivel de instrucción y la pobreza.
 
@@ -1105,7 +1102,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 7 (Gráfico 7)
+#### Hallazgo 7 (Gráfico 7 y Tabla 7)
 
 -   **Nombre del hallazgo o resultado:** Incremento progresivo de los ingresos netos según el nivel educativo alcanzado.
 
@@ -1119,7 +1116,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 8 (Gráfico 8)
+#### Hallazgo 8 (Gráfico 8 y Tabla 8)
 
 -   **Nombre del hallazgo o resultado:** Concentración educativa en quintiles bajos y altos de ingreso.
 
@@ -1133,7 +1130,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 9 (Gráfico 12)
+#### Hallazgo 9 (Gráfico 12 y Tabla 9)
 
 -   **Nombre del hallazgo o resultado:** Relación entre la titulación académica y la incidencia de pobreza.
 
@@ -1148,7 +1145,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 10 (Gráfico 13)
+#### Hallazgo 10 (Gráfico 13 y Tabla 10)
 
 -   **Nombre del hallazgo o resultado:** Ingreso promedio por nivel de educación.
 
@@ -1162,7 +1159,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 11 (Gráfico 14)
+#### Hallazgo 11 (Gráfico 14 y Tabla 11)
 
 -   **Nombre del hallazgo o resultado:** Distribución del ingreso por quintiles y nivel educativo.
 
@@ -1176,7 +1173,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 12 (Gráfico 15)
+#### Hallazgo 12 (Gráfico 15 y Tabla 12)
 
 -   **Nombre del hallazgo o resultado:** Relación entre el nivel de pobreza y el dominio de un segundo idioma.
 
@@ -1190,7 +1187,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 13 (Gráfico 16)
+#### Hallazgo 13 (Gráfico 16 y Tabla 13)
 
 -   **Nombre del hallazgo o resultado:** Proporción de personas en quintiles de ingreso según el dominio de un segundo idioma.
 
@@ -1204,7 +1201,7 @@ kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso segun dom
 :::
 
 ::: {.callout-note appearance="minimal"}
-#### Hallazgo 14 (Gráfico 17)
+#### Hallazgo 14 (Gráfico 17 y Tabla 14)
 
 -   **Nombre del hallazgo o resultado:** Relación entre el dominio de un segundo idioma y la distribución del ingreso.
 
