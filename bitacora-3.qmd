@@ -47,7 +47,7 @@ ENAHO <- read_sav("data/GPES-ELAB-GEBD-ENAHO-2023_BdBasePublica.sav")
 # Convertir columnas categóricas a factores y ajustar años de escolaridad
 cols_to_factor <- c("ZONA", "A15A", "A15B", 
                     "NivInst", "A16B", "A22A", 
-                    "np", "Q_IPCN")
+                    "np", "Q_IPCN", "IPM_Pobreza")
 ENAHO[cols_to_factor] <- lapply(ENAHO[cols_to_factor], as_factor)
 ENAHO$Escolari <- ifelse(ENAHO$Escolari == 99, NA, as.integer(ENAHO$Escolari))
 
@@ -59,8 +59,9 @@ ENAHO <- ENAHO %>% select(ZONA,
                           A16B,
                           A22A,
                           itpn, lp, 
-                          np,
+                          np, IPM_Pobreza,
                           IPM_Intensidad, Q_IPCN,
+                          ipcn
                           ) %>% 
   filter(A5 >= 18 & A5 <= 60) #filtrar personas entre 18 y 60 años
 ```
@@ -1796,7 +1797,7 @@ Por lo tanto, aunque la educación y la acumulación de capital humano son funda
 
 **Fuente de la información:** La fuente de la cual fueron recolectados los datos corresponde al Instituto Nacional de Estadística y Censos (INEC), más especídficamente los datos corresponden a los recolectados en la @ENAHO2023.
 
-*Población de estudio:* De acuerdo a @ENAHO2023, la poblaciónde estudio corresponde al conjunto de viviendas individuales ocupadas y sus ocupantes residentes habituales, tanto del área urbana como del área rural de Costa Rica. Es importantes destacar que se excluyó del estudio a la población residente en las viviendas colectivas (hoteles, hospitales, asilos, cárceles, conventos, residencias colectivas para estudiantes y trabajadores).
+*Población de estudio:* De acuerdo a @ENAHO2023, la población de estudio corresponde al conjunto de viviendas individuales ocupadas y sus ocupantes residentes habituales, tanto del área urbana como del área rural de Costa Rica. En este caso particular, se están tomando a las personas entre 18 y 65 años de edad. Es importantes destacar que se excluyó del estudio a la población residente en las viviendas colectivas (hoteles, hospitales, asilos, cárceles, conventos, residencias colectivas para estudiantes y trabajadores).
 
 **Contexto temporal y espacial de los datos:** Los datos utilizados en este análisis fueron recolectados durante el año 2023, como parte de la Encuesta Nacional de Hogares realizada en julio. Este periodo permite observar la situación económica actual de los hogares costarricenses, especialmente relevante en el contexto pospandemia. A nivel espacial, los datos son representativos a nivel nacional e incluyen un desglose por regiones y áreas urbanas y rurales. Esta distribución geográfica es crucial para identificar disparidades en la distribución del ingreso y el acceso a la educación entre diferentes zonas del país.
 
@@ -1827,9 +1828,9 @@ kable(labels, caption = "Descripción de códigos y nombres de las variables de 
            general_title = "Fuente: ")
 ```
 
-La tabla anterior presenta los códigos y nombres de las variables más representativas que se consideran relevantes para el análisis en este trabajo. Es importante destacar que la base de datos de la ENAHO cuenta con 594 variables, de la totalidad de variables estas 15 fueron seleccionadas de la Encuesta Nacional de Hogares (ENAHO) 2023 de Costa Rica. Cada fila de la tabla corresponde a una variable específica con su código. 
+La tabla anterior presenta los códigos y nombres de las variables más representativas que se consideran relevantes para el análisis en este trabajo. Es importante destacar que la base de datos de la ENAHO cuenta con 594 variables, de la totalidad de variables estas 13 fueron seleccionadas de la Encuesta Nacional de Hogares (ENAHO) 2023 de Costa Rica. Cada fila de la tabla corresponde a una variable específica con su código. 
 
-Es importante mencionar que algunas variables fueron creadas por la casa encuestadora. Teniendo esto úlimo en cuenta, las variables que son creadas y que se han utilizado a lo largo del presente trabajo son *itpn*, *lp*, *np*, *IPM_Pobreza*, *IPM_Intensidad*, *Q_IPCN*, y *ipcn*.
+Es importante mencionar que algunas variables fueron creadas por la casa encuestadora. Teniendo esto úlimo en cuenta, las variables que son creadas y que se han utilizado a lo largo del presente trabajo son *itpn*, *lp*, *np*, *IPM_Intensidad*, *Q_IPCN*, y *ipcn*.
 
 De las variables mencionadas en la tabla cabe destacar que de acuerdo a @ENAHO2023, Zona se refiere a aspectos demográficos como  son la zona urbana o rural; educativos, como lo son la formación educativa formal la cual clasifica la especialidad o carrera que una persona ha estudiado y Título que se refiere al máximo nivel académico adquirido.Por su parte la variable del Valor de la Línea de Pobreza corresponde a un indicador que representa el monto mínimo requerido para que una persona pueda satisfacer las necesidades básicas “alimentarias y no alimentarias”, esta tiene solo 2 valores, uno para las zonas urbanas (₡128.406) y otra para las personas habitantes de zonas rurales (₡99.140). Por la misma línea se encuentra la variable correspondiente a nivel de pobreza la cual clasifica a las personas encuestadas en tres categorías que como @ENAHO2023 lo indica son:
 
