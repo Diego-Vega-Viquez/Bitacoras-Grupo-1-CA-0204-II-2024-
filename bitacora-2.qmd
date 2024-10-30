@@ -123,9 +123,11 @@ Contribución propia: el análisis que se realiza en la situación de Ruanda es 
 ## Análisis estadísticos
 
 ### Análisis descriptivo
-```{r Librerías, warning=FALSE, message=FALSE}
+```{r Librerías}
 #| echo: false
 #| include: false
+#| warning: false
+#| message: false
 library(tidyverse)
 library(scales)    # Para formatear los números como porcentajes
 library(knitr)     # Para mostrar tablas
@@ -155,6 +157,8 @@ library(see)
 #### Formato tidy
 ```{r Carga de datos}
 #| echo: false
+#| warning: false
+#| message: false
 # Código que no se mostrará
 variables_comunes <- readRDS("data/variables_comunes.rds")
 glimpse(variables_comunes)
@@ -298,7 +302,9 @@ kable(tabla3,
 ```
 Esta tabla ofrece un resumen de los ingresos netos promedio por persona, clasificados según el nivel de instrucción alcanzado. Los niveles educativos superiores, como educación universitaria de posgrado, muestran un ingreso promedio significativamente mayor (₡1,548,859,68) en comparación con los niveles de educación básica o secundaria. La diferencia en el promedio de ingresos según el nivel educativo sugiere que a mayor nivel de instrucción, mayores son los ingresos netos promedio y menor es la desviación en los ingresos de los individuos.
 
-```{r  Carga Datos (datos_jc & ENAHO), echo=FALSE, include=FALSE}
+```{r  Carga Datos (datos_jc & ENAHO)}
+#| echo: false
+#| include: false
 datos_jc <- readRDS("data/datos_jc.rds")
 ENAHO <- readRDS("data/ENAHO.rds")
 ```
@@ -306,7 +312,12 @@ ENAHO <- readRDS("data/ENAHO.rds")
 
 #### Gráficos
 
-```{r GRAFICO 1, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
+```{r GRAFICO 1}
+#| echo: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 6
+#| message: false
 #############
 # GRAFICO 1 #
 #############
@@ -326,7 +337,12 @@ datos_jc %>% ggplot(aes(x = Escolari, y = itpn, group = ZONA)) +
   theme(legend.position = "none",
         plot.caption = element_text(size = 6))
 ```
-```{r GRAFICO 2, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
+```{r GRAFICO 2}
+#| echo: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 6
+#| message: false
 #############
 # GRAFICO 2 #
 #############
@@ -349,8 +365,12 @@ datos_jc %>% ggplot(aes(x = Escolari, y = itpn, group = REGION, colour = REGION)
   theme(legend.position = "none",
         plot.caption = element_text(size = 6))
 ```
-```{r GRAFICO 3, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
-
+```{r GRAFICO 3}
+#| echo: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 6
+#| message: false
 #############
 # GRAFICO 3 #
 #############
@@ -371,7 +391,12 @@ datos_jc %>% filter(!is.na(np)) %>%
         axis.text.x = element_text(size = 8),
         plot.caption = element_text(size = 6, hjust = 0))  # Cambiar el tamaño del texto del eje x
 ```
-```{r GRAFICO 4, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
+```{r GRAFICO 4}
+#| echo: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 6
+#| message: false
 #############
 # GRAFICO 4 #
 #############
@@ -393,7 +418,12 @@ datos_jc %>% filter(!is.na(IPM_Pobreza)) %>%
         plot.caption = element_text(size = 6, hjust = 0))  # Cambiar el tamaño del texto del eje x
 
 ```
-```{r GRAFICO 5.1, echo=FALSE, warning=FALSE, fig.width=12, fig.height=6, message = FALSE}
+```{r GRAFICO 5.1}
+#| echo: false
+#| warning: false
+#| fig-width: 12
+#| fig-height: 6
+#| message: false
 #############
 # GRAFICO 5.1 #
 #############
@@ -416,7 +446,12 @@ datos_jc %>% filter(!is.na(A16B)) %>%
         axis.text.x = element_text(size = 8, hjust = 5),
         plot.caption = element_text(size = 6, hjust = 0))  # Tamaño del texto en el eje x
 ```
-```{r GRAFICO 5.2, echo=FALSE, warning=FALSE, fig.width=14, fig.height=8, message = FALSE}
+```{r GRAFICO 5.2}
+#| echo: false
+#| warning: false
+#| fig-width: 14
+#| fig-height: 8
+#| message: false
 #############
 # GRAFICO 5.2 #
 #############
@@ -443,7 +478,12 @@ ENAHO %>%
           plot.caption = element_text(size = 6, hjust = 0),
           axis.text.x = element_text(angle = 20, hjust = 1))
 ```
-```{r GRAFICO 5.3, echo=FALSE, warning=FALSE, fig.width=14, fig.height=8, message = FALSE}
+```{r GRAFICO 5.3}
+#| echo: false
+#| warning: false
+#| fig-width: 14
+#| fig-height: 8
+#| message: false
 #############
 # GRAFICO 5.3 #
 #############
@@ -470,7 +510,12 @@ ENAHO %>%
         plot.caption = element_text(size = 6, hjust = 0),
         axis.text.x = element_text(angle = 20, hjust = 1))
 ```
-```{r GRAFICO 6.1, echo=FALSE, warning=FALSE, fig.width=14, fig.height=8, message = FALSE}
+```{r GRAFICO 6.1}
+#| echo: false
+#| warning: false
+#| fig-width: 14
+#| fig-height: 8
+#| message: false
 #############
 # GRAFICO 6.1 #
 #############
@@ -491,7 +536,12 @@ datos_jc %>%
   theme(legend.position = "none",
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r GRAFICO 6.2, echo=FALSE, warning=FALSE, fig.width=12, fig.height=6, message = FALSE}
+```{r GRAFICO 6.2}
+#| echo: false
+#| warning: false
+#| fig-width: 12
+#| fig-height: 6
+#| message: false
 #############
 # GRAFICO 6.2 #
 #############
@@ -512,7 +562,12 @@ datos_jc %>%
   theme(legend.position = "none",
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r GRAFICO 7, echo=FALSE, warning=FALSE, fig.width=12, fig.height=6, message = FALSE}
+```{r GRAFICO 7}
+#| echo: false
+#| warning: false
+#| fig-width: 12
+#| fig-height: 6
+#| message: false
 #############
 # GRAFICO 7 #
 #############
@@ -538,7 +593,12 @@ ENAHO %>%
         axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r GRAFICO 8, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
+```{r GRAFICO 8}
+#| echo: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 6
+#| message: false
 #############
 # GRAFICO 8 #
 #############
@@ -557,7 +617,12 @@ datos_jc %>% filter(!is.na(np))%>%
   cowplot::theme_cowplot() +
   theme(plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r GRAFICO 9, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
+```{r GRAFICO 9}
+#| echo: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 6
+#| message: false
 #############
 # GRAFICO 9 #
 #############
@@ -576,7 +641,12 @@ datos_jc %>% filter(!is.na(np))%>%
   theme(axis.text.x = element_text(size = 10),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r GRAFICO 10, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, message = FALSE}
+```{r GRAFICO 10}
+#| echo: false
+#| warning: false
+#| fig-width: 10
+#| fig-height: 6
+#| message: false
 ##############
 # GRAFICO 10 #
 ##############
@@ -595,7 +665,12 @@ datos_jc %>% filter(!is.na(np))%>%
   theme(axis.text.x = element_text(size = 9),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r GRAFICO 11.1, echo=FALSE, warning=FALSE, fig.width=11.5, fig.height=6, message = FALSE}
+```{r GRAFICO 11.1}
+#| echo: false
+#| warning: false
+#| fig-width: 11.5
+#| fig-height: 6
+#| message: false
 ##############
 # GRAFICO 11.1 #
 ##############
@@ -619,7 +694,12 @@ datos_jc %>% filter(!is.na(A15B) & A15B != "Ignorado")%>%
         axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r GRAFICO 11.2, echo=FALSE, warning=FALSE, fig.width=11.5, fig.height=6, message = FALSE}
+```{r GRAFICO 11.2}
+#| echo: false
+#| warning: false
+#| fig-width: 11.5
+#| fig-height: 6
+#| message: false
 ##############
 # GRAFICO 11.2 #
 ##############
@@ -641,7 +721,12 @@ datos_jc %>% filter(!is.na(A15B) & A15B != "Ignorado" & itpn > 0)%>%
         axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r GRAFICO 12, echo=FALSE, warning=FALSE, fig.width=11.5, fig.height=6, message = FALSE}
+```{r GRAFICO 12}
+#| echo: false
+#| warning: false
+#| fig-width: 11.5
+#| fig-height: 6
+#| message: false
 ##############
 # GRAFICO 12 #
 ##############
@@ -659,7 +744,12 @@ variables_comunes %>% ggplot(aes(x = NivInst,
                      coord_flip() + 
                      theme(legend.position = "none")
 ```
-```{r GRAFICO 13, echo=FALSE, warning=FALSE, fig.width=13, fig.height=8, message = FALSE}
+```{r GRAFICO 13}
+#| echo: false
+#| warning: false
+#| fig-width: 13
+#| fig-height: 8
+#| message: false
 ##############
 # GRAFICO 13 #
 ##############
@@ -681,7 +771,12 @@ variables_comunes %>% filter(spmn > 0 &!is.na(A16B)) %>% ggplot(aes(x = spmn,
                         color = guide_legend(reverse = TRUE)) + 
                      theme(axis.text.y = element_blank())
 ```
-```{r GRAFICO 14, echo=FALSE, warning=FALSE, fig.width=16, fig.height=8, message = FALSE}
+```{r GRAFICO 14}
+#| echo: false
+#| warning: false
+#| fig-width: 16
+#| fig-height: 8
+#| message: false
 ##############
 # GRAFICO 14 #
 ##############
@@ -764,7 +859,12 @@ A partir de lo establecido anteriormente, se considera que los cálculos estadí
 
 A continuación, se presenta el código para la creación de gráficos y cuadros que se ha desarrollado hasta el momento: 
 
-```{r código GRAFICO 1, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 1}
+#| eval: false
+#| warning: false
+#| fig-width: 6
+#| fig-height: 4
+#| message: false
 #############
 # GRAFICO 1 #
 #############
@@ -784,7 +884,12 @@ datos_jc %>% ggplot(aes(x = Escolari, y = itpn, group = ZONA)) +
   theme(legend.position = "none",
         plot.caption = element_text(size = 6))
 ```
-```{r código GRAFICO 2, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 2}
+#| eval: false
+#| warning: false
+#| fig-width: 6
+#| fig-height: 4
+#| message: false
 #############
 # GRAFICO 2 #
 #############
@@ -807,7 +912,12 @@ datos_jc %>% ggplot(aes(x = Escolari, y = itpn, group = REGION, colour = REGION)
   theme(legend.position = "none",
         plot.caption = element_text(size = 6))
 ```
-```{r código GRAFICO 3, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 3}
+#| eval: false #| 
+#| warning: false #| 
+#| fig-width: 6 #| 
+#| fig-height: 4 #| 
+#| message: false
 
 #############
 # GRAFICO 3 #
@@ -829,7 +939,12 @@ datos_jc %>% filter(!is.na(np)) %>%
         axis.text.x = element_text(size = 8),
         plot.caption = element_text(size = 6, hjust = 0))  # Cambiar el tamaño del texto del eje x
 ```
-```{r código GRAFICO 4, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 4}
+#| eval: false #| 
+#| warning: false #| 
+#| fig-width: 6 #| 
+#| fig-height: 4 #| 
+#| message: false
 #############
 # GRAFICO 4 #
 #############
@@ -851,7 +966,12 @@ datos_jc %>% filter(!is.na(IPM_Pobreza)) %>%
         plot.caption = element_text(size = 6, hjust = 0))  # Cambiar el tamaño del texto del eje x
 
 ```
-```{r código GRAFICO 5.1, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 5.1}
+#| eval: false #| 
+#| warning: false #| 
+#| fig-width: 6 #| 
+#| fig-height: 4 #| 
+#| message: false
 #############
 # GRAFICO 5.1 #
 #############
@@ -874,7 +994,12 @@ datos_jc %>% filter(!is.na(A16B)) %>%
         axis.text.x = element_text(size = 8, hjust = 5),
         plot.caption = element_text(size = 6, hjust = 0))  # Tamaño del texto en el eje x
 ```
-```{r código GRAFICO 5.2, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 5.2}
+#| eval: false #| 
+#| warning: false #| 
+#| fig-width: 6 #| 
+#| fig-height: 4 #| 
+#| message: false
 #############
 # GRAFICO 5.2 #
 #############
@@ -901,7 +1026,12 @@ ENAHO %>%
           plot.caption = element_text(size = 6, hjust = 0),
           axis.text.x = element_text(angle = 20, hjust = 1))
 ```
-```{r código GRAFICO 5.3, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 5.3}
+#| eval: false #| 
+#| warning: false #| 
+#| fig-width: 6 #| 
+#| fig-height: 4 #| 
+#| message: false
 #############
 # GRAFICO 5.3 #
 #############
@@ -928,7 +1058,12 @@ ENAHO %>%
         plot.caption = element_text(size = 6, hjust = 0),
         axis.text.x = element_text(angle = 20, hjust = 1))
 ```
-```{r código GRAFICO 6.1, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 6.1}
+#| eval: false #| 
+#| warning: false #| 
+#| fig-width: 6 #| 
+#| fig-height: 4 #| 
+#| message: false
 #############
 # GRAFICO 6.1 #
 #############
@@ -949,7 +1084,12 @@ datos_jc %>%
   theme(legend.position = "none",
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r código GRAFICO 6.2, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 6.2}
+#| eval: false #| 
+#| warning: false #| 
+#| fig-width: 6 #| 
+#| fig-height: 4 #| 
+#| message: false
 #############
 # GRAFICO 6.2 #
 #############
@@ -970,7 +1110,12 @@ datos_jc %>%
   theme(legend.position = "none",
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r código GRAFICO 7, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 7}
+#| eval: false 
+#| warning: false 
+#| fig-width: 6 
+#| fig-height: 4 
+#| message: false
 #############
 # GRAFICO 7 #
 #############
@@ -996,7 +1141,12 @@ ENAHO %>%
         axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r código GRAFICO 8, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 8}
+#| eval: false 
+#| warning: false 
+#| fig-width: 6 
+#| fig-height: 4 
+#| message: false
 #############
 # GRAFICO 8 #
 #############
@@ -1015,7 +1165,12 @@ datos_jc %>% filter(!is.na(np))%>%
   cowplot::theme_cowplot() +
   theme(plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r código GRAFICO 9, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 9}
+#| eval: false 
+#| warning: false 
+#| fig-width: 6 
+#| fig-height: 4 
+#| message: false
 #############
 # GRAFICO 9 #
 #############
@@ -1034,7 +1189,12 @@ datos_jc %>% filter(!is.na(np))%>%
   theme(axis.text.x = element_text(size = 10),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r código GRAFICO 10, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 10}
+#| eval: false 
+#| warning: false 
+#| fig-width: 6 
+#| fig-height: 4 
+#| message: false
 ##############
 # GRAFICO 10 #
 ##############
@@ -1053,7 +1213,12 @@ datos_jc %>% filter(!is.na(np))%>%
   theme(axis.text.x = element_text(size = 9),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r código GRAFICO 11.1, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 11.1}
+#| eval: false #| 
+#| warning: false #| 
+#| fig-width: 6 #| 
+#| fig-height: 4 #| 
+#| message: false
 ##############
 # GRAFICO 11.1 #
 ##############
@@ -1077,7 +1242,12 @@ datos_jc %>% filter(!is.na(A15B) & A15B != "Ignorado")%>%
         axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r código GRAFICO 11.2, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 11.2}#|}
+#| eval: false 
+#| warning: false 
+#| fig-width: 6 
+#| fig-height: 4 
+#| message: false| warning: false #| fig-width: 6 #| fig-height: 4 #| message: false
 ##############
 # GRAFICO 11.2 #
 ##############
@@ -1099,7 +1269,12 @@ datos_jc %>% filter(!is.na(A15B) & A15B != "Ignorado" & itpn > 0)%>%
         axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r código GRAFICO 12, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 12}
+#| eval: false 
+#| warning: false 
+#| fig-width: 6 
+#| fig-height: 4 
+#| message: false
 ##############
 # GRAFICO 12 #
 ##############
@@ -1117,7 +1292,12 @@ variables_comunes %>% ggplot(aes(x = NivInst,
                      coord_flip() + 
                      theme(legend.position = "none")
 ```
-```{r código GRAFICO 13, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 13}
+#| eval: false 
+#| warning: false 
+#| fig-width: 6 
+#| fig-height: 4 
+#| message: false
 ##############
 # GRAFICO 13 #
 ##############
@@ -1139,7 +1319,12 @@ variables_comunes %>% filter(spmn > 0 &!is.na(A16B)) %>% ggplot(aes(x = spmn,
                         color = guide_legend(reverse = TRUE)) + 
                      theme(axis.text.y = element_blank())
 ```
-```{r código GRAFICO 14, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código GRAFICO 14}
+#| eval: false 
+#| warning: false 
+#| fig-width: 6 
+#| fig-height: 4 
+#| message: false
 ##############
 # GRAFICO 14 #
 ##############
@@ -1159,7 +1344,12 @@ variables_comunes %>% filter(!is.na(Q_IPCN)) %>%
   scale_colour_brewer(palette = "Set1") +  # Paleta de colores para los quintiles
   theme_cowplot()
 ```
-```{r código TABLA 1, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código TABLA 1}
+#| eval: false 
+#| warning: false 
+#| fig-width: 6 
+#| fig-height: 4 
+#| message: false
 ###############
 #   TABLA 1   #
 ###############
@@ -1186,7 +1376,12 @@ kable(tabla1, caption = "Tabla 1: \nDistribución de la pobreza según universid
   add_header_above(c(" " = 1, "Distribución de la pobreza" = 4)) %>%
   footnote(general = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.")
 ```
-```{r código TABLA 2, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código TABLA 2}
+#| eval: false 
+#| warning: false 
+#| fig-width: 6 
+#| fig-height: 4 
+#| message: false
 ###############
 #   TABLA 2   #
 ###############
@@ -1210,7 +1405,12 @@ tabla2 <- tabla2 %>% rename(Quintil = Q_IPCN,
                             'No domina un segundo idioma' = No
                             )
 ```
-```{r código TABLA 3, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código TABLA 3}
+#| eval: false 
+#| warning: false 
+#| fig-width: 6 
+#| fig-height: 4 
+#| message: false
 ###############
 #   TABLA 3   #
 ###############
@@ -1228,7 +1428,12 @@ tabla3 <- tabla3 %>%
   mutate(across(where(is.numeric), 
                 ~ number(., big.mark = ".", decimal.mark = ",", accuracy = 0.01, prefix = "₡")))
 ```
-```{r código TABLA 4, eval=FALSE, warning=FALSE, fig.width=6, fig.height=4, message = FALSE}
+```{r código TABLA 4}
+#| eval: false 
+#| warning: false 
+#| fig-width: 6 
+#| fig-height: 4 
+#| message: false| message: false| eval: false #| warning: false #| fig-width: 6 #| fig-height: 4 #| message: false
 ###############
 #   TABLA 4   #
 ###############
