@@ -1242,12 +1242,12 @@ datos_jc %>% filter(!is.na(A15B) & A15B != "Ignorado")%>%
         axis.text.y = element_text(size = 8, angle = 25, hjust = 1),
         plot.caption = element_text(size = 6, hjust = 0))
 ```
-```{r código GRAFICO 11.2}#|}
+```{r código GRAFICO 11.2}
 #| eval: false 
 #| warning: false 
 #| fig-width: 6 
 #| fig-height: 4 
-#| message: false| warning: false #| fig-width: 6 #| fig-height: 4 #| message: false
+#| message: false
 ##############
 # GRAFICO 11.2 #
 ##############
@@ -1433,7 +1433,7 @@ tabla3 <- tabla3 %>%
 #| warning: false 
 #| fig-width: 6 
 #| fig-height: 4 
-#| message: false| message: false| eval: false #| warning: false #| fig-width: 6 #| fig-height: 4 #| message: false
+#| message: false
 ###############
 #   TABLA 4   #
 ###############
