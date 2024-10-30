@@ -76,7 +76,11 @@ Se utilizarán diversos tipos de gráficos en este análisis: gráficos de barra
 **Gráficos de dispersión**: Serán útiles para investigar la posible correlación entre los años de escolaridad y la intensidad de la pobreza, así como el nivel de ingreso.
 
 <!-- Gráficos relacionados con el tipo de centro educativo -->
-```{r Grafico 1, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 1}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico1 <- as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>% 
   filter(Var2 != "Ignorado") %>% 
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
@@ -107,7 +111,12 @@ grafico1 <- as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>%
   )
 grafico1
 ```
-```{r Grafico 2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| 
 grafico2 <- ENAHO %>% 
   filter(A15A != "Ignorado" & itpn > 0) %>% 
   ggplot(aes(x = itpn, y = fct_reorder(A15A, itpn, median), fill = A15A)) +
@@ -136,7 +145,11 @@ grafico2 <- ENAHO %>%
   )
 grafico2
 ```
-```{r Grafico 3, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 3}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico3 <- as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Var2 = str_extract(Var2, "\\d")) %>% 
@@ -178,7 +191,11 @@ grafico3 <- as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2
 grafico3
 ```
 <!-- Gráficos relacionados con universidad pública -->
-```{r Grafico 4, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 4}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico4 <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
   rename(Nivel_de_pobreza = Var1) %>% 
@@ -212,7 +229,11 @@ grafico4 <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %
   ) 
 grafico4
 ```
-```{r Grafico 5, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 5}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico5 <- ENAHO %>% 
   filter(A15B != "Ignorado" & itpn > 0) %>% 
   ggplot(aes(x = itpn, y = fct_reorder(A15B, itpn, median), fill = A15B)) +
@@ -240,7 +261,12 @@ grafico5 <- ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 5.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 5.2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| echo: false
 ENAHO %>% 
   filter(A15B != "Ignorado" & itpn > 0) %>% 
   ggplot(aes(x = itpn, y = fct_reorder(A15B, itpn, median), fill = A15B)) +
@@ -270,7 +296,11 @@ ENAHO %>%
 ```
 
 <!-- Gráficos relacionados con nivel de instrucción -->
-```{r Grafico 6, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 6}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico6 <- as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst, 
                                            "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
                                            "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
@@ -305,7 +335,12 @@ grafico6 <- as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst,
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 6.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 6.2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| echo: false
 as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst, 
                                            "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
                                            "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
@@ -341,7 +376,11 @@ as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst,
   )
 ```
 
-```{r Grafico 7, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 7}
+#| fig.width: 13.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico7 <- ENAHO %>% 
   filter(NivInst != "Ignorado" & itpn > 0) %>%
   mutate(NivInst = fct_collapse(NivInst,
@@ -378,7 +417,12 @@ grafico7 <- ENAHO %>%
   )
 ```
 
-```{r Grafico 7.2, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 7.2}
+#| fig.width: 13.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| echo: false
 ENAHO %>% 
   filter(NivInst != "Ignorado" & itpn > 0) %>%
   mutate(NivInst = fct_collapse(NivInst,
@@ -415,7 +459,11 @@ ENAHO %>%
   )
 ```
 
-```{r Grafico 8, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 8}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico8 <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
                                             "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
                                             "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
@@ -450,7 +498,12 @@ grafico8 <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst,
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 8.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 8.2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| echo: false
 as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
                                             "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
                                             "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
@@ -486,7 +539,11 @@ as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst,
   )
 ```
 <!-- Gráficos relacionados con escolaridad -->
-```{r Grafico 9, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 9}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico9 <- ENAHO %>% 
   ggplot(aes(x = Escolari, y = itpn, color = ZONA)) +
   # Cambiar a puntos con transparencia para evitar solapamientos y tamaño adecuado
@@ -522,7 +579,12 @@ grafico9 <- ENAHO %>%
     plot.caption = element_text(size = 7, hjust = 0)
   )
 ```
-```{r Grafico 9.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 9.2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| echo: false
 ENAHO %>% 
   ggplot(aes(x = Escolari, y = itpn, color = ZONA)) +
   # Cambiar a puntos con transparencia para evitar solapamientos y tamaño adecuado
@@ -558,7 +620,11 @@ ENAHO %>%
     plot.caption = element_text(size = 7, hjust = 0)
   )
 ```
-```{r Grafico 10, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 10}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico10 <- ENAHO %>% 
   ggplot(aes(x = Escolari, y = IPM_Intensidad, color = ZONA)) +
   # Cambiar a puntos con transparencia para evitar solapamientos y tamaño adecuado
@@ -593,7 +659,12 @@ grafico10 <- ENAHO %>%
     plot.caption = element_text(size = 7, hjust = 0)
   )
 ```
-```{r Grafico 10.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 10.2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| echo: false
 ENAHO %>% 
   ggplot(aes(x = Escolari, y = IPM_Intensidad, color = ZONA)) +
   # Cambiar a puntos con transparencia para evitar solapamientos y tamaño adecuado
@@ -628,7 +699,11 @@ ENAHO %>%
     plot.caption = element_text(size = 7, hjust = 0)
   )
 ```
-```{r Grafico 11, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 11}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico11 <- ENAHO %>% filter(!is.na(Q_IPCN)) %>% 
   ggplot(aes(x = Escolari, 
              y = itpn, 
@@ -660,7 +735,12 @@ grafico11 <- ENAHO %>% filter(!is.na(Q_IPCN)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 11.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 11.2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| echo: false
 ENAHO %>% filter(!is.na(Q_IPCN)) %>% 
   ggplot(aes(x = Escolari, 
              y = itpn, 
@@ -693,7 +773,11 @@ ENAHO %>% filter(!is.na(Q_IPCN)) %>%
   )
 ```
 <!-- Gráficos relacionados con título obtenido -->
-```{r Grafico 12, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 12}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico12 <- as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>% 
   rename(Nivel_de_pobreza = Var1) %>% 
   filter(Var2 != "Ignorado") %>% 
@@ -723,7 +807,12 @@ grafico12 <- as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 12.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 12.2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| echo: false
 as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>% 
   rename(Nivel_de_pobreza = Var1) %>% 
   filter(Var2 != "Ignorado") %>% 
@@ -753,7 +842,11 @@ as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 13, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 13}
+#| fig.width: 13.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico13 <- ENAHO %>% 
   filter(A16B != "Ignorado" & itpn > 0) %>%
   ggplot(aes(x = itpn, y = fct_reorder(A16B, itpn, median), fill = A16B)) +
@@ -785,7 +878,12 @@ grafico13 <- ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 13.2, fig.width=13.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 13.2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| echo: false
 ENAHO %>% 
   filter(A16B != "Ignorado" & itpn > 0) %>%
   ggplot(aes(x = itpn, y = fct_reorder(A16B, itpn, median), fill = A16B)) +
@@ -817,7 +915,11 @@ ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 14, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 14}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico14 <- as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Var2 = str_extract(Var2, "\\d")) %>% 
@@ -845,7 +947,12 @@ grafico14 <- as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 14.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 14.2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| echo: false
 as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Var2 = str_extract(Var2, "\\d")) %>% 
@@ -874,7 +981,11 @@ as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 2)) %>%
   )
 ```
 <!-- Gráficos relacionados con dominio de segundo idioma -->
-```{r Grafico 15, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 15}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico15 <- as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>% 
   filter(Var2 != "Ignorado") %>% 
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
@@ -904,7 +1015,12 @@ grafico15 <- as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 15.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 15.2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| echo: false
 as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>% 
   filter(Var2 != "Ignorado") %>% 
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
@@ -934,7 +1050,11 @@ as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 16, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 16}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico16 <- as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Var2 = str_extract(Var2, "\\d")) %>% 
@@ -962,7 +1082,12 @@ grafico16 <- as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 16.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 16.2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| echo: false
 as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Var2 = str_extract(Var2, "\\d")) %>% 
@@ -990,7 +1115,11 @@ as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>%
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 17, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE}
+```{r Grafico 17}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
 grafico17 <- ENAHO %>% 
   filter(A22A != "Ignorado" & itpn > 0) %>%
   ggplot(aes(x = itpn, y = fct_reorder(A22A, itpn, median), fill = A22A)) +
@@ -1022,7 +1151,12 @@ grafico17 <- ENAHO %>%
     panel.grid.minor = element_blank()
   )
 ```
-```{r Grafico 17.2, fig.width=11.6, fig.height=6.5, warning=FALSE, message=FALSE, echo=FALSE}
+```{r Grafico 17.2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| echo: false
 ENAHO %>% 
   filter(A22A != "Ignorado" & itpn > 0) %>%
   ggplot(aes(x = itpn, y = fct_reorder(A22A, itpn, median), fill = A22A)) +
@@ -1059,7 +1193,9 @@ A continuación, se presentará una serie de tablas que proporcionan informació
 
 <!-- Tablas -->
 <!-- Tablas relacionadas con el tipo de centro educativo -->
-```{r Tabla 1, warning=FALSE, message=FALSE}
+```{r Tabla 1}
+#| warning: false
+#| message: false
 tab_np_vs_tipo_colegio <- as.data.frame(prop.table(table(ENAHO$np, 
                                                          ENAHO$A15A), 
                                                    margin = 2)) %>% 
@@ -1078,7 +1214,11 @@ kable(tab_np_vs_tipo_colegio, caption = "Proporción del nivel de pobreza según
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 2, eval=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 2}
+#| warning: false
+#| message: false
+#| eval: false
+#| echo: false
 # Diverge a la derecha lo úlitmo que sale es Q2
 tab_dist_itpn_tipo_colegio <- ENAHO %>% 
   filter(A15A != "Ignorado", itpn != 0) %>% 
@@ -1112,7 +1252,9 @@ kable(tab_dist_itpn_tipo_colegio, caption = "Distribución del ingreso según ti
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 3, warning=FALSE, message=FALSE}
+```{r Tabla 3}
+#| warning: false
+#| message: false
 tab_evol_tipo_colegio_QIPCN <- as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Freq = round(Freq * 100,2)) %>% 
@@ -1133,7 +1275,9 @@ kable(tab_evol_tipo_colegio_QIPCN, caption = "Distribución del Nivel de Instruc
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 4, warning=FALSE, message=FALSE}
+```{r Tabla 4}
+#| warning: false
+#| message: false
 tab_np_vs_univ <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
   rename("Nivel de pobreza" = Var1) %>% 
@@ -1148,7 +1292,11 @@ kable(tab_np_vs_univ, caption = " Distribución del nivel de pobreza según univ
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 5, eval=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 5}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
 # Diverge a la derecha lo úlitmo que sale es Q2
 tab_dist_itpn_univ <- ENAHO %>% 
   filter(A15B != "Ignorado") %>% 
@@ -1184,7 +1332,11 @@ kable(tab_dist_itpn_univ, caption = " Distribución del ingreso según tipo de c
            general_title = "Fuente: ")
 ```
 <!-- Tablas relacionadas con nivel de instrucción -->
-```{r Tabla 6, eval=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 6}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
 # Diverge a la derecha lo úlitmo que sale es "Secundaria Completa"
 tab_np_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$np, 
                                                     fct_collapse(ENAHO$NivInst, 
@@ -1209,7 +1361,11 @@ kable(tab_np_vs_nivinst, caption = " Distribución del nivel de pobreza según n
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 7, eval=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 7}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
 # Diverge a la derecha lo úlitmo que sale es "Primaria completa"
 tab_estabili_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$Estabili, 
                                                           fct_collapse(ENAHO$NivInst, 
@@ -1235,7 +1391,11 @@ kable(tab_estabili_vs_nivinst, caption = " Distribución de la estabilidad labor
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 8, eval=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 8}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
 # Diverge a la derecha lo úlitmo que sale es "Primaria completa"
 tab_satisf_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$InsLab, 
                                                         fct_collapse(ENAHO$NivInst, 
@@ -1261,7 +1421,11 @@ kable(tab_satisf_vs_nivinst, caption = " Distribución de la satisfaccion labora
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 9, eval=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 9}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
 # Diverge a la derecha lo úlitmo que sale es Q1
 tab_dist_itpn_nivinst <- ENAHO %>% 
   filter(NivInst != "Ignorado", itpn != 0) %>% 
@@ -1303,7 +1467,9 @@ kable(tab_dist_itpn_nivinst, caption = " Distribución del ingreso por nivel de 
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 10, warning=FALSE, message=FALSE}
+```{r Tabla 10}
+#| warning: false
+#| message: false
 tab_evol_nivinst_QIPCN <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
                                                                       "Primaria completa" = c("Primaria completa", 
                                                                                               "Secundaria académica incompleta",
@@ -1333,7 +1499,9 @@ kable(tab_evol_nivinst_QIPCN, caption = "Evolucion de la distribución del nivel
            general_title = "Fuente: ")
 ```
 <!-- Tablas relacionadas con título obtenido -->
-```{r Tabla 11, warning=FALSE, message=FALSE}
+```{r Tabla 11}
+#| warning: false
+#| message: false
 tab_np_vs_titulo <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A16B), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
   rename(Nivel_de_pobreza = Var1) %>% 
@@ -1349,7 +1517,11 @@ kable(tab_np_vs_titulo, caption = "Distribución del nivel de pobreza según tí
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 12, eval=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 12}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
 # Diverge a la derecha lo úlitmo que sale es "Técnico medio, perito o diplomado..."
 tab_estabili_vs_titulo <- as.data.frame(prop.table(table(ENAHO$Estabili, ENAHO$A16B), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
@@ -1366,7 +1538,11 @@ kable(tab_estabili_vs_titulo, caption = "Estabilidad laboral segun titulo obteni
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 13, eval=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 13}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
 # Diverge a la derecha lo úlitmo que sale es "Técnico medio, perito o diplomado..."
 tab_satisf_vs_titulo <- as.data.frame(prop.table(table(ENAHO$InsLab, ENAHO$A16B), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
@@ -1383,7 +1559,11 @@ kable(tab_satisf_vs_titulo, caption = "Satisfaccion laboral segun titulo obtenid
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 14, echo=FALSE, eval=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 14}
+#| echo: false
+#| eval: false
+#| warning: false
+#| message: false
 # Diverge a la derecha lo úlitmo que sale es "Min"
 tab_dist_itpn_titulo <- ENAHO %>% 
   filter(A16B != "Ignorado", itpn != 0) %>% 
@@ -1417,7 +1597,9 @@ kable(tab_dist_itpn_titulo, caption = "Distribución del ingreso según titulo o
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 15, warning=FALSE, message=FALSE}
+```{r Tabla 15}
+#| warning: false
+#| message: false
 tab_evol_titulo_QIPCN <- as.data.frame(prop.table(table(ENAHO$A16B,ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
@@ -1439,7 +1621,9 @@ kable(tab_evol_titulo_QIPCN, caption = "Evolucion de la distribución de los tit
            general_title = "Fuente: ")
 ```
 <!-- Tablas relacionadas con dominio segundo idioma -->
-```{r Tabla 16, warning=FALSE, message=FALSE}
+```{r Tabla 16}
+#| warning: false
+#| message: false
 tab_np_vs_dom_2_idiom <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A22A), margin = 2)) %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
   rename("Nivel de pobreza" = Var1) %>% 
@@ -1454,7 +1638,9 @@ kable(tab_np_vs_dom_2_idiom, caption = "Nivel de pobreza según dominio de un se
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 17, warning=FALSE, message=FALSE}
+```{r Tabla 17}
+#| warning: false
+#| message: false
 tab_evol_dom_2_idiom_QIPCN <- as.data.frame(prop.table(table(ENAHO$A22A,ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Freq = round(Freq * 100, 2)) %>% 
@@ -1475,7 +1661,11 @@ kable(tab_evol_dom_2_idiom_QIPCN, caption = "Nivel de pobreza según dominio de 
            footnote_as_chunk = TRUE,
            general_title = "Fuente: ")
 ```
-```{r Tabla 18, echo=FALSE, eval=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla 18}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
 # Diverge a la derecha lo úlitmo que sale es "Q3"
 tab_dist_itpn_dom_2_idiom <- ENAHO %>% 
   filter(A22A != "Ignorado", itpn!=0) %>% 
@@ -1804,14 +1994,20 @@ Por lo tanto, aunque la educación y la acumulación de capital humano son funda
 **Unidad estadística o individuos:** La unidad estadística de este estudio es el individuo (persona) dentro de un hogar encuestado en una vivienda ubicada en Costa Rica en el año 2023. Cada individuo representa una persona en la muestra, de la cual se recaban datos sobre variables socioeconómicas, demográficas, educativas, entre otras.
 
 **Descripción de las variables:**
-```{r Agrega label, echo=FALSE, message=FALSE, warning=FALSE}
+```{r Agrega label}
+#| echo: false
+#| warning: false
+#| message: false
 # install.packages("Hmisc")
 library(Hmisc)
 label(ENAHO$Escolari) <- "Años de escolaridad"
 # Esto lo hice ya que la variable Escolari en su estructura no contiene el label por tanto, hay que agregársela manualmente
 ```
 
-```{r Tabla Variables, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla Variables}
+#| echo: false
+#| warning: false
+#| message: false
 labels <- ENAHO %>%
   select(-c(ForReg, Estabili, InsLab)) %>%  # Excluye las variables
   summarise(Código = names(.),  # Obtiene los nombres de las columnas
@@ -1855,7 +2051,10 @@ En el mismo contexto de las variables que miden el nivel de pobreza en la muestr
 
 La variable correspondiente al Quintil de ingreso per cápita del hogar neto agrupa los hogares según su ingreso per cápita, el primer quintil contiene el 20% de los hogares con menor ingreso, en tanto el quinto agrupa el 20% de los hogares con el mayor ingreso per cápita. Esta forma parte del conjunto de variables creadas y la especificación de los quintiles se detalla acontinuación;
 
-```{r Tabla Def. QUINTILES, echo=FALSE, warning=FALSE, message=FALSE}
+```{r Tabla Def. QUINTILES}
+#| echo: false
+#| warning: false
+#| message: false
 title <- c("Quintil 1 (Q1)", 
                "Quintil 2 (Q2)", 
                "Quintil 3 (Q3)", 
@@ -1973,14 +2172,20 @@ Este modelo se utiliza para estimar los parámetros \( \alpha \) y \( \beta \) e
 
 Tras analizar la distribución de la población en condición de pobreza y no pobreza a través de diferentes categorías, se puede hacer la afirmación preliminar de que la educación es un determinante clave de la condición socioeconómica de las personas, ya que influye de manera directa en las probabilidades de que un individuo se encuentre en situación de pobreza.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico10.png")
 ```
 
 
 En este sentido, el análisis del gráfico 10 revela una relación inversa clara entre la escolaridad y la intensidad de pobreza tanto en zonas urbanas como rurales. En las áreas urbanas, los individuos con niveles educativos más bajos muestran medias de intensidad de pobreza que superan el 27%, mientras que aquellos con niveles más altos de escolaridad experimentan una reducción notable en esta medida. Esto sugiere que un mayor nivel educativo contribuye a una mejor situación económica y refleja un impacto positivo en la disminución de la pobreza. Sin embargo, en el contexto rural, aunque se observa una tendencia similar, las medias de intensidad de pobreza son más elevadas en todos los niveles de escolaridad. Este contraste podría indicar que los beneficios de la educación son menos efectivos en estas áreas en comparación con las urbanas, subrayando la necesidad de políticas que no solo fomenten la educación, sino que también aborden las condiciones socioeconómicas específicas que afectan a estas comunidades.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico6.png")
 ```
 
@@ -1988,25 +2193,37 @@ Este patrón de relación inversa entre educación y pobreza también se observa
 
 Este análisis es concordante con lo que han encontrado diversos autores. Por un lado, @becker afirma que una población más educada y saludable acelera el desarrollo económico de un país, destacando a la educación primaria y secundaria como motores principales. Por otro lado, @Sanchez encuentra que el hecho de completar la secundaria disminuye en un 5.7% la probabilidad de caer en pobreza, mientras que obtener estudios post-secundarios la reduce en un 8.4%. Además, @OrdazDiaz2009 concluye que la educación primaria reduce la pobreza alimentaria, de capacidades y de patrimonio en un 18%, 16% y 4% respectivamente, mientras que la secundaria lo hace en un 30%, 27% y 15%, mostrando un mayor impacto en las condiciones de vida. En conjunto, estos resultados subrayan que una educación de mayor calidad y alcance es esencial no solo para disminuir la pobreza, sino también para mejorar la estabilidad económica en el largo plazo.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico1.png")
 ```
 
 En cuanto al impacto de la educación primaria y secundaria, los datos revelan una marcada diferencia entre las personas según el tipo de centro educativo al que asistieron (gráfico 1). Los resultados muestran que la ausencia total de educación formal está claramente asociada con un mayor nivel de pobreza extrema, ya que el 18.21% de los adultos que nunca asistieron a un centro educativo se encuentran en esta categoría. Sin embargo, la pobreza disminuye considerablemente entre aquellos que asistieron a centros educativos, especialmente privados (1.46% en pobreza extrema) y semipúblicos (4%). Por otro lado, los centros públicos, con un 7.40% de pobreza extrema, se ubican entre los extremos del espectro, indicando que, si bien la educación pública proporciona una vía para mejorar la situación económica, su impacto en la reducción de la pobreza es menor en comparación con los centros privados. Esto refleja cómo la calidad y el tipo de centro al que se asistió tienen un impacto significativo en la situación socioeconómica de las personas, sugiriendo que la educación de calidad juega un papel crucial en la movilidad social. Esto es reforzado por lo que dicen @ricardez: si se tienen profesores mejores capacitados y con salarios competitivos, o si se recibe una educación privada, se reduce la probabilidad de encontrarse en pobreza.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico12.png")
 ```
 
 Además de las diferencias por tipo de centro educativo, el nivel de titulación también muestra una relación clara con la situación socioeconómica de las personas. La tabla 11 evidencia una correlación significativa entre el nivel educativo alcanzado y la probabilidad de encontrarse en situación de pobreza. Mientras que el 86% de las personas sin título no son pobres, la tasa de pobreza extrema en este grupo es de 3.69%, y un 10.31% vive en pobreza no extrema. Por el contrario, entre quienes alcanzaron títulos universitarios de mayor rango, como licenciatura, especialización, maestría o doctorado, las tasas de pobreza son prácticamente inexistentes, con la gran mayoría en la categoría de "no pobre".
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico4.png")
 ```
 
 Además de las diferencias por nivel de titulación, también se observa una notable variación en la distribución de la pobreza entre personas que asistieron a diferentes universidades públicas (gráfico 4). Los resultados destacan que la Universidad de Costa Rica (UCR) y el Tecnológico de Costa Rica (TEC) presentan los menores niveles de pobreza extrema y no extrema (1.1% y 0.66% respectivamente para pobreza extrema), mientras que la Universidad Estatal a Distancia (UNED) muestra la mayor proporción de personas en pobreza extrema (7.93%) y pobreza no extrema (11.59%). Estas diferencias podrían relacionarse con las características particulares de cada institución. Por ejemplo, la UNED, al ser una universidad a distancia, podría atraer a una población con menores ingresos y mayores restricciones económicas, lo cual explicaría su mayor nivel de pobreza. Otro aspecto importante a destacar es que el hecho de que la asistencia a la universidad no necesariamente evita que las personas se encuentren en condición de pobreza.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico15.png")
 ```
 
@@ -2016,19 +2233,28 @@ Asimismo, el dominio de un segundo idioma se presenta como un factor relevante e
 
 A continuación, se examina la relación entre el nivel educativo y el ingreso, explorando cómo el nivel educativo impacta las posibilidades económicas de los individuos. Esta sección no solo revela las diferencias en los ingresos promedio según diferentes categorías educativas, sino también la variabilidad dentro de cada una, mostrando distintas oportunidades y desafíos económicos que enfrentan las personas en función de su formación académica.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico9.png")
 ```
 
 Al analizar esta relación entre escolaridad e ingresos, se observa un patrón consistente en zonas urbanas y rurales. Aunque los ingresos promedio tienden a ser más altos en áreas urbanas y aumentan con el nivel educativo, la pendiente de esta correlación se mantiene estable en ambas zonas. Esto sugiere que, independientemente de la ubicación geográfica, la educación ejerce un impacto similar en el incremento de los ingresos. Si bien existen diferencias en los promedios de ingresos para niveles educativos más altos, la uniformidad en la tendencia general indica que el acceso a la educación beneficia a ambas zonas de forma comparable, reafirmando su importancia como motor de movilidad económica.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico7.png")
 ```
 
 Por otro lado, el análisis muestra que el nivel educativo es un determinante clave de los ingresos, evidenciado en un incremento claro a medida que aumenta el nivel de instrucción. Las personas con educación superior de posgrado presentan los ingresos más altos, con un promedio de ₡1,541,922, lo que supera en más de seis veces el promedio de ₡249,387 de quienes tienen nulo o poco nivel de instrucción. Sin embargo, esta relación también revela una creciente dispersión en los ingresos dentro de cada grupo educativo, especialmente en los niveles más altos, donde la desviación estándar es considerablemente alta, como en el posgrado (₡1,089,738). Esto indica que, si bien la educación superior ofrece acceso a mejores ingresos, existen diferencias significativas dentro de estos grupos, posiblemente influidas por la especialización profesional, el tipo de empleo y la región de residencia.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico2.png")
 ```
 
@@ -2036,19 +2262,28 @@ Además de la relación entre el nivel educativo y los ingresos, es crucial exam
 
 En contraste, los centros públicos exhiben una media de ingresos significativamente más baja, de ₡405,861.1, y una distribución mucho más desigual, reflejada en una desviación estándar de ₡503,840.6 y un ingreso máximo de ₡20 millones. Esto indica que, aunque existe una minoría en este grupo que logra niveles de ingresos muy altos, la mayoría no llega a ese umbral. Por otro lado, los adultos que nunca asistieron a un centro educativo presentan los ingresos más bajos, con una media de ₡222,138.6, destacando así la importancia de la educación formal para mejorar las perspectivas económicas.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico13.png")
 ```
 
 Al observar los ingresos promedio según la titulación obtenida, se evidencia una correlación positiva entre la formación académica y el ingreso. Las personas con títulos avanzados, como especialización, maestría y doctorado, son quienes alcanzan los ingresos más altos, superando los 1.4 millones de colones en promedio para los niveles de maestría y doctorado. En particular, quienes han completado una especialización muestran el promedio de ingresos más elevado, cercano a los 1.95 millones. En contraste, aquellos sin título o con formación técnica media obtienen ingresos considerablemente menores, con promedios de aproximadamente 444 mil y 527 mil colones, respectivamente. Esta disparidad subraya la importancia de la educación como vía para acceder a mejores oportunidades económicas; sin embargo, también pone de manifiesto los desafíos que enfrentan aquellos que no alcanzan niveles educativos superiores, limitando su acceso a empleos mejor remunerados y a una mayor movilidad económica.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico5.png")
 ```
 
 La comparación del ingreso total personal neto entre las universidades públicas de Costa Rica revela marcadas diferencias. La Universidad de Costa Rica (UCR) muestra un ingreso promedio de ₡950,480.4, mientras que el Tecnológico de Costa Rica (TEC) registra el promedio más alto, alcanzando ₡1,146,155.2. Estos ingresos superan ampliamente los de otras universidades, como la Universidad Nacional (UNA) y la Universidad Estatal a Distancia (UNED), cuyos promedios son de ₡785,263.1 y ₡560,280.2, respectivamente. Estas cifras sugieren que la UCR y el TEC podrían estar preparando a sus estudiantes para obtener mejores ingresos en el mercado laboral, posiblemente reflejando tanto la calidad educativa de sus programas como las oportunidades laborales que ofrecen a sus egresados.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico17.png")
 ```
 
@@ -2056,31 +2291,46 @@ El análisis del dominio de un segundo idioma muestra también una influencia no
 
 **Distribución de las categorías educativas por quintil de ingreso per cápita neto del hogar**
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico8.png")
 ```
 
 El gráfico 8 revela que los niveles educativos bajos, como sin instrucción o primaria completa, se concentran en los quintiles de ingresos más bajos. En el primer quintil (₡110,683 o menos), el 52.98% completó solo la primaria y el 18.14% tiene poca o ninguna instrucción. En contraste, en el quinto quintil (más de ₡574,085), el 54.87% completó educación de pregrado y el 11.26% tiene estudios de posgrado. Esto sugiere que el acceso a niveles educativos superiores tiende a ubicarse en los quintiles altos, aunque existen barreras estructurales que limitan la movilidad social, como se ha visto anteriormente.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico3.png")
 ```
 
 Además, el tipo de centro educativo asistido muestra una tendencia similar: el 87.52% de las personas en el primer quintil asistieron a colegios públicos, mientras que el 44.59% de las personas del quinto quintil asistieron a colegios privados. Esto refleja cómo el nivel socioeconómico puede influir en el acceso a instituciones privadas, que suelen ofrecer beneficios adicionales.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico14.png")
 ```
 
 Quienes tienen formación técnica media o sin título se concentran principalmente en los quintiles bajos, mientras que la educación superior facilita la presencia en los quintiles altos. Por ejemplo, el 42.83% de quienes cuentan con una licenciatura se encuentran en el quinto quintil, y más del 12% de quienes poseen un posgrado también están en este grupo. Esto resalta la importancia de la educación como un motor de movilidad social, evidenciando que el acceso a niveles educativos superiores es fundamental para mejorar las oportunidades económicas y romper el ciclo de pobreza.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico16.png")
 ```
 
 El análisis revela una clara disparidad en la distribución del ingreso según el dominio de un segundo idioma. Mientras que el 96.6% de las personas que no dominan un segundo idioma se agrupan en el primer quintil de ingreso, aquellos que sí lo dominan tienen una representación significativa en los quintiles superiores, con un 39.74% en el quintil más alto. Esto refuerza el hecho de que las habilidades lingüísticas pueden estar asociadas con mejores oportunidades económicas, destacando su importancia para mejorar la situación laboral y económica de una persona.
 
-```{r, echo=FALSE, out.width='80%', fig.align='center'}
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
 knitr::include_graphics("graphs/Grafico11.png")
 ```
 
