@@ -34,6 +34,7 @@ library(GGally)
 library(kableExtra)
 library(purrr)
 library(gridExtra)
+library(ggrepel)
 ```
 
 ```{r Limpieza Datos}
@@ -86,7 +87,7 @@ grafico1 <- as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>%
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
   geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Gráfico de área
   labs(
-    title = "Gráfico 1.\nNivel de pobreza según tipo de centro educativo al que se asistió",
+    title = "Nivel de pobreza según tipo de centro educativo al que se asistió",
     subtitle = "Relación entre tipo de centro educativo y nivel de pobreza (Costa Rica, 2023)",
     x = "Tipo de centro educativo al que asistió",
     y = "Proporción acumulada",
@@ -111,6 +112,19 @@ grafico1 <- as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>%
   )
 grafico1
 ```
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+tabla_media_ingreso_por_centro_educativo <- ENAHO %>% 
+  filter(A15A != "Ignorado", itpn != 0) %>% 
+  group_by(A15A) %>%
+  summarize(
+    media_itpn = mean(itpn, na.rm = TRUE)
+  )
+tabla_media_ingreso_por_centro_educativo
+```
+
 ```{r Grafico 2}
 #| fig.width: 11.6
 #| fig.height: 6.5
@@ -122,17 +136,25 @@ grafico2 <- ENAHO %>%
   ggplot(aes(x = itpn, y = fct_reorder(A15A, itpn, median), fill = A15A)) +
   geom_density_ridges(alpha = 0.8, color = "white", size = 0.3) +  # Ajuste en las curvas de densidad
   geom_vline(xintercept = 129038, color = "red", linetype = "dotted", size = 0.8) +  # Línea de pobreza mejorada
+  geom_label_repel(
+    data = tabla_media_ingreso_por_centro_educativo,
+    mapping = aes(
+      x = media_itpn,
+      y = A15A,
+      label = scales::label_number(accuracy = 0.1)(media_itpn),
+    ), position = ggpp::position_nudge_to(x = 7), color = "white"
+  ) +
   annotate("text", y = 0.5, x = 180000, label = "Línea de pobreza", color = "red", 
            size = 3, hjust = 0, vjust = -0.5, fontface = "italic") +  # Texto mejorado
   labs(
-    title = "Gráfico 2.\nDistribución del ingreso total neto por persona según tipo de centro educativo al que\nse asistió",
+    title = "Distribución del ingreso total neto por persona según tipo de centro educativo al que\nse asistió",
     subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
     x = "Ingreso Personal Neto (log10)",
     y = "Tipo de centro educativo",
     caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales."
   ) +
   scale_x_log10(labels = scales::comma) +
-  scale_fill_viridis_d(option = "C") +  # Paleta de colores viridis
+  scale_fill_viridis_d(option = "viridis", begin = 0.2, end = 0.85) +  # Paleta de colores viridis
   theme_minimal(base_size = 14) +  # Tema minimalista
   theme(
     legend.position = "none",  # Sin leyenda
@@ -159,7 +181,7 @@ grafico3 <- as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2
   geom_area(position = "fill", alpha = 0.8, color = "white", size = 0.3) +
   # Etiquetas y títulos mejorados
   labs(
-    title = "Gráfico 3.\nDistribución de tipo de centro educativo asistido por quintil de ingreso per cápita",
+    title = "Distribución de tipo de centro educativo asistido por quintil de ingreso per cápita",
     subtitle = "Relación entre tipo de centro educativo y nivel de ingreso per cápita (Costa Rica, 2023)",
     x = "Quintil de ingreso per cápita",
     y = "Proporción acumulada",
@@ -209,7 +231,7 @@ grafico4 <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %
              y = Proporcion, fill = Nivel_de_pobreza)) +
   geom_col(alpha = 0.85, color = "white", size = 0.3) +  # Mejora visual en las columnas
   labs(
-    title = "Gráfico 4.\nNivel de pobreza según universidad pública a la que se asistió",
+    title = "Nivel de pobreza según universidad pública a la que se asistió",
     x = "Universidad pública a la que se asistió",
     y = "Proporción acumulada",
     fill = "Nivel de pobreza",
@@ -229,6 +251,18 @@ grafico4 <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %
   ) 
 grafico4
 ```
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+tabla_media_ingreso_por_universidad <- ENAHO %>% 
+  filter(A15B != "Ignorado", itpn != 0) %>% 
+  group_by(A15B) %>%
+  summarize(
+    media_itpn = mean(itpn, na.rm = TRUE)
+  )
+tabla_media_ingreso_por_universidad
+```
 ```{r Grafico 5}
 #| fig.width: 11.6
 #| fig.height: 6.5
@@ -239,10 +273,18 @@ grafico5 <- ENAHO %>%
   ggplot(aes(x = itpn, y = fct_reorder(A15B, itpn, median), fill = A15B)) +
   geom_density_ridges(alpha = 0.85, color = "white") +  # Ajuste en las curvas de densidad
   geom_vline(xintercept = 129038, color = "red", linetype = "dotted", size = 0.8) +  # Línea de pobreza mejorada
+   geom_label_repel(
+    data = tabla_media_ingreso_por_universidad,
+    mapping = aes(
+      x = media_itpn,
+      y = A15B,
+      label = scales::label_number(accuracy = 0.1)(media_itpn),
+    ), position = ggpp::position_nudge_to(x = 7.1), color = "white"
+  ) +
   annotate("text", y = 0.5, x = 180000, label = "Línea de pobreza", color = "red", 
            size = 3, hjust = 0, vjust = -0.5, fontface = "italic") +  # Texto mejorado
   labs(
-    title = "Gráfico 5.\nDistribución del ingreso total neto por persona según universidad pública a la que se asistió",
+    title = "Distribución del ingreso total neto por persona según universidad pública a la que se asistió",
     subtitle = "Ingreso expresado en colones costarricenses",
     x = "Ingreso Personal Neto (log10)",
     y = "Universidad pública a la que se asistió",
@@ -260,6 +302,7 @@ grafico5 <- ENAHO %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico5
 ```
 ```{r Grafico 5.2}
 #| fig.width: 11.6
@@ -275,7 +318,7 @@ ENAHO %>%
   annotate("text", y = 0.5, x = 180000, label = "Línea de pobreza", color = "red", 
            size = 3, hjust = 0, vjust = -0.5, fontface = "italic") +  # Texto mejorado
   labs(
-    title = "Gráfico 5.\nDistribución del ingreso total neto por persona según universidad pública a la que se asistió",
+    title = "Distribución del ingreso total neto por persona según universidad pública a la que se asistió",
     subtitle = "Ingreso expresado en colones costarricenses",
     x = "Ingreso Personal Neto (log10)",
     y = "Universidad pública a la que se asistió",
@@ -311,7 +354,7 @@ grafico6 <- as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst,
   ggplot(aes(x = NivInst, y = Freq, fill = Nivel_de_pobreza)) + 
   geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Ajustes visuales
   labs(
-    title = "Gráfico 6.\nNivel de pobreza según nivel de instrucción",
+    title = "Nivel de pobreza según nivel de instrucción",
     subtitle = "Relación entre nivel de instrucción y nivel de pobreza (Costa Rica, 2023)",
     x = "Nivel de instrucción",
     y = "Proporción acumulada",
@@ -334,6 +377,7 @@ grafico6 <- as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst,
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico6
 ```
 ```{r Grafico 6.2}
 #| fig.width: 11.6
@@ -351,7 +395,7 @@ as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst,
   ggplot(aes(x = NivInst, y = Freq, fill = Nivel_de_pobreza)) + 
   geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Ajustes visuales
   labs(
-    title = "Gráfico 6.\nNivel de pobreza según nivel de instrucción",
+    title = "Nivel de pobreza según nivel de instrucción",
     subtitle = "Relación entre nivel de instrucción y nivel de pobreza (Costa Rica, 2023)",
     x = "Nivel de instrucción",
     y = "Proporción acumulada",
@@ -376,6 +420,23 @@ as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst,
   )
 ```
 
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+tabla_media_ingreso_por_nivinst <- ENAHO %>% 
+  filter(NivInst != "Ignorado", itpn != 0) %>% 
+  mutate(NivInst = fct_collapse(NivInst,
+                                "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
+                                "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
+                                "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", "Primaria incompleta"))) %>%
+  group_by(NivInst) %>%
+  summarize(
+    media_itpn = mean(itpn, na.rm = TRUE)
+  )
+tabla_media_ingreso_por_nivinst
+```
+
 ```{r Grafico 7}
 #| fig.width: 13.6
 #| fig.height: 6.5
@@ -391,8 +452,16 @@ grafico7 <- ENAHO %>%
   # Mejorar la visualización con densidades y lineas más detalladas
   geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
   # Etiquetas y títulos mejorados
+  geom_label_repel(
+    data = tabla_media_ingreso_por_nivinst,
+    mapping = aes(
+      x = media_itpn,
+      y = NivInst,
+      label = scales::label_number(accuracy = 0.1)(media_itpn),
+    ), position = ggpp::position_nudge_to(x = 7.1), color = "white"
+  ) +
   labs(
-    title = "Grafico 7.\nDistribución del ingreso total neto por persona según nivel\nde instrucción",
+    title = "Distribución del ingreso total neto por persona según nivel\nde instrucción",
     subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
     x = "Ingreso Personal Neto (log10)",
     y = "Nivel de instrucción",
@@ -401,7 +470,7 @@ grafico7 <- ENAHO %>%
   # Ajuste de escala con formato de coma en el eje x
   scale_x_log10(labels = scales::comma) +
   # Mejora de la paleta de colores con gradientes suaves
-  scale_fill_viridis_d(option = "C") +
+  scale_fill_viridis_d(option = "plasma", begin = 0.2, end = 0.85) +  # Paleta de colores viridis
   # Temas mejorados con mayor atención a los detalles visuales
   theme_minimal(base_size = 14) +
   theme(
@@ -415,6 +484,7 @@ grafico7 <- ENAHO %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico7
 ```
 
 ```{r Grafico 7.2}
@@ -434,7 +504,7 @@ ENAHO %>%
   geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
   # Etiquetas y títulos mejorados
   labs(
-    title = "Grafico 7.\nDistribución del ingreso total neto por persona según nivel\nde instrucción",
+    title = "Distribución del ingreso total neto por persona según nivel\nde instrucción",
     subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
     x = "Ingreso Personal Neto (log10)",
     y = "Nivel de instrucción",
@@ -475,7 +545,7 @@ grafico8 <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst,
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
   geom_area(alpha = 0.7, color = "white") +  # Agregar color de borde y ajustar opacidad
   labs(
-    title = "Gráfico 8.\nDistribución del nivel de instrucción por quintil de ingreso per cápita Costa Rica, 2023",
+    title = "Distribución del nivel de instrucción por quintil de ingreso per cápita Costa Rica, 2023",
     subtitle = "Relación entre el nivel de instrucción y nivel de ingreso per cápita según quintiles de ingresos",
     x = "Quintil de ingreso per cápita",
     y = "Proporción acumulada",
@@ -497,6 +567,7 @@ grafico8 <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst,
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico8
 ```
 ```{r Grafico 8.2}
 #| fig.width: 11.6
@@ -515,7 +586,7 @@ as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst,
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
   geom_area(alpha = 0.7, color = "white") +  # Agregar color de borde y ajustar opacidad
   labs(
-    title = "Gráfico 8.\nDistribución del nivel de instrucción por quintil de ingreso per cápita Costa Rica, 2023",
+    title = "Distribución del nivel de instrucción por quintil de ingreso per cápita Costa Rica, 2023",
     subtitle = "Relación entre el nivel de instrucción y nivel de ingreso per cápita según quintiles de ingresos",
     x = "Quintil de ingreso per cápita",
     y = "Proporción acumulada",
@@ -553,7 +624,7 @@ grafico9 <- ENAHO %>%
   # Facetas según la zona
   facet_wrap(~ZONA) +
   # Etiquetas y títulos mejorados
-  labs(title = "Gráfico 9. \nRelación entre años de escolaridad e ingreso personal neto",
+  labs(title = "Relación entre años de escolaridad e ingreso personal neto",
        subtitle = "Distribución del ingreso, expresado en colones costarricenses, según zona urbana y rural (Costa Rica, 2023)",
        x = "Escolaridad (Años)",
        y = "Ingreso Personal Neto (log10)",
@@ -594,7 +665,7 @@ ENAHO %>%
   # Facetas según la zona
   facet_wrap(~ZONA) +
   # Etiquetas y títulos mejorados
-  labs(title = "Gráfico 9. \nRelación entre años de escolaridad e ingreso personal neto",
+  labs(title = "Relación entre años de escolaridad e ingreso personal neto",
        subtitle = "Distribución del ingreso, expresado en colones costarricenses, según zona urbana y rural (Costa Rica, 2023)",
        x = "Escolaridad (Años)",
        y = "Ingreso Personal Neto (log10)",
@@ -634,7 +705,7 @@ grafico10 <- ENAHO %>%
   # Facetas según la zona
   facet_wrap(~ZONA) +
   # Etiquetas y títulos mejorados
-  labs(title = "Gráfico 10. \nRelación entre años de escolaridad y la intensidad de la pobreza",
+  labs(title = "Relación entre años de escolaridad y la intensidad de la pobreza",
        x = "Escolaridad (Años)",
        y = "Intensidad de la pobreza",
        caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
@@ -674,7 +745,7 @@ ENAHO %>%
   # Facetas según la zona
   facet_wrap(~ZONA) +
   # Etiquetas y títulos mejorados
-  labs(title = "Gráfico 10. \nRelación entre años de escolaridad y la intensidad de la pobreza",
+  labs(title = "Relación entre años de escolaridad y la intensidad de la pobreza",
        x = "Escolaridad (Años)",
        y = "Intensidad de la pobreza",
        caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares 2023, Julio 2023: Resultados Generales.") +
@@ -712,7 +783,7 @@ grafico11 <- ENAHO %>% filter(!is.na(Q_IPCN)) %>%
   geom_smooth(method = "lm", se = FALSE, colour = "black") +
   facet_wrap(~Q_IPCN) +
   labs(
-    title = "Gráfico 11.\nRelación entre los años de escolaridad e ingreso total por persona neto",
+    title = "Relación entre los años de escolaridad e ingreso total por persona neto",
     x = "Años de escolaridad",
     y = "Ingreso Personal Neto (₡, log10)",
     colour = "Quintiles de ingreso per cápita \ndel hogar neto \npor región de planificación",
@@ -749,7 +820,7 @@ ENAHO %>% filter(!is.na(Q_IPCN)) %>%
   geom_smooth(method = "lm", se = FALSE, colour = "black") +
   facet_wrap(~Q_IPCN) +
   labs(
-    title = "Gráfico 11.\nRelación entre los años de escolaridad e ingreso total por persona neto",
+    title = "Relación entre los años de escolaridad e ingreso total por persona neto",
     x = "Años de escolaridad",
     y = "Ingreso Personal Neto (₡, log10)",
     colour = "Quintiles de ingreso per cápita \ndel hogar neto \npor región de planificación",
@@ -784,7 +855,7 @@ grafico12 <- as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>%
   rename(titulo = Var2) %>% 
   ggplot(aes(x = titulo, y = Freq, fill = Nivel_de_pobreza)) + 
   geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Transparencia y bordes
-  labs(title = "Gráfico 12.\nDistribución de pobreza según nivel académico",
+  labs(title = "Distribución de pobreza según nivel académico",
        subtitle = "Porcentaje de la población en pobreza , clasificado por nivel de estudios alcanzado (Costa Rica, 2023)",
        x = "Título",
        y = NULL,
@@ -819,7 +890,7 @@ as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>%
   rename(titulo = Var2) %>% 
   ggplot(aes(x = titulo, y = Freq, fill = Nivel_de_pobreza)) + 
   geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Transparencia y bordes
-  labs(title = "Gráfico 12.\nDistribución de pobreza según nivel académico",
+  labs(title = "Distribución de pobreza según nivel académico",
        subtitle = "Porcentaje de la población en pobreza , clasificado por nivel de estudios alcanzado (Costa Rica, 2023)",
        x = "Título",
        y = NULL,
@@ -842,6 +913,18 @@ as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>%
     panel.grid.minor = element_blank()
   )
 ```
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+tabla_media_ingreso_por_titulo <- ENAHO %>% 
+  filter(A16B != "Ignorado", itpn != 0) %>% 
+  group_by(A16B) %>%
+  summarize(
+    media_itpn = mean(itpn, na.rm = TRUE)
+  )
+tabla_media_ingreso_por_titulo
+```
 ```{r Grafico 13}
 #| fig.width: 13.6
 #| fig.height: 6.5
@@ -853,8 +936,16 @@ grafico13 <- ENAHO %>%
   # Mejorar la visualización con densidades y lineas más detalladas
   geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
   # Etiquetas y títulos mejorados
+  geom_label_repel(
+    data = tabla_media_ingreso_por_titulo,
+    mapping = aes(
+      x = media_itpn,
+      y = A16B,
+      label = scales::label_number(accuracy = 0.1)(media_itpn),
+    ), position = ggpp::position_nudge_to(x = 7.1), color = "white"
+  ) +
   labs(
-    title = "Grafico 13.\nDistribución del ingreso total neto por persona según\ntítulo obtenido",
+    title = "Distribución del ingreso total neto por persona según\ntítulo obtenido",
     subtitle = "Expresado en colones costarricenses (Costa Rica, 2023)",
     x = "Ingreso Personal Neto (log10)",
     y = "Título obtenido",
@@ -863,7 +954,7 @@ grafico13 <- ENAHO %>%
   # Ajuste de escala con formato de coma en el eje x
   scale_x_log10(labels = scales::comma) +
   # Mejora de la paleta de colores con gradientes suaves
-  scale_fill_viridis_d(option = "H") +
+  scale_fill_viridis_d(option = "mako", begin = 0.1, end = 0.8) +
   # Temas mejorados con mayor atención a los detalles visuales
   theme_minimal(base_size = 14) +
   theme(
@@ -877,6 +968,7 @@ grafico13 <- ENAHO %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico13
 ```
 ```{r Grafico 13.2}
 #| fig.width: 11.6
@@ -891,7 +983,7 @@ ENAHO %>%
   geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
   # Etiquetas y títulos mejorados
   labs(
-    title = "Grafico 13.\nDistribución del ingreso total neto por persona según\ntítulo obtenido",
+    title = "Distribución del ingreso total neto por persona según\ntítulo obtenido",
     subtitle = "Expresado en colones costarricenses (Costa Rica, 2023)",
     x = "Ingreso Personal Neto (log10)",
     y = "Título obtenido",
@@ -926,7 +1018,7 @@ grafico14 <- as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 
   mutate(Var2 = parse_number(Var2)) %>% 
   ggplot(aes(x = Var2, y = Freq, fill = fct_reorder(Var1, Freq, median))) +
   geom_area(alpha = 0.8) +  # Transparencia para el área
-  labs(title = "Gráfico 14. \nDistribución de títulos obtenidos por quintil de ingreso per cápita Costa Rica, 2023",
+  labs(title = "Distribución de títulos obtenidos por quintil de ingreso per cápita Costa Rica, 2023",
        x = "Quintil de ingreso per cápita",
        y = NULL,
        fill = "Título",
@@ -959,7 +1051,7 @@ as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 2)) %>%
   mutate(Var2 = parse_number(Var2)) %>% 
   ggplot(aes(x = Var2, y = Freq, fill = fct_reorder(Var1, Freq, median))) +
   geom_area(alpha = 0.8) +  # Transparencia para el área
-  labs(title = "Gráfico 14. \nDistribución de títulos obtenidos por quintil de ingreso per cápita Costa Rica, 2023",
+  labs(title = "Distribución de títulos obtenidos por quintil de ingreso per cápita Costa Rica, 2023",
        x = "Quintil de ingreso per cápita",
        y = NULL,
        fill = "Título",
@@ -991,7 +1083,7 @@ grafico15 <- as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>%
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
   geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Gráfico de área
   labs(
-    title = "Gráfico 15.\nNivel de pobreza según dominio de un segundo idioma",
+    title = "Nivel de pobreza según dominio de un segundo idioma",
     subtitle = "Relación entre el dominio de un segundo idioma y nivel de pobreza (Costa Rica, 2023)",
     x = "Dominio de un segundo idioma",
     y = "Proporción acumulada",
@@ -1026,7 +1118,7 @@ as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>%
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
   geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Gráfico de área
   labs(
-    title = "Gráfico 15.\nNivel de pobreza según dominio de un segundo idioma",
+    title = "Nivel de pobreza según dominio de un segundo idioma",
     subtitle = "Relación entre el dominio de un segundo idioma y nivel de pobreza (Costa Rica, 2023)",
     x = "Dominio de un segundo idioma",
     y = "Proporción acumulada",
@@ -1061,7 +1153,7 @@ grafico16 <- as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 
   mutate(Var2 = parse_number(Var2)) %>% 
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
   geom_area(alpha = 0.8) +  # Añade transparencia para el área
-  labs(title = "Gráfico 16. \nRelación entre el dominio de un segundo idioma y el ingreso per cápita",
+  labs(title = "Relación entre el dominio de un segundo idioma y el ingreso per cápita",
        subtitle = "Porcentaje de personas que dominan un segundo idioma en cada quintil de ingreso per cápita (Costa Rica, 2023)",
        x = "Quintil de ingreso per cápita",
        y = NULL,
@@ -1094,7 +1186,7 @@ as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>%
   mutate(Var2 = parse_number(Var2)) %>% 
   ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
   geom_area(alpha = 0.8) +  # Añade transparencia para el área
-  labs(title = "Gráfico 16. \nRelación entre el dominio de un segundo idioma y el ingreso per cápita",
+  labs(title = "Relación entre el dominio de un segundo idioma y el ingreso per cápita",
        subtitle = "Porcentaje de personas que dominan un segundo idioma en cada quintil de ingreso per cápita (Costa Rica, 2023)",
        x = "Quintil de ingreso per cápita",
        y = NULL,
@@ -1115,6 +1207,18 @@ as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>%
     panel.grid.minor = element_blank()
   )
 ```
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+tabla_media_ingreso_por_idioma <- ENAHO %>% 
+  filter(A22A != "Ignorado", itpn != 0) %>% 
+  group_by(A22A) %>%
+  summarize(
+    media_itpn = mean(itpn, na.rm = TRUE)
+  )
+tabla_media_ingreso_por_idioma
+```
 ```{r Grafico 17}
 #| fig.width: 11.6
 #| fig.height: 6.5
@@ -1126,8 +1230,16 @@ grafico17 <- ENAHO %>%
   # Mejorar la visualización con densidades y lineas más detalladas
   geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
   # Etiquetas y títulos mejorados
+  geom_label_repel(
+    data = tabla_media_ingreso_por_idioma,
+    mapping = aes(
+      x = media_itpn,
+      y = A22A,
+      label = scales::label_number(accuracy = 0.1)(media_itpn),
+    ), position = ggpp::position_nudge_to(x = 7.1), color = "white"
+  ) +
   labs(
-    title = "Grafico 17.\nDistribución del ingreso total neto por persona según dominio de un segundo idioma",
+    title = "Distribución del ingreso total neto por persona según dominio de un segundo idioma",
     subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
     x = "Ingreso Personal Neto (log10)",
     y = "Dominio de un segundo idioma",
@@ -1136,7 +1248,7 @@ grafico17 <- ENAHO %>%
   # Ajuste de escala con formato de coma en el eje x
   scale_x_log10(labels = scales::comma) +
   # Mejora de la paleta de colores con gradientes suaves
-  scale_fill_viridis_d(option = "C") +
+  scale_fill_viridis_d(option = "plasma", begin = 0, end = 0.6) +
   # Temas mejorados con mayor atención a los detalles visuales
   theme_minimal(base_size = 14) +
   theme(
@@ -1150,6 +1262,7 @@ grafico17 <- ENAHO %>%
     panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
     panel.grid.minor = element_blank()
   )
+grafico17
 ```
 ```{r Grafico 17.2}
 #| fig.width: 11.6
@@ -1164,7 +1277,7 @@ ENAHO %>%
   geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
   # Etiquetas y títulos mejorados
   labs(
-    title = "Grafico 17.\nDistribución del ingreso total neto por persona según dominio de un segundo idioma",
+    title = "Distribución del ingreso total neto por persona según dominio de un segundo idioma",
     subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
     x = "Ingreso Personal Neto (log10)",
     y = "Dominio de un segundo idioma",
