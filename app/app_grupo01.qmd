@@ -1,0 +1,207 @@
+---
+title: "Impacto de la educación en el ingreso"
+format: dashboard
+server: shiny
+---
+
+```{r Limpieza Datos}
+#| context: setup
+#| message: false
+#| echo: false
+#| warning: false
+library(tidyverse)
+library(haven)
+
+#Codigo para la lectura de la base de datos
+ENAHO <- read_sav("../data/GPES-ELAB-GEBD-ENAHO-2023_BdBasePublica.sav")
+
+# Convertir columnas categóricas a factores y ajustar años de escolaridad
+cols_to_factor <- c("ZONA", "A15A", "A15B", 
+                    "NivInst", "A16B", "A22A", 
+                    "np", "Q_IPCN", "IPM_Pobreza")
+ENAHO[cols_to_factor] <- lapply(ENAHO[cols_to_factor], as_factor)
+ENAHO$Escolari <- ifelse(ENAHO$Escolari == 99, NA, as.integer(ENAHO$Escolari))
+
+#filtrar variables de interés
+ENAHO <- ENAHO %>% select(ZONA,
+                          A5,
+                          A15A, A15B,
+                          NivInst,
+                          A16B,
+                          A22A,
+                          itpn,
+                          Q_IPCN
+                          ) %>% 
+  filter(A5 >= 18 & A5 <= 60) #filtrar personas entre 18 y 60 años
+ENAHO <- ENAHO %>% rename(centro_educativo = A15A,
+                          zona = ZONA,
+                          edad = A5,
+                          universidad = A15B,
+                          nivel_de_instruccion = NivInst,
+                          titulacion = A16B,
+                          dominio_de_un_segundo_idioma = A22A) %>% 
+  mutate(nivel_de_instruccion = fct_collapse(nivel_de_instruccion,
+                                "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
+                                "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
+                                "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", "Primaria incompleta")))
+# Filtrar y ordenar los quintiles de ingreso per cápita
+ENAHO$Q_IPCN <- factor(ENAHO$Q_IPCN, 
+                       levels = c("Q1: 110683 ó menos", 
+                                  "Q2: Más de 110683 a 195000", 
+                                  "Q3: Más de 195000 a 321523", 
+                                  "Q4: Más de 321523 a 574085", 
+                                  "Q5: Más de 574085"), 
+                       ordered = TRUE)
+
+```
+
+# {.sidebar}
+
+```{r}
+selectInput("variable", "Variable",setdiff(names(ENAHO), c("zona", "itpn", "Q_IPCN", "edad")))  # Selección de la variable
+# Se actualiza dinámicamente el checkboxGroupInput dependiendo de la variable seleccionada
+uiOutput("categorias_ui")
+# Opción para elegir si hacer un facet por zona
+checkboxInput("facet", "Facetas por zona", value = FALSE)  # Agregar checkbox para facetas
+checkboxGroupInput("quintiles", 
+                   "Seleccione los quintiles de ingreso per cápita",
+                   choices = levels(ENAHO$Q_IPCN),  # Las opciones serán los quintiles ordenados
+                   selected = levels(ENAHO$Q_IPCN))  # Se seleccionan todos por defecto
+```
+
+# Density Plot
+
+```{r}
+plotOutput("plot")
+```
+
+# Data
+
+```{r}
+tableOutput("data")
+```
+
+# Bar Plot 
+
+```{r}
+plotOutput("bar_plot")
+```
+
+
+```{r}
+#| context: server
+
+# Crear las opciones de categorías basadas en la variable seleccionada
+output$categorias_ui <- renderUI({
+  req(input$variable)  # Asegurarse de que haya una variable seleccionada
+  
+  # Obtener los niveles de la variable seleccionada
+  selected_variable <- ENAHO[[input$variable]]
+  
+  # Excluir la categoría "Ignorado" si existe en los niveles
+  categories <- setdiff(levels(selected_variable), "Ignorado")
+  
+  # Crear el checkboxGroupInput dinámicamente según los niveles de la variable, excluyendo "Ignorado"
+  checkboxGroupInput("categorias", 
+                     "Elija categorías", 
+                     choices = categories, 
+                     selected = categories)  # Mostrar todas las categorías (sin "Ignorado") por defecto
+})
+
+output$plot <- renderPlot({
+  req(input$variable, input$categorias)  # Asegurarse de que la variable y las categorías estén seleccionadas
+  
+  # Filtrar los datos según las categorías seleccionadas
+  filtered_data <- ENAHO %>% 
+    filter(get(input$variable) %in% input$categorias, get(input$variable) != "Ignorado")
+  
+  # Crear el gráfico
+  p <- ggplot(filtered_data, aes_string(x = "itpn", fill = input$variable)) +
+    geom_density(alpha = 0.7, size = 0, color = "white") +  # Mejorar la curva con borde blanco
+    scale_x_log10(labels = scales::comma) +  # Escala logarítmica con formato de comas
+    labs(
+      title = paste("Distribución de", input$variable),  # Título dinámico
+      x = "Ingreso Personal Neto (log10)",  # Etiqueta del eje X
+      y = "Densidad",  # Etiqueta del eje Y
+      caption = "Fuente: Encuesta Nacional de Hogares 2023"  # Agregar pie de página
+    ) +
+    scale_fill_viridis_d(option = "C") +  # Paleta de colores viridis
+    theme_minimal(base_size = 14) +  # Tema minimalista con tamaño de fuente ajustado
+    theme(
+      plot.title = element_text(face = "bold", size = 18, hjust = 0.5),  # Título en negrita, centrado y más grande
+      axis.title.x = element_text(size = 14, face = "bold"),  # Eje X con texto en negrita
+      axis.title.y = element_text(size = 14, face = "bold"),  # Eje Y con texto en negrita
+      axis.text = element_text(size = 12, color = "gray30"),  # Texto de los ejes más legible
+      plot.caption = element_text(size = 10, color = "gray60", hjust = 1),  # Pie de página más pequeño y en gris
+      legend.position = "bottom", 
+      panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),  # Cuadrícula más suave
+      panel.grid.minor = element_blank()  # Eliminar cuadrícula menor
+    )
+  
+  # Si el usuario ha seleccionado hacer facetas, agregar facet_wrap
+  if (input$facet) {
+    p <- p + facet_wrap(~zona)  # Hacer facet por zona
+  }
+  
+  # Mostrar el gráfico
+  p
+})
+
+output$data <- renderTable({
+  req(input$variable, input$categorias)  # Asegurarse de que la variable y las categorías estén seleccionadas
+  
+  # Filtrar los datos según las categorías seleccionadas
+  filtered_data <- ENAHO %>% 
+    filter(get(input$variable) %in% input$categorias, get(input$variable) != "Ignorado")
+  
+  # Calcular el resumen estadístico por cada categoría
+  summary_stats <- filtered_data %>%
+    group_by_at(input$variable) %>%
+    summarise(
+      Media = mean(itpn, na.rm = TRUE),
+      Desviacion = sd(itpn, na.rm = TRUE),
+      Cuantil_25 = quantile(itpn, 0.25, na.rm = TRUE),
+      Mediana = median(itpn, na.rm = TRUE),
+      Cuantil_75 = quantile(itpn, 0.75, na.rm = TRUE),
+      Minimo = min(itpn, na.rm = TRUE),
+      Maximo = max(itpn, na.rm = TRUE)
+    )
+  
+  # Mostrar los resultados en una tabla
+  summary_stats
+})
+
+output$bar_plot <- renderPlot({
+  req(input$quintiles, input$variable)  # Asegurarse de que los quintiles y la variable estén seleccionados
+  
+  # Filtrar los datos según los quintiles seleccionados
+  filtered_data <- ENAHO %>% 
+    filter(Q_IPCN %in% input$quintiles,  # Seleccionar solo los quintiles elegidos
+           get(input$variable) %in% input$categorias,  # Filtrar por las categorías seleccionadas
+           get(input$variable) != "Ignorado")  # Excluir "Ignorado"
+  
+  # Crear el gráfico de barras para mostrar la distribución de los quintiles por categoría educativa
+  ggplot(filtered_data, aes(x = factor(Q_IPCN), fill = get(input$variable))) +
+    geom_bar(position = "fill", stat = "count", width = 1, alpha = 0.8) +  # Barras separadas por categoría
+    labs(
+      title = paste("Distribución de", input$variable, "por Quintil de Ingreso"),
+      x = "Quintil de Ingreso Per Cápita",
+      y = "Frecuencia",
+      fill = input$variable,
+      caption = "Fuente: Encuesta Nacional de Hogares 2023"
+    ) +
+    scale_fill_viridis_d(option = "C", direction = -1) +  # Paleta de colores viridis
+    theme_minimal(base_size = 14) + 
+    theme(
+      plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+      axis.title.x = element_text(size = 14, face = "bold"),
+      axis.title.y = element_text(size = 14, face = "bold"),
+      axis.text = element_text(size = 12, color = "gray30"),
+      plot.caption = element_text(size = 10, color = "gray60", hjust = 1),
+      legend.position = "top",  # Ubicamos la leyenda en la parte superior
+      panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+      panel.grid.minor = element_blank()
+    )
+})
+
+```
