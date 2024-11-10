@@ -1,4 +1,4 @@
-#Bitácora 4
+# Bitácora 4
 
 ### Introducción
 
@@ -22,4 +22,26 @@ Con base en estos hallazgos, se sugiere que futuras investigaciones profundicen 
 
 Finalmente, este trabajo contribuye a llenar un vacío importante en la literatura costarricense al analizar cómo diferentes características del acceso y la calidad educativa influyen de manera diferenciada en la distribución de ingresos y en las condiciones de pobreza en el país. Al abordar una amplia variedad de categorías educativas, el estudio ofrece un panorama integral sobre cómo las oportunidades económicas están condicionadas por el nivel y tipo de educación, revelando las brechas persistentes que existen entre diferentes grupos sociales. Además, al relacionar el nivel educativo con la condición socioeconómica y los ingresos, este análisis resalta la relevancia de políticas que no solo amplíen el acceso a la educación, sino que también garanticen una calidad educativa equitativa en todos los niveles.
 
+\newpage
 
+## Ordenamiento final
+
+### Título
+
+### Resumen
+
+### Palabras clave
+
+### Introducción
+
+### Metodología
+
+### Resultados
+
+### Conclusiones
+
+### Agradecimientos
+
+### Referencias
+
+### Anexos
