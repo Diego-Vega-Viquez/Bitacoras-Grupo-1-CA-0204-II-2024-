@@ -119,7 +119,7 @@ grafico1
 tabla_media_ingreso_por_centro_educativo <- ENAHO %>% 
   filter(A15A != "Ignorado", itpn != 0) %>% 
   group_by(A15A) %>%
-  summarize(
+  dplyr::summarize(
     media_itpn = mean(itpn, na.rm = TRUE)
   )
 tabla_media_ingreso_por_centro_educativo
@@ -258,7 +258,7 @@ grafico4
 tabla_media_ingreso_por_universidad <- ENAHO %>% 
   filter(A15B != "Ignorado", itpn != 0) %>% 
   group_by(A15B) %>%
-  summarize(
+  dplyr::summarize(
     media_itpn = mean(itpn, na.rm = TRUE)
   )
 tabla_media_ingreso_por_universidad
@@ -431,7 +431,7 @@ tabla_media_ingreso_por_nivinst <- ENAHO %>%
                                 "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
                                 "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", "Primaria incompleta"))) %>%
   group_by(NivInst) %>%
-  summarize(
+  dplyr::summarize(
     media_itpn = mean(itpn, na.rm = TRUE)
   )
 tabla_media_ingreso_por_nivinst
@@ -920,7 +920,7 @@ as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>%
 tabla_media_ingreso_por_titulo <- ENAHO %>% 
   filter(A16B != "Ignorado", itpn != 0) %>% 
   group_by(A16B) %>%
-  summarize(
+  dplyr::summarize(
     media_itpn = mean(itpn, na.rm = TRUE)
   )
 tabla_media_ingreso_por_titulo
@@ -1214,7 +1214,7 @@ as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>%
 tabla_media_ingreso_por_idioma <- ENAHO %>% 
   filter(A22A != "Ignorado", itpn != 0) %>% 
   group_by(A22A) %>%
-  summarize(
+  dplyr::summarize(
     media_itpn = mean(itpn, na.rm = TRUE)
   )
 tabla_media_ingreso_por_idioma
