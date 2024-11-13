@@ -19,6 +19,7 @@ book:
     - "bitacora-4.qmd"
 
 bibliography: references.bib
+csl: apa.csl
 
 format:
   html:
