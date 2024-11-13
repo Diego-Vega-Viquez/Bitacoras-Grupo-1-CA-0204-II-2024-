@@ -362,8 +362,6 @@ Finalmente, este trabajo contribuye a llenar un vacío importante en la literatu
 
 \newpage
 
-## Ordenamiento final
-
 ### Título
 
 ### Resumen
@@ -372,12 +370,12 @@ Finalmente, este trabajo contribuye a llenar un vacío importante en la literatu
 
 Nivel educativo y condición socioeconómica, Educación y calidad de vida, Impacto educativo en pobreza, Desigualdad socioeconómica y educación, Condiciones de vida y escolaridad
 
-### Introducción
-
-### Metodología
-
 ### Resultados
 
-### Conclusiones
-
 ### Agradecimientos
+
+Los autores desean expresar su más profundo agradecimiento al Profesor Ph.D. Maikol Solís por su acompañamiento durante todo el proceso de desarrollo del presente trabajo. Su disposición constante para brindar asistencia en los aspectos técnicos y metodológicos relacionados con el programa utilizado fue fundamental para el avance y culminación exitosa de este proyecto.
+
+Asimismo, se extiende un sincero agradecimiento a los compañeros del curso CA0204: Herramientas para Ciencia de Datos I, cuyo apoyo y colaboración fueron de gran utilidad a lo largo de todo el semestre en el que se desarrolló este proyecto. En particular, se desea reconocer el valioso aporte de Erick Javier Venegas Espinoza, Paola María Espinoza Hernández, Jesús Aarón Retana Castro, Pablo Alonso Chaves Madrigal, José Andrey Prado Rojas, Debbie Con Ortega, Jeikel Arístides Navarro Solís y Cristhofer Josué Urrutia Cascante. Sus comentarios, observaciones y sugerencias en los foros de discusión fueron de gran ayuda y permitieron una mejora continua en cada etapa del trabajo, contribuyendo significativamente al logro de este producto final.
+
+Este trabajo es el resultado de un esfuerzo colectivo, en el cual cada contribución y apoyo fue determinante para alcanzar los objetivos propuestos.
