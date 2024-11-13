@@ -217,7 +217,7 @@ Claramente esta variable pertenece a las variables creadas, $ithn$ corresponde a
 
 **Métodos**
 
-Para el presente estudio, se emplearon diversos métodos orientados al análisis y síntesis de datos, con un enfoque particular en técnicas de análisis exploratorio. Estas herramientas permitieron obtener una visión inicial de la estructura, distribución y relaciones de las variables, facilitando así la identificación de patrones y tendencias clave en el conjunto de datos. A lo largo de las tablas y gráficos presentados, se aplicaron métricas descriptivas como medidas de tendencia central, dispersión y posición, complementadas con visualizaciones que aportan una comprensión más detallada de los datos. Este enfoque no solo proporciona un resumen integral de la información, sino que también establece las bases para un análisis más profundo en fases posteriores del estudio. En la presente sección se emplearán las fórmulas y definiciones planteadas por @Dekking2005 en en el líbro *A Modern Introduction to Probability and Statistics*.
+Para el presente estudio, se emplearon diversos métodos orientados al análisis y síntesis de datos, con un enfoque particular en técnicas de análisis exploratorio. Estas herramientas permitieron obtener una visión inicial de la estructura, distribución y relaciones de las variables, facilitando así la identificación de patrones y tendencias clave en el conjunto de datos. A lo largo de las tablas y gráficos presentados, se aplicaron métricas descriptivas como medidas de tendencia central, dispersión y posición, complementadas con visualizaciones que aportan una comprensión más detallada de los datos. Este enfoque no solo proporciona un resumen integral de la información, sino que también establece las bases para un análisis más profundo en fases posteriores del estudio. En la presente sección se emplearán las fórmulas y definiciones planteadas por @Dekking2005 en en el libro *A Modern Introduction to Probability and Statistics*.
 
 ::: {.callout-tip}
 ##### Definición 3.1 (Media)
@@ -485,47 +485,43 @@ info_quintiles %>% kable(caption = "Definición de los quintiles") %>%
 
 **Métodos**
 
-Para el presente estudio, se emplearon diversos métodos orientados al análisis y síntesis de datos, con un enfoque particular en técnicas de análisis exploratorio. Estas herramientas permitieron obtener una visión inicial de la estructura, distribución y relaciones de las variables, facilitando así la identificación de patrones y tendencias clave en el conjunto de datos. A lo largo de las tablas y gráficos presentados, se aplicaron métricas descriptivas como medidas de tendencia central, dispersión y posición, complementadas con visualizaciones que aportan una comprensión más detallada de los datos. Este enfoque no solo proporciona un resumen integral de la información, sino que también establece las bases para un análisis más profundo en fases posteriores del estudio. En la presente sección se emplearán las fórmulas y definiciones planteadas por @CA0204 en su sitio web, específicamente en el apartado dedicado al análisis exploratorio de datos. 
+Para el presente estudio, se emplearon diversos métodos orientados al análisis y síntesis de datos, con un enfoque particular en técnicas de análisis exploratorio. Estas herramientas permitieron obtener una visión inicial de la estructura, distribución y relaciones de las variables, facilitando así la identificación de patrones y tendencias clave en el conjunto de datos. A lo largo de las tablas y gráficos presentados, se aplicaron métricas descriptivas como medidas de tendencia central, dispersión y posición, complementadas con visualizaciones que aportan una comprensión más detallada de los datos. Este enfoque no solo proporciona un resumen integral de la información, sino que también establece las bases para un análisis más profundo en fases posteriores del estudio. En la presente sección se emplearán las fórmulas y definiciones planteadas por @Dekking2005 en en el libro *A Modern Introduction to Probability and Statistics*.
 
 ::: {.callout-tip}
-##### Definición 3.1 (Media empírica)
+##### Definición 3.1 (Media)
 
-Asumiendo que la serie de datos para una variable es \( x_1, x_2, \ldots, x_n \),
+La \textit{esperanza} de una variable aleatoria discreta \( X \) que toma los valores \( a_1, a_2, \ldots \) y con función de masa de probabilidad \( p \) es el número 
+$$
+\mathbb{E}[X] = \sum_i a_i P(X = a_i) = \sum_i a_i p(a_i).
+$$
 
-$$
-\hat{\mu} = \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i
-$$
+También llamamos a $\mathbb{E}[X]$ el \textit{valor esperado} o \textit{media} de \( X \).
 :::
 
 Esta medida de tendencia central es la más común y estandarizada. Aunque existen diferentes tipos de medias, para la presente investigación se empleará la definición presentada anteriormente.
 
 ::: {.callout-tip}
-##### Definición 3.2 (Desviación Estándar)
+##### Definición 3.2 ( Varianza y Desviación Estándar)
 
-Asumiendo que la serie de datos para una variable es \( X_1, X_2, \ldots, X_n \), se define la desviación estandar como la raíz cuadrada de la varianza.
+La \textit{varianza} \( \operatorname{Var}(X) \) de una variable aleatoria \( X \) es el número
+\[
+\operatorname{Var}(X) = \mathbb{E} \left[(X - \mathbb{E}[X])^2 \right].
+\]
 
-$$
-s = \sqrt{\hat{s}^2}=\sqrt{\dfrac{1}{n-1}\sum_{i=1}^n(X_i - \hat{\mu})^2}
-$$
-En este caso se toma la varianza insesgada que se define como
-$$
-\hat{s}^2 = \dfrac{1}{n-1}\sum_{i=1}^n(X_i - \hat{\mu})^2
-$$
+Nótese que la varianza de una variable aleatoria siempre es positiva (o 0). Además, surge la cuestión de existencia y finitud (cf. Observación 7.1). En situaciones prácticas, a menudo se considera la \textit{desviación estándar} definida por $\sqrt{\operatorname{Var}(X)}$, ya que tiene la misma dimensión que \( \mathbb{E}[X] \).
+
 :::
 La desviación estándar es una de las principales medidas de dispersión, que indica, en promedio, cuánto se alejan los datos de la media. Esta medida se ha empleado en diversos contextos a lo largo del estudio para analizar la variabilidad de los datos.
 
 ::: {.callout-tip}
 ##### Definición 3.3 (Quintiles)
 
-Un cuantil de valor $\alpha$ es el valor que tal que:
+Sea \( X \) una variable aleatoria continua y sea \( p \) un número entre 0 y 1. El $p$-ésimo \textit{cuantil} o percentil \( 100p \) de la distribución de \( X \) es el número más pequeño \( q_p \) tal que
+\[
+F(q_p) = P(X \leq q_p) = p.
+\]
+La \textit{mediana} de una distribución es su percentil 50.
 
-$$
-\mathbb{P}[ X \leq q] = \alpha
-$$
-Sea \(0<p<1\) tal que 
-$$
-q(\alpha) = F^{-1}(p) = \inf x : F(x) \geq p 
-$$
 :::
 Esta definición corresponde a la versión general del cuantil, en el presente trabajo se utilizan los quintiles 1,2 y 3 que se definen como
 $$
@@ -537,7 +533,7 @@ $$
 $$
 \mathbb{P}[ X \leq Q_3] = 0.75
 $$
-En este caso, \(Q_2\) corresponde a la mediana de los datos.
+En este caso \(Q_2\) corresponde a la mediana de los datos.
 
 {{< pagebreak >}}
 
