@@ -2380,21 +2380,21 @@ ipcn = \frac{ithn}{TamHog}
 </section>
 <section id="métodos" class="level4" data-number="3.1.2.2">
 <h4 data-number="3.1.2.2" class="anchored" data-anchor-id="métodos"><span class="header-section-number">3.1.2.2</span> Métodos</h4>
-<p>Para el presente estudio, se emplearon diversos métodos orientados al análisis y síntesis de datos, con un enfoque particular en técnicas de análisis exploratorio. Estas herramientas permitieron obtener una visión inicial de la estructura, distribución y relaciones de las variables, facilitando así la identificación de patrones y tendencias clave en el conjunto de datos. A lo largo de las tablas y gráficos presentados, se aplicaron métricas descriptivas como medidas de tendencia central, dispersión y posición, complementadas con visualizaciones que aportan una comprensión más detallada de los datos. Este enfoque no solo proporciona un resumen integral de la información, sino que también establece las bases para un análisis más profundo en fases posteriores del estudio. En la presente sección se emplearán las fórmulas y definiciones planteadas por <span class="citation" data-cites="CA0204">Solís. (<a href="#ref-CA0204" role="doc-biblioref">2024</a>)</span> en su sitio web, específicamente en el apartado dedicado al análisis exploratorio de datos.</p>
+<p>Para el presente estudio, se emplearon diversos métodos orientados al análisis y síntesis de datos, con un enfoque particular en técnicas de análisis exploratorio. Estas herramientas permitieron obtener una visión inicial de la estructura, distribución y relaciones de las variables, facilitando así la identificación de patrones y tendencias clave en el conjunto de datos. A lo largo de las tablas y gráficos presentados, se aplicaron métricas descriptivas como medidas de tendencia central, dispersión y posición, complementadas con visualizaciones que aportan una comprensión más detallada de los datos. Este enfoque no solo proporciona un resumen integral de la información, sino que también establece las bases para un análisis más profundo en fases posteriores del estudio. En la presente sección se emplearán las fórmulas y definiciones planteadas por <span class="citation" data-cites="Dekking2005">Dekking et&nbsp;al. (<a href="#ref-Dekking2005" role="doc-biblioref">2005</a>)</span> en el líbro <em>A Modern Introduction to Probability and Statistics</em>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Definición 3.1 (Media empírica)
+Definición 3.1 (Media)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Asumiendo que la serie de datos para una variable es <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>,</p>
-<p><span class="math display">\[
-\hat{\mu} = \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i
+<p>La <em>esperanza</em> de una variable aleatoria discreta <span class="math inline">\(X\)</span> que toma los valores <span class="math inline">\(a_1, a_2, \ldots\)</span> y con función de masa de probabilidad <span class="math inline">\(p\)</span> es el número <span class="math display">\[
+\mathbb{E}[X] = \sum_i a_i P(X = a_i) = \sum_i a_i p(a_i).
 \]</span></p>
+<p>También llamamos a <span class="math inline">\(\mathbb{E}[X]\)</span> el o de <span class="math inline">\(X\)</span>.</p>
 </div>
 </div>
 <p>Esta medida de tendencia central es la más común y estandarizada. Aunque existen diferentes tipos de medias, para la presente investigación se empleará la definición presentada anteriormente.</p>
@@ -2404,16 +2404,14 @@ Definición 3.1 (Media empírica)
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Definición 3.2 (Desviación Estándar)
+Definición 3.2 ( Varianza y Desviación Estándar)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Asumiendo que la serie de datos para una variable es <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span>, se define la desviación estandar como la raíz cuadrada de la varianza.</p>
-<p><span class="math display">\[
-s = \sqrt{\hat{s}^2}=\sqrt{\dfrac{1}{n-1}\sum_{i=1}^n(X_i - \hat{\mu})^2}
-\]</span> En este caso se toma la varianza insesgada que se define como <span class="math display">\[
-\hat{s}^2 = \dfrac{1}{n-1}\sum_{i=1}^n(X_i - \hat{\mu})^2
+<p>La <em>varianza</em> <span class="math inline">\(\operatorname{Var}(X)\)</span> de una variable aleatoria <span class="math inline">\(X\)</span> es el número <span class="math display">\[
+\operatorname{Var}(X) = \mathbb{E} \left[(X - \mathbb{E}[X])^2 \right].
 \]</span></p>
+<p>Nótese que la varianza de una variable aleatoria siempre es positiva (o 0). Además, surge la cuestión de existencia y finitud. En situaciones prácticas, a menudo se considera la <em>desviación estándar</em> definida por <span class="math inline">\(\sqrt{\operatorname{Var}(X)}\)</span>, ya que tiene la misma dimensión que <span class="math inline">\(\mathbb{E}[X]\)</span>.</p>
 </div>
 </div>
 <p>La desviación estándar es una de las principales medidas de dispersión, que indica, en promedio, cuánto se alejan los datos de la media. Esta medida se ha empleado en diversos contextos a lo largo del estudio para analizar la variabilidad de los datos.</p>
@@ -2423,16 +2421,13 @@ s = \sqrt{\hat{s}^2}=\sqrt{\dfrac{1}{n-1}\sum_{i=1}^n(X_i - \hat{\mu})^2}
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Definición 3.3 (Quintiles)
+Definición 3.3 (Cuantiles)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Un quantil de valor <span class="math inline">\(\alpha\)</span> es el valor que tal que:</p>
-<p><span class="math display">\[
-\mathbb{P}[ X \leq q] = \alpha
-\]</span> Sea <span class="math inline">\(0&lt;p&lt;1\)</span> tal que <span class="math display">\[
-q(\alpha) = F^{-1}(p) = \inf x : F(x) \geq p
-\]</span></p>
+<p>Sea <span class="math inline">\(X\)</span> una variable aleatoria continua y sea <span class="math inline">\(p\)</span> un número entre 0 y 1. El <span class="math inline">\(p\)</span>-ésimo <em>cuantil</em> o percentil <span class="math inline">\(100p\)</span> de la distribución de <span class="math inline">\(X\)</span> es el número más pequeño <span class="math inline">\(q_p\)</span> tal que <span class="math display">\[
+F(q_p) = \mathbb{P}(X \leq q_p) = p.
+\]</span> La <em>mediana</em> de una distribución es su percentil 50.</p>
 </div>
 </div>
 <p>Esta defición corresponde a la versión general del quantil, en el presente trabajo se utilizan los quinitles 1,2 y 3 que se definen como <span class="math display">\[
@@ -2441,8 +2436,8 @@ q(\alpha) = F^{-1}(p) = \inf x : F(x) \geq p
 \mathbb{P}[ X \leq Q_2] = 0.5
 \]</span> <span class="math display">\[
 \mathbb{P}[ X \leq Q_3] = 0.75
-\]</span> En este caso <span class="math inline">\(Q_2\)</span> corresponde a la mediana de los datos.</p>
-<p>De acuerdo a <span class="citation" data-cites="camacho2006regresion">Camacho, López, y Arias (<a href="#ref-camacho2006regresion" role="doc-biblioref">2006</a>)</span> se tiene la siguiente definición</p>
+\]</span></p>
+<p>De acuerdo a <span class="citation" data-cites="camacho2006regresion">Camacho et&nbsp;al. (<a href="#ref-camacho2006regresion" role="doc-biblioref">2006</a>)</span> se tiene la siguiente definición</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2504,7 +2499,7 @@ Y = \alpha + \beta X + \varepsilon
 </div>
 </div>
 </div>
-<p>En cuanto al impacto de la educación primaria y secundaria, los datos revelan una marcada diferencia entre las personas según el tipo de centro educativo al que asistieron (gráfico 1). Los resultados muestran que la ausencia total de educación formal está claramente asociada con un mayor nivel de pobreza extrema, ya que el 18.21% de los adultos que nunca asistieron a un centro educativo se encuentran en esta categoría. Sin embargo, la pobreza disminuye considerablemente entre aquellos que asistieron a centros educativos, especialmente privados (1.46% en pobreza extrema) y semipúblicos (4%). Por otro lado, los centros públicos, con un 7.40% de pobreza extrema, se ubican entre los extremos del espectro, indicando que, si bien la educación pública proporciona una vía para mejorar la situación económica, su impacto en la reducción de la pobreza es menor en comparación con los centros privados. Esto refleja cómo la calidad y el tipo de centro al que se asistió tienen un impacto significativo en la situación socioeconómica de las personas, sugiriendo que la educación de calidad juega un papel crucial en la movilidad social. Esto es reforzado por lo que dicen <span class="citation" data-cites="ricardez">Ricárdez González y Robles Ortiz (<a href="#ref-ricardez" role="doc-biblioref">2024</a>)</span>: si se tienen profesores mejores capacitados y con salarios competitivos, o si se recibe una educación privada, se reduce la probabilidad de encontrarse en pobreza.</p>
+<p>En cuanto al impacto de la educación primaria y secundaria, los datos revelan una marcada diferencia entre las personas según el tipo de centro educativo al que asistieron (gráfico 1). Los resultados muestran que la ausencia total de educación formal está claramente asociada con un mayor nivel de pobreza extrema, ya que el 18.21% de los adultos que nunca asistieron a un centro educativo se encuentran en esta categoría. Sin embargo, la pobreza disminuye considerablemente entre aquellos que asistieron a centros educativos, especialmente privados (1.46% en pobreza extrema) y semipúblicos (4%). Por otro lado, los centros públicos, con un 7.40% de pobreza extrema, se ubican entre los extremos del espectro, indicando que, si bien la educación pública proporciona una vía para mejorar la situación económica, su impacto en la reducción de la pobreza es menor en comparación con los centros privados. Esto refleja cómo la calidad y el tipo de centro al que se asistió tienen un impacto significativo en la situación socioeconómica de las personas, sugiriendo que la educación de calidad juega un papel crucial en la movilidad social. Esto es reforzado por lo que dicen <span class="citation" data-cites="ricardez">Ricárdez González &amp; Robles Ortiz (<a href="#ref-ricardez" role="doc-biblioref">2024</a>)</span>: si se tienen profesores mejores capacitados y con salarios competitivos, o si se recibe una educación privada, se reduce la probabilidad de encontrarse en pobreza.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -2665,36 +2660,36 @@ Y = \alpha + \beta X + \varepsilon
 <h1 data-number="4"><span class="header-section-number">4</span> Bibliografía</h1>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-Bazdresch2001" class="csl-entry" role="listitem">
-Bazdresch Parada, Miguel. 2001. <span>«Educación y pobreza: una relación conflictiva»</span>. En <em>Pobreza, desigualdad social y ciudadanía. Los límites de las políticas sociales en América Latina</em>. Buenos Aires: CLACSO, Consejo Latinoamericano de Ciencias Sociales. <a href="chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://biblioteca.clacso.edu.ar/clacso/gt/20101029064158/6ziccardi.pdf">chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://biblioteca.clacso.edu.ar/clacso/gt/20101029064158/6ziccardi.pdf</a>.
+Bazdresch Parada, M. (2001). Educación y pobreza: una relación conflictiva. En <em>Pobreza, desigualdad social y ciudadanía. Los límites de las políticas sociales en América Latina</em>. CLACSO, Consejo Latinoamericano de Ciencias Sociales. <a href="chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://biblioteca.clacso.edu.ar/clacso/gt/20101029064158/6ziccardi.pdf">chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://biblioteca.clacso.edu.ar/clacso/gt/20101029064158/6ziccardi.pdf</a>
 </div>
 <div id="ref-becker" class="csl-entry" role="listitem">
-Becker, Gary. 1995. <span>«Human <span>Capital</span> and <span>Poverty</span> <span>Alleviation</span>»</span> 1. <a href="https://documentos.bancomundial.org/es/publication/documents-reports/documentdetail/121791468764735830/human-capital-and-poverty-alleviation">https://documentos.bancomundial.org/es/publication/documents-reports/documentdetail/121791468764735830/human-capital-and-poverty-alleviation</a>.
+Becker, G. (1995). <em>Human <span>Capital</span> and <span>Poverty</span> <span>Alleviation</span></em>. <em>1</em>. <a href="https://documentos.bancomundial.org/es/publication/documents-reports/documentdetail/121791468764735830/human-capital-and-poverty-alleviation">https://documentos.bancomundial.org/es/publication/documents-reports/documentdetail/121791468764735830/human-capital-and-poverty-alleviation</a>
 </div>
 <div id="ref-camacho2006regresion" class="csl-entry" role="listitem">
-Camacho, Carlos, AM López, y MA Arias. 2006. <span>«Regresi<span>ó</span>n lineal simple»</span>. <em>Documento in<span>é</span>dito. Recuperado de http://personal. us. es/vararey/adatos2/Regsimple. pdf</em>.
+Camacho, C., López, A., &amp; Arias, M. (2006). Regresi<span>ó</span>n lineal simple. <em>Documento in<span>é</span>dito. Recuperado de http://personal. us. es/vararey/adatos2/Regsimple. pdf</em>.
+</div>
+<div id="ref-Dekking2005" class="csl-entry" role="listitem">
+Dekking, F. M., Kraaikamp, C., Lopuhaa, H. P., &amp; Meester, L. E. (2005). <em>A Modern Introduction to Probability and Statistics: Understanding Why and How</em>. Springer-Verlag London Limited. <a href="http://www.springeronline.com/1-85233-896-2">http://www.springeronline.com/1-85233-896-2</a>
 </div>
 <div id="ref-OrdazDiaz2009" class="csl-entry" role="listitem">
-Díaz, Juan Luis Ordaz. 2009. <em>México: Impacto de la Educación en la Pobreza Rural</em>. Estudios y perspectivas, Sede Subregional de la CEPAL en México, No. 105. México, D. F.: Naciones Unidas. <a href="https://repositorio.cepal.org/bitstream/handle/11362/5377/S0901052.pdf">https://repositorio.cepal.org/bitstream/handle/11362/5377/S0901052.pdf</a>.
+Díaz, J. L. O. (2009). <em>México: Impacto de la Educación en la Pobreza Rural</em>. Naciones Unidas. <a href="https://repositorio.cepal.org/bitstream/handle/11362/5377/S0901052.pdf">https://repositorio.cepal.org/bitstream/handle/11362/5377/S0901052.pdf</a>
 </div>
 <div id="ref-figueroa" class="csl-entry" role="listitem">
-Figueroa, Adolfo. 2010. <span>«¿<span>Mejora</span> la distribución del ingreso con la educación? <span>El</span> caso del <span>Perú</span>.»</span> <em>Revista de la CEPAL</em>, n.º 102 (diciembre): 115-36. <a href="https://research.proxyucr.elogim.com/linkprocessor/plink?id=4a799d99-4855-3d4f-ba4b-c6e5f649b0ad">https://research.proxyucr.elogim.com/linkprocessor/plink?id=4a799d99-4855-3d4f-ba4b-c6e5f649b0ad</a>.
+Figueroa, A. (2010). ¿<span>Mejora</span> la distribución del ingreso con la educación? <span>El</span> caso del <span>Perú</span>. <em>Revista de la CEPAL</em>, <em>102</em>, 115-136. <a href="https://research.proxyucr.elogim.com/linkprocessor/plink?id=4a799d99-4855-3d4f-ba4b-c6e5f649b0ad">https://research.proxyucr.elogim.com/linkprocessor/plink?id=4a799d99-4855-3d4f-ba4b-c6e5f649b0ad</a>
 </div>
 <div id="ref-ENAHO2023" class="csl-entry" role="listitem">
-INEC. 2023. <span>«Encuesta <span>Nacional</span> de <span>Hogares</span>: <span>Resultados</span> <span>Generales</span> [recurso electrónico]»</span>. Costa Rica: Instituto Nacional de Estadística y Censos. <a href="https://admin.inec.cr/sites/default/files/2023-10/reenaho2023.pdf">https://admin.inec.cr/sites/default/files/2023-10/reenaho2023.pdf</a>.
+INEC. (2023). <em>Encuesta <span>Nacional</span> de <span>Hogares</span>: <span>Resultados</span> <span>Generales</span> [recurso electrónico]</em>. Instituto Nacional de Estadística y Censos. <a href="https://admin.inec.cr/sites/default/files/2023-10/reenaho2023.pdf">https://admin.inec.cr/sites/default/files/2023-10/reenaho2023.pdf</a>
 </div>
 <div id="ref-ricardez" class="csl-entry" role="listitem">
-Ricárdez González, Omar, y David Robles Ortiz. 2024. <span>«Las características de la educación y su efecto en la pobreza: un análisis para <span>México</span>.»</span> <em>Análisis Económico</em> 39 (101): 165-79. <a href="https://doi.org/10.24275/uam/azc/dcsh/ae/2024v39n101/Ricardez">https://doi.org/10.24275/uam/azc/dcsh/ae/2024v39n101/Ricardez</a>.
+Ricárdez González, O., &amp; Robles Ortiz, D. (2024). Las características de la educación y su efecto en la pobreza: un análisis para <span>México</span>. <em>Análisis Económico</em>, <em>39</em>(101), 165-179. <a href="https://doi.org/10.24275/uam/azc/dcsh/ae/2024v39n101/Ricardez">https://doi.org/10.24275/uam/azc/dcsh/ae/2024v39n101/Ricardez</a>
 </div>
 <div id="ref-Rodriguez" class="csl-entry" role="listitem">
-Rodríguez, Adrian. s.&nbsp;f. <em>Aspectos teóricos y metodológicos involucrados en el estudio de la pobreza: una revisión</em>. Instituto de Investigaciones en Ciencias Económicas. <a href="https://doi.org/10.18235/0011833">https://doi.org/10.18235/0011833</a>.
+Rodríguez, A. (s.&nbsp;f.). <em>Aspectos teóricos y metodológicos involucrados en el estudio de la pobreza: una revisión</em>. Instituto de Investigaciones en Ciencias Económicas. <a href="https://doi.org/10.18235/0011833">https://doi.org/10.18235/0011833</a>
 </div>
 <div id="ref-Sanchez" class="csl-entry" role="listitem">
-Sánchez, Carmen. 2015. <span>«Evaluación de impacto de la educación sobre la pobreza en Costa Rica (un análisis para educación secundaria y post-secundaria)»</span>. <em>Revista de Ciencias Económicas</em> 33 (2): 09-23. <a href="https://doi.org/10.15517/rce.v33i2.22608">https://doi.org/10.15517/rce.v33i2.22608</a>.
-</div>
-<div id="ref-CA0204" class="csl-entry" role="listitem">
-Solís., Maikol. 2024. <span>«maikolsolis.com»</span>. <a href="https://maikolsolis.com/libros/hpcd/analisis-exploratorio-datos.html#sec:aed-no-grafico:~:text=Manejo%20de%20factores-,10%C2%A0%20An%C3%A1lisis%20Exploratorio%20de%20Datos,-11%C2%A0%20Aplicaciones">https://maikolsolis.com/libros/hpcd/analisis-exploratorio-datos.html#sec:aed-no-grafico:~:text=Manejo%20de%20factores-,10%C2%A0%20An%C3%A1lisis%20Exploratorio%20de%20Datos,-11%C2%A0%20Aplicaciones</a>.
+Sánchez, C. (2015). Evaluación de impacto de la educación sobre la pobreza en Costa Rica (un análisis para educación secundaria y post-secundaria). <em>Revista de Ciencias Económicas</em>, <em>33</em>(2), 09-23. <a href="https://doi.org/10.15517/rce.v33i2.22608">https://doi.org/10.15517/rce.v33i2.22608</a>
 </div>
 </div>
 </section>
