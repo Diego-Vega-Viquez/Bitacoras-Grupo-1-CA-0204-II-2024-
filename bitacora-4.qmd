@@ -235,16 +235,12 @@ Esta medida de tendencia central es la más común y estandarizada. Aunque exist
 ::: {.callout-tip}
 ##### Definición 3.2 ( Varianza y Desviación Estándar)
 
-<<<<<<< HEAD
 La \textit{varianza} \( \operatorname{Var}(X) \) de una variable aleatoria \( X \) es el número
 \[
 \operatorname{Var}(X) = \mathbb{E} \left[(X - \mathbb{E}[X])^2 \right].
 \]
 
 Nótese que la varianza de una variable aleatoria siempre es positiva (o 0). Además, surge la cuestión de existencia y finitud (cf. Observación 7.1). En situaciones prácticas, a menudo se considera la \textit{desviación estándar} definida por $\sqrt{\operatorname{Var}(X)}$, ya que tiene la misma dimensión que \( \mathbb{E}[X] \).
-=======
-Asumiendo que la serie de datos para una variable es \( X_1, X_2, \ldots, X_n \), se define la desviación estándar como la raíz cuadrada de la varianza.
->>>>>>> cf0c934 (feat: agregar y ajustar texto para la parte de escritura y el ordenamiento final)
 
 :::
 La desviación estándar es una de las principales medidas de dispersión, que indica, en promedio, cuánto se alejan los datos de la media. Esta medida se ha empleado en diversos contextos a lo largo del estudio para analizar la variabilidad de los datos.
@@ -252,15 +248,11 @@ La desviación estándar es una de las principales medidas de dispersión, que i
 ::: {.callout-tip}
 ##### Definición 3.3 (Quintiles)
 
-<<<<<<< HEAD
 Sea \( X \) una variable aleatoria continua y sea \( p \) un número entre 0 y 1. El $p$-ésimo \textit{cuantil} o percentil \( 100p \) de la distribución de \( X \) es el número más pequeño \( q_p \) tal que
 \[
 F(q_p) = P(X \leq q_p) = p.
 \]
 La \textit{mediana} de una distribución es su percentil 50.
-=======
-Un cuantil de valor $\alpha$ es el valor que tal que:
->>>>>>> cf0c934 (feat: agregar y ajustar texto para la parte de escritura y el ordenamiento final)
 
 :::
 Esta definición corresponde a la versión general del cuantil, en el presente trabajo se utilizan los quintiles 1,2 y 3 que se definen como
