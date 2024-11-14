@@ -222,12 +222,12 @@ Para el presente estudio, se emplearon diversos métodos orientados al análisis
 ::: {.callout-tip}
 ##### Definición 3.1 (Media)
 
-La \textit{esperanza} de una variable aleatoria discreta \( X \) que toma los valores \( a_1, a_2, \ldots \) y con función de masa de probabilidad \( p \) es el número 
+La *esperanza* de una variable aleatoria discreta \( X \) que toma los valores \( a_1, a_2, \ldots \) y con función de masa de probabilidad \( p \) es el número 
 $$
 \mathbb{E}[X] = \sum_i a_i P(X = a_i) = \sum_i a_i p(a_i).
 $$
 
-También llamamos a $\mathbb{E}[X]$ el \textit{valor esperado} o \textit{media} de \( X \).
+También llamamos a $\mathbb{E}[X]$ el *valor esperado* o *media* de \( X \).
 :::
 
 Esta medida de tendencia central es la más común y estandarizada. Aunque existen diferentes tipos de medias, para la presente investigación se empleará la definición presentada anteriormente.
@@ -235,12 +235,12 @@ Esta medida de tendencia central es la más común y estandarizada. Aunque exist
 ::: {.callout-tip}
 ##### Definición 3.2 ( Varianza y Desviación Estándar)
 
-La \textit{varianza} \( \operatorname{Var}(X) \) de una variable aleatoria \( X \) es el número
+La *varianza* \( \operatorname{Var}(X) \) de una variable aleatoria \( X \) es el número
 \[
 \operatorname{Var}(X) = \mathbb{E} \left[(X - \mathbb{E}[X])^2 \right].
 \]
 
-Nótese que la varianza de una variable aleatoria siempre es positiva (o 0). Además, surge la cuestión de existencia y finitud (cf. Observación 7.1). En situaciones prácticas, a menudo se considera la \textit{desviación estándar} definida por $\sqrt{\operatorname{Var}(X)}$, ya que tiene la misma dimensión que \( \mathbb{E}[X] \).
+Nótese que la varianza de una variable aleatoria siempre es positiva (o 0). Además, surge la cuestión de existencia y finitud (cf. Observación 7.1). En situaciones prácticas, a menudo se considera la *desviación estándar* definida por $\sqrt{\operatorname{Var}(X)}$, ya que tiene la misma dimensión que \( \mathbb{E}[X] \).
 
 :::
 La desviación estándar es una de las principales medidas de dispersión, que indica, en promedio, cuánto se alejan los datos de la media. Esta medida se ha empleado en diversos contextos a lo largo del estudio para analizar la variabilidad de los datos.
@@ -248,11 +248,11 @@ La desviación estándar es una de las principales medidas de dispersión, que i
 ::: {.callout-tip}
 ##### Definición 3.3 (Quintiles)
 
-Sea \( X \) una variable aleatoria continua y sea \( p \) un número entre 0 y 1. El $p$-ésimo \textit{cuantil} o percentil \( 100p \) de la distribución de \( X \) es el número más pequeño \( q_p \) tal que
+Sea \( X \) una variable aleatoria continua y sea \( p \) un número entre 0 y 1. El $p$-ésimo *cuantil* o percentil \( 100p \) de la distribución de \( X \) es el número más pequeño \( q_p \) tal que
 \[
 F(q_p) = P(X \leq q_p) = p.
 \]
-La \textit{mediana} de una distribución es su percentil 50.
+La *mediana* de una distribución es su percentil 50.
 
 :::
 Esta definición corresponde a la versión general del cuantil, en el presente trabajo se utilizan los quintiles 1,2 y 3 que se definen como
@@ -268,31 +268,6 @@ $$
 En este caso \(Q_2\) corresponde a la mediana de los datos.
 
 De acuerdo a @camacho2006regresion se tiene la siguiente definición
-
-::: {.callout-tip}
-##### Definición 3.2 (Regresión lineal simple)
-
-La regresión lineal simple es un modelo estadístico que describe la relación entre una variable dependiente \( Y \) y una variable independiente \( X \). Este modelo asume que la relación entre ambas variables puede expresarse mediante la ecuación:
-
-$$
-Y = \alpha + \beta X + \varepsilon
-$$
-
-donde \( \alpha \) representa el intercepto, \( \beta \) la pendiente del modelo, y \( \varepsilon \) el término de error o perturbación, que captura la variabilidad no explicada por \( X \). La puntuación predicha \( \hat{Y} \) para cada valor de \( X \) es:
-
-$$
-\hat{Y} = \alpha + \beta X
-$$
-
-El error en la predicción se define como la diferencia entre el valor observado \( Y \) y el valor predicho \( \hat{Y} \):
-
-$$
-\varepsilon = Y - \hat{Y}
-$$
-:::
-
-Este modelo se utiliza para estimar los parámetros \( \alpha \) y \( \beta \) en una muestra, permitiendo inferir sobre la población y realizar predicciones. Aunque en este trabajo no se realiza el cálculo exacto, el modelo ha sido útil en el apartado de gráficos para analizar la relación lineal entre dos variables.
-
 
 **Resultados**
 
@@ -416,7 +391,7 @@ Finalmente, este trabajo contribuye a llenar un vacío importante en la literatu
 
 ### Resumen
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut gravida, quam quis maximus varius, arcu nisl tempus leo, ut rhoncus erat nunc at tortor. Pellentesque arcu ante, rutrum et arcu at, pellentesque interdum enim. Nulla in imperdiet turpis. Cras ullamcorper purus eu dui eleifend, vitae gravida sem congue. Donec posuere purus mi, nec laoreet ex porttitor et. Curabitur mauris ex, ultrices vel ligula vel, blandit lacinia magna. Praesent efficitur justo eget risus bibendum, id pulvinar enim fringilla. Maecenas cursus nibh mattis mollis scelerisque. Vivamus sodales interdum tortor non euismod. Morbi felis diam, condimentum non vulputate id, viverra in risus. Quisque luctus finibus metus, a dictum lectus interdum a. Duis in est felis. Pellentesque lacinia turpis sed mollis gravida. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent luctus rutrum quam, a pellentesque diam placerat eu. Cras congue, mi sit amet scelerisque posuere, nulla dolor bibendum augue, ac porta orci enim eget tellus. Vestibulum molestie, nisl eu interdum tempor, augue orci pulvinar lectus, lacinia dignissim magna orci eget eros. Mauris cursus vulputate semper. Aenean non feugiat eros. Suspendisse dapibus non risus nec ultricies. Pellentesque tincidunt diam in dolor gravida, a rhoncus leo aliquam. Phasellus dignissim nec ante eu convallis. Morbi posuere velit vel dolor venenatis suscipit. Curabitur eleifend sapien nulla. Integer laoreet sem nec risus convallis dapibus a eget mi. Aenean non neque tellus. Aenean ut erat sed urna fermentum blandit vitae sit amet nisl. Suspendisse congue rhoncus mi non ultrices. Vestibulum molestie, turpis sed tempus fringilla, urna sapien iaculis ligula, vel sagittis odio lacus quis urna. Phasellus id lobortis risus. Mauris porta convallis sagittis. In sollicitudin pretium est id sodales. Cras ultricies porttitor tortor, at iaculis lectus laoreet id. Nullam finibus nisi vitae urna pretium molestie. Quisque elementum blandit mollis. Etiam lobortis, felis vel fermentum.
+La relación entre educación y estatus socioeconómico en Costa Rica está estrechamente vinculada a la desigualdad en la distribución del ingreso, un problema crítico que este estudio busca abordar. El objetivo principal es comprender cómo la educación impacta la pobreza a través del marco del capital humano. Para ello, se utilizó la Encuesta Nacional de Hogares 2023 del INEC, analizando datos de individuos entre 18 y 60 años, y se aplicaron técnicas de tabulación cruzada y gráficos para describir las tendencias en ingresos y condición socioeconómica, considerando factores educativos como el nivel de instrucción, el tipo de centro educativo al que se asistió y la titulación académica. Los resultados evidencian disparidades significativas en los ingresos, relacionadas con el nivel educativo. Se encontró que los individuos con niveles educativos más bajos se concentran en los quintiles de ingreso más bajos y presentan mayores tasas de pobreza, mientras que aquellos con niveles educativos más altos, especialmente con estudios superiores, tienen mayores ingresos y menor probabilidad de caer en pobreza. Los análisis destacan cómo la educación actúa como un factor clave en la movilidad social, reflejándose en un aumento de ingresos conforme se incrementa el nivel educativo. Además, se observó que las diferencias salariales también están marcadas por el tipo de institución educativa y el contexto de residencia, donde las zonas urbanas y las instituciones privadas ofrecen mayores oportunidades. En conclusión, este estudio subraya que mejorar el acceso y la calidad de la educación en todas las regiones de Costa Rica es fundamental para reducir las desigualdades de ingreso. Las políticas focalizadas en la mejora educativa pueden mitigar las brechas identificadas y promover mejores oportunidades socioeconómicas para los individuos de niveles educativos más bajos.
 
 ### Palabras clave
 
@@ -490,12 +465,12 @@ Para el presente estudio, se emplearon diversos métodos orientados al análisis
 ::: {.callout-tip}
 ##### Definición 3.1 (Media)
 
-La \textit{esperanza} de una variable aleatoria discreta \( X \) que toma los valores \( a_1, a_2, \ldots \) y con función de masa de probabilidad \( p \) es el número 
+La *esperanza* de una variable aleatoria discreta \( X \) que toma los valores \( a_1, a_2, \ldots \) y con función de masa de probabilidad \( p \) es el número 
 $$
 \mathbb{E}[X] = \sum_i a_i P(X = a_i) = \sum_i a_i p(a_i).
 $$
 
-También llamamos a $\mathbb{E}[X]$ el \textit{valor esperado} o \textit{media} de \( X \).
+También llamamos a $\mathbb{E}[X]$ el *valor esperado* o *media* de \( X \).
 :::
 
 Esta medida de tendencia central es la más común y estandarizada. Aunque existen diferentes tipos de medias, para la presente investigación se empleará la definición presentada anteriormente.
@@ -503,12 +478,12 @@ Esta medida de tendencia central es la más común y estandarizada. Aunque exist
 ::: {.callout-tip}
 ##### Definición 3.2 ( Varianza y Desviación Estándar)
 
-La \textit{varianza} \( \operatorname{Var}(X) \) de una variable aleatoria \( X \) es el número
+La *varianza* \( \operatorname{Var}(X) \) de una variable aleatoria \( X \) es el número
 \[
 \operatorname{Var}(X) = \mathbb{E} \left[(X - \mathbb{E}[X])^2 \right].
 \]
 
-Nótese que la varianza de una variable aleatoria siempre es positiva (o 0). Además, surge la cuestión de existencia y finitud (cf. Observación 7.1). En situaciones prácticas, a menudo se considera la \textit{desviación estándar} definida por $\sqrt{\operatorname{Var}(X)}$, ya que tiene la misma dimensión que \( \mathbb{E}[X] \).
+Nótese que la varianza de una variable aleatoria siempre es positiva (o 0). Además, surge la cuestión de existencia y finitud (cf. Observación 7.1). En situaciones prácticas, a menudo se considera la *desviación estándar* definida por $\sqrt{\operatorname{Var}(X)}$, ya que tiene la misma dimensión que \( \mathbb{E}[X] \).
 
 :::
 La desviación estándar es una de las principales medidas de dispersión, que indica, en promedio, cuánto se alejan los datos de la media. Esta medida se ha empleado en diversos contextos a lo largo del estudio para analizar la variabilidad de los datos.
@@ -516,11 +491,11 @@ La desviación estándar es una de las principales medidas de dispersión, que i
 ::: {.callout-tip}
 ##### Definición 3.3 (Quintiles)
 
-Sea \( X \) una variable aleatoria continua y sea \( p \) un número entre 0 y 1. El $p$-ésimo \textit{cuantil} o percentil \( 100p \) de la distribución de \( X \) es el número más pequeño \( q_p \) tal que
+Sea \( X \) una variable aleatoria continua y sea \( p \) un número entre 0 y 1. El $p$-ésimo *cuantil* o percentil \( 100p \) de la distribución de \( X \) es el número más pequeño \( q_p \) tal que
 \[
 F(q_p) = P(X \leq q_p) = p.
 \]
-La \textit{mediana} de una distribución es su percentil 50.
+La *mediana* de una distribución es su percentil 50.
 
 :::
 Esta definición corresponde a la versión general del cuantil, en el presente trabajo se utilizan los quintiles 1,2 y 3 que se definen como
