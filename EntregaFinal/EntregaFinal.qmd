@@ -1,0 +1,200 @@
+---
+title: "Relación entre la educación y la condición socioeconómica y la distribución del ingreso en Costa Rica, 2023"
+author: 
+  - name: "José Carlos Quintero Cedeño"
+    email: "jose.quintero@example.com"
+  - name: "Diego Alberto Vega Víquez"
+    email: "diego.vega@example.com"
+format: 
+  pdf: 
+    documentclass: article  
+    fontsize: 11pt       
+    geometry: "top=2.5cm, bottom=2.5cm, left=3cm, right=3cm"  
+    toc: false                          
+    number-sections: false               
+    colorlinks: true                    
+    linkcolor: blue   
+    keep-tex: true  
+bibliography: references.bib 
+csl: apa.csl  
+lang: es      
+abstract: |
+  La relación entre educación y estatus socioeconómico en Costa Rica se vincula estrechamente con la desigualdad en la distribución del ingreso, un problema crítico que el presente estudio aborda. Con el objetivo de entender cómo la educación impacta la pobreza mediante el marco teórico del capital humano y otros factores estructurales, se utiliza la Encuesta Nacional de Hogares 2023 del INEC, analizando datos de individuos entre 18 y 60 años. El enfoque se centra en las dinámicas de ingresos, considerando factores demográficos como región y género. Se usan técnicas de tabulación cruzada y gráficos para describir las tendencias. Los resultados revelan disparidades significativas de ingreso relacionadas con el nivel educativo y el contexto geográfico, evidenciando cómo los niveles más bajos de educación están asociados con un mayor nivel de pobreza. Hallazgos señalan una correlación directa entre mayores niveles de educación y aumentos de ingreso, evidenciada por diferencias notorias en promedio salarial, y se discutieron indicadores relevantes que refuerzan estas conclusiones. Se concluye que mejorar el acceso a la educación y su calidad en todas las regiones de Costa Rica es clave para reducir las desigualdades de ingreso, sugiriendo que políticas focalizadas pueden atenuar las brechas identificadas y mejorar las oportunidades socioeconómicas.
+
+keywords:
+  - educación
+  - distribución del ingreso
+  - movilidad económica
+---
+
+
+
+
+```{r Librerías}
+#| echo: false
+#| warning: false
+#| message: false
+library(tidyverse)
+library(kableExtra)
+```
+
+**Palabras clave**: Nivel educativo, Condición socioeconómica, Calidad de vida, Impacto educativo, Desigualdad socioeconómica
+
+# Introducción
+
+En Costa Rica, la educación se enfrenta a desafíos críticos que afectan tanto la calidad como el acceso, especialmente para las poblaciones más vulnerables. En los últimos años, la inversión en educación ha retrocedido; de acuerdo con el @EstadoNacion, la inversión per cápita en educación ha disminuido, situando al sistema educativo en niveles de financiamiento similares a los de hace una década. Este contexto plantea serias implicaciones para la equidad social, ya que las oportunidades de mejorar la situación económica a través de la educación se ven limitadas, incrementando el riesgo de perpetuar la desigualdad socioeconómica. 
+
+El presente estudio busca analizar cómo el nivel educativo se relaciona con la condición socioeconómica en Costa Rica, en un momento en que el país enfrenta la regresión en la inversión educativa. Este tema es particularmente oportuno porque evidencia cómo la educación, entendida como un motor de desarrollo y movilidad social, puede ser clave para reducir la brecha de desigualdad. 
+
+Para abordar esta pregunta, se utilizarán datos proporcionados por el Instituto Nacional de Estadística y Censos (INEC) a través de la Encuesta Nacional de Hogares (ENAHO), que permite analizar de manera detallada la relación entre el nivel educativo y el ingreso en la población costarricense. El enfoque demográfico incluye a personas adultas, en un rango de edad de 18 a 60 años, permitiendo observar cómo la educación impacta en sus condiciones de vida y su situación económica actual.
+
+La importancia de esta investigación radica en la oportunidad de aportar una comprensión más profunda sobre las causas estructurales de la desigualdad en Costa Rica, centrándose en la teoría del capital humano. Esta teoría sugiere que la educación es una inversión que aumenta el capital humano de los individuos, incrementando sus conocimientos y habilidades y, por ende, su valor productivo en la economía. Como sostiene @Bazdresch2001, una mayor educación proporciona más “capital humano” a los miembros de la sociedad, permitiéndoles competir por mejores oportunidades laborales y mayores ingresos. Así, este trabajo aportará nuevos conocimientos sobre cómo el capital humano se traduce en beneficios económicos y cómo las disparidades educativas pueden influir en la distribución de ingresos en Costa Rica. Sin embargo, también se tendrá en cuenta la crítica estructuralista, que argumenta que las desigualdades en la educación no solo son una causa de la pobreza, sino también una consecuencia de las barreras socioeconómicas existentes. Según @Rodriguez, las estructuras económicas y sociales limitan las oportunidades de los individuos, independientemente de su nivel educativo, lo que subraya la necesidad de abordar tanto la calidad educativa como las barreras externas.
+
+El estudio no solo pretende enriquecer el debate académico sobre la teoría del capital humano, sino también abordar una laguna en la literatura costarricense sobre la relación entre educación e ingresos. En un contexto de desigualdad creciente, la educación es vista tanto como una solución a largo plazo para mejorar la calidad de vida de la población como una herramienta para impulsar cambios sociales más amplios. Por tanto, la investigación podría tener implicaciones políticas y sociales, sugiriendo la necesidad de políticas públicas que promuevan la equidad en el acceso y la calidad de la educación, para que esta realmente funcione como un factor de movilidad social.
+
+El objetivo principal de este estudio es ver cómo la educación se relaciona con la situación socioeconómica de las personas en Costa Rica. Este análisis contribuirá a clarificar la influencia del nivel educativo en la capacidad de las personas para mejores ingresos. Para lograrlo, se vincularán diferentes categorías educativas con variables relacionadas con el ingreso y la pobreza. En síntesis, a través de estadísticas descriptivas, gráficos y una revisión teórica exhaustiva, se explorará la relación entre el nivel educativo y la distribución del ingreso, considerando tanto las perspectivas del capital humano como las críticas estructurales.
+
+La estructura del trabajo es la siguiente: en la sección de metodología, se detallará la selección y procesamiento de datos, así como los métodos analíticos utilizados para el estudio. Los resultados ofrecerán un análisis empírico de la relación entre educación e ingresos en Costa Rica, destacando las diferencias en el acceso y las oportunidades. Finalmente, en la sección de conclusiones, se sintetizarán los principales aportes de la investigación, se señalarán sus limitaciones, y se plantearán recomendaciones para futuras investigaciones sobre la relación entre educación y desigualdad en el contexto costarricense.
+
+# Metodología
+
+La fuente de la cual fueron recolectados los datos corresponde al Instituto Nacional de Estadística y Censos (INEC); más específicamente, los datos corresponden a los recolectados en la Encuesta Nacional de Hogares del 2023.
+
+De acuerdo con el @ENAHO2023, la población de estudio corresponde al conjunto de viviendas individuales ocupadas y sus ocupantes residentes habituales, tanto del área urbana como del área rural de Costa Rica. En este caso particular, se están tomando a las personas entre 18 y 65 años de edad. Es importantes destacar que se excluyó del estudio a la población residente en las viviendas colectivas (hoteles, hospitales, asilos, cárceles, conventos, residencias colectivas para estudiantes y trabajadores).
+
+Los datos utilizados en este análisis fueron recolectados durante el año 2023, como parte de la Encuesta Nacional de Hogares realizada en julio. Este periodo permite observar la situación económica actual de los hogares costarricenses, especialmente relevante en el contexto pospandemia. A nivel espacial, los datos son representativos a nivel nacional e incluyen un desglose por regiones y áreas urbanas y rurales en Costa Rica.
+
+La unidad estadística de este estudio es el individuo (persona) dentro de un hogar encuestado en una vivienda ubicada en Costa Rica en el año 2023. Cada individuo representa una persona en la muestra, de la cual se recaban datos sobre variables socioeconómicas, demográficas, educativas, entre otras.
+
+Las variables educativas seleccionadas incluyen el tipo de centro educativo al que se asistió (clasificado en *no asistió*, *público*, *extranjero* y *privado*), el nivel de instrucción alcanzado (desde *poco o nulo nivel de instrucción* hasta *educación superior*), y la titulación académica obtenida (como *bachillerato*, *licenciatura*, etc.). Se excluyeron las observaciones en las que alguna categoría se registraba como "Ignorada". Asimismo, se omitieron las categorías *Técnico medio, perito o diplomado no universitario* y *Profesorado o diplomado universitario* para simplificar el análisis con respecto a la titulación académica.
+
+En cuanto a las variables socioeconómicas, se seleccionó el *nivel de pobreza*. El nivel de pobreza clasifica a los hogares en tres grupos: pobreza extrema, pobreza no extrema y no pobre. Los hogares en pobreza extrema son aquellos cuyo ingreso per cápita neto (IPCN) está por debajo del costo de la canasta básica alimentaria; los hogares en pobreza no extrema tienen un IPCN inferior a la línea de pobreza; y los hogares restantes se consideran no pobres. 
+
+En relación con las variables de ingreso, se seleccionaron el *ingreso total neto por persona* y el *quintil de ingreso per cápita neto*. El quintil de ingreso per cápita del hogar agrupa a los hogares en cinco categorías: el primer quintil corresponde al 20% de los hogares con menor ingreso, mientras que el quinto quintil reúne al 20% de los hogares con el mayor ingreso per cápita. A continuación, se ofrece una descripción detallada de la metodología empleada para la creación de estos quintiles.
+
+```{r Tabla Def. QUINTILES 2}
+#| echo: false
+#| warning: false
+#| message: false
+title <- c("Quintil 1 (Q1)", 
+               "Quintil 2 (Q2)", 
+               "Quintil 3 (Q3)", 
+               "Quintil 4 (Q4)", 
+               "Quintil 5 (Q5)")
+def <- c("₡110.683 ó menos", 
+          "Más de ₡110.683 a ₡195.000", 
+          "Más de ₡195.000 a ₡321.523", 
+          "Más de ₡321.523 a ₡574.085", 
+          "Más de ₡574.085")
+info_quintiles <- as.data.frame(cbind(title,def))
+colnames(info_quintiles) <- c("Título y notación","Definición")
+# Generar tabla con kable
+info_quintiles %>% kable(caption = "Definición de los quintiles") %>%
+  kable_styling(position = "center", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+
+**Métodos**
+
+Para el presente estudio, se emplearon diversos métodos orientados al análisis y síntesis de datos, con un enfoque particular en técnicas de análisis exploratorio. Estas herramientas permitieron obtener una visión inicial de la estructura, distribución y relaciones de las variables, facilitando así la identificación de patrones y tendencias clave en el conjunto de datos. A lo largo de las tablas y gráficos presentados, se aplicaron métricas descriptivas como medidas de tendencia central, dispersión y posición, complementadas con visualizaciones que aportan una comprensión más detallada de los datos. Este enfoque no solo proporciona un resumen integral de la información, sino que también establece las bases para un análisis más profundo en fases posteriores del estudio. En la presente sección se emplearán las fórmulas y definiciones planteadas por @Dekking2005 en en el libro *A Modern Introduction to Probability and Statistics*.
+
+
+### Definición 1 (Media)
+
+La *esperanza* de una variable aleatoria discreta $X$ que toma los valores $a_1, a_2, \ldots$ y con función de masa de probabilidad $p$ es el número 
+$$\mathbb{E} [X] = \sum_i a_i P(X = a_i) = \sum_i a_i p(a_i).$$
+
+También llamamos a $\mathbb{E}[X]$ el *valor esperado* o *media* de $X$.
+
+
+Esta medida de tendencia central es la más común y estandarizada. Aunque existen diferentes tipos de medias, para la presente investigación se empleará la definición presentada anteriormente.
+
+### Definición 2 (Varianza y Desviación Estándar)
+
+La *varianza* $\operatorname{Var}(X)$ de una variable aleatoria $X$ es el número
+$$ \operatorname{Var}(X) = \mathbb{E} \left[(X - \mathbb{E} [X])^2 \right] $$
+
+Nótese que la varianza de una variable aleatoria siempre es positiva (o 0). Además, surge la cuestión de existencia y finitud (cf. Observación 7.1). En situaciones prácticas, a menudo se considera la *desviación estándar* definida por $\sqrt{\operatorname{Var}(X)}$, ya que tiene la misma dimensión que $\mathbb{E} [X]$.
+
+La desviación estándar es una de las principales medidas de dispersión, que indica, en promedio, cuánto se alejan los datos de la media. Esta medida se ha empleado en diversos contextos a lo largo del estudio para analizar la variabilidad de los datos.
+
+### Definición 3 (Quintiles)
+
+Sea $X$ una variable aleatoria continua y sea $p$ un número entre 0 y 1. El $p$-ésimo *cuantil* o percentil $100p$ de la distribución de $X$ es el número más pequeño $q_p$ tal que
+$$
+F(q_p) = P(X \leq q_p) = p.
+$$
+La *mediana* de una distribución es su percentil 50.
+
+Esta definición corresponde a la versión general del cuantil, en el presente trabajo se utilizan los quintiles 1,2 y 3 que se definen como
+$$
+\mathbb{P} [ X \leq Q_1] = 0.25
+ \qquad \qquad
+\mathbb{P} [ X \leq Q_2] = 0.5
+ \qquad \qquad
+\mathbb{P} [ X \leq Q_3] = 0.75
+$$
+En este caso $Q_2$ corresponde a la mediana de los datos.
+
+# Resultados
+
+Tras analizar la distribución de la población en condición de pobreza y no pobreza a través de diferentes categorías, se puede hacer la afirmación preliminar de que la educación es un determinante clave de la condición socioeconómica de las personas, ya que influye de manera directa en las probabilidades de que un individuo se encuentre en situación de pobreza.
+
+![Nivel de pobreza según nivel de instrucción](graphs/Grafico6.png){#fig-Grafico6 width=80%}
+
+Este patrón de relación inversa entre educación y pobreza se confirma al examinar la distribución de la pobreza según el nivel de instrucción (@fig-Grafico6). A medida que aumenta el nivel educativo, la proporción de personas en situación de pobreza disminuye. Por ejemplo, entre aquellos con nulo o bajo nivel de instrucción, el 13.64% se encuentra en pobreza extrema, y el 23.75% en pobreza no extrema. En contraste, entre los grupos con educación superior de posgrado, solo el 0.23% está en pobreza extrema y ningún individuo se clasifica en pobreza no extrema. Estos datos subrayan la importancia de la educación como un factor crucial para reducir la pobreza. Incluso completar la educación secundaria tiene un impacto significativo, ya que solo el 5.71% de los que completaron la secundaria están en pobreza extrema y un 12.44% en pobreza no extrema.
+
+Este análisis es concordante con lo que han encontrado diversos autores. Por un lado, @becker afirma que una población más educada y saludable acelera el desarrollo económico de un país, destacando a la educación primaria y secundaria como motores principales. Por otro lado, @Sanchez encuentra que el hecho de completar la secundaria disminuye en un 5.7% la probabilidad de caer en pobreza, mientras que obtener estudios post-secundarios la reduce en un 8.4%. Además, @OrdazDiaz2009 concluye que la educación primaria reduce la pobreza alimentaria, de capacidades y de patrimonio en un 18%, 16% y 4% respectivamente, mientras que la secundaria lo hace en un 30%, 27% y 15%, mostrando un mayor impacto en las condiciones de vida. En conjunto, estos resultados subrayan que una educación de mayor calidad y alcance es esencial no solo para disminuir la pobreza, sino también para mejorar la estabilidad económica en el largo plazo.
+
+![Nivel de pobreza según tipo de centro educativo al que asistió](graphs/Grafico1.png){#fig-Grafico1 width=80%}
+
+El impacto de la educación primaria y secundaria también se manifiesta al observar el tipo de centro educativo al que asistieron las personas (@fig-Grafico1). Los datos revelan que la ausencia de educación formal está claramente asociada con niveles más altos de pobreza extrema, ya que el 18.21% de los adultos que nunca asistieron a un centro educativo se encuentra en esta categoría. No obstante, la pobreza disminuye significativamente entre aquellos que asistieron a centros educativos, especialmente privados (1.46% en pobreza extrema) y semipúblicos (4%). En comparación, los centros públicos, con un 7.40% en pobreza extrema, se sitúan en una posición intermedia, indicando que, aunque la educación pública mejora la situación económica, su impacto es menor que el de la educación privada. Esto sugiere que la calidad del centro educativo influye en la situación socioeconómica, reforzando la noción de que la educación de calidad es esencial para la movilidad social. Esta conclusión está alineada con la observación de @ricardez: tener profesores mejor capacitados y con salarios competitivos, o recibir una educación privada, disminuye la probabilidad de caer en pobreza.
+
+![Distribución de pobreza según nivel académico](graphs/Grafico12.png){#fig-Grafico12 width=80%}
+
+La relación entre el nivel de titulación y la situación socioeconómica también es evidente. La @fig-Grafico12 muestra que a medida que aumenta el nivel educativo alcanzado, la probabilidad de encontrarse en pobreza disminuye considerablemente. Mientras que el 86% de las personas sin título no son pobres, el 3.69% está en pobreza extrema y un 10.31% en pobreza no extrema. En cambio, aquellos con títulos universitarios avanzados, como licenciatura, especialización, maestría o doctorado, presentan tasas de pobreza casi inexistentes, estando la mayoría en la categoría de "no pobre".
+
+![Distribución del ingreso total neto por persona según nivel de instrucción](graphs/Grafico7.png){#fig-Grafico7 width=80%}
+
+Explorar la relación entre el nivel educativo y el ingreso permite entender cómo la educación influye en las oportunidades económicas de las personas. En la @fig-Grafico7, se observa que el nivel educativo es un determinante clave de los ingresos, con un incremento claro a medida que aumenta la instrucción. Las personas con educación superior de posgrado son las que alcanzan los ingresos más elevados, con un promedio de ₡1,541,922, más de seis veces el promedio de ₡249,387 de quienes tienen nulo o poco nivel de instrucción. Sin embargo, esta relación también revela una mayor dispersión en los ingresos en niveles educativos superiores, con una desviación estándar considerable en el posgrado (₡1,089,738). Esto indica que, aunque la educación superior brinda acceso a mejores ingresos, hay diferencias significativas dentro de estos grupos, posiblemente influenciadas por la especialización profesional, el tipo de empleo y la región de residencia.
+
+![Distribución del ingreso total neto por persona según tipo de centro educativo al que asistió](graphs/Grafico2.png){#fig-Grafico2 width=80%}
+
+Además del nivel educativo, el tipo de centro educativo influye en el ingreso total neto personal. La @fig-Grafico2 muestra que quienes asistieron a centros privados alcanzan los ingresos más altos, con una media de ₡846,691.2, seguidos por los que estudiaron en centros semipúblicos, con una media de ₡783,109.0. Esto sugiere que la educación en estos centros no solo proporcionó calidad, sino también ventajas socioeconómicas iniciales que permitieron mayores ingresos. Esta observación es coherente con la idea de que la educación incrementa los ingresos, pero no necesariamente cambia la estructura económica subyacente, donde la concentración de activos perpetúa la desigualdad, como señala @figueroa.
+
+En comparación, los centros públicos tienen una media de ingresos notablemente más baja, de ₡405,861.1, con una distribución más desigual reflejada en una desviación estándar de ₡503,840.6 y un ingreso máximo de ₡20 millones. Aunque una minoría de este grupo alcanza ingresos elevados, la mayoría no llega a ese nivel. Por su parte, los adultos sin educación formal registran los ingresos más bajos, con una media de ₡222,138.6, subrayando la importancia de la educación formal para mejorar las oportunidades económicas.
+
+![Distribución del ingreso total neto por persona según título obtenido](graphs/Grafico13.png){#fig-Grafico13 width=80%}
+
+Al analizar los ingresos según la titulación obtenida en la @fig-Grafico13, se evidencia una correlación positiva entre la formación académica y los ingresos. Las personas con títulos avanzados, como especialización, maestría y doctorado, logran los ingresos más altos, superando los 1.4 millones de colones en promedio para los niveles de maestría y doctorado. En particular, quienes completaron una especialización tienen el promedio de ingresos más elevado, cercano a los 1.95 millones. Por el contrario, aquellos sin título o con formación técnica media obtienen ingresos considerablemente menores, con promedios de aproximadamente 444 mil y 527 mil colones, respectivamente. Esta diferencia destaca la importancia de la educación como una vía para acceder a mejores oportunidades económicas, aunque también muestra las dificultades que enfrentan quienes no alcanzan niveles educativos superiores, limitando su acceso a empleos bien remunerados y su movilidad económica.
+
+![Distribución del nivel de instrucción por quintil de ingreso per cápita](graphs/Grafico8.png){#fig-Grafico8 width=60%}
+
+La @fig-Grafico8 revela que los niveles educativos más bajos, como sin instrucción o primaria completa, están concentrados en los quintiles de ingresos más bajos. En el primer quintil (₡110,683 o menos), el 52.98% solo completó la primaria y el 18.14% tiene poca o ninguna instrucción. En el quinto quintil (más de ₡574,085), el 54.87% completó educación de pregrado y el 11.26% tiene estudios de posgrado. Esto muestra que el acceso a niveles educativos superiores se da principalmente en los quintiles más altos, lo que evidencia la existencia de barreras estructurales para la movilidad social.
+
+![Distribución de títulos obtenidos por quintil de ingreso per cápita](graphs/Grafico14.png){#fig-Grafico14 width=60%}
+
+Por otro lado, la @fig-Grafico14 resalta que la educación superior facilita la presencia en los quintiles de ingresos más altos. Por ejemplo, el 42.83% de quienes poseen una licenciatura se encuentran en el quinto quintil, y más del 12% de quienes tienen un posgrado también están en este grupo. Esto subraya la importancia de la educación como motor de movilidad social, dado que se ha demostrado que acceder a niveles educativos superiores es esencial para mejorar las oportunidades económicas.
+
+# Conclusiones
+
+Este trabajo de investigación se propuso explorar la relación entre el nivel educativo y la condición socioeconómica de las personas en Costa Rica, así como su influencia en la distribución de los ingresos. La pregunta central fue: *¿Qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y cómo pueden estas variables explicar la distribución de los ingresos en Costa Rica?* Esta pregunta se formuló con el objetivo de entender cómo factores como los años de escolaridad, el nivel de instrucción, el tipo de institución educativa, la titulación universitaria, la universidad pública asistida y el dominio de habilidades adicionales (como un segundo idioma) influyen en la pobreza y el ingreso. Se esperaba que la educación emergiera como un factor crucial para determinar las oportunidades económicas de los individuos y para reducir la pobreza. En este sentido, los resultados coincidieron con esta hipótesis: el nivel educativo se mostró como un predictor clave tanto de la condición socioeconómica como de los ingresos. Se encontró que las personas con niveles educativos más altos tienden a concentrarse en los quintiles de mayores ingresos, mientras que aquellas con niveles más bajos suelen ubicarse en los quintiles más bajos, con una mayor incidencia de pobreza.
+
+El estudio enfrenta varios desafíos metodológicos que pueden afectar la precisión de los resultados. La falta de distinción en la calidad y contexto de las variables educativas, así como factores como la duración de estudios y el contexto socioeconómico inicial, puede distorsionar la relación observada entre educación e ingresos. Además, la presencia de valores atípicos y la variabilidad dentro de los niveles educativos analizados sugieren la influencia de factores adicionales, como la industria laboral y la especialización por sectores productivos, que no se consideraron. Estos elementos limitan la generalización de las conclusiones y subrayan la necesidad de un análisis más detallado en futuros estudios.
+
+Con base en estos hallazgos, se sugiere que futuras investigaciones profundicen en el análisis de variables contextuales, como el tipo de empleo y las industrias predominantes en distintas zonas geográficas, para captar mejor la relación entre educación e ingreso en diferentes sectores económicos. Asimismo, se podría añadir una dimensión temporal en el análisis para ofrecer una perspectiva valiosa, permitiendo observar cómo cambian estas variables a lo largo del tiempo y en distintos contextos económicos. Otra recomendación es explorar el impacto de factores adicionales no abordados en esta investigación, tales como la calidad específica de los programas educativos, la inversión en tecnología educativa y las políticas de desarrollo local.
+
+Finalmente, este trabajo contribuye a llenar un vacío importante en la literatura costarricense al analizar cómo diferentes características del acceso y la calidad educativa influyen de manera diferenciada en la distribución de ingresos y en las condiciones de pobreza en el país. Al abordar una amplia variedad de categorías educativas, el estudio ofrece un panorama integral sobre cómo las oportunidades económicas están condicionadas por el nivel y tipo de educación, revelando las brechas persistentes que existen entre diferentes grupos sociales. Además, al relacionar el nivel educativo con la condición socioeconómica y los ingresos, este análisis resalta la relevancia de políticas que no solo amplíen el acceso a la educación, sino que también garanticen una calidad educativa equitativa en todos los niveles.
+
+# Agradecimientos
+
+Los autores desean expresar su más profundo agradecimiento al Profesor Ph.D. Maikol Solís por su acompañamiento durante todo el proceso de desarrollo del presente trabajo. Su disposición constante para brindar asistencia en los aspectos técnicos y metodológicos relacionados con el programa utilizado fue fundamental para el avance y culminación exitosa de este proyecto.
+
+Asimismo, se extiende un sincero agradecimiento a los compañeros del curso CA0204: Herramientas para Ciencia de Datos I, cuyo apoyo y colaboración fueron de gran utilidad a lo largo de todo el semestre en el que se desarrolló este proyecto.
+
+{{< pagebreak >}}
+
+# Bibliografía

@@ -1,0 +1,39 @@
+project:
+  type: book
+  output-dir: "docs"
+
+lang: es
+
+book:
+  title: "Bitácoras Grupo #1, CA-204 (II-2024)"
+  author: "José Carlos Quintero Cedeño, Diego Alberto Vega Víquez" 
+  date: today
+  #site-url: google.com # Vacío por el momento
+  repo-actions: [edit]
+  downloads: [pdf, epub]
+  chapters:
+    - "index.qmd"
+    - "bitacora-1.qmd"
+    - "bitacora-2.qmd"
+    - "bitacora-3.qmd"
+    - "bitacora-4.qmd"
+
+bibliography: references.bib
+csl: apa.csl
+
+format:
+  html:
+      # Pueden usar cualquier tema de los que están aca:
+      # https://quarto.org/docs/output-formats/html-themes.html a excepción de
+      # los oscuros porque no entiende nada.
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+    geometry: "left=1.5cm, right=1.5cm, top=2cm, bottom=2cm"
+
+execute:
+  freeze: auto
+  cache: true
+
+from: markdown+tex_math_single_backslash+emoji
+link-external-newwindow: true

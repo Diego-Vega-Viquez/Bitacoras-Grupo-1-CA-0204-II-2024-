@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Autor">
+
+<title>Mi Documento</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="EntregaFinal_files/libs/clipboard/clipboard.min.js"></script>
+<script src="EntregaFinal_files/libs/quarto-html/quarto.js"></script>
+<script src="EntregaFinal_files/libs/quarto-html/popper.min.js"></script>
+<script src="EntregaFinal_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="EntregaFinal_files/libs/quarto-html/anchor.min.js"></script>
+<link href="EntregaFinal_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="EntregaFinal_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="EntregaFinal_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="EntregaFinal_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="EntregaFinal_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="EntregaFinal_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="EntregaFinal_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+</head><body class="fullcontent">\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot[C]{Este es el pie de página}
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+
+
+
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Mi Documento</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Autor </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="resumen" class="level1">
+<h1>Resumen</h1>
+<p>La relación entre educación y estatus socioeconómico en Costa Rica se vincula estrechamente con la desigualdad en la distribución del ingreso, un problema crítico que el presente estudio aborda. Con el objetivo de entender cómo la educación impacta la pobreza mediante el marco teórico del capital humano y otros factores estructurales, se utiliza la Encuesta Nacional de Hogares 2023 del INEC, analizando datos de individuos entre 18 y 60 años. El enfoque se centra en las dinámicas de ingresos, considerando factores demográficos como región y género. Se usan técnicas de tabulación cruzada y gráficos para describir las tendencias. Los resultados revelan disparidades significativas de ingreso relacionadas con el nivel educativo y el contexto geográfico, evidenciando cómo los niveles más bajos de educación están asociados con un mayor nivel de pobreza. Hallazgos señalan una correlación directa entre mayores niveles de educación y aumentos de ingreso, evidenciada por diferencias notorias en promedio salarial, y se discutieron indicadores relevantes que refuerzan estas conclusiones. Se concluye que mejorar el acceso a la educación y su calidad en todas las regiones de Costa Rica es clave para reducir las desigualdades de ingreso, sugiriendo que políticas focalizadas pueden atenuar las brechas identificadas y mejorar las oportunidades socioeconómicas.</p>
+</section>
+<section id="palabras-clave" class="level1">
+<h1>Palabras clave</h1>
+<p>Nivel educativo, Condición socioeconómica, Calidad de vida, Impacto educativo, Desigualdad socioeconómica</p>
+</section>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>En Costa Rica, la educación se enfrenta a desafíos críticos que afectan tanto la calidad como el acceso, especialmente para las poblaciones más vulnerables. En los últimos años, la inversión en educación ha retrocedido; de acuerdo con el <span class="citation" data-cites="EstadoNacion">@EstadoNacion</span>, la inversión per cápita en educación ha disminuido, situando al sistema educativo en niveles de financiamiento similares a los de hace una década. Este contexto plantea serias implicaciones para la equidad social, ya que las oportunidades de mejorar la situación económica a través de la educación se ven limitadas, incrementando el riesgo de perpetuar la desigualdad socioeconómica.</p>
+<p>El presente estudio busca analizar cómo el nivel educativo se relaciona con la condición socioeconómica en Costa Rica, en un momento en que el país enfrenta la regresión en la inversión educativa. Este tema es particularmente oportuno porque evidencia cómo la educación, entendida como un motor de desarrollo y movilidad social, puede ser clave para reducir la brecha de desigualdad.</p>
+<p>Para abordar esta pregunta, se utilizarán datos proporcionados por el Instituto Nacional de Estadística y Censos (INEC) a través de la Encuesta Nacional de Hogares (ENAHO), que permite analizar de manera detallada la relación entre el nivel educativo y el ingreso en la población costarricense. El enfoque demográfico incluye a personas adultas, en un rango de edad de 18 a 60 años, permitiendo observar cómo la educación impacta en sus condiciones de vida y su situación económica actual.</p>
+<p>La importancia de esta investigación radica en la oportunidad de aportar una comprensión más profunda sobre las causas estructurales de la desigualdad en Costa Rica, centrándose en la teoría del capital humano. Esta teoría sugiere que la educación es una inversión que aumenta el capital humano de los individuos, incrementando sus conocimientos y habilidades y, por ende, su valor productivo en la economía. Como sostiene <span class="citation" data-cites="Bazdresch2001">@Bazdresch2001</span>, una mayor educación proporciona más “capital humano” a los miembros de la sociedad, permitiéndoles competir por mejores oportunidades laborales y mayores ingresos. Así, este trabajo aportará nuevos conocimientos sobre cómo el capital humano se traduce en beneficios económicos y cómo las disparidades educativas pueden influir en la distribución de ingresos en Costa Rica. Sin embargo, también se tendrá en cuenta la crítica estructuralista, que argumenta que las desigualdades en la educación no solo son una causa de la pobreza, sino también una consecuencia de las barreras socioeconómicas existentes. Según <span class="citation" data-cites="Rodriguez">@Rodriguez</span>, las estructuras económicas y sociales limitan las oportunidades de los individuos, independientemente de su nivel educativo, lo que subraya la necesidad de abordar tanto la calidad educativa como las barreras externas.</p>
+<p>El estudio no solo pretende enriquecer el debate académico sobre la teoría del capital humano, sino también abordar una laguna en la literatura costarricense sobre la relación entre educación e ingresos. En un contexto de desigualdad creciente, la educación es vista tanto como una solución a largo plazo para mejorar la calidad de vida de la población como una herramienta para impulsar cambios sociales más amplios. Por tanto, la investigación podría tener implicaciones políticas y sociales, sugiriendo la necesidad de políticas públicas que promuevan la equidad en el acceso y la calidad de la educación, para que esta realmente funcione como un factor de movilidad social.</p>
+<p>El objetivo principal de este estudio es ver cómo la educación se relaciona con la situación socioeconómica de las personas en Costa Rica. Este análisis contribuirá a clarificar la influencia del nivel educativo en la capacidad de las personas para mejores ingresos. Para lograrlo, se vincularán diferentes categorías educativas con variables relacionadas con el ingreso y la pobreza. En síntesis, a través de estadísticas descriptivas, gráficos y una revisión teórica exhaustiva, se explorará la relación entre el nivel educativo y la distribución del ingreso, considerando tanto las perspectivas del capital humano como las críticas estructurales.</p>
+<p>La estructura del trabajo es la siguiente: en la sección de metodología, se detallará la selección y procesamiento de datos, así como los métodos analíticos utilizados para el estudio. Los resultados ofrecerán un análisis empírico de la relación entre educación e ingresos en Costa Rica, destacando las diferencias en el acceso y las oportunidades. Finalmente, en la sección de conclusiones, se sintetizarán los principales aportes de la investigación, se señalarán sus limitaciones, y se plantearán recomendaciones para futuras investigaciones sobre la relación entre educación y desigualdad en el contexto costarricense.</p>
+</section>
+<section id="metodología" class="level1">
+<h1>Metodología</h1>
+<p>La fuente de la cual fueron recolectados los datos corresponde al Instituto Nacional de Estadística y Censos (INEC), más especídficamente los datos corresponden a los recolectados en la <span class="citation" data-cites="ENAHO2023">@ENAHO2023</span>.</p>
+<p>De acuerdo a <span class="citation" data-cites="ENAHO2023">@ENAHO2023</span>, la población de estudio corresponde al conjunto de viviendas individuales ocupadas y sus ocupantes residentes habituales, tanto del área urbana como del área rural de Costa Rica. En este caso particular, se están tomando a las personas entre 18 y 65 años de edad. Es importantes destacar que se excluyó del estudio a la población residente en las viviendas colectivas (hoteles, hospitales, asilos, cárceles, conventos, residencias colectivas para estudiantes y trabajadores).</p>
+<p>Los datos utilizados en este análisis fueron recolectados durante el año 2023, como parte de la Encuesta Nacional de Hogares realizada en julio. Este periodo permite observar la situación económica actual de los hogares costarricenses, especialmente relevante en el contexto pospandemia. A nivel espacial, los datos son representativos a nivel nacional e incluyen un desglose por regiones y áreas urbanas y rurales en Costa Rica.</p>
+<p>La unidad estadística de este estudio es el individuo (persona) dentro de un hogar encuestado en una vivienda ubicada en Costa Rica en el año 2023. Cada individuo representa una persona en la muestra, de la cual se recaban datos sobre variables socioeconómicas, demográficas, educativas, entre otras.</p>
+<p>Las variables educativas seleccionadas incluyen el tipo de centro educativo al que se asistió (clasificado en <em>no asistió</em>, <em>público</em>, <em>extranjero</em> y <em>privado</em>), el nivel de instrucción alcanzado (desde <em>poco o nulo nivel de instrucción</em> hasta <em>educación superior</em>), y la titulación académica obtenida (como <em>bachillerato</em>, <em>licenciatura</em>, etc.). Se excluyeron las observaciones en las que alguna categoría se registraba como “Ignorada”.</p>
+<p>En cuanto a las variables socioeconómicas, se seleccionaron el <em>nivel de pobreza</em> y la <em>intensidad de pobreza multidimensional</em>. El nivel de pobreza clasifica a los hogares en tres grupos: pobreza extrema, pobreza no extrema y no pobre. Los hogares en pobreza extrema son aquellos cuyo ingreso per cápita neto (IPCN) está por debajo del costo de la canasta básica alimentaria; los hogares en pobreza no extrema tienen un IPCN inferior a la línea de pobreza; y los hogares restantes se consideran no pobres. La intensidad de pobreza multidimensional mide las privaciones ponderadas según la importancia de cada indicador que conforma el índice de pobreza multidimensional, proporcionando una cuantificación de las carencias de los hogares en situación de pobreza.</p>
+<p>En relación con las variables de ingreso, se seleccionaron el <em>ingreso total neto por persona</em> y el <em>quintil de ingreso per cápita neto</em>. El quintil de ingreso per cápita del hogar agrupa a los hogares en cinco categorías: el primer quintil corresponde al 20% de los hogares con menor ingreso, mientras que el quinto quintil reúne al 20% de los hogares con el mayor ingreso per cápita. A continuación, se ofrece una descripción detallada de la metodología empleada para la creación de estos quintiles.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="table-responsive">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Definición de los quintiles</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Título y notación</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Definición</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Quintil 1 (Q1)</td>
+<td style="text-align: left;">₡110.683 ó menos</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Quintil 2 (Q2)</td>
+<td style="text-align: left;">Más de ₡110.683 a ₡195.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Quintil 3 (Q3)</td>
+<td style="text-align: left;">Más de ₡195.000 a ₡321.523</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Quintil 4 (Q4)</td>
+<td style="text-align: left;">Más de ₡321.523 a ₡574.085</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Quintil 5 (Q5)</td>
+<td style="text-align: left;">Más de ₡574.085</td>
+</tr>
+</tbody><tfoot>
+<tr class="even">
+<td style="text-align: left; padding: 0;"><span style="font-style: italic;">Fuente: </span> <sup></sup> INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.</td>
+<td style="text-align: left;"></td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+
+
+</div>
+</div>
+<p><strong>Métodos</strong></p>
+<p>Para el presente estudio, se emplearon diversos métodos orientados al análisis y síntesis de datos, con un enfoque particular en técnicas de análisis exploratorio. Estas herramientas permitieron obtener una visión inicial de la estructura, distribución y relaciones de las variables, facilitando así la identificación de patrones y tendencias clave en el conjunto de datos. A lo largo de las tablas y gráficos presentados, se aplicaron métricas descriptivas como medidas de tendencia central, dispersión y posición, complementadas con visualizaciones que aportan una comprensión más detallada de los datos. Este enfoque no solo proporciona un resumen integral de la información, sino que también establece las bases para un análisis más profundo en fases posteriores del estudio. En la presente sección se emplearán las fórmulas y definiciones planteadas por <span class="citation" data-cites="Dekking2005">@Dekking2005</span> en en el libro <em>A Modern Introduction to Probability and Statistics</em>.</p>
+<section id="definición-3.1-media" class="level3">
+<h3 class="anchored" data-anchor-id="definición-3.1-media">Definición 3.1 (Media)</h3>
+<p>La <em>esperanza</em> de una variable aleatoria discreta <span class="math inline">\(X\)</span> que toma los valores <span class="math inline">\(a_1, a_2, \ldots\)</span> y con función de masa de probabilidad <span class="math inline">\(p\)</span> es el número <span class="math display">\[\mathbb{E} [X] = \sum_i a_i P(X = a_i) = \sum_i a_i p(a_i).\]</span></p>
+<p>También llamamos a <span class="math inline">\(\mathbb{E}[X]\)</span> el <em>valor esperado</em> o <em>media</em> de <span class="math inline">\(X\)</span>.</p>
+<p>Esta medida de tendencia central es la más común y estandarizada. Aunque existen diferentes tipos de medias, para la presente investigación se empleará la definición presentada anteriormente.</p>
+</section>
+<section id="definición-3.2-varianza-y-desviación-estándar" class="level3">
+<h3 class="anchored" data-anchor-id="definición-3.2-varianza-y-desviación-estándar">Definición 3.2 ( Varianza y Desviación Estándar)</h3>
+<p>La <em>varianza</em> <span class="math inline">\(\operatorname{Var}(X)\)</span> de una variable aleatoria <span class="math inline">\(X\)</span> es el número <span class="math display">\[ \operatorname{Var}(X) = \mathbb{E} \left[(X - \mathbb{E} [X])^2 \right] \]</span></p>
+<p>Nótese que la varianza de una variable aleatoria siempre es positiva (o 0). Además, surge la cuestión de existencia y finitud (cf.&nbsp;Observación 7.1). En situaciones prácticas, a menudo se considera la <em>desviación estándar</em> definida por <span class="math inline">\(\sqrt{\operatorname{Var}(X)}\)</span>, ya que tiene la misma dimensión que <span class="math inline">\(\mathbb{E} [X]\)</span>.</p>
+<p>La desviación estándar es una de las principales medidas de dispersión, que indica, en promedio, cuánto se alejan los datos de la media. Esta medida se ha empleado en diversos contextos a lo largo del estudio para analizar la variabilidad de los datos.</p>
+</section>
+<section id="definición-3.3-quintiles" class="level3">
+<h3 class="anchored" data-anchor-id="definición-3.3-quintiles">Definición 3.3 (Quintiles)</h3>
+<p>Sea <span class="math inline">\(X\)</span> una variable aleatoria continua y sea <span class="math inline">\(p\)</span> un número entre 0 y 1. El <span class="math inline">\(p\)</span>-ésimo <em>cuantil</em> o percentil <span class="math inline">\(100p\)</span> de la distribución de <span class="math inline">\(X\)</span> es el número más pequeño <span class="math inline">\(q_p\)</span> tal que <span class="math display">\[
+F(q_p) = P(X \leq q_p) = p.
+\]</span> La <em>mediana</em> de una distribución es su percentil 50.</p>
+<p>Esta definición corresponde a la versión general del cuantil, en el presente trabajo se utilizan los quintiles 1,2 y 3 que se definen como <span class="math display">\[
+\mathbb{P} [ X \leq Q_1] = 0.25
+\qquad \qquad
+\mathbb{P} [ X \leq Q_2] = 0.5
+\qquad \qquad
+\mathbb{P} [ X \leq Q_3] = 0.75
+\]</span> En este caso <span class="math inline">\(Q_2\)</span> corresponde a la mediana de los datos.</p>
+</section>
+</section>
+<section id="resultados" class="level1">
+<h1>Resultados</h1>
+<p><strong>Distribución de la pobreza</strong></p>
+<p>Tras analizar la distribución de la población en condición de pobreza y no pobreza a través de diferentes categorías, se puede hacer la afirmación preliminar de que la educación es un determinante clave de la condición socioeconómica de las personas, ya que influye de manera directa en las probabilidades de que un individuo se encuentre en situación de pobreza.</p>
+<div id="fig-Grafico10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Grafico10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="graphs/Grafico10.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Grafico10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Relación entre años de escolaridad e intensidad de la pobreza
+</figcaption>
+</figure>
+</div>
+<p>En este sentido, el análisis de la <a href="#fig-Grafico10" class="quarto-xref">Figure&nbsp;1</a> revela una relación inversa clara entre la escolaridad y la intensidad de pobreza tanto en zonas urbanas como rurales. En las áreas urbanas, los individuos con niveles educativos más bajos muestran medias de intensidad de pobreza que superan el 27%, mientras que aquellos con niveles más altos de escolaridad experimentan una reducción notable en esta medida. Esto sugiere que un mayor nivel educativo contribuye a una mejor situación económica y refleja un impacto positivo en la disminución de la pobreza. Sin embargo, en el contexto rural, aunque se observa una tendencia similar, las medias de intensidad de pobreza son más elevadas en todos los niveles de escolaridad. Este contraste podría indicar que los beneficios de la educación son menos efectivos en estas áreas en comparación con las urbanas, subrayando la necesidad de políticas que no solo fomenten la educación, sino que también aborden las condiciones socioeconómicas específicas que afectan a estas comunidades.</p>
+<div id="fig-Grafico6" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Grafico6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="graphs/Grafico6.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Grafico6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Nivel de pobreza según nivel de instrucción
+</figcaption>
+</figure>
+</div>
+<p>Este patrón de relación inversa entre educación y pobreza también se observa al examinar la distribución de la pobreza según el nivel de instrucción (<a href="#fig-Grafico6" class="quarto-xref">Figure&nbsp;2</a>), donde destaca cómo a medida que el nivel educativo aumenta, la proporción de personas en situación de pobreza disminuye. Entre aquellos con nulo o bajo nivel de instrucción, el 13.64% se encuentra en pobreza extrema, y el 23.75% en pobreza no extrema. En contraste, en los grupos con educación superior de posgrado, solo el 0.23% está en pobreza extrema y ningún individuo se clasifica en pobreza no extrema. Este hallazgo resalta aún más la importancia de la educación como un factor crítico para salir de la pobreza. Por ejemplo, quienes completan la educación secundaria muestran una reducción considerable en los niveles de pobreza, con solo el 5.71% en pobreza extrema y un 12.44% en pobreza no extrema.</p>
+<p>Este análisis es concordante con lo que han encontrado diversos autores. Por un lado, <span class="citation" data-cites="becker">@becker</span> afirma que una población más educada y saludable acelera el desarrollo económico de un país, destacando a la educación primaria y secundaria como motores principales. Por otro lado, <span class="citation" data-cites="Sanchez">@Sanchez</span> encuentra que el hecho de completar la secundaria disminuye en un 5.7% la probabilidad de caer en pobreza, mientras que obtener estudios post-secundarios la reduce en un 8.4%. Además, <span class="citation" data-cites="OrdazDiaz2009">@OrdazDiaz2009</span> concluye que la educación primaria reduce la pobreza alimentaria, de capacidades y de patrimonio en un 18%, 16% y 4% respectivamente, mientras que la secundaria lo hace en un 30%, 27% y 15%, mostrando un mayor impacto en las condiciones de vida. En conjunto, estos resultados subrayan que una educación de mayor calidad y alcance es esencial no solo para disminuir la pobreza, sino también para mejorar la estabilidad económica en el largo plazo.</p>
+<div id="fig-Grafico1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Grafico1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="graphs/Grafico1.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Grafico1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Nivel de pobreza según tipo de centro educativo al que asistió
+</figcaption>
+</figure>
+</div>
+<p>En cuanto al impacto de la educación primaria y secundaria, los datos revelan una marcada diferencia entre las personas según el tipo de centro educativo al que asistieron (<a href="#fig-Grafico1" class="quarto-xref">Figure&nbsp;3</a>). Los resultados muestran que la ausencia total de educación formal está claramente asociada con un mayor nivel de pobreza extrema, ya que el 18.21% de los adultos que nunca asistieron a un centro educativo se encuentran en esta categoría. Sin embargo, la pobreza disminuye considerablemente entre aquellos que asistieron a centros educativos, especialmente privados (1.46% en pobreza extrema) y semipúblicos (4%). Por otro lado, los centros públicos, con un 7.40% de pobreza extrema, se ubican entre los extremos del espectro, indicando que, si bien la educación pública proporciona una vía para mejorar la situación económica, su impacto en la reducción de la pobreza es menor en comparación con los centros privados. Esto refleja cómo la calidad y el tipo de centro al que se asistió tienen un impacto significativo en la situación socioeconómica de las personas, sugiriendo que la educación de calidad juega un papel crucial en la movilidad social. Esto es reforzado por lo que dicen <span class="citation" data-cites="ricardez">@ricardez</span>: si se tienen profesores mejores capacitados y con salarios competitivos, o si se recibe una educación privada, se reduce la probabilidad de encontrarse en pobreza.</p>
+<div id="fig-Grafico12" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Grafico12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="graphs/Grafico12.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Grafico12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Distribución de pobreza según nivel académico
+</figcaption>
+</figure>
+</div>
+<p>Además de las diferencias por tipo de centro educativo, el nivel de titulación también muestra una relación clara con la situación socioeconómica de las personas. La <a href="#fig-Grafico12" class="quarto-xref">Figure&nbsp;4</a> evidencia una correlación significativa entre el nivel educativo alcanzado y la probabilidad de encontrarse en situación de pobreza. Mientras que el 86% de las personas sin título no son pobres, la tasa de pobreza extrema en este grupo es de 3.69%, y un 10.31% vive en pobreza no extrema. Por el contrario, entre quienes alcanzaron títulos universitarios de mayor rango, como licenciatura, especialización, maestría o doctorado, las tasas de pobreza son prácticamente inexistentes, con la gran mayoría en la categoría de “no pobre”.</p>
+<p><strong>Distribución del ingreso</strong></p>
+<div id="fig-Grafico7" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Grafico7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="graphs/Grafico7.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Grafico7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Distribución del ingreso total neto por persona según nivel de instrucción
+</figcaption>
+</figure>
+</div>
+<p>A continuación, se examina la relación entre el nivel educativo y el ingreso, explorando cómo el nivel educativo impacta las posibilidades económicas de los individuos. Esta sección no solo revela las diferencias en los ingresos promedio según diferentes categorías educativas, sino también la variabilidad dentro de cada una, mostrando distintas oportunidades y desafíos económicos que enfrentan las personas en función de su formación académica.</p>
+<p>Por otro lado, la <a href="#fig-Grafico7" class="quarto-xref">Figure&nbsp;5</a> muestra que el nivel educativo es un determinante clave de los ingresos, evidenciado en un incremento claro a medida que aumenta el nivel de instrucción. Las personas con educación superior de posgrado presentan los ingresos más altos, con un promedio de ₡1,541,922, lo que supera en más de seis veces el promedio de ₡249,387 de quienes tienen nulo o poco nivel de instrucción. Sin embargo, esta relación también revela una creciente dispersión en los ingresos dentro de cada grupo educativo, especialmente en los niveles más altos, donde la desviación estándar es considerablemente alta, como en el posgrado (₡1,089,738). Esto indica que, si bien la educación superior ofrece acceso a mejores ingresos, existen diferencias significativas dentro de estos grupos, posiblemente influidas por la especialización profesional, el tipo de empleo y la región de residencia.</p>
+<div id="fig-Grafico2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Grafico2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="graphs/Grafico2.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Grafico2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Distribución del ingreso total neto por persona según tipo de centro educativo al que asistió
+</figcaption>
+</figure>
+</div>
+<p>Además de la relación entre el nivel educativo y los ingresos, es crucial examinar cómo el tipo de centro educativo al que se asistió influye en el ingreso total personal neto. La <a href="#fig-Grafico2" class="quarto-xref">Figure&nbsp;6</a> revela que quienes asistieron a centros privados disfrutan de los ingresos más altos, con una media de ₡846,691.2, seguidos de los que fueron estudiantes de centros semipúblicos, que presentan una media de ₡783,109.0. Esta tendencia sugiere que aquellos que cursaron estudios en estos centros no solo accedieron a una educación de calidad, sino que también pudieron contar con ventajas socioeconómicas desde el inicio, lo que les permitió alcanzar mayores niveles de ingresos. Esto lo refuerza la idea de que, si bien la educación puede aumentar los ingresos individuales, no modifica la estructura económica subyacente, donde la concentración de activos y el poder de mercado perpetúan la desigualdad, como lo explica <span class="citation" data-cites="figueroa">@figueroa</span>.</p>
+<p>En contraste, los centros públicos exhiben una media de ingresos significativamente más baja, de ₡405,861.1, y una distribución mucho más desigual, reflejada en una desviación estándar de ₡503,840.6 y un ingreso máximo de ₡20 millones. Esto indica que, aunque existe una minoría en este grupo que logra niveles de ingresos muy altos, la mayoría no llega a ese umbral. Por otro lado, los adultos que nunca asistieron a un centro educativo presentan los ingresos más bajos, con una media de ₡222,138.6, destacando así la importancia de la educación formal para mejorar las perspectivas económicas.</p>
+<div id="fig-Grafico13" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Grafico13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="graphs/Grafico13.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Grafico13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Distribución del ingreso total neto por persona según título obtenido
+</figcaption>
+</figure>
+</div>
+<p>Al observar los ingresos promedio según la titulación obtenida en la <a href="#fig-Grafico13" class="quarto-xref">Figure&nbsp;7</a>, se evidencia una correlación positiva entre la formación académica y el ingreso. Las personas con títulos avanzados, como especialización, maestría y doctorado, son quienes alcanzan los ingresos más altos, superando los 1.4 millones de colones en promedio para los niveles de maestría y doctorado. En particular, quienes han completado una especialización muestran el promedio de ingresos más elevado, cercano a los 1.95 millones. En contraste, aquellos sin título o con formación técnica media obtienen ingresos considerablemente menores, con promedios de aproximadamente 444 mil y 527 mil colones, respectivamente. Esta disparidad subraya la importancia de la educación como vía para acceder a mejores oportunidades económicas; sin embargo, también pone de manifiesto los desafíos que enfrentan aquellos que no alcanzan niveles educativos superiores, limitando su acceso a empleos mejor remunerados y a una mayor movilidad económica.</p>
+<p><strong>Distribución de las categorías educativas por quintil de ingreso per cápita neto del hogar</strong></p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-Grafico8" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Grafico8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="graphs/Grafico8.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Grafico8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Distribución del nivel de instrucción por quintil de ingreso per cápita
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-Grafico14" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Grafico14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="graphs/Grafico14.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Grafico14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Distribución de títulos obtenidos por quitil de ingreso per cápita
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>La <a href="#fig-Grafico8" class="quarto-xref">Figure&nbsp;8</a> revela que los niveles educativos bajos, como sin instrucción o primaria completa, se concentran en los quintiles de ingresos más bajos. En el primer quintil (₡110,683 o menos), el 52.98% completó solo la primaria y el 18.14% tiene poca o ninguna instrucción. En contraste, en el quinto quintil (más de ₡574,085), el 54.87% completó educación de pregrado y el 11.26% tiene estudios de posgrado. Esto sugiere que el acceso a niveles educativos superiores tiende a ubicarse en los quintiles altos, aunque existen barreras estructurales que limitan la movilidad social, como se ha visto anteriormente.</p>
+<p>Quienes tienen formación técnica media o sin título se concentran principalmente en los quintiles bajos, mientras que la educación superior facilita la presencia en los quintiles altos. Por ejemplo, el 42.83% de quienes cuentan con una licenciatura se encuentran en el quinto quintil, y más del 12% de quienes poseen un posgrado también están en este grupo (<a href="#fig-Grafico14" class="quarto-xref">Figure&nbsp;9</a>). Esto resalta la importancia de la educación como un motor de movilidad social, evidenciando que el acceso a niveles educativos superiores es fundamental para mejorar las oportunidades económicas y romper el ciclo de pobreza.</p>
+</section>
+<section id="conclusiones" class="level1">
+<h1>Conclusiones</h1>
+<p>Este trabajo de investigación se propuso explorar la relación entre el nivel educativo y la condición socioeconómica de las personas en Costa Rica, así como su influencia en la distribución de los ingresos. La pregunta central fue: <em>¿Qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y cómo pueden estas variables explicar la distribución de los ingresos en Costa Rica?</em> Esta pregunta se formuló con el objetivo de entender cómo factores como los años de escolaridad, el nivel de instrucción, el tipo de institución educativa, la titulación universitaria, la universidad pública asistida y el dominio de habilidades adicionales (como un segundo idioma) influyen en la pobreza y el ingreso. Se esperaba que la educación emergiera como un factor crucial para determinar las oportunidades económicas de los individuos y para reducir la pobreza. En este sentido, los resultados coincidieron con esta hipótesis: el nivel educativo se mostró como un predictor clave tanto de la condición socioeconómica como de los ingresos. Se encontró que las personas con niveles educativos más altos tienden a concentrarse en los quintiles de mayores ingresos, mientras que aquellas con niveles más bajos suelen ubicarse en los quintiles más bajos, con una mayor incidencia de pobreza.</p>
+<p>El estudio enfrenta varios desafíos metodológicos que pueden afectar la precisión de los resultados. La falta de distinción en la calidad y contexto de las variables educativas, así como factores como la duración de estudios y el contexto socioeconómico inicial, puede distorsionar la relación observada entre educación e ingresos. Además, la presencia de valores atípicos y la variabilidad dentro de los niveles educativos analizados sugieren la influencia de factores adicionales, como la industria laboral y la especialización por sectores productivos, que no se consideraron. Estos elementos limitan la generalización de las conclusiones y subrayan la necesidad de un análisis más detallado en futuros estudios.</p>
+<p>Con base en estos hallazgos, se sugiere que futuras investigaciones profundicen en el análisis de variables contextuales, como el tipo de empleo y las industrias predominantes en distintas zonas geográficas, para captar mejor la relación entre educación e ingreso en diferentes sectores económicos. Asimismo, se podría añadir una dimensión temporal en el análisis para ofrecer una perspectiva valiosa, permitiendo observar cómo cambian estas variables a lo largo del tiempo y en distintos contextos económicos. Otra recomendación es explorar el impacto de factores adicionales no abordados en esta investigación, tales como la calidad específica de los programas educativos, la inversión en tecnología educativa y las políticas de desarrollo local.</p>
+<p>Finalmente, este trabajo contribuye a llenar un vacío importante en la literatura costarricense al analizar cómo diferentes características del acceso y la calidad educativa influyen de manera diferenciada en la distribución de ingresos y en las condiciones de pobreza en el país. Al abordar una amplia variedad de categorías educativas, el estudio ofrece un panorama integral sobre cómo las oportunidades económicas están condicionadas por el nivel y tipo de educación, revelando las brechas persistentes que existen entre diferentes grupos sociales. Además, al relacionar el nivel educativo con la condición socioeconómica y los ingresos, este análisis resalta la relevancia de políticas que no solo amplíen el acceso a la educación, sino que también garanticen una calidad educativa equitativa en todos los niveles.</p>
+</section>
+<section id="agradecimientos" class="level1">
+<h1>Agradecimientos</h1>
+<p>Los autores desean expresar su más profundo agradecimiento al Profesor Ph.D.&nbsp;Maikol Solís por su acompañamiento durante todo el proceso de desarrollo del presente trabajo. Su disposición constante para brindar asistencia en los aspectos técnicos y metodológicos relacionados con el programa utilizado fue fundamental para el avance y culminación exitosa de este proyecto.</p>
+<p>Asimismo, se extiende un sincero agradecimiento a los compañeros del curso CA0204: Herramientas para Ciencia de Datos I, cuyo apoyo y colaboración fueron de gran utilidad a lo largo de todo el semestre en el que se desarrolló este proyecto.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="bibliografía" class="level1">
+<h1>Bibliografía</h1>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

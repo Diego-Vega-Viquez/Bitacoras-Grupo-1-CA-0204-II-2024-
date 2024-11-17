@@ -1,0 +1,1972 @@
+# Bitácora 3
+
+Comentario con respecto a la bitácora pasada: para mejorar la parte de análisis descriptivo de la base de datos que se está utilizando, se incluyó más información sobre esto en el apartado de metodología de la parte de escritura de la presente bitácora. Asimismo, se añadieron y modificaron diferentes gráficos, cuyo código va a aparecer en el análisis de modelación.
+## Parte de planificación
+
+### Análisis de modelación
+
+Con respecto al código de carga de los datos, lo destacable resulta ser las variables seleccionadas. Estas se pueden agrupar en 4 categorías: educación, pobreza, ingreso e identificación adicional. El desglose de qué es cada variable aparecerá en el apartado metodológico de la parte de escritura, pero lo esencial de entender a priori es que se vincularán las variables educativas con aquellas relacionadas con pobreza e ingreso, con el objetivo de explorar la relación entre la educación, la condición socioeconómica de las personas y las desigualdades a nivel de ingreso en Costa Rica. 
+
+```{r Librerías y Datos}
+#| message: false
+#| echo: false
+#| warning: false
+#| #Cargar la base de datos
+source("./config/carga_de_datos.R")
+ENAHO <- readRDS("data/ENAHO.rds")
+library("digest")
+library("tibble")
+library(ProjectTemplate)
+library(tidyverse)
+library(cowplot)
+# Estos son necesarios para cargar openintro
+library(airports)
+library(cherryblossom)
+library(usdata)
+library(openintro)
+library(haven) 
+library(scales)
+library(ggridges) # Para usar geom_density_ridges
+library(sf) 
+library(RColorBrewer)
+library(see)
+library(GGally)
+library(kableExtra)
+library(purrr)
+library(gridExtra)
+library(ggrepel)
+```
+
+```{r Limpieza Datos}
+#| message: false
+#| echo: true
+#| warning: false
+
+#Codigo para la lectura de la base de datos
+ENAHO <- read_sav("data/GPES-ELAB-GEBD-ENAHO-2023_BdBasePublica.sav")
+
+# Convertir columnas categóricas a factores y ajustar años de escolaridad
+cols_to_factor <- c("ZONA", "A15A", "A15B", 
+                    "NivInst", "A16B", "A22A", 
+                    "np", "Q_IPCN", "IPM_Pobreza")
+ENAHO[cols_to_factor] <- lapply(ENAHO[cols_to_factor], as_factor)
+ENAHO$Escolari <- ifelse(ENAHO$Escolari == 99, NA, as.integer(ENAHO$Escolari))
+
+#filtrar variables de interés
+ENAHO <- ENAHO %>% select(ZONA,
+                          A5,
+                          A15A, A15B,
+                          NivInst, Escolari,
+                          A16B,
+                          A22A,
+                          itpn, lp, 
+                          np, IPM_Pobreza,
+                          IPM_Intensidad, Q_IPCN,
+                          ipcn
+                          ) %>% 
+  filter(A5 >= 18 & A5 <= 60) #filtrar personas entre 18 y 60 años
+```
+Se utilizarán diversos tipos de gráficos en este análisis: gráficos de barras, gráficos de densidad, gráficos de área y gráficos de dispersión.
+
+**Gráficos de barras**: Estos se emplearán para caracterizar las "poblaciones educativas" según la proporción que se encuentra en situación de pobreza, tanto extrema como no extrema. Esto permitirá determinar si las personas con menor nivel educativo enfrentan una pobreza significativamente mayor en comparación con aquellas con un nivel educativo más alto, utilizando diferentes categorías como medida.
+
+**Gráficos de densidad**: Se utilizarán para visualizar la distribución de ingresos en distintas categorías, lo cual será fundamental para establecer un vínculo entre la educación y el ingreso.
+
+**Gráficos de área**: Estos gráficos servirán para ilustrar la evolución de las categorías educativas en función de los quintiles de ingreso per cápita, lo que permitirá identificar si las personas con mayores ingresos presentan características educativas particulares.
+
+**Gráficos de dispersión**: Serán útiles para investigar la posible correlación entre los años de escolaridad y la intensidad de la pobreza, así como el nivel de ingreso.
+
+<!-- Gráficos relacionados con el tipo de centro educativo -->
+```{r Grafico 1}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico1 <- as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
+  geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Gráfico de área
+  labs(
+    title = "Nivel de pobreza según tipo de centro educativo al que se asistió",
+    subtitle = "Relación entre tipo de centro educativo y nivel de pobreza (Costa Rica, 2023)",
+    x = "Tipo de centro educativo al que asistió",
+    y = "Proporción acumulada",
+    fill = "Nivel de pobreza",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023."
+  ) +
+  scale_fill_viridis_d(option = "F") +  # Paleta de colores viridis
+  coord_flip() +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "right",  # Mover la leyenda arriba
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 14, hjust = 0, margin = margin(b = 20)),
+    axis.title.y = element_text(size = 14, margin = margin(t = 10)),
+    axis.text.y = element_text(size = 14, color = "gray20", face = "bold"),
+    axis.text.x = element_text(size = 14, color = "gray20"),
+    plot.caption = element_text(size = 10, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+grafico1
+```
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+tabla_media_ingreso_por_centro_educativo <- ENAHO %>% 
+  filter(A15A != "Ignorado", itpn != 0) %>% 
+  group_by(A15A) %>%
+  dplyr::summarize(
+    media_itpn = mean(itpn, na.rm = TRUE)
+  )
+tabla_media_ingreso_por_centro_educativo
+```
+
+```{r Grafico 2}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+#| 
+grafico2 <- ENAHO %>% 
+  filter(A15A != "Ignorado" & itpn > 0) %>% 
+  ggplot(aes(x = itpn, y = fct_reorder(A15A, itpn, median), fill = A15A)) +
+  geom_density_ridges(alpha = 0.8, color = "white", size = 0.3) +  # Ajuste en las curvas de densidad
+  geom_vline(xintercept = 129038, color = "red", linetype = "dotted", size = 0.8) +  # Línea de pobreza mejorada
+  geom_label_repel(
+    data = tabla_media_ingreso_por_centro_educativo,
+    mapping = aes(
+      x = media_itpn,
+      y = A15A,
+      label = scales::label_number(accuracy = 0.1)(media_itpn),
+    ), position = ggpp::position_nudge_to(x = 7), color = "white"
+  ) +
+  annotate("text", y = 0.5, x = 180000, label = "Línea de pobreza", color = "red", 
+           size = 5, hjust = 0, vjust = -0.5, fontface = "italic") +  # Texto mejorado
+  labs(
+    title = "Distribución del ingreso total neto por persona según tipo de centro educativo al que\nse asistió",
+    subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
+    x = "Ingreso Personal Neto (log10)",
+    y = "Tipo de centro educativo",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023."
+  ) +
+  scale_x_log10(labels = scales::comma) +
+  scale_fill_viridis_d(option = "viridis", begin = 0.2, end = 0.85) +  # Paleta de colores viridis
+  theme_minimal(base_size = 14) +  # Tema minimalista
+  theme(
+    legend.position = "none",  # Sin leyenda
+    axis.text.y = element_text(size = 14, color = "gray20", face = "bold"),
+    axis.text.x = element_text(size = 14, color = "gray20"),  # Ajuste de texto en eje X
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 14, hjust = 0, margin = margin(b = 20)),
+    plot.caption = element_text(size = 10, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+grafico2
+```
+```{r Grafico 3}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico3 <- as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado") %>% 
+  mutate(Var2 = str_extract(Var2, "\\d")) %>% 
+  mutate(Var2 = parse_number(Var2)) %>% 
+  ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
+  # Gráfico de área con proporciones
+  geom_area(position = "fill", alpha = 0.8, color = "white", size = 0.3) +
+  # Etiquetas y títulos mejorados
+  labs(
+    title = "Distribución de tipo de centro educativo asistido por quintil de ingreso per cápita",
+    subtitle = "Relación entre tipo de centro educativo y nivel de ingreso per cápita (Costa Rica, 2023)",
+    x = "Quintil de ingreso per cápita",
+    y = "Proporción acumulada",
+    fill = "Tipo de centro educativo",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023."
+  ) +
+  # Paleta de colores con viridis para mayor claridad
+  scale_fill_viridis_d(option = "C") +
+  # # Ejes bien formateados
+  # scale_x_continuous(
+  #   breaks = 1:5, 
+  #   labels = c("Q1: 110683 ó menos", "Q2: 110683-195000", "Q3: 195000-321523", "Q4: 321523-574085", "Q5: Más de 574085")
+  # ) +
+  # Estilo minimalista y limpio
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "right",  # Mover la leyenda arriba
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 14, hjust = 0, margin = margin(b = 20)),
+    axis.title.x = element_text(size = 14, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 14, color = "gray20", face = "bold"),
+    axis.text.y = element_text(size = 14, color = "gray20"),
+    plot.caption = element_text(size = 10, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  ) 
+grafico3
+```
+<!-- Gráficos relacionados con universidad pública -->
+```{r Grafico 4}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico4 <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename(Nivel_de_pobreza = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  pivot_wider(names_from = Var2, values_from = Freq) %>% 
+  pivot_longer(cols = UCR:UTN,
+               names_to = "Universidad",
+               values_to = "Proporcion") %>% 
+  mutate(Proporcion = Proporcion / 100) %>% 
+  ggplot(aes(x = fct_relevel(Universidad, c("UNED", "UTN", "UNA", "UCR", "TEC")), 
+             y = Proporcion, fill = Nivel_de_pobreza)) +
+  geom_col(alpha = 0.85, color = "white", size = 0.3) +  # Mejora visual en las columnas
+  labs(
+    title = "Nivel de pobreza según universidad pública a la que se asistió",
+    x = "Universidad pública a la que se asistió",
+    y = "Proporción acumulada",
+    fill = "Nivel de pobreza",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023."
+  ) +
+  scale_fill_brewer(palette = "Set1") +  # Paleta de colores
+  theme_minimal(base_size = 14) +  # Tema minimalista
+  theme(
+    axis.text.x = element_text(size = 14, face = "bold"),  # Mejora en el texto del eje X
+    axis.text.y = element_text(size = 14, color = "gray20"),  # Mejora en el texto del eje Y
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.caption = element_text(size = 10, hjust = 0),
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text = element_text(size = 14),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  ) 
+grafico4
+```
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+tabla_media_ingreso_por_universidad <- ENAHO %>% 
+  filter(A15B != "Ignorado", itpn != 0) %>% 
+  group_by(A15B) %>%
+  dplyr::summarize(
+    media_itpn = mean(itpn, na.rm = TRUE)
+  )
+tabla_media_ingreso_por_universidad
+```
+```{r Grafico 5}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico5 <- ENAHO %>% 
+  filter(A15B != "Ignorado" & itpn > 0) %>% 
+  ggplot(aes(x = itpn, y = fct_reorder(A15B, itpn, median), fill = A15B)) +
+  geom_density_ridges(alpha = 0.85, color = "white") +  # Ajuste en las curvas de densidad
+  geom_vline(xintercept = 129038, color = "red", linetype = "dotted", size = 0.8) +  # Línea de pobreza mejorada
+   geom_label_repel(
+    data = tabla_media_ingreso_por_universidad,
+    mapping = aes(
+      x = media_itpn,
+      y = A15B,
+      label = scales::label_number(accuracy = 0.1)(media_itpn),
+    ), position = ggpp::position_nudge_to(x = 7.1), color = "white"
+  ) +
+  annotate("text", y = 0.5, x = 180000, label = "Línea de pobreza", color = "red", 
+           size = 3, hjust = 0, vjust = -0.5, fontface = "italic") +  # Texto mejorado
+  labs(
+    title = "Distribución del ingreso total neto por persona según universidad pública a la que se asistió",
+    subtitle = "Ingreso expresado en colones costarricenses",
+    x = "Ingreso Personal Neto (log10)",
+    y = "Universidad pública a la que se asistió",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023."
+  ) +
+  scale_x_log10(labels = scales::comma) +  # Escala logarítmica
+  scale_fill_brewer(palette = "Set1") +  # Paleta de colores
+  theme_minimal(base_size = 14) +  # Tema minimalista
+  theme(
+    legend.position = "none",  # Sin leyenda
+    axis.text.y = element_text(size = 14, hjust = 1, color = "gray20", face = "bold"),  # Texto eje Y ajustado
+    axis.text.x = element_text(size = 14, color = "gray20"),  # Texto eje X ajustado
+    plot.caption = element_text(size = 10, hjust = 0),  # Fuente de datos
+    plot.title = element_text(size = 16, face = "bold", margin = margin(b = 10)),  # Ajuste del título
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+grafico5
+```
+
+<!-- Gráficos relacionados con nivel de instrucción -->
+```{r Grafico 6}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico6 <- as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst, 
+                                           "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
+                                           "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
+                                           "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", "Primaria incompleta")))) %>% 
+  rename(Nivel_de_pobreza = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  rename(NivInst = Var2) %>% 
+  ggplot(aes(x = NivInst, y = Freq, fill = Nivel_de_pobreza)) + 
+  geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Ajustes visuales
+  labs(
+    title = "Nivel de pobreza según nivel de instrucción",
+    subtitle = "Relación entre nivel de instrucción y nivel de pobreza (Costa Rica, 2023)",
+    x = "Nivel de instrucción",
+    y = "Proporción acumulada",
+    fill = "Nivel de pobreza",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023."
+  ) +
+  scale_fill_viridis_d(option = "G") +  # Paleta de colores viridis
+  coord_flip() +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "right",  # Posición de la leyenda
+    legend.title = element_text(size = 16, color = "gray20", face = "bold"),
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 14, hjust = 0, margin = margin(b = 20)),
+    axis.title.y = element_text(size = 14, margin = margin(t = 10)),
+    axis.text.y = element_text(size = 14, color = "gray20", face = "bold"),
+    axis.text.x = element_text(size = 14, color = "gray20"),
+    plot.caption = element_text(size = 10, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+grafico6
+```
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+tabla_media_ingreso_por_nivinst <- ENAHO %>% 
+  filter(NivInst != "Ignorado", itpn != 0) %>% 
+  mutate(NivInst = fct_collapse(NivInst,
+                                "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
+                                "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
+                                "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", "Primaria incompleta"))) %>%
+  group_by(NivInst) %>%
+  dplyr::summarize(
+    media_itpn = mean(itpn, na.rm = TRUE)
+  )
+tabla_media_ingreso_por_nivinst
+```
+
+```{r Grafico 7}
+#| fig.width: 13.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico7 <- ENAHO %>% 
+  filter(NivInst != "Ignorado" & itpn > 0) %>%
+  mutate(NivInst = fct_collapse(NivInst,
+                                "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
+                                "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
+                                "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", "Primaria incompleta"))) %>%
+  ggplot(aes(x = itpn, y = fct_reorder(NivInst, itpn, median), fill = NivInst)) +
+  # Mejorar la visualización con densidades y lineas más detalladas
+  geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
+  # Etiquetas y títulos mejorados
+  geom_label_repel(
+    data = tabla_media_ingreso_por_nivinst,
+    mapping = aes(
+      x = media_itpn,
+      y = NivInst,
+      label = scales::label_number(accuracy = 0.1)(media_itpn),
+    ), position = ggpp::position_nudge_to(x = 7.1), color = "white"
+  ) +
+  labs(
+    title = "Distribución del ingreso total neto por persona según nivel\nde instrucción",
+    subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
+    x = "Ingreso Personal Neto (log10)",
+    y = "Nivel de instrucción",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023."
+  ) +
+  # Ajuste de escala con formato de coma en el eje x
+  scale_x_log10(labels = scales::comma) +
+  # Mejora de la paleta de colores con gradientes suaves
+  scale_fill_viridis_d(option = "plasma", begin = 0.2, end = 0.85) +  # Paleta de colores viridis
+  # Temas mejorados con mayor atención a los detalles visuales
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",  # Ocultar leyenda
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 14, hjust = 0, margin = margin(b = 20)),
+    axis.title.x = element_text(size = 14, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 14, color = "gray20"),
+    axis.text.y = element_text(size = 14, color = "gray20", face = "bold"),
+    plot.caption = element_text(size = 10, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+grafico7
+```
+
+
+```{r Grafico 8}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico8 <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
+                                            "Primaria completa" = c("Primaria completa", "Secundaria académica incompleta", "Secundaria técnica incompleta"),
+                                            "Secundaria completa" = c("Secundaria académica completa", "Secundaria técnica completa"),
+                                            "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", "Primaria incompleta")), 
+                               ENAHO$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado") %>% 
+  mutate(Var2 = str_extract(Var2, "\\d")) %>% 
+  mutate(Var2 = parse_number(Var2)) %>% 
+  ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
+  geom_area(alpha = 0.7, color = "white") +  # Agregar color de borde y ajustar opacidad
+  labs(
+    title = "Distribución del nivel de instrucción por quintil de ingreso per cápita Costa Rica, 2023",
+    subtitle = "Relación entre el nivel de instrucción y nivel de ingreso per cápita según quintiles de ingresos",
+    x = "Quintil de ingreso per cápita",
+    y = "Proporción acumulada",
+    fill = "Nivel de instrucción",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023."
+  ) +
+  scale_fill_viridis_d(option = "G") +  # Paleta de colores viridis
+  theme_minimal(base_size = 14) +  # Tema minimalista
+  theme(
+    legend.position = "right",  # Mover la leyenda a la derecha
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 14, hjust = 0, margin = margin(b = 20)),
+    axis.title.x = element_text(size = 14, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 14, color = "gray20", face = "bold"),
+    axis.text.y = element_text(size = 14, color = "gray20"),
+    plot.caption = element_text(size = 10, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+grafico8
+```
+<!-- Gráficos relacionados con escolaridad -->
+```{r Grafico 9}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico9 <- ENAHO %>% 
+  ggplot(aes(x = Escolari, y = itpn, color = ZONA)) +
+  # Cambiar a puntos con transparencia para evitar solapamientos y tamaño adecuado
+  geom_point(alpha = 0.6, size = 2) +
+  # Línea de regresión más destacada, con mayor grosor
+  geom_smooth(method = "lm", se = FALSE, colour = "black", size = 1) +
+  # Facetas según la zona
+  facet_wrap(~ZONA) +
+  # Etiquetas y títulos mejorados
+  labs(title = "Relación entre años de escolaridad e ingreso personal neto",
+       subtitle = "Distribución del ingreso, expresado en colones costarricenses, según zona urbana y rural (Costa Rica, 2023)",
+       x = "Escolaridad (Años)",
+       y = "Ingreso Personal Neto (log10)",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023.") +
+  # Escala logarítmica en el eje Y con etiquetas más claras y separadores de miles
+  scale_y_log10(labels = label_number(scale = 1, big.mark = ",")) +
+  # Colores diferenciados para las zonas
+  scale_color_brewer(palette = "Set1", name = "Zona") +
+  # Aplicar un tema profesional de cowplot con algunos ajustes personalizados
+  cowplot::theme_cowplot() +
+  theme(
+    # Ajustar la posición y el tamaño del título y subtítulo
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 14),
+    # Redimensionar y ajustar las etiquetas de los ejes
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14),
+    # Ajustes en la leyenda y el pie de página
+    legend.position = "none",
+    plot.caption = element_text(size = 10, hjust = 0)
+  )
+grafico9
+```
+```{r Grafico 10}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico10 <- ENAHO %>% 
+  ggplot(aes(x = Escolari, y = IPM_Intensidad, color = ZONA)) +
+  # Cambiar a puntos con transparencia para evitar solapamientos y tamaño adecuado
+  geom_point(alpha = 0.6, size = 2) +
+  # Línea de regresión más destacada, con mayor grosor
+  geom_smooth(method = "lm", se = FALSE, colour = "black", size = 1) +
+  # Facetas según la zona
+  facet_wrap(~ZONA) +
+  # Etiquetas y títulos mejorados
+  labs(title = "Relación entre años de escolaridad y la intensidad de la pobreza",
+       x = "Escolaridad (Años)",
+       y = "Intensidad de la pobreza",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023.") +
+  # Escala logarítmica en el eje Y con etiquetas más claras y separadores de miles
+  scale_y_log10(labels = label_number(scale = 1, big.mark = ",")) +
+  # Colores diferenciados para las zonas
+  scale_color_brewer(palette = "Set1", name = "Zona") +
+  # Aplicar un tema profesional de cowplot con algunos ajustes personalizados
+  cowplot::theme_cowplot() +
+  theme(
+    # Ajustar la posición y el tamaño del título y subtítulo
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 14),
+    # Redimensionar y ajustar las etiquetas de los ejes
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14),
+    # Ajustes en la leyenda y el pie de página
+    legend.position = "none",
+    plot.caption = element_text(size = 10, hjust = 0)
+  )
+grafico10
+```
+```{r Grafico 11}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico11 <- ENAHO %>% filter(!is.na(Q_IPCN)) %>% 
+  ggplot(aes(x = Escolari, 
+             y = itpn, 
+             color = Q_IPCN)) +
+  geom_jitter(alpha = 0.6, size = 1.5, width = 0.2) +  # Ajustar tamaño y opacidad
+  geom_smooth(method = "lm", se = FALSE, colour = "black") +
+  facet_wrap(~Q_IPCN) +
+  labs(
+    title = "Relación entre los años de escolaridad e ingreso total por persona neto",
+    x = "Años de escolaridad",
+    y = "Ingreso Personal Neto (₡, log10)",
+    colour = "Quintiles de ingreso per cápita \ndel hogar neto \npor región de planificación",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023."
+  ) +
+  scale_y_log10(labels = scales::label_number()) +
+  scale_colour_brewer(palette = "Set1") +  # Paleta de colores para los quintiles
+  theme_minimal(base_size = 14) +  # Tema minimalista
+  theme(
+    legend.position = "right",  # Mover la leyenda a la derecha
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    axis.title.x = element_text(size = 14, margin = margin(t = 10)),
+    axis.title.y = element_text(size = 14, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 14, color = "gray20"),
+    axis.text.y = element_text(size = 14, color = "gray20"),
+    plot.caption = element_text(size = 10, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+grafico11
+```
+<!-- Gráficos relacionados con título obtenido -->
+```{r Grafico 12}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico12 <- as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>% 
+  rename(Nivel_de_pobreza = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  rename(titulo = Var2) %>% 
+  ggplot(aes(x = titulo, y = Freq, fill = Nivel_de_pobreza)) + 
+  geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Transparencia y bordes
+  labs(title = "Distribución de pobreza según nivel académico",
+       subtitle = "Porcentaje de la población en pobreza , clasificado por nivel de estudios\nalcanzado (Costa Rica, 2023)",
+       x = "Título",
+       y = NULL,
+       fill = "Nivel de pobreza",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta\nNacional de Hogares, Julio 2023.") +
+  scale_fill_brewer(palette = "Set1") +
+  coord_flip() +
+  theme_minimal(base_size = 14) +  # Estilo minimalista
+  theme(
+    legend.position = "right",  # Mover la leyenda a la derecha
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 14, hjust = 0, margin = margin(b = 20)),
+    axis.title.y = element_text(size = 14, margin = margin(t = 10)),
+    axis.text.y = element_text(size = 14, color = "gray20", face = "bold"),
+    axis.text.x = element_text(size = 14, color = "gray20"),
+    plot.caption = element_text(size = 10, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+grafico12
+```
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+tabla_media_ingreso_por_titulo <- ENAHO %>% 
+  filter(A16B != "Ignorado", itpn != 0) %>% 
+  group_by(A16B) %>%
+  dplyr::summarize(
+    media_itpn = mean(itpn, na.rm = TRUE)
+  )
+tabla_media_ingreso_por_titulo
+```
+```{r Grafico 13}
+#| fig.width: 13.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico13 <- ENAHO %>% 
+  filter(A16B != "Ignorado" & itpn > 0) %>%
+  ggplot(aes(x = itpn, y = fct_reorder(A16B, itpn, median), fill = A16B)) +
+  # Mejorar la visualización con densidades y lineas más detalladas
+  geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
+  # Etiquetas y títulos mejorados
+  geom_label_repel(
+    data = tabla_media_ingreso_por_titulo,
+    mapping = aes(
+      x = media_itpn,
+      y = A16B,
+      label = scales::label_number(accuracy = 0.1)(media_itpn),
+    ), position = ggpp::position_nudge_to(x = 7.1), color = "white"
+  ) +
+  labs(
+    title = "Distribución del ingreso total neto por persona según\ntítulo obtenido",
+    subtitle = "Expresado en colones costarricenses (Costa Rica, 2023)",
+    x = "Ingreso Personal Neto (log10)",
+    y = "Título obtenido",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023."
+  ) +
+  # Ajuste de escala con formato de coma en el eje x
+  scale_x_log10(labels = scales::comma) +
+  # Mejora de la paleta de colores con gradientes suaves
+  scale_fill_viridis_d(option = "mako", begin = 0.1, end = 0.8) +
+  # Temas mejorados con mayor atención a los detalles visuales
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",  # Ocultar leyenda
+    plot.title = element_text(size = 16, face = "bold", margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+    axis.title.x = element_text(size = 14, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 14, color = "gray20"),
+    axis.text.y = element_text(size = 14, color = "gray20", face = "bold"),
+    plot.caption = element_text(size = 10, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+grafico13
+```
+```{r Grafico 14}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico14 <- as.data.frame(prop.table(table(ENAHO$A16B, ENAHO$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado") %>% 
+  mutate(Var2 = str_extract(Var2, "\\d")) %>% 
+  mutate(Var2 = parse_number(Var2)) %>% 
+  ggplot(aes(x = Var2, y = Freq, fill = fct_reorder(Var1, Freq, median))) +
+  geom_area(alpha = 0.8) +  # Transparencia para el área
+  labs(title = "Distribución de títulos obtenidos por quintil de ingreso per cápita Costa Rica, 2023",
+       x = "Quintil de ingreso per cápita",
+       y = NULL,
+       fill = "Título",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023.") +
+  # Mejora de la paleta de colores con gradientes suaves
+  scale_fill_viridis_d(option = "H") +  
+  theme_minimal(base_size = 14) +  # Estilo minimalista
+  theme(
+    legend.position = "right",  # Mover la leyenda a la derecha
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    axis.title.x = element_text(size = 14, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 14, color = "gray20"),
+    axis.text.y = element_text(size = 14, color = "gray20"),
+    plot.caption = element_text(size = 10, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+grafico14
+```
+<!-- Gráficos relacionados con dominio de segundo idioma -->
+```{r Grafico 15}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico15 <- as.data.frame(table(ENAHO$np, ENAHO$A22A)) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
+  geom_col(position = "fill", alpha = 0.8, color = "white", size = 0.3) +  # Gráfico de área
+  labs(
+    title = "Nivel de pobreza según dominio de un segundo idioma",
+    subtitle = "Relación entre el dominio de un segundo idioma y nivel de pobreza (Costa Rica, 2023)",
+    x = "Dominio de un segundo idioma",
+    y = "Proporción acumulada",
+    fill = "Nivel de pobreza",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023."
+  ) +
+  scale_fill_viridis_d(option = "D") +  # Paleta de colores viridis
+  coord_flip() +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "right",  # Mover la leyenda a la derecha
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 14, hjust = 0, margin = margin(b = 20)),
+    axis.title.y = element_text(size = 14, margin = margin(t = 10)),
+    axis.text.y = element_text(size = 14, color = "gray20", face = "bold"),
+    axis.text.x = element_text(size = 14, color = "gray20"),
+    plot.caption = element_text(size = 10, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+grafico15
+```
+```{r Grafico 16}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico16 <- as.data.frame(prop.table(table(ENAHO$A22A, ENAHO$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado") %>% 
+  mutate(Var2 = str_extract(Var2, "\\d")) %>% 
+  mutate(Var2 = parse_number(Var2)) %>% 
+  ggplot(aes(x = Var2, y = Freq, fill = Var1)) +
+  geom_area(alpha = 0.8) +  # Añade transparencia para el área
+  labs(title = "Relación entre el dominio de un segundo idioma y el ingreso per cápita",
+       subtitle = "Porcentaje de personas que dominan un segundo idioma en cada quintil de ingreso per cápita (Costa Rica, 2023)",
+       x = "Quintil de ingreso per cápita",
+       y = NULL,
+       fill = "Dominio de un segundo idioma",
+       caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023.") +
+  scale_fill_brewer(palette = "Set1") +  # Cambia a una paleta más uniforme
+  theme_minimal(base_size = 14) +  # Estilo minimalista
+  theme(
+    legend.position = "right",  # Mover la leyenda a la derecha
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 14),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0, margin = margin(b = 10)),
+    axis.title.x = element_text(size = 14, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 14, color = "gray20"),
+    axis.text.y = element_text(size = 14, color = "gray20"),
+    plot.caption = element_text(size = 10, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+grafico16
+```
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+tabla_media_ingreso_por_idioma <- ENAHO %>% 
+  filter(A22A != "Ignorado", itpn != 0) %>% 
+  group_by(A22A) %>%
+  dplyr::summarize(
+    media_itpn = mean(itpn, na.rm = TRUE)
+  )
+tabla_media_ingreso_por_idioma
+```
+```{r Grafico 17}
+#| fig.width: 11.6
+#| fig.height: 6.5
+#| warning: false
+#| message: false
+grafico17 <- ENAHO %>% 
+  filter(A22A != "Ignorado" & itpn > 0) %>%
+  ggplot(aes(x = itpn, y = fct_reorder(A22A, itpn, median), fill = A22A)) +
+  # Mejorar la visualización con densidades y lineas más detalladas
+  geom_density_ridges(rel_min_height = 0.01, scale = 1.2, alpha = 0.8, color = "white") + 
+  # Etiquetas y títulos mejorados
+  geom_label_repel(
+    data = tabla_media_ingreso_por_idioma,
+    mapping = aes(
+      x = media_itpn,
+      y = A22A,
+      label = scales::label_number(accuracy = 0.1)(media_itpn),
+    ), position = ggpp::position_nudge_to(x = 7.1), color = "white"
+  ) +
+  labs(
+    title = "Distribución del ingreso total neto por persona según dominio de un segundo idioma",
+    subtitle = "Ingreso expresado en colones costarricenses (Costa Rica, 2023)",
+    x = "Ingreso Personal Neto (log10)",
+    y = "Dominio de un segundo idioma",
+    caption = "Fuente: Instituto Nacional de Estadística y Censos (INEC), Costa Rica. (2023). Encuesta Nacional de Hogares, Julio 2023."
+  ) +
+  # Ajuste de escala con formato de coma en el eje x
+  scale_x_log10(labels = scales::comma) +
+  # Mejora de la paleta de colores con gradientes suaves
+  scale_fill_viridis_d(option = "plasma", begin = 0, end = 0.6) +
+  # Temas mejorados con mayor atención a los detalles visuales
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "none",  # Ocultar leyenda
+    plot.title = element_text(size = 16, face = "bold", margin = margin(b = 10)),
+    plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+    axis.title.x = element_text(size = 14, margin = margin(t = 10)),
+    axis.text.x = element_text(size = 14, color = "gray20"),
+    axis.text.y = element_text(size = 14, color = "gray20", face = "bold"),
+    plot.caption = element_text(size = 10, hjust = 0),
+    panel.grid.major = element_line(size = 0.5, linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+grafico17
+```
+\newpage
+A continuación, se presentará una serie de tablas que proporcionan información específica utilizada en los gráficos mostrados anteriormente. Debido a consideraciones estéticas, no fue posible lograr un ajuste óptimo de las tablas en el PDF; por ello, se hará un uso predominante de los gráficos elaborados previamente. Sin embargo, estas tablas han sido fundamentales para el análisis, ya que facilitaron la aplicación de los métodos estadísticos que respaldan toda la investigación.
+
+<!-- Tablas -->
+<!-- Tablas relacionadas con el tipo de centro educativo -->
+```{r Tabla 1}
+#| warning: false
+#| message: false
+tab_np_vs_tipo_colegio <- as.data.frame(prop.table(table(ENAHO$np, 
+                                                         ENAHO$A15A), 
+                                                   margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100,2)) %>% 
+  rename(Nivel_de_pobreza = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq) %>% 
+  rename('Nivel de pobreza' = Nivel_de_pobreza)
+
+# Generar tabla con kable
+kable(tab_np_vs_tipo_colegio, caption = "Proporción del nivel de pobreza según tipo de centro educativo al que se asistio ") %>%
+  kable_styling(position = "center", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 2}
+#| warning: false
+#| message: false
+#| eval: false
+#| echo: false
+# Diverge a la derecha lo úlitmo que sale es Q2
+tab_dist_itpn_tipo_colegio <- ENAHO %>% 
+  filter(A15A != "Ignorado", itpn != 0) %>% 
+  group_by(A15A) %>%
+  dplyr::summarize(
+    n = n(),                      # Conteo de observaciones
+    media_itpn = mean(itpn, na.rm = TRUE),   # Media de itpn, omitiendo NA
+    ds_itpn = sd(itpn, na.rm = TRUE),       # Desviación estándar de itpn
+    min_itpn = min(itpn, na.rm = TRUE),     # Mínimo de itpn
+    Q1_itpn = quantile(itpn, 0.25, na.rm = TRUE),  # Primer cuartil
+    Q2_itpn = quantile(itpn, 0.50, na.rm = TRUE),  # Mediana (segundo cuartil)
+    Q3_itpn = quantile(itpn, 0.75, na.rm = TRUE),    
+    max_itpn = max(itpn, na.rm = TRUE)      # Máximo de itpn
+  ) %>% 
+  rename('Tipo' = A15A,
+         'Media' = media_itpn,
+         'Desv' = ds_itpn,
+         'Mín' = min_itpn,
+         'Q1' = Q1_itpn,
+         'Q2' = Q2_itpn,
+         'Q3' = Q3_itpn,
+         'Máx' = max_itpn,) %>%
+  mutate(across(where(is.numeric) & !c(n), 
+                ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
+  
+# Generar tabla con kable
+kable(tab_dist_itpn_tipo_colegio, caption = "Distribución del ingreso según tipo de centro educativo al que se asistió") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 3}
+#| warning: false
+#| message: false
+tab_evol_tipo_colegio_QIPCN <- as.data.frame(prop.table(table(ENAHO$A15A, ENAHO$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado") %>% 
+  mutate(Freq = round(Freq * 100,2)) %>% 
+  rename("Nivel de pobreza" = Var1) %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq) %>% 
+  rename('Nivel de Pobreza' = "Nivel de pobreza",
+         'Q1' = "Q1: 110683 ó menos",
+         'Q2' = "Q2: Más de 110683 a 195000",
+         'Q3' = "Q3: Más de 195000 a 321523",
+         'Q4' = "Q4: Más de 321523 a 574085",
+         'Q5' = "Q5: Más de 574085") 
+# Generar tabla con kable
+kable(tab_evol_tipo_colegio_QIPCN, caption = "Distribución del Nivel de Instrucción por Quintil de Ingreso en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 4}
+#| warning: false
+#| message: false
+tab_np_vs_univ <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A15B), margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Nivel de pobreza" = Var1) %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+# Generar tabla con kable
+kable(tab_np_vs_univ, caption = " Distribución del nivel de pobreza según universidad pública a la que se asistió en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 5}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
+# Diverge a la derecha lo úlitmo que sale es Q2
+tab_dist_itpn_univ <- ENAHO %>% 
+  filter(A15B != "Ignorado") %>% 
+  mutate(A15B = forcats::fct_reorder(A15B, itpn, median, .desc = TRUE)) %>% 
+  group_by(A15B) %>%
+  summarise(
+    n = n(),
+    media_itpn = mean(itpn, na.rm = TRUE),
+    ds_itpn = sd(itpn, na.rm = TRUE),
+    min_itpn = min(itpn, na.rm = TRUE),
+    Q1_itpn = quantile(itpn, 0.25, na.rm = TRUE),
+    Q2_itpn = quantile(itpn, 0.50, na.rm = TRUE),
+    Q3_itpn = quantile(itpn, 0.75, na.rm = TRUE),
+    max_itpn = max(itpn, na.rm = TRUE),
+    .groups = "drop_last") %>% 
+  rename('Universidad' = A15B,
+         'Media' = media_itpn,
+         'Desv' = ds_itpn,
+         'Mín' = min_itpn,
+         'Q1' = Q1_itpn,
+         'Q2' = Q2_itpn,
+         'Q3' = Q3_itpn,
+         'Máx' = max_itpn) %>%
+  mutate(across(where(is.numeric) & !c(n), 
+                ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
+
+# Generar tabla con kable
+kable(tab_dist_itpn_univ, caption = " Distribución del ingreso según tipo de centro educativo al que se asistió en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+<!-- Tablas relacionadas con nivel de instrucción -->
+```{r Tabla 6}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
+# Diverge a la derecha lo úlitmo que sale es "Secundaria Completa"
+tab_np_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$np, 
+                                                    fct_collapse(ENAHO$NivInst, 
+                                                                 "Primaria completa" = c("Primaria completa",
+                                                                                         "Secundaria académica incompleta",
+                                                                                         "Secundaria técnica incompleta"),
+                                                                 "Secundaria completa" = c("Secundaria académica completa",
+                                                                                           "Secundaria técnica completa"),
+                                                                 "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción",
+                                                                                                       "Primaria incompleta"))),
+                                              margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Nivel de pobreza" = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+# Generar tabla con kable
+kable(tab_np_vs_nivinst, caption = " Distribución del nivel de pobreza según nivel de instrucción en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 7}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
+# Diverge a la derecha lo úlitmo que sale es "Primaria completa"
+tab_estabili_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$Estabili, 
+                                                          fct_collapse(ENAHO$NivInst, 
+                                                                       "Primaria completa" = c("Primaria completa", 
+                                                                                               "Secundaria académica incompleta",
+                                                                                               "Secundaria técnica incompleta"),
+                                                                       "Secundaria completa" = c("Secundaria académica completa",
+                                                                                                 "Secundaria técnica completa"),
+                                                                       "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción",
+                                                                                                             "Primaria incompleta"))), 
+                                                    margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Estabilidad laboral" = Var1) %>% 
+  filter(Var2 != "Ignorado", "Estabilidad laboral" != "Estabilidad Ignorada") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+
+# Generar tabla con kable
+kable(tab_estabili_vs_nivinst, caption = " Distribución de la estabilidad laboral segun nivel de instrucción en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 8}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
+# Diverge a la derecha lo úlitmo que sale es "Primaria completa"
+tab_satisf_vs_nivinst <- as.data.frame(prop.table(table(ENAHO$InsLab, 
+                                                        fct_collapse(ENAHO$NivInst, 
+                                                                     "Primaria completa" = c("Primaria completa", 
+                                                                                             "Secundaria académica incompleta", 
+                                                                                             "Secundaria técnica incompleta"),
+                                                                     "Secundaria completa" = c("Secundaria académica completa", 
+                                                                                               "Secundaria técnica completa"),
+                                                                     "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", 
+                                                                                                           "Primaria incompleta"))), 
+                                                  margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Satisfaccion laboral" = Var1) %>% 
+  filter(Var2 != "Ignorado", "Satisfaccion laboral" != "Satisfacción ignorada") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+
+# Generar tabla con kable
+kable(tab_satisf_vs_nivinst, caption = " Distribución de la satisfaccion laboral segun nivel de instrucción en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 9}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
+# Diverge a la derecha lo úlitmo que sale es Q1
+tab_dist_itpn_nivinst <- ENAHO %>% 
+  filter(NivInst != "Ignorado", itpn != 0) %>% 
+  mutate(NivInst = fct_collapse(NivInst,
+                                "Primaria completa" = c("Primaria completa", 
+                                                        "Secundaria académica incompleta", 
+                                                        "Secundaria técnica incompleta"),
+                                "Secundaria completa" = c("Secundaria académica completa", 
+                                                          "Secundaria técnica completa"),
+                                "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción", 
+                                                                      "Primaria incompleta"))) %>% 
+  group_by(NivInst) %>%
+  dplyr::summarize(
+    n = n(),                      # Conteo de observaciones
+    media_itpn = mean(itpn, na.rm = TRUE),   # Media de itpn, omitiendo NA
+    ds_itpn = sd(itpn, na.rm = TRUE),       # Desviación estándar de itpn
+    min_itpn = min(itpn, na.rm = TRUE),     # Mínimo de itpn
+    Q1_itpn = quantile(itpn, 0.25, na.rm = TRUE),  # Primer cuartil
+    Q2_itpn = quantile(itpn, 0.50, na.rm = TRUE),  # Mediana (segundo cuartil)
+    Q3_itpn = quantile(itpn, 0.75, na.rm = TRUE),    
+    max_itpn = max(itpn, na.rm = TRUE)      # Máximo de itpn
+  ) %>% 
+  rename('Nivel' = NivInst,
+         'Media' = media_itpn,
+         'Desv' = ds_itpn,
+         'Mín' = min_itpn,
+         'Q1' = Q1_itpn,
+         'Q2' = Q2_itpn,
+         'Q3' = Q3_itpn,
+         'Máx' = max_itpn,) %>%
+  mutate(across(where(is.numeric) & !c(n), 
+                ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
+
+# Generar tabla con kable
+kable(tab_dist_itpn_nivinst, caption = " Distribución del ingreso por nivel de instrucción en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 10}
+#| warning: false
+#| message: false
+tab_evol_nivinst_QIPCN <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst, 
+                                                                      "Primaria completa" = c("Primaria completa", 
+                                                                                              "Secundaria académica incompleta",
+                                                                                              "Secundaria técnica incompleta"),
+                                                                      "Secundaria completa" = c("Secundaria académica completa",
+                                                                                                "Secundaria técnica completa"),
+                                                                      "Sin o poco nivel de instrucción" = c("Sin nivel de instrucción",
+                                                                                                            "Primaria incompleta")), 
+                                                         ENAHO$Q_IPCN), margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Nivel de instrucción" = Var1) %>% 
+  filter("Nivel de instrucción" != "Ignorado") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq) %>% 
+  rename('Q1' = "Q1: 110683 ó menos",
+         'Q2' = "Q2: Más de 110683 a 195000",
+         'Q3' = "Q3: Más de 195000 a 321523",
+         'Q4' = "Q4: Más de 321523 a 574085",
+         'Q5' = "Q5: Más de 574085") 
+
+# Generar tabla con kable
+kable(tab_evol_nivinst_QIPCN, caption = "Evolucion de la distribución del nivel de instrucción por quintil de ingreso per capita neto en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+<!-- Tablas relacionadas con título obtenido -->
+```{r Tabla 11}
+#| warning: false
+#| message: false
+tab_np_vs_titulo <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A16B), margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename(Nivel_de_pobreza = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+
+# Generar tabla con kable
+kable(tab_np_vs_titulo, caption = "Distribución del nivel de pobreza según título obtenido en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 12}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
+# Diverge a la derecha lo úlitmo que sale es "Técnico medio, perito o diplomado..."
+tab_estabili_vs_titulo <- as.data.frame(prop.table(table(ENAHO$Estabili, ENAHO$A16B), margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Estabilidad aboral" = Var1) %>% 
+  filter(Var2 != "Ignorado", "Estabilidad laboral" != "Estabilidad Ignorada") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+
+# Generar tabla con kable
+kable(tab_estabili_vs_titulo, caption = "Estabilidad laboral segun titulo obtenido en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 13}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
+# Diverge a la derecha lo úlitmo que sale es "Técnico medio, perito o diplomado..."
+tab_satisf_vs_titulo <- as.data.frame(prop.table(table(ENAHO$InsLab, ENAHO$A16B), margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Satisfaccion laboral" = Var1) %>% 
+  filter(Var2 != "Ignorado", "Satisfaccion laboral" != "Satisfacción ignorada") %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+
+# Generar tabla con kable
+kable(tab_satisf_vs_titulo, caption = "Satisfaccion laboral segun titulo obtenido en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 14}
+#| echo: false
+#| eval: false
+#| warning: false
+#| message: false
+# Diverge a la derecha lo úlitmo que sale es "Min"
+tab_dist_itpn_titulo <- ENAHO %>% 
+  filter(A16B != "Ignorado", itpn != 0) %>% 
+  group_by(A16B) %>%
+  dplyr::summarize(
+    n = n(),                      # Conteo de observaciones
+    media_itpn = mean(itpn, na.rm = TRUE),   # Media de itpn, omitiendo NA
+    ds_itpn = sd(itpn, na.rm = TRUE),       # Desviación estándar de itpn
+    min_itpn = min(itpn, na.rm = TRUE),     # Mínimo de itpn
+    Q1_itpn = quantile(itpn, 0.25, na.rm = TRUE),  # Primer cuartil
+    Q2_itpn = quantile(itpn, 0.50, na.rm = TRUE),  # Mediana (segundo cuartil)
+    Q3_itpn = quantile(itpn, 0.75, na.rm = TRUE),    
+    max_itpn = max(itpn, na.rm = TRUE)      # Máximo de itpn
+  ) %>% 
+  rename('Nivel' = A16B,
+         'Media' = media_itpn,
+         'Desv' = ds_itpn,
+         'Mín' = min_itpn,
+         'Q1' = Q1_itpn,
+         'Q2' = Q2_itpn,
+         'Q3' = Q3_itpn,
+         'Máx' = max_itpn,) %>%
+  mutate(across(where(is.numeric) & !c(n), 
+                ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
+
+# Generar tabla con kable
+kable(tab_dist_itpn_titulo, caption = "Distribución del ingreso según titulo obtenido en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 15}
+#| warning: false
+#| message: false
+tab_evol_titulo_QIPCN <- as.data.frame(prop.table(table(ENAHO$A16B,ENAHO$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado") %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename(Titulo = Var1) %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq) %>% 
+  rename('Q1' = "Q1: 110683 ó menos",
+         'Q2' = "Q2: Más de 110683 a 195000",
+         'Q3' = "Q3: Más de 195000 a 321523",
+         'Q4' = "Q4: Más de 321523 a 574085",
+         'Q5' = "Q5: Más de 574085") 
+
+# Generar tabla con kable
+kable(tab_evol_titulo_QIPCN, caption = "Evolucion de la distribución de los titulos obtenidos por quintil de ingreso per capita neto en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+<!-- Tablas relacionadas con dominio segundo idioma -->
+```{r Tabla 16}
+#| warning: false
+#| message: false
+tab_np_vs_dom_2_idiom <- as.data.frame(prop.table(table(ENAHO$np, ENAHO$A22A), margin = 2)) %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Nivel de pobreza" = Var1) %>% 
+  filter(Var2 != "Ignorado") %>% 
+  pivot_wider(names_from = Var2, values_from = Freq)
+
+# Generar tabla con kable
+kable(tab_np_vs_dom_2_idiom, caption = "Nivel de pobreza según dominio de un segundo en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 17}
+#| warning: false
+#| message: false
+tab_evol_dom_2_idiom_QIPCN <- as.data.frame(prop.table(table(ENAHO$A22A,ENAHO$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado") %>% 
+  mutate(Freq = round(Freq * 100, 2)) %>% 
+  rename("Dominio segundo idioma" = Var1) %>% 
+  mutate(Freq = paste0(Freq, "%")) %>% 
+  pivot_wider(names_from = Var2, values_from = Freq) %>% 
+  rename('Q1' = "Q1: 110683 ó menos",
+         'Q2' = "Q2: Más de 110683 a 195000",
+         'Q3' = "Q3: Más de 195000 a 321523",
+         'Q4' = "Q4: Más de 321523 a 574085",
+         'Q5' = "Q5: Más de 574085") 
+
+# Generar tabla con kable
+kable(tab_evol_dom_2_idiom_QIPCN, caption = "Nivel de pobreza según dominio de un segundo idioma en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+```{r Tabla 18}
+#| eval: false
+#| echo: false
+#| warning: false
+#| message: false
+# Diverge a la derecha lo úlitmo que sale es "Q3"
+tab_dist_itpn_dom_2_idiom <- ENAHO %>% 
+  filter(A22A != "Ignorado", itpn!=0) %>% 
+  group_by(A22A) %>%
+  dplyr::summarize(
+    n = n(),                      # Conteo de observaciones
+    media_itpn = mean(itpn, na.rm = TRUE),   # Media de itpn, omitiendo NA
+    ds_itpn = sd(itpn, na.rm = TRUE),       # Desviación estándar de itpn
+    min_itpn = min(itpn, na.rm = TRUE),     # Mínimo de itpn
+    Q1_itpn = quantile(itpn, 0.25, na.rm = TRUE),  # Primer cuartil
+    Q2_itpn = quantile(itpn, 0.50, na.rm = TRUE),  # Mediana (segundo cuartil)
+    Q3_itpn = quantile(itpn, 0.75, na.rm = TRUE),    
+    max_itpn = max(itpn, na.rm = TRUE)      # Máximo de itpn
+  ) %>% 
+  rename('Domina' = A22A,
+         'Media' = media_itpn,
+         'Desv' = ds_itpn,
+         'Mín' = min_itpn,
+         'Q1' = Q1_itpn,
+         'Q2' = Q2_itpn,
+         'Q3' = Q3_itpn,
+         'Máx' = max_itpn,) %>%
+  mutate(across(where(is.numeric) & !c(n), 
+                ~ number(., big.mark = ",", decimal.mark = ".", accuracy = 0.01, prefix = "₡")))
+
+# Generar tabla con kable
+kable(tab_dist_itpn_dom_2_idiom, caption = " Distribución del ingreso según dominio segundo idioma en Costa Rica (2023)") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+
+### Construcción de fichas de resultados
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 1 (Gráfico 1 y Tabla 1)
+
+-   **Nombre del hallazgo o resultado:** Las personas que asistieron a colegios privados tienen menor incidencia de pobreza que aquellos que nunca asistieron a un centro educativo.
+
+-   **Resumen en una oración:** La distribución de la pobreza varía según el tipo de centro educativo, mostrando que quienes asistieron a centros privados y semipúblicos tienen menores niveles de pobreza, mientras que aquellos que nunca asistieron presentan mayores niveles de pobreza.
+
+-   **Principal característica:** El 18.21% de los adultos que nunca asistieron a un centro educativo están en pobreza extrema, mientras que quienes asistieron a centros privados y semipúblicos tienen los menores índices de pobreza extrema (1.46% y 4%, respectivamente).
+
+-   **Problemas o posibles desafíos:** La categorización no distingue la calidad educativa ni las diferencias regionales dentro de cada tipo de centro educativo, lo que puede sesgar la interpretación.
+
+-   **Resumen en un párrafo:** Los resultados muestran que la ausencia total de educación formal está claramente asociada con un mayor nivel de pobreza extrema, ya que el 18.21% de los adultos que nunca asistieron a un centro educativo se encuentran en esta categoría. Sin embargo, la pobreza disminuye considerablemente entre aquellos que asistieron a centros educativos, especialmente privados (1.46% en pobreza extrema) y semipúblicos (4%). Por otro lado, los centros públicos, con un 7.40% de pobreza extrema, se ubican entre los extremos del espectro, indicando que, si bien la educación pública proporciona una vía para mejorar la situación económica, su impacto en la reducción de la pobreza es menor en comparación con los centros privados. Esto refleja cómo la calidad y el tipo de centro al que se asistió tienen un impacto significativo en la situación socioeconómica de las personas, sugiriendo que la educación de calidad juega un papel crucial en la movilidad social.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 2 (Gráfico 2 y Tabla 2)
+
+-   **Nombre del hallazgo o resultado:** Ingresos y su distribución por tipo de centro educativo asistido.
+
+-   **Resumen en una oración:** Los ingresos netos por persona muestran grandes diferencias según el tipo de centro educativo al que se asistió, siendo mayores en centros privados y semi-públicos, mientras que los centros públicos presentan una variabilidad interna significativa que refleja una distribución desigual de los ingresos.
+
+-   **Principal característica:** Los adultos que asistieron a centros privados tienen los ingresos más altos, con una media de ₡846,691.2, y los ingresos en centros públicos muestran una mayor dispersión, con un ingreso máximo que llega a ₡20 millones, lo que refleja una gran variabilidad interna.
+
+-   **Problemas o posibles desafíos:** El análisis no toma en cuenta factores como la calidad educativa, la duración de los estudios o el contexto socioeconómico inicial, lo que puede distorsionar la relación entre el tipo de centro educativo y los ingresos. Además, la presencia de valores atípicos, especialmente en los centros públicos, podría estar influyendo en las medias y las desviaciones estándar, lo que limita la precisión de las conclusiones.
+
+-   **Resumen en un párrafo:** El tipo de centro educativo al que se asistió tiene una influencia significativa en el ingreso total personal neto de las personas. Los mayores ingresos se observan entre quienes asistieron a centros privados, con una media de ₡846,691.2, seguidos de los centros semi-públicos (₡783,109.0). Esto podría sugerir que las personas que asistieron a estos centros tuvieron acceso a mejores oportunidades o contaron con ventajas socioeconómicas desde el inicio, lo que les permitió obtener mayores ingresos. Por otro lado, los centros públicos presentan una media de ingresos considerablemente menor (₡405,861.1), pero con una distribución mucho más desigual, reflejada en una desviación estándar de ₡503,840.6 y un ingreso máximo de ₡20 millones, lo que indica que dentro de este grupo hay personas que alcanzan niveles de ingresos muy altos, aunque la mayoría no lo hace. En contraste, los adultos que nunca asistieron a un centro educativo tienen los ingresos más bajos, con una media de ₡222,138.6, lo que destaca la importancia de la educación formal en la mejora de los ingresos. A pesar de estas diferencias en los ingresos medios, la gran variabilidad interna dentro de algunos grupos, especialmente en los centros públicos, sugiere que no solo el tipo de centro educativo influye en los ingresos, sino que otros factores.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 3 (Gráfico 3 y Tabla 3)
+
+-   **Nombre del hallazgo o resultado:** Distribución de centros educativos según quintil de ingreso per cápita.
+
+-   **Resumen en una oración:** A medida que aumenta el ingreso per cápita, la asistencia a colegios privados incrementa, mientras que la asistencia a colegios públicos disminuye notablemente, con una tendencia inversa marcada entre los extremos de los quintiles.
+
+-   **Principal característica:** El 87.52% de las personas del primer quintil (los de menores ingresos) asistieron a un colegio público, mientras que solo el 51.78% de los del quinto quintil (los de mayores ingresos) lo hicieron; en cambio, la asistencia a colegios privados crece del 4.12% en el primer quintil al 44.59% en el último quintil.
+
+-   **Problemas o posibles desafíos:** El análisis no toma en cuenta variaciones en la calidad de los colegios públicos ni privados, lo que podría influir en los resultados.
+
+-   **Resumen en un párrafo:** La distribución del tipo de centro educativo asistido varía considerablemente entre los quintiles de ingreso per cápita, revelando una tendencia clara: las personas de menores ingresos, en su mayoría, asistieron a colegios públicos (87.52% en el primer quintil), mientras que los de mayores ingresos lo hicieron con menos frecuencia (51.78% en el quinto quintil). Este patrón refleja una tendencia de movilidad hacia los colegios privados a medida que aumenta el ingreso, con un 44.59% de las personas del quinto quintil habiendo asistido a un centro privado, en comparación con solo el 4.12% del primer quintil. Esta diferencia puede sugerir una relación entre el nivel socioeconómico y la capacidad para acceder a instituciones educativas privadas, que en muchos casos ofrecen ventajas adicionales como redes de contactos o calidad educativa superior, aunque este último factor no está explícitamente considerado en la tabla.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 4 (Gráfico 4 y Tabla 4)
+
+-   **Nombre del hallazgo o resultado:** Distribución de pobreza según la universidad pública asistida.
+
+-   **Resumen en una oración:** La mayoría de las personas que asistieron a universidades públicas como la UCR, UNA y el TEC no son pobres, mientras que las personas que asistieron a la UNED y la UTN presentan mayores niveles de pobreza, en particular la pobreza extrema.
+
+-   **Principal característica:** El 93.5% de quienes asistieron a la UCR no son pobres, mientras que solo el 80.49% de quienes asistieron a la UNED se encuentran fuera de la pobreza; además, la UNED presenta un porcentaje relativamente alto de pobreza extrema (7.93%) en comparación con otras universidades.
+
+-   **Problemas o posibles desafíos:** La diferencia en la distribución de la pobreza entre universidades podría estar influida por factores no considerados en el análisis, como la ubicación geográfica de las universidades, las condiciones de trabajo de los estudiantes, o la duración de los estudios. Además, la muestra de personas que asistieron a universidades públicas es relativamente pequeña, por lo cual puede no ser representativa.
+
+-   **Resumen en un párrafo:** Los resultados muestran una marcada diferencia en la distribución de la pobreza entre las personas que asistieron a distintas universidades públicas. La Universidad de Costa Rica (UCR) y el Tecnológico de Costa Rica (TEC) destacan con los menores niveles de pobreza extrema y no extrema (1.1% y 0.66% respectivamente para pobreza extrema), mientras que la Universidad Estatal a Distancia (UNED) presenta la mayor proporción de personas en pobreza extrema (7.93%) y pobreza no extrema (11.59%). Estos datos podrían estar asociados con las características particulares de cada universidad. Por ejemplo, la UNED, al ser una universidad a distancia, podría atraer a una población con menores ingresos y mayores restricciones económicas, lo cual explicaría su mayor nivel de pobreza. Otro aspecto importante a destacar es que el hecho de que la asistencia a la universidad no necesariamente evita que las personas se encuentren en condición de pobreza.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 5 (Gráfico 5 y Tabla 5)
+
+-   **Nombre del hallazgo o resultado:** Comparación del ingreso total por persona neto entre universidades públicas.
+
+-   **Resumen en una oración:** La Universidad de Costa Rica (UCR) y el Tecnológico de Costa Rica (TEC) presentan los ingresos per cápita más altos en comparación con las otras universidades, mientras que la UNED tiene el ingreso promedio más bajo.
+
+-   **Principal característica:** La UCR muestra una media de ingreso total por persona neto de ₡950,480.4, y el TEC tiene el ingreso más alto con ₡1,146,155.2, destacando un rango amplio de ingresos (mín 35,000 y máx 20,000,000) en el TEC, lo que indica una gran disparidad entre los estudiantes.
+
+-   **Problemas o posibles desafíos:** La media de ingresos puede no ser representativa de la realidad de todos los estudiantes, ya que puede estar sesgada por un número reducido de observaciones en algunas universidades, como el TEC (152).
+
+-   **Resumen en un párrafo:** La comparación del ingreso total por persona neto revela diferencias significativas entre las universidades públicas de Costa Rica. La Universidad de Costa Rica (UCR) presenta un ingreso promedio de ₡950,480.4, mientras que el Tecnológico de Costa Rica (TEC) tiene la media más alta de ₡1,146,155.2. Estos ingresos son notablemente superiores a los de otras universidades, como la Universidad Nacional (UNA) y la Universidad Estatal a Distancia (UNED), cuyos promedios son de ₡785,263.1 y ₡560,280.2, respectivamente. La UCR y el TEC parecen atraer a estudiantes que, al ingresar al mercado laboral, logran obtener ingresos más altos, lo que podría ser un indicativo de la calidad educativa o de las oportunidades laborales que brindan sus programas.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 6 (Gráfico 6 y Tabla 6)
+
+-   **Nombre del hallazgo o resultado:** Relación entre el nivel de instrucción y la pobreza.
+
+-   **Resumen en una oración:** A medida que aumenta el nivel de instrucción, disminuye la proporción de personas en situación de pobreza extrema y no extrema.
+
+-   **Principal característica:** La tabla revela que las personas con menor nivel de instrucción (sin o poco nivel de instrucción) presentan la mayor proporción de pobreza extrema (13.64%) y pobreza no extrema (23.75%), mientras que aquellos con educación superior de posgrado muestran porcentajes significativamente más bajos en ambas categorías (0.23% de pobreza extrema y 0% de pobreza no extrema).
+
+-   **Problemas o posibles desafíos:** La relación observada entre el nivel de instrucción y la pobreza puede estar sujeta a sesgos, ya que no se consideran factores estructurales que podrían influir en la situación socioeconómica, como el contexto geográfico, la calidad de la educación recibida, o las condiciones del mercado de trabajo.
+
+-   **Resumen en un párrafo:** La distribución de la pobreza según el nivel de instrucción muestra una tendencia clara: a medida que el nivel educativo aumenta, la proporción de personas en situación de pobreza disminuye. Entre aquellos con nulo o poco nivel de instrucción, el 13.64% se encuentra en pobreza extrema, y el 23.75% en pobreza no extrema, en contraste con los que poseen educación superior de posgrado, donde solo el 0.23% está en pobreza extrema y ningún individuo se clasifica en pobreza no extrema. Este patrón resalta la importancia de la educación como un factor crítico para salir de la pobreza. Las personas con educación secundaria completa, por ejemplo, tienen una reducción notable en la pobreza, con solo el 5.71% en pobreza extrema y 12.44% en pobreza no extrema.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 7 (Gráfico 7 y Tabla 7)
+
+-   **Nombre del hallazgo o resultado:** Incremento progresivo de los ingresos netos según el nivel educativo alcanzado.
+
+-   **Resumen en una oración:** Los ingresos netos aumentan significativamente con el nivel de instrucción, alcanzando su punto máximo entre quienes tienen posgrado, pero también se observa una mayor dispersión en los niveles más altos de educación.
+
+-   **Principal característica:** Las personas con posgrado tienen ingresos promedio sustancialmente más altos (₡1,541,922), mientras que quienes poseen nulo o poco nivel de instrucción perciben ingresos mucho más bajos (₡249,387), revelando una fuerte correlación entre educación e ingresos. Además, la desviación estándar se incrementa a medida que aumenta el nivel educativo, indicando una creciente desigualdad dentro de cada grupo educativo.
+
+-   **Problemas o posibles desafíos:** Aunque el incremento de los ingresos con el nivel educativo es evidente, la considerable variabilidad interna en cada nivel sugiere que otros factores influyen en el acceso a salarios altos. Por ejemplo, las personas con educación superior pueden experimentar diferencias salariales importantes debido a la especialización, la industria en la que trabajan o la región geográfica.
+
+-   **Resumen en un párrafo:** El análisis revela que el nivel educativo es un determinante clave de los ingresos, con una tendencia clara al alza a medida que aumenta el nivel de instrucción. Las personas con educación superior de posgrado presentan los ingresos más altos, con un promedio de ₡1,541,922, que supera por más de seis veces el promedio de ₡249,387 de quienes tienen nulo o poco nivel de instrucción. Sin embargo, esta relación también está acompañada de una creciente dispersión en los ingresos dentro de cada grupo educativo, como lo evidencia la mayor desviación estándar en los niveles más altos, particularmente en el posgrado (₡1,089,738). Esto sugiere que, aunque la educación superior ofrece una mejor oportunidad para acceder a ingresos más elevados, las diferencias salariales dentro de estos grupos pueden ser considerables. Factores como la especialización profesional, el tipo de empleo o la región podrían influir en estas variaciones.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 8 (Gráfico 8 y Tabla 8)
+
+-   **Nombre del hallazgo o resultado:** Concentración educativa en quintiles bajos y altos de ingreso.
+
+-   **Resumen en una oración:** Los quintiles de ingreso más bajos tienen una mayor proporción de personas con niveles educativos más bajos, mientras que los quintiles de ingreso más altos concentran a quienes han alcanzado mayores niveles de educación.
+
+-   **Principal característica:** Un 71.12% de las personas en el primer quintil tienen solo primaria o menos, mientras que en el último quintil, el 66.13% tiene educación superior de pregrado o posgrado, lo que destaca una relación entre el acceso a mayores ingresos y un mayor nivel de instrucción.
+
+-   **Problemas o posibles desafíos:** El análisis no considera la posible interacción entre otros aspectos como la calidad de la educación obtenida en cada nivel, lo que puede generar una visión parcial de las disparidades educativas y de ingreso.
+
+-   **Resumen en un párrafo:** La relación entre el nivel de instrucción y el ingreso es evidente en la tabla, donde se observa una mayor concentración de personas con niveles educativos bajos (sin instrucción o primaria completa) en los quintiles de ingreso más bajos. En el primer quintil, que incluye a quienes perciben ingresos más bajos (₡110,683 o menos), un 52.98% de las personas tienen solo primaria completa, y un 18.14% tiene poco o ningún nivel educativo. Esto contrasta con el último quintil (más de ₡574,085), donde el 54.87% de las personas ha completado la educación superior de pregrado, y un 11.26% tiene estudios de posgrado. Esto sugiere que las personas con mayores niveles educativos tienden a ubicarse en los quintiles más altos de ingreso. Sin embargo, esta disparidad también refleja desafíos estructurales relacionados con el acceso desigual a la educación y las oportunidades laborales. Bajo el supuesto de pobreza estructural, las personas con bajos niveles educativos parecen estar atrapadas en los quintiles de ingresos más bajos, lo que dificulta su movilidad social y económica, perpetuando un ciclo de pobreza difícil de romper.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 9 (Gráfico 12 y Tabla 9)
+
+-   **Nombre del hallazgo o resultado:** Relación entre la titulación académica y la incidencia de pobreza.
+
+-   **Resumen en una oración:** A mayor nivel educativo, menor es la proporción de personas en situación de pobreza extrema o no extrema.
+
+-   **Principal característica:** Las personas con títulos universitarios, como bachillerato y licenciatura, tienen una proporción mucho menor de pobreza en comparación con quienes no tienen títulos o poseen títulos técnicos.
+
+-   **Problemas o posibles desafíos:** Aunque el nivel educativo está claramente relacionado con menores tasas de pobreza, persisten brechas para los que alcanzan títulos técnicos o intermedios, donde la pobreza aún afecta a más del 10%.
+
+-   **Resumen en un párrafo:** La tabla muestra una correlación significativa entre el nivel educativo y la probabilidad de encontrarse en una situación de pobreza. Mientras que el 86% de las personas sin título no son pobres, la tasa de pobreza extrema entre este grupo es de 3.69%, y un 10.31% vive en pobreza no extrema. Por el contrario, entre quienes alcanzaron títulos universitarios de mayor rango, como licenciatura, especialización, maestría o doctorado, las tasas de pobreza son prácticamente inexistentes, con la gran mayoría en la categoría de "no pobre". Los que alcanzaron una licenciatura tienen un 98.12% de probabilidades de no ser pobres, con solo un 0.45% en pobreza extrema. Esta distribución refleja cómo el nivel educativo sigue siendo un factor clave para mejorar las condiciones socioeconómicas, aunque los desafíos son más evidentes para aquellos con títulos técnicos o intermedios, donde las tasas de pobreza no extrema aún alcanzan alrededor del 10%.
+:::
+
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 10 (Gráfico 13 y Tabla 10)
+
+-   **Nombre del hallazgo o resultado:** Ingreso promedio por nivel de educación.
+
+-   **Resumen en una oración:** Los ingresos promedio aumentan significativamente con el nivel educativo, alcanzando su máximo entre quienes tienen títulos de especialización, maestría y doctorado.
+
+-   **Principal característica:** Las personas con educación superior de especialización, maestría o doctorado tienen un ingreso promedio notablemente mayor, con un promedio que alcanza más de un millón de unidades monetarias, mientras que quienes no tienen título o tienen educación técnica perciben ingresos considerablemente menores.
+
+-   **Problemas o posibles desafíos:** La falta de información detallada sobre las ocupaciones específicas impide comprender completamente cómo se distribuyen los ingresos dentro de cada nivel educativo, pues dos personas con el mismo grado académico en diferentes industrias pueden tener ingresos muy diferentes.
+
+-   **Resumen en un párrafo:** El análisis de los ingresos promedio según nivel educativo muestra una correlación positiva entre la formación académica y el ingreso. Las personas con títulos avanzados, como especialización, maestría y doctorado, presentan los ingresos más altos, superando los 1.4 millones de unidades monetarias en promedio para maestrías y doctorados. En particular, aquellos con especialización tienen el promedio más alto, cercano a los 1.95 millones. Por el contrario, los individuos sin título o con formación técnica media presentan ingresos sustancialmente más bajos, con un promedio de aproximadamente 444 mil y 527 mil colones, respectivamente. Esta disparidad refleja la importancia de la educación en el acceso a mejores oportunidades económicas, aunque también señala desafíos para quienes no alcanzan niveles educativos superiores, limitando su acceso a trabajos mejor remunerados.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 11 (Gráfico 14 y Tabla 11)
+
+-   **Nombre del hallazgo o resultado:** Distribución del ingreso por quintiles y nivel educativo.
+
+-   **Resumen en una oración:** A medida que el nivel educativo aumenta, también lo hace la proporción de personas en los quintiles de ingreso más altos, destacando una concentración de aquellos con títulos avanzados en los quintiles superiores.
+
+-   **Principal característica:** Las personas con títulos de licenciatura, maestría o doctorado están fuertemente representadas en los quintiles de ingreso más altos (quintiles 4 y 5), mientras que quienes no tienen título o tienen niveles de educación menores tienden a concentrarse en los quintiles más bajos (quintiles 1 y 2).
+
+-   **Problemas o posibles desafíos:** La variabilidad en el nivel de ingreso entre la población que ha alcanzado un mismo grado académico puede afectar la precisión de los resultados.
+
+-   **Resumen en un párrafo:** El análisis revela una clara asociación entre el nivel educativo y la distribución del ingreso, mostrando que quienes no tienen título o tienen educación técnica media tienden a concentrarse en los quintiles de ingreso más bajos, especialmente en el primer y segundo quintil, donde más del 50% de aquellos sin título se encuentran. En contraste, a medida que aumenta el nivel educativo, se observa un incremento en la proporción de personas en los quintiles más altos, con un 42.83% de quienes tienen una licenciatura ubicados en el quinto quintil, y más del 12% de los que poseen una maestría o doctorado también en este quintil. Esto resalta cómo la educación es un factor clave para acceder a mayores ingresos.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 12 (Gráfico 15 y Tabla 12)
+
+-   **Nombre del hallazgo o resultado:** Relación entre el nivel de pobreza y el dominio de un segundo idioma.
+
+-   **Resumen en una oración:** La falta de dominio de un segundo idioma está asociada con mayores tasas de pobreza, evidenciada por un incremento en la proporción de personas en situación de pobreza extrema y no extrema en comparación con quienes sí dominan un segundo idioma.
+
+-   **Principal característica:** Un 7.3% de las personas que no dominan un segundo idioma se encuentran en pobreza extrema, en contraste con solo un 1.79% de quienes sí lo dominan. Asimismo, la pobreza no extrema afecta al 15.4% de los que no dominan un segundo idioma, comparado con el 3.11% de los que sí lo hacen.
+
+-   **Problemas o posibles desafíos:** Si bien se piensa que el dominio de un segundo idioma está vinculado con un mayor desarrollo educativo general, es posible que algunas personas dominen un segundo idioma meramente por cuestiones culturales, como, por ejemplo, que alguno de los padres hable ese segundo idioma. Además, el hecho de no dominar un segundo idioma no significa que la persona tenga una desventaja significativa, puesto que muchas personas con ingresos significativamente altos no dominan un segundo idioma.
+
+-   **Resumen en un párrafo:** El análisis indica que el dominio de un segundo idioma tiene un impacto significativo en la distribución de la pobreza. Entre las personas que no dominan un segundo idioma, el 7.3% se encuentra en pobreza extrema y el 15.4% en pobreza no extrema, mientras que entre quienes sí lo dominan, solo el 1.79% está en pobreza extrema y el 3.11% en pobreza no extrema. Esto resalta cómo el acceso a habilidades lingüísticas puede estar vinculado a mejores condiciones socioeconómicas.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 13 (Gráfico 16 y Tabla 13)
+
+-   **Nombre del hallazgo o resultado:** Proporción de personas en quintiles de ingreso según el dominio de un segundo idioma.
+
+-   **Resumen en una oración:** La mayoría de las personas que no dominan un segundo idioma se concentran en los quintiles de ingreso más bajos, mientras que quienes sí lo dominan tienen una representación significativa en los quintiles más altos.
+
+-   **Principal característica:** El 96.6% de las personas que no dominan un segundo idioma se encuentran en el primer quintil de ingreso, mientras que solo el 3.4% de las personas que sí dominan un segundo idioma se ubican en este quintil. Por el contrario, el 39.74% de los que sí dominan un segundo idioma están en el quintil más alto.
+
+-   **Problemas o posibles desafíos:** Si bien se piensa que el dominio de un segundo idioma está vinculado con un mayor desarrollo educativo general, es posible que algunas personas dominen un segundo idioma meramente por cuestiones culturales, como, por ejemplo, que alguno de los padres hable ese segundo idioma. Además, el hecho de no dominar un segundo idioma no significa que la persona tenga una desventaja significativa, puesto que muchas personas con ingresos significativamente altos no dominan un segundo idioma.
+
+-   **Resumen en un párrafo:** El análisis muestra una clara disparidad en la distribución del ingreso entre quienes dominan un segundo idioma y quienes no. La gran mayoría de las personas que no dominan un segundo idioma (96.6%) se concentran en el primer quintil de ingreso, con una reducción progresiva en las proporciones a medida que se avanza hacia quintiles más altos. En contraste, quienes sí dominan un segundo idioma presentan una representación notable en los quintiles superiores, con un 39.74% ubicándose en el quintil más alto. Este hallazgo sugiere que el dominio de un segundo idioma puede estar vinculado a mejores oportunidades económicas, aunque se deben considerar las limitaciones en la calidad y representación de los datos para una interpretación precisa.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 14 (Gráfico 17 y Tabla 14)
+
+-   **Nombre del hallazgo o resultado:** Relación entre el dominio de un segundo idioma y la distribución del ingreso.
+
+-   **Resumen en una oración:** El dominio de un segundo idioma se asocia con un ingreso promedio significativamente más alto, evidenciado por la media de ingreso de quienes sí dominan un segundo idioma en comparación con aquellos que no.
+
+-   **Principal característica:** Las personas que dominan un segundo idioma presentan una media de ingreso de 894084.2, en contraste con una media de 417943.3 para aquellos que no lo dominan. Además, el rango de ingreso (de mínimo a máximo) también es considerablemente mayor para quienes sí dominan un segundo idioma.
+
+-   **Problemas o posibles desafíos:** Si bien se piensa que el dominio de un segundo idioma está vinculado con un mayor desarrollo educativo general, es posible que algunas personas dominen un segundo idioma meramente por cuestiones culturales, como, por ejemplo, que alguno de los padres hable ese segundo idioma. Además, el hecho de no dominar un segundo idioma no significa que la persona tenga una desventaja significativa, puesto que muchas personas con ingresos significativamente altos podrían no dominar un segundo idioma.
+
+-   **Resumen en un párrafo:** El análisis revela una notable diferencia en la distribución del ingreso basada en el dominio de un segundo idioma. Las personas que no dominan un segundo idioma tienen una media de ingreso de 417943.3, mientras que aquellas que sí lo dominan alcanzan una media de 894084.2. Esta diferencia no solo se refleja en el promedio, sino también en el rango de ingresos, donde los que dominan un segundo idioma reportan valores máximos de hasta 13399500, en comparación con 20000000 para quienes no lo dominan. Esto sugiere que el dominio de habilidades lingüísticas puede ser un factor determinante en el acceso a mayores ingresos, aunque la calidad de los datos y la representación de diferentes grupos deben ser consideradas para asegurar una interpretación precisa.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 15 (Gráfico 11)
+
+-   **Nombre del hallazgo o resultado:** Relación entre los años de escolaridad e ingreso total por persona neto por quintiles de ingreso.
+
+-   **Resumen en una oración:** La relación entre los años de escolaridad y el ingreso personal neto varía según el quintil de ingreso, mostrando una tendencia creciente más pronunciada en los quintiles de mayores ingresos.
+
+-   **Principal característica:** La pendiente de la regresión aumenta a medida que se avanza por quintil de ingreso per cápita.
+
+-   **Problemas o posibles desafíos:** La estabilidad de los ingresos en los quintiles bajos podría dificultar el análisis de la relación entre escolaridad e ingreso, ya que los datos no muestran variabilidad significativa.
+
+-   **Resumen en un párrafo:** El gráfico 15 muestra cómo los años de escolaridad se relacionan con el ingreso personal neto, desagregado por quintiles de ingreso. En los quintiles de menores ingresos (1 y 2), el nivel de ingresos parece ser homogéneo a lo largo de diferentes niveles de escolaridad, lo que indica que la educación no genera grandes diferencias en estos casos. Sin embargo, en los quintiles superiores (4 y 5), se observa una relación positiva entre los años de escolaridad y el ingreso neto, sugiriendo que la escolaridad tiene un impacto mayor en los individuos de ingresos altos.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 16 (Gráfico 9)
+
+-   **Nombre del hallazgo o resultado:** Relación general entre escolaridad e ingreso por zonas urbana y rural.
+
+-   **Resumen en una oración:** A pesar de que se observa un incremento del ingreso conforme aumenta la escolaridad, las diferencias entre zonas urbana y rural no muestran una pendiente significativamente distinta.
+
+-   **Principal característica:** En ambas zonas, el aumento en los años de escolaridad tiende a correlacionarse con mayores ingresos, pero la relación parece ser similar en términos de pendiente.
+
+-   **Problemas o posibles desafíos:** La muestra para niveles extremos de escolaridad es pequeña, lo que podría afectar la fiabilidad de los resultados en esos casos.
+
+-   **Resumen en un párrafo:** El análisis de la tabla revela una relación positiva entre el nivel de escolaridad y el ingreso total personal neto tanto en zonas urbanas como rurales. Aunque las zonas presentan diferencias en los valores absolutos de los ingresos promedio, con mayores ingresos en la zona urbana a medida que aumenta la escolaridad, la pendiente de esta correlación no parece variar significativamente entre ambas zonas. Esto sugiere que el impacto de la educación en el aumento de los ingresos sigue un patrón general similar, sin importar la ubicación geográfica. Aunque en niveles altos de escolaridad pueden observarse diferencias en las medias, la similitud en la relación general indica que el acceso a la educación podría beneficiar a ambas zonas de manera comparable.
+:::
+
+::: {.callout-note appearance="minimal"}
+#### Hallazgo 17 (Gráfico 10)
+
+-   **Nombre del hallazgo o resultado:** Relación inversa entre la escolaridad y la intensidad de pobreza en zonas urbanas y rurales.
+
+-   **Resumen en una oración:** Se observa que a medida que aumenta el nivel educativo, la intensidad de pobreza tiende a disminuir, siendo más marcada esta tendencia en zonas urbanas.
+
+-   **Principal característica:** En la zona urbana, la intensidad de pobreza multidimensional disminuye conforme se incrementa el nivel de escolaridad. En la zona rural, aunque también se presenta una tendencia a la baja, los niveles de intensidad son generalmente más altos en comparación con las zonas urbanas.
+
+-   **Problemas o posibles desafíos:** Los datos de la tabla parecen estar muy dispersos, lo cual podría afectar la precisión de las conclusiones.
+
+-   **Resumen en un párrafo:** El análisis de la tabla revela una relación inversa clara entre la escolaridad y la intensidad de pobreza tanto en zonas urbanas como rurales. En las áreas urbanas, los individuos con niveles educativos más bajos muestran medias de intensidad de pobreza que superan el 27%, mientras que aquellos con niveles más altos de escolaridad experimentan una reducción notable en esta medida. Esta tendencia sugiere que un mayor nivel educativo se asocia con una mejor situación económica, reflejando un impacto positivo en la disminución de la pobreza. En el contexto rural, aunque se observa una tendencia similar, las medias de intensidad de pobreza son más elevadas en todos los niveles de escolaridad, lo que podría indicar que los beneficios de la educación son menos efectivos en estas áreas en comparación con las urbanas. La persistencia de la pobreza en la zona rural subraya la necesidad de políticas que no solo fomenten la educación, sino que también aborden las condiciones socioeconómicas específicas que afectan a estas comunidades.
+:::
+
+### Ordenamiento de los elementos de reporte
+| Elementos del reporte                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                          |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Primario                                                                                                                                                                                                                                                                                   | Secundario                                                                                                                                                                                                                                               |
+| -Teoria del capital humano                                                                                                                                                                                                                                                                 | -Conflicto entre la teoría del capital humano y el enfoque estructural de la pobreza                                                                                                                                                                     |
+| -Enfoque estructural de la pobreza                                                                                                                                                                                                                                                         | -Resultados secundarios:  Distribución de las categorías educativas por quintil de ingreso per cápita neto del hogar    Correlación entre años de escolaridad e ingreso por zona  Correlación entre años de escolaridad e intensidad de pobreza por zona |
+| -Descripción de los datos                                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                          |
+| -Métodos estadísticos utilizados (media, desviación estándar, cuantiles, correlación)                                                                                                                                                                                                      |                                                                                                                                                                                                                                                          |
+| -Impacto de la educación (primaria, secundaria y post-secundaria) en la pobreza y el ingreso según varios autores                                                                                                                                                                          |                                                                                                                                                                                                                                                          |
+| -Resultados primarios:  Distribución de la pobreza por diferentes categorías educativas (tipo de centro educativo al que se asistió, universidad pública, nivel de instrucción, titulación, dominio de un segundo idioma).  Distribución del ingreso por diferentes categorías educativas. |                                                                                                                                                                                                                                                          |
+
+| Sección                           | Temas a tratar                                                                                                                                                                                                                                               |
+|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Introducción                      | Teoría del capital humano (Primario)                                                                                                                                                                                                                         |
+|                                   | Enfoque estructural de la pobreza (Primario)                                                                                                                                                                                                                 |
+|                                   | Conflicto entre la teoría del capital humano y el enfoque estructural de la pobreza (Secundario)                                                                                                                                                             |
+| Metodología                       | Descripción de los datos (Primario)                                                                                                                                                                                                                          |
+|                                   | Métodos estadísticos utilizados (media, desviación estándar, cuantiles, correlación) (Primario)                                                                                                                                                              |
+|                                   | Impacto de la educación (primaria, secundaria y post-secundaria) en la pobreza y el ingreso según varios autores (Primario)                                                                                                                                  |
+| Resultados                        | Resultados primarios:<br>Distribución de la pobreza por diferentes categorías educativas. <br>Distribución del ingreso por diferentes categorías educativas.                                                                                                 |
+|                                   | Resultados secundarios:<br>Distribución de las categorías educativas por quintil de ingreso per cápita neto del hogar <br>Correlación entre años de escolaridad e ingreso por zona<br>Correlación entre años de escolaridad e intensidad de pobreza por zona |
+## Parte de escritura
+### Introducción
+
+De manera muy simplificada, se podría decir que la dinámica socioeconómica que rige actualmente tanto en Costa Rica como en gran parte de la sociedad occidental consiste en recompensar a los individuos según el valor que aportan a la sociedad. Así, aquellos que aportan y producen más suelen ser mejor remunerados que aquellos cuya capacidad productiva es menor. A partir de esta premisa, si se desea estudiar los factores que determinan quién recibe más y quién recibe menos, resulta imprescindible profundizar en los elementos que permiten a una persona mejorar su condición socioeconómica dentro de este sistema.
+
+En este trabajo, se postula que el elemento que, por excelencia, determina en mayor medida la condición socioeconómica de una persona es la educación. Este enfoque tiene sus raíces en la teoría del capital humano, la cual explica cómo los individuos aumentan su valor productivo a través de la adquisición de conocimientos y habilidades. A grandes rasgos, la teoría sostiene que la educación es una inversión en el ser humano que, al igual que el capital físico en una empresa, genera retornos económicos tanto para el individuo como para la sociedad.
+
+@Bazdresch2001 establece que mayor educación proporciona más “capital humano” (socialización, conocimientos y significados) a los miembros de la sociedad, lo cual les hace más productivos y, como consecuencia, les permiten competir por mejores puestos de trabajo y mejores ingresos. En otras palabras, cuanto más capital humano posea una persona, mayor será su capacidad para generar ingresos. Así pues, la teoría sugiere que la desigualdad en la distribución de los ingresos se debe, en gran parte, a las diferencias en las habilidades y en los niveles educativos de las personas.
+
+De esta manera, en un sistema socioeconómico basado en el valor productivo, la educación se presenta como un motor clave para ascender socialmente, y mejorar las condiciones de vida de las personas. Por tanto, para mermar las desigualdades sociales y económicas prevalentes en la sociedad, una solución inspirada en la teoría del capital humano podría consistir en promover políticas educativas enfocadas en ayudar a las personas en condición de pobreza, con el fin de facilitar su integración en el mercado laboral en el futuro, con mejores ingresos.
+
+No obstante, aunque la teoría del capital humano ofrece una perspectiva útil para entender las disparidades socioeconómicas, esta visión por si sola no logra explicar completamente las dinámicas de la pobreza y la desigualdad. Mientras los defensores de esta teoría tienden a enfatizar la responsabilidad individual en el éxito económico, otros enfoques, como el estructural, argumentan que existen factores externos —económicos, sociales e institucionales— que limitan las oportunidades de los individuos, independientemente de su nivel educativo. En particular, @Rodriguez sostiene que la pobreza es el resultado de estructuras económicas y sociales, que incluyen factores demográficos (educación y habilidades de las personas), factores relacionados con el mercado laboral (oferta y demanda de trabajo), y factores institucionales (barreras ajenas al mercado, como la discriminación).
+
+Uno de los problemas centrales que enfrenta la teoría del capital humano, según @Bazdresch2001, es que las personas en condición de pobreza sufren una marcada desigualdad de oportunidades, lo que les impide aprovechar el sistema educativo de manera plena. Estas personas tienen menor posibilidad de ingresar oportunamente a las instituciones educativas, de completar los ciclos escolares y de alcanzar un aprovechamiento escolar satisfactorio. En este sentido, la falta de educación de las personas en condición de pobreza no es solo una causa de su situación, sino también una consecuencia directa de las barreras estructurales que enfrentan. Esto crea un círculo vicioso en el que la falta de oportunidades educativas genera una "educación empobrecida", que a su vez limita aún más las posibilidades de movilidad económica.
+
+En consecuencia, la teoría del capital humano queda en una posición cuestionable, ya que, aunque la educación formal y no formal proporcionan conocimientos y habilidades, esta no necesariamente se traduce en ingresos más elevados o movilidad económica a quienes provienen de entornos más desfavorecidos. Esto sugiere que, si bien la educación es crucial para mejorar las condiciones socioeconómicas, su impacto puede estar profundamente condicionado por las estructuras económicas y sociales preexistentes. En otras palabras, no basta con proporcionar acceso a la educación si las condiciones que permiten aprovecharla siguen siendo desiguales.
+
+Por lo tanto, aunque la educación y la acumulación de capital humano son fundamentales para mejorar la condición socioeconómica de una persona, estos elementos no operan en un vacío. La capacidad de traducir la educación en mejores oportunidades e ingresos está mediada por las condiciones del mercado laboral y las instituciones que determinan el acceso a dichas oportunidades. Factores como la segmentación del mercado laboral, las fluctuaciones en la oferta y demanda de empleo, y las barreras institucionales —por ejemplo, la discriminación por género o etnia— pueden frenar el impacto positivo de la educación en la movilidad social.
+
+
+### Metodología
+#### Descripción de los datos
+
+**Fuente de la información:** La fuente de la cual fueron recolectados los datos corresponde al Instituto Nacional de Estadística y Censos (INEC), más especídficamente los datos corresponden a los recolectados en la @ENAHO2023.
+
+*Población de estudio:* De acuerdo a @ENAHO2023, la población de estudio corresponde al conjunto de viviendas individuales ocupadas y sus ocupantes residentes habituales, tanto del área urbana como del área rural de Costa Rica. En este caso particular, se están tomando a las personas entre 18 y 65 años de edad. Es importantes destacar que se excluyó del estudio a la población residente en las viviendas colectivas (hoteles, hospitales, asilos, cárceles, conventos, residencias colectivas para estudiantes y trabajadores).
+
+**Contexto temporal y espacial de los datos:** Los datos utilizados en este análisis fueron recolectados durante el año 2023, como parte de la Encuesta Nacional de Hogares realizada en julio. Este periodo permite observar la situación económica actual de los hogares costarricenses, especialmente relevante en el contexto pospandemia. A nivel espacial, los datos son representativos a nivel nacional e incluyen un desglose por regiones y áreas urbanas y rurales. Esta distribución geográfica es crucial para identificar disparidades en la distribución del ingreso y el acceso a la educación entre diferentes zonas del país.
+
+**Unidad estadística o individuos:** La unidad estadística de este estudio es el individuo (persona) dentro de un hogar encuestado en una vivienda ubicada en Costa Rica en el año 2023. Cada individuo representa una persona en la muestra, de la cual se recaban datos sobre variables socioeconómicas, demográficas, educativas, entre otras.
+
+**Descripción de las variables:**
+```{r Agrega label}
+#| echo: false
+#| warning: false
+#| message: false
+# install.packages("Hmisc")
+library(Hmisc)
+label(ENAHO$Escolari) <- "Años de escolaridad"
+# Esto lo hice ya que la variable Escolari en su estructura no contiene el label por tanto, hay que agregársela manualmente
+```
+
+```{r Tabla Variables}
+#| echo: false
+#| warning: false
+#| message: false
+labels <- ENAHO %>%  # Excluye las variables
+  summarise(Código = names(.),  # Obtiene los nombres de las columnas
+            Variable = map_chr(., 
+                               ~ attr(.x, "label", exact = TRUE) %||% NA)  # Extrae el label o NA
+            ) %>%
+  as.data.frame()
+# Generar tabla con kable
+kable(labels, caption = "Descripción de códigos y nombres de las variables de la base de datos") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+
+La tabla anterior presenta los códigos y nombres de las variables más representativas que se consideran relevantes para el análisis en este trabajo. Es importante destacar que la base de datos de la ENAHO cuenta con 594 variables, de la totalidad de variables estas 13 fueron seleccionadas de la Encuesta Nacional de Hogares (ENAHO) 2023 de Costa Rica. Cada fila de la tabla corresponde a una variable específica con su código. 
+
+Es importante mencionar que algunas variables fueron creadas por la casa encuestadora. Teniendo esto úlimo en cuenta, las variables que son creadas y que se han utilizado a lo largo del presente trabajo son *itpn*, *lp*, *np*, *IPM_Intensidad*, *Q_IPCN*, y *ipcn*.
+
+De las variables mencionadas en la tabla cabe destacar que de acuerdo a @ENAHO2023, Zona se refiere a aspectos demográficos como  son la zona urbana o rural; educativos, como lo son la formación educativa formal la cual clasifica la especialidad o carrera que una persona ha estudiado y Título que se refiere al máximo nivel académico adquirido.Por su parte la variable del Valor de la Línea de Pobreza corresponde a un indicador que representa el monto mínimo requerido para que una persona pueda satisfacer las necesidades básicas “alimentarias y no alimentarias”, esta tiene solo 2 valores, uno para las zonas urbanas (₡128.406) y otra para las personas habitantes de zonas rurales (₡99.140). Por la misma línea se encuentra la variable correspondiente a nivel de pobreza la cual clasifica a las personas encuestadas en tres categorías que como @ENAHO2023 lo indica son:
+
+ * Pobreza extrema: Se clasifica aquí aquellos hogares con un ingreso per cápita igual o inferior al costo per cápita de la canasta básica alimentaria (cba), i.e, si
+
+$$
+0\leq ipcn \leq CBA
+$$
+
+ * Pobreza no extrema: Se clasifican aquellos hogares que tienen un ingreso per cápita igual o inferior a la línea de pobreza pero superior al costo per cápita de la canasta básica alimentaria (cba), i.e, si
+
+$$
+CBA < ipcn \leq lp
+$$
+
+ * No pobre: Se clasifican aquellos hogares con un ingreso per cápita que les permite cubrir sus necesidades básicas alimentarias y no alimentarias. Es decir, su ingreso per cápita es superior al valor de la línea de pobreza, i.e, si
+
+$$
+ipcn > lp
+$$
+En el mismo contexto de las variables que miden el nivel de pobreza en la muestra se encuentran las variables de Pobreza multidimensional y la Intensidad de la pobreza multidimensional, la primera indica solo si la unidad estadística se encuantra o no en pobreza multidimensional y la segunda, según @ENAHO2023, aplica para las unidades estadísticas pobres según el criterio de medición del IPM, el valor de esta variable corresponde a las privaciones ponderadas por el peso de cada indicador, el IPM_Intensidad que obtiene cada hogar, oscila entre cero (ninguna privación) y uno (todas las privaciones).
+
+La variable correspondiente al Quintil de ingreso per cápita del hogar neto agrupa los hogares según su ingreso per cápita, el primer quintil contiene el 20% de los hogares con menor ingreso, en tanto el quinto agrupa el 20% de los hogares con el mayor ingreso per cápita. Esta forma parte del conjunto de variables creadas y la especificación de los quintiles se detalla acontinuación;
+
+```{r Tabla Def. QUINTILES}
+#| echo: false
+#| warning: false
+#| message: false
+title <- c("Quintil 1 (Q1)", 
+               "Quintil 2 (Q2)", 
+               "Quintil 3 (Q3)", 
+               "Quintil 4 (Q4)", 
+               "Quintil 5 (Q5)")
+def <- c("₡110.683 ó menos", 
+          "Más de ₡110.683 a ₡195.000", 
+          "Más de ₡195.000 a ₡321.523", 
+          "Más de ₡321.523 a ₡574.085", 
+          "Más de ₡574.085")
+info_quintiles <- as.data.frame(cbind(title,def))
+colnames(info_quintiles) <- c("Título y notación","Definición")
+# Generar tabla con kable
+info_quintiles %>% kable(caption = "Definición de los quintiles") %>%
+  kable_styling(position = "left", 
+                bootstrap_options = c("striped", "hover", "responsive")) %>%
+  footnote(general = "INEC, Costa Rica. (2023). ENAHO, Julio 2023: Resultados Generales.",
+           footnote_as_chunk = TRUE,
+           general_title = "Fuente: ")
+```
+Finalmente se encuentra la variable correspondiente al Ingreso per cápita del hogar neto la cual según @ENAHO2023 se define como la suma de todos los ingresos netos de los miembros del hogar entre el tamaño del hogar. Cuya definición viene dada por
+
+$$
+ipcn = \frac{ithn}{TamHog}
+$$
+Claramente esta variable pertenece a las variables creadas, $ithn$ corresponde al Ingreso total del hogar neto y $TamHog$ es el Tamaño del hogar.
+
+#### Métodos
+
+Para el presente estudio, se emplearon diversos métodos orientados al análisis y síntesis de datos, con un enfoque particular en técnicas de análisis exploratorio. Estas herramientas permitieron obtener una visión inicial de la estructura, distribución y relaciones de las variables, facilitando así la identificación de patrones y tendencias clave en el conjunto de datos. A lo largo de las tablas y gráficos presentados, se aplicaron métricas descriptivas como medidas de tendencia central, dispersión y posición, complementadas con visualizaciones que aportan una comprensión más detallada de los datos. Este enfoque no solo proporciona un resumen integral de la información, sino que también establece las bases para un análisis más profundo en fases posteriores del estudio. En la presente sección se emplearán las fórmulas y definiciones planteadas por @Dekking2005 en el líbro *A Modern Introduction to Probability and Statistics*.
+
+::: {.callout-tip}
+##### Definición 3.1 (Media)
+
+La *esperanza* de una variable aleatoria discreta \( X \) que toma los valores \( a_1, a_2, \ldots \) y con función de masa de probabilidad \( p \) es el número 
+$$
+\mathbb{E}[X] = \sum_i a_i P(X = a_i) = \sum_i a_i p(a_i).
+$$
+
+También llamamos a $\mathbb{E}[X]$ el *valor esperado* o *media* de \( X \).
+:::
+
+Esta medida de tendencia central es la más común y estandarizada. Aunque existen diferentes tipos de medias, para la presente investigación se empleará la definición presentada anteriormente.
+
+::: {.callout-tip}
+##### Definición 3.2 ( Varianza y Desviación Estándar)
+
+La *varianza* \( \operatorname{Var}(X) \) de una variable aleatoria \( X \) es el número
+\[
+\operatorname{Var}(X) = \mathbb{E} \left[(X - \mathbb{E}[X])^2 \right].
+\]
+
+Nótese que la varianza de una variable aleatoria siempre es positiva (o 0). Además, surge la cuestión de existencia y finitud. En situaciones prácticas, a menudo se considera la *desviación estándar* definida por $\sqrt{\operatorname{Var}(X)}$, ya que tiene la misma dimensión que \( \mathbb{E}[X] \).
+
+:::
+La desviación estándar es una de las principales medidas de dispersión, que indica, en promedio, cuánto se alejan los datos de la media. Esta medida se ha empleado en diversos contextos a lo largo del estudio para analizar la variabilidad de los datos.
+
+::: {.callout-tip}
+##### Definición 3.3 (Cuantiles)
+
+Sea \( X \) una variable aleatoria continua y sea \( p \) un número entre 0 y 1. El $p$-ésimo *cuantil* o percentil \( 100p \) de la distribución de \( X \) es el número más pequeño \( q_p \) tal que
+\[
+F(q_p) = \mathbb{P}(X \leq q_p) = p.
+\]
+La *mediana* de una distribución es su percentil 50.
+
+:::
+Esta defición corresponde a la versión general del quantil, en el presente trabajo se utilizan los quinitles 1,2 y 3 que se definen como
+$$
+\mathbb{P}[ X \leq Q_1] = 0.25
+$$
+$$
+\mathbb{P}[ X \leq Q_2] = 0.5
+$$
+$$
+\mathbb{P}[ X \leq Q_3] = 0.75
+$$
+
+De acuerdo a @camacho2006regresion se tiene la siguiente definición
+
+::: {.callout-tip}
+##### Definición 3.2 (Regresión lineal simple)
+
+La regresión lineal simple es un modelo estadístico que describe la relación entre una variable dependiente \( Y \) y una variable independiente \( X \). Este modelo asume que la relación entre ambas variables puede expresarse mediante la ecuación:
+
+$$
+Y = \alpha + \beta X + \varepsilon
+$$
+
+donde \( \alpha \) representa el intercepto, \( \beta \) la pendiente del modelo, y \( \varepsilon \) el término de error o perturbación, que captura la variabilidad no explicada por \( X \). La puntuación predicha \( \hat{Y} \) para cada valor de \( X \) es:
+
+$$
+\hat{Y} = \alpha + \beta X
+$$
+
+El error en la predicción se define como la diferencia entre el valor observado \( Y \) y el valor predicho \( \hat{Y} \):
+
+$$
+\varepsilon = Y - \hat{Y}
+$$
+:::
+
+Este modelo se utiliza para estimar los parámetros \( \alpha \) y \( \beta \) en una muestra, permitiendo inferir sobre la población y realizar predicciones. Aunque en este trabajo no se realiza el cálculo exacto, el modelo ha sido útil en el apartado de gráficos para analizar la relación lineal entre dos variables.
+
+
+
+### Resultados
+
+**Distribución de la pobreza**
+
+Tras analizar la distribución de la población en condición de pobreza y no pobreza a través de diferentes categorías, se puede hacer la afirmación preliminar de que la educación es un determinante clave de la condición socioeconómica de las personas, ya que influye de manera directa en las probabilidades de que un individuo se encuentre en situación de pobreza.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico10.png")
+```
+
+
+En este sentido, el análisis del gráfico 10 revela una relación inversa clara entre la escolaridad y la intensidad de pobreza tanto en zonas urbanas como rurales. En las áreas urbanas, los individuos con niveles educativos más bajos muestran medias de intensidad de pobreza que superan el 27%, mientras que aquellos con niveles más altos de escolaridad experimentan una reducción notable en esta medida. Esto sugiere que un mayor nivel educativo contribuye a una mejor situación económica y refleja un impacto positivo en la disminución de la pobreza. Sin embargo, en el contexto rural, aunque se observa una tendencia similar, las medias de intensidad de pobreza son más elevadas en todos los niveles de escolaridad. Este contraste podría indicar que los beneficios de la educación son menos efectivos en estas áreas en comparación con las urbanas, subrayando la necesidad de políticas que no solo fomenten la educación, sino que también aborden las condiciones socioeconómicas específicas que afectan a estas comunidades.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico6.png")
+```
+
+Este patrón de relación inversa entre educación y pobreza también se observa al examinar la distribución de la pobreza según el nivel de instrucción (gráfico 6), donde destaca cómo a medida que el nivel educativo aumenta, la proporción de personas en situación de pobreza disminuye. Entre aquellos con nulo o bajo nivel de instrucción, el 13.64% se encuentra en pobreza extrema, y el 23.75% en pobreza no extrema. En contraste, en los grupos con educación superior de posgrado, solo el 0.23% está en pobreza extrema y ningún individuo se clasifica en pobreza no extrema. Este hallazgo resalta aún más la importancia de la educación como un factor crítico para salir de la pobreza. Por ejemplo, quienes completan la educación secundaria muestran una reducción considerable en los niveles de pobreza, con solo el 5.71% en pobreza extrema y un 12.44% en pobreza no extrema.
+
+Este análisis es concordante con lo que han encontrado diversos autores. Por un lado, @becker afirma que una población más educada y saludable acelera el desarrollo económico de un país, destacando a la educación primaria y secundaria como motores principales. Por otro lado, @Sanchez encuentra que el hecho de completar la secundaria disminuye en un 5.7% la probabilidad de caer en pobreza, mientras que obtener estudios post-secundarios la reduce en un 8.4%. Además, @OrdazDiaz2009 concluye que la educación primaria reduce la pobreza alimentaria, de capacidades y de patrimonio en un 18%, 16% y 4% respectivamente, mientras que la secundaria lo hace en un 30%, 27% y 15%, mostrando un mayor impacto en las condiciones de vida. En conjunto, estos resultados subrayan que una educación de mayor calidad y alcance es esencial no solo para disminuir la pobreza, sino también para mejorar la estabilidad económica en el largo plazo.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico1.png")
+```
+
+En cuanto al impacto de la educación primaria y secundaria, los datos revelan una marcada diferencia entre las personas según el tipo de centro educativo al que asistieron (gráfico 1). Los resultados muestran que la ausencia total de educación formal está claramente asociada con un mayor nivel de pobreza extrema, ya que el 18.21% de los adultos que nunca asistieron a un centro educativo se encuentran en esta categoría. Sin embargo, la pobreza disminuye considerablemente entre aquellos que asistieron a centros educativos, especialmente privados (1.46% en pobreza extrema) y semipúblicos (4%). Por otro lado, los centros públicos, con un 7.40% de pobreza extrema, se ubican entre los extremos del espectro, indicando que, si bien la educación pública proporciona una vía para mejorar la situación económica, su impacto en la reducción de la pobreza es menor en comparación con los centros privados. Esto refleja cómo la calidad y el tipo de centro al que se asistió tienen un impacto significativo en la situación socioeconómica de las personas, sugiriendo que la educación de calidad juega un papel crucial en la movilidad social. Esto es reforzado por lo que dicen @ricardez: si se tienen profesores mejores capacitados y con salarios competitivos, o si se recibe una educación privada, se reduce la probabilidad de encontrarse en pobreza.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico12.png")
+```
+
+Además de las diferencias por tipo de centro educativo, el nivel de titulación también muestra una relación clara con la situación socioeconómica de las personas. La tabla 11 evidencia una correlación significativa entre el nivel educativo alcanzado y la probabilidad de encontrarse en situación de pobreza. Mientras que el 86% de las personas sin título no son pobres, la tasa de pobreza extrema en este grupo es de 3.69%, y un 10.31% vive en pobreza no extrema. Por el contrario, entre quienes alcanzaron títulos universitarios de mayor rango, como licenciatura, especialización, maestría o doctorado, las tasas de pobreza son prácticamente inexistentes, con la gran mayoría en la categoría de "no pobre".
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico4.png")
+```
+
+Además de las diferencias por nivel de titulación, también se observa una notable variación en la distribución de la pobreza entre personas que asistieron a diferentes universidades públicas (gráfico 4). Los resultados destacan que la Universidad de Costa Rica (UCR) y el Tecnológico de Costa Rica (TEC) presentan los menores niveles de pobreza extrema y no extrema (1.1% y 0.66% respectivamente para pobreza extrema), mientras que la Universidad Estatal a Distancia (UNED) muestra la mayor proporción de personas en pobreza extrema (7.93%) y pobreza no extrema (11.59%). Estas diferencias podrían relacionarse con las características particulares de cada institución. Por ejemplo, la UNED, al ser una universidad a distancia, podría atraer a una población con menores ingresos y mayores restricciones económicas, lo cual explicaría su mayor nivel de pobreza. Otro aspecto importante a destacar es que el hecho de que la asistencia a la universidad no necesariamente evita que las personas se encuentren en condición de pobreza.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico15.png")
+```
+
+Asimismo, el dominio de un segundo idioma se presenta como un factor relevante en la distribución de la pobreza, sugiriendo una relación clara entre las habilidades lingüísticas y las condiciones socioeconómicas. Según los datos del gráfico 15, el 7.3% de las personas que no dominan un segundo idioma vive en pobreza extrema y el 15.4% en pobreza no extrema. En contraste, quienes sí poseen esta habilidad presentan cifras significativamente menores, con solo el 1.79% en pobreza extrema y el 3.11% en pobreza no extrema. Estos resultados subrayan la importancia del dominio de un segundo idioma como una ventaja que puede mejorar las oportunidades económicas y reducir la probabilidad de caer en pobreza.
+
+**Distribución del ingreso**
+
+A continuación, se examina la relación entre el nivel educativo y el ingreso, explorando cómo el nivel educativo impacta las posibilidades económicas de los individuos. Esta sección no solo revela las diferencias en los ingresos promedio según diferentes categorías educativas, sino también la variabilidad dentro de cada una, mostrando distintas oportunidades y desafíos económicos que enfrentan las personas en función de su formación académica.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico9.png")
+```
+
+Al analizar esta relación entre escolaridad e ingresos, se observa un patrón consistente en zonas urbanas y rurales. Aunque los ingresos promedio tienden a ser más altos en áreas urbanas y aumentan con el nivel educativo, la pendiente de esta correlación se mantiene estable en ambas zonas. Esto sugiere que, independientemente de la ubicación geográfica, la educación ejerce un impacto similar en el incremento de los ingresos. Si bien existen diferencias en los promedios de ingresos para niveles educativos más altos, la uniformidad en la tendencia general indica que el acceso a la educación beneficia a ambas zonas de forma comparable, reafirmando su importancia como motor de movilidad económica.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico7.png")
+```
+
+Por otro lado, el análisis muestra que el nivel educativo es un determinante clave de los ingresos, evidenciado en un incremento claro a medida que aumenta el nivel de instrucción. Las personas con educación superior de posgrado presentan los ingresos más altos, con un promedio de ₡1,541,922, lo que supera en más de seis veces el promedio de ₡249,387 de quienes tienen nulo o poco nivel de instrucción. Sin embargo, esta relación también revela una creciente dispersión en los ingresos dentro de cada grupo educativo, especialmente en los niveles más altos, donde la desviación estándar es considerablemente alta, como en el posgrado (₡1,089,738). Esto indica que, si bien la educación superior ofrece acceso a mejores ingresos, existen diferencias significativas dentro de estos grupos, posiblemente influidas por la especialización profesional, el tipo de empleo y la región de residencia.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico2.png")
+```
+
+Además de la relación entre el nivel educativo y los ingresos, es crucial examinar cómo el tipo de centro educativo al que se asistió influye en el ingreso total personal neto. Los datos revelan que quienes asistieron a centros privados disfrutan de los ingresos más altos, con una media de ₡846,691.2, seguidos de los que fueron estudiantes de centros semi-públicos, que presentan una media de ₡783,109.0. Esta tendencia sugiere que aquellos que cursaron estudios en estos centros no solo accedieron a una educación de calidad, sino que también pudieron contar con ventajas socioeconómicas desde el inicio, lo que les permitió alcanzar mayores niveles de ingresos. Esto lo refuerza la idea de que, si bien la educación puede aumentar los ingresos individuales, no modifica la estructura económica subyacente, donde la concentración de activos y el poder de mercado perpetúan la desigualdad, como lo explica @figueroa. 
+
+En contraste, los centros públicos exhiben una media de ingresos significativamente más baja, de ₡405,861.1, y una distribución mucho más desigual, reflejada en una desviación estándar de ₡503,840.6 y un ingreso máximo de ₡20 millones. Esto indica que, aunque existe una minoría en este grupo que logra niveles de ingresos muy altos, la mayoría no llega a ese umbral. Por otro lado, los adultos que nunca asistieron a un centro educativo presentan los ingresos más bajos, con una media de ₡222,138.6, destacando así la importancia de la educación formal para mejorar las perspectivas económicas.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico13.png")
+```
+
+Al observar los ingresos promedio según la titulación obtenida, se evidencia una correlación positiva entre la formación académica y el ingreso. Las personas con títulos avanzados, como especialización, maestría y doctorado, son quienes alcanzan los ingresos más altos, superando los 1.4 millones de colones en promedio para los niveles de maestría y doctorado. En particular, quienes han completado una especialización muestran el promedio de ingresos más elevado, cercano a los 1.95 millones. En contraste, aquellos sin título o con formación técnica media obtienen ingresos considerablemente menores, con promedios de aproximadamente 444 mil y 527 mil colones, respectivamente. Esta disparidad subraya la importancia de la educación como vía para acceder a mejores oportunidades económicas; sin embargo, también pone de manifiesto los desafíos que enfrentan aquellos que no alcanzan niveles educativos superiores, limitando su acceso a empleos mejor remunerados y a una mayor movilidad económica.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico5.png")
+```
+
+La comparación del ingreso total personal neto entre las universidades públicas de Costa Rica revela marcadas diferencias. La Universidad de Costa Rica (UCR) muestra un ingreso promedio de ₡950,480.4, mientras que el Tecnológico de Costa Rica (TEC) registra el promedio más alto, alcanzando ₡1,146,155.2. Estos ingresos superan ampliamente los de otras universidades, como la Universidad Nacional (UNA) y la Universidad Estatal a Distancia (UNED), cuyos promedios son de ₡785,263.1 y ₡560,280.2, respectivamente. Estas cifras sugieren que la UCR y el TEC podrían estar preparando a sus estudiantes para obtener mejores ingresos en el mercado laboral, posiblemente reflejando tanto la calidad educativa de sus programas como las oportunidades laborales que ofrecen a sus egresados.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico17.png")
+```
+
+El análisis del dominio de un segundo idioma muestra también una influencia notable en la distribución de ingresos. Las personas que no dominan un segundo idioma tienen un ingreso promedio de ₡417,943.3, mientras que aquellas que sí lo dominan logran una media significativamente mayor, de ₡894,084.2. Además de esta variación en el promedio, se observan diferencias en los rangos de ingresos: quienes dominan un segundo idioma reportan ingresos máximos de hasta ₡13,399,500, en comparación con los ₡20,000,000 entre aquellos sin dicha habilidad. Esto sugiere que el dominio de un segundo idioma puede ser determinante para acceder a mayores ingresos, pero hay que tomar en cuenta que esto no lo es todo, pues también hay evidencia de muchas personas con ingresos altos que no dominan un segundo idioma.
+
+**Distribución de las categorías educativas por quintil de ingreso per cápita neto del hogar**
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico8.png")
+```
+
+El gráfico 8 revela que los niveles educativos bajos, como sin instrucción o primaria completa, se concentran en los quintiles de ingresos más bajos. En el primer quintil (₡110,683 o menos), el 52.98% completó solo la primaria y el 18.14% tiene poca o ninguna instrucción. En contraste, en el quinto quintil (más de ₡574,085), el 54.87% completó educación de pregrado y el 11.26% tiene estudios de posgrado. Esto sugiere que el acceso a niveles educativos superiores tiende a ubicarse en los quintiles altos, aunque existen barreras estructurales que limitan la movilidad social, como se ha visto anteriormente.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico3.png")
+```
+
+Además, el tipo de centro educativo asistido muestra una tendencia similar: el 87.52% de las personas en el primer quintil asistieron a colegios públicos, mientras que el 44.59% de las personas del quinto quintil asistieron a colegios privados. Esto refleja cómo el nivel socioeconómico puede influir en el acceso a instituciones privadas, que suelen ofrecer beneficios adicionales.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico14.png")
+```
+
+Quienes tienen formación técnica media o sin título se concentran principalmente en los quintiles bajos, mientras que la educación superior facilita la presencia en los quintiles altos. Por ejemplo, el 42.83% de quienes cuentan con una licenciatura se encuentran en el quinto quintil, y más del 12% de quienes poseen un posgrado también están en este grupo. Esto resalta la importancia de la educación como un motor de movilidad social, evidenciando que el acceso a niveles educativos superiores es fundamental para mejorar las oportunidades económicas y romper el ciclo de pobreza.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico16.png")
+```
+
+El análisis revela una clara disparidad en la distribución del ingreso según el dominio de un segundo idioma. Mientras que el 96.6% de las personas que no dominan un segundo idioma se agrupan en el primer quintil de ingreso, aquellos que sí lo dominan tienen una representación significativa en los quintiles superiores, con un 39.74% en el quintil más alto. Esto refuerza el hecho de que las habilidades lingüísticas pueden estar asociadas con mejores oportunidades económicas, destacando su importancia para mejorar la situación laboral y económica de una persona.
+
+```{r}
+#| echo: false
+#| out-width: '80%'
+#| fig-align: 'center'
+knitr::include_graphics("graphs/Grafico11.png")
+```
+
+El gráfico 15 ilustra la relación entre los años de escolaridad y el ingreso personal neto, mostrando que, en los quintiles de menores ingresos (1 y 2), la educación no genera grandes diferencias en los niveles de ingreso. En contraste, en los quintiles superiores (4 y 5), se evidencia una relación positiva, donde a mayor escolaridad corresponde un mayor ingreso neto. En otras palabras, mientras que la educación tiene un impacto limitado en los ingresos bajos, su efecto es más significativo entre aquellos con mayores ingresos, resaltando su papel como un factor determinante en la movilidad económica.
+
+
+## Parte de reflexión
+
+![UVE Heurística](UVE_Gowing_3raBitacora.png)
+
+{{< pagebreak >}}
+
