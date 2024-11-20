@@ -170,7 +170,7 @@ En comparación, los centros públicos tienen una media de ingresos notablemente
 
 ![Distribución del ingreso total neto por persona según título obtenido](graphs/Grafico13.png){#fig-Grafico13 width=80%}
 
-Al analizar los ingresos según la titulación obtenida en la @fig-Grafico13, se evidencia una correlación positiva entre la formación académica y los ingresos. Las personas con títulos avanzados, como especialización, maestría y doctorado, logran los ingresos más altos, superando los 1.4 millones de colones en promedio para los niveles de maestría y doctorado. En particular, quienes completaron una especialización tienen el promedio de ingresos más elevado, cercano a los 1.95 millones de colones. Por el contrario, aquellos sin título o con formación técnica media obtienen ingresos considerablemente menores, con promedios de aproximadamente 444 mil y 527 mil colones, respectivamente. Esta diferencia destaca la importancia de la educación como una vía para acceder a mejores oportunidades económicas, aunque también muestra las dificultades que enfrentan quienes no alcanzan niveles educativos superiores, limitando su acceso a empleos bien remunerados y su movilidad económica.
+Al analizar los ingresos según la titulación obtenida en la @fig-Grafico13, se evidencia una correlación positiva entre la formación académica y los ingresos. Las personas con títulos avanzados, como especialización, maestría y doctorado, logran los ingresos más altos, superando los 1.4 millones de colones en promedio para los niveles de maestría y doctorado. En particular, quienes completaron una especialización tienen el promedio de ingresos más elevado, cercano a los 1.95 millones de colones. Por el contrario, aquellos sin título obtienen ingresos considerablemente menores, con un  ingreso promedio de aproximadamente 444 mil colones. Esta diferencia destaca la importancia de la educación como una vía para acceder a mejores oportunidades económicas, aunque también muestra las dificultades que enfrentan quienes no alcanzan niveles educativos superiores, limitando su acceso a empleos bien remunerados y su movilidad económica.
 
 ![Distribución del nivel de instrucción por quintil de ingreso per cápita](graphs/Grafico8.png){#fig-Grafico8 width=60%}
 
@@ -203,5 +203,9 @@ Asimismo, se extiende un sincero agradecimiento a los compañeros del curso CA02
 ## Aplicación shiny
 
 <https://3iikau-jose0carlos0quintero0cede0o.shinyapps.io/appHPCD/>
+
+## Repositorio en GitHub
+
+<https://github.com/Diego-Vega-Viquez/Bitacoras-Grupo-1-CA-0204-II-2024->
 
 # Bibliografía
