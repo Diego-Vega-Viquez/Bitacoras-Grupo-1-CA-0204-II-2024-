@@ -40,7 +40,8 @@ grafico1 <- as.data.frame(table(ENAHO$np, ENAHO$A15A)) %>%
     y = NULL,
     fill = "Nivel de pobreza",
   ) +
-  scale_fill_viridis_d(option = "F") +  # Paleta de colores viridis
+  scale_y_continuous(labels = scales::percent_format()) +  # Escala de porcentaje en el eje Y
+  scale_fill_viridis_d(option = "F", begin = 0, end = 0.85) +  # Paleta de colores viridis
   coord_flip() +
   theme_minimal(base_size = 14) +
   theme(
@@ -82,7 +83,8 @@ grafico6 <- as.data.frame(table(ENAHO$np, fct_collapse(ENAHO$NivInst,
     y = NULL,
     fill = "Nivel de pobreza",
   ) +
-  scale_fill_viridis_d(option = "F") +  # Paleta de colores viridis
+  scale_y_continuous(labels = scales::percent_format()) +  # Escala de porcentaje en el eje Y
+  scale_fill_viridis_d(option = "F", begin = 0, end = 0.85) +  # Paleta de colores viridis
   coord_flip() +
   theme_minimal(base_size = 14) +
   theme(
@@ -119,7 +121,8 @@ grafico12 <- as.data.frame(table(ENAHO$np, ENAHO$A16B)) %>%
   labs(x = NULL,
        y = NULL,
        fill = "Nivel de pobreza") +
-  scale_fill_viridis_d(option = "F") +  # Paleta de colores viridis
+  scale_y_continuous(labels = scales::percent_format()) +  # Escala de porcentaje en el eje Y
+  scale_fill_viridis_d(option = "F", begin = 0, end = 0.85) +  # Paleta de colores viridis
   coord_flip() +
   theme_minimal(base_size = 14) +  # Estilo minimalista
   theme(
@@ -179,7 +182,7 @@ grafico7 <- ENAHO %>%
   labs(
     x = "Ingreso Personal Neto (log10)",
     y = NULL
-    ) +
+  ) +
   # Ajuste de escala con formato de coma en el eje x
   scale_x_log10(labels = scales::label_number(scale = 0.000001, suffix = "M", big.mark = ","), limits = c(10000, NA)) + 
   # Mejora de la paleta de colores con gradientes suaves
@@ -302,19 +305,38 @@ grafico8 <- as.data.frame(prop.table(table(fct_collapse(ENAHO$NivInst,
                                                         "Sin o poco nivel de\ninstrucción" = c("Sin nivel de instrucción", "Primaria incompleta"), 
                                                         "Educación superior de\npregrado y grado" = c("Educación superior de pregrado y grado"),
                                                         "Educación superior de\nposgrado" = c("Educación superior de posgrado")
-                                                        ),
-                                           ENAHO$Q_IPCN), margin = 2)) %>% 
+),
+ENAHO$Q_IPCN), margin = 2)) %>% 
   filter(Var1 != "Ignorado") %>% 
   mutate(Var2 = str_extract(Var2, "\\d")) %>% 
   mutate(Var2 = parse_number(Var2)) %>% 
   ggplot(aes(x = Var2, y = Freq, fill = fct_relevel(Var1, c("Educación superior de\nposgrado", "Educación superior de\npregrado y grado", "Secundaria completa", "Primaria completa", "Sin o poco nivel de\ninstrucción"
-)))) +
+  )))) +
   geom_area(alpha = 0.7) +  # Agregar color de borde y ajustar opacidad
   labs(
     x = NULL,
     y = NULL, 
     fill = "Nivel\nde instrucción"
   ) +
+  annotate("text",
+           x = 4.8,
+           y = 0.08,
+           label = "13,3%",
+           size = 12,
+           color = "white")+
+  annotate("text",
+           x = 4.8,
+           y = 0.3,
+           label = "19,9%",
+           size = 12,
+           color = "black")+
+  annotate("text",
+           x = 4.8,
+           y = 0.65,
+           label = "54,9%",
+           size = 12,
+           color = "black")+
+  scale_y_continuous(labels = scales::percent_format()) +  # Escala de porcentaje en el eje Y
   scale_fill_viridis_d(option = "H") +  # Paleta de colores viridis
   theme_minimal(base_size = 14) +  # Tema minimalista
   theme(
@@ -338,6 +360,14 @@ ggsave("EntregaFinal/graphs/Grafico8.png",
        dpi = 900)  # Calidad: 900 pixeles por pulgada
 
 #####################################################
+tabla_porcentajes_titulos <- as.data.frame(prop.table(table(datos_filtrados$A16B, datos_filtrados$Q_IPCN), margin = 2)) %>% 
+  filter(Var1 != "Ignorado", Var1 != "Técnico medio, perito o diplomado no universitario", Var1 != "Profesorado o diplomado universitario") %>% 
+  mutate(Var2 = str_extract(Var2, "\\d")) %>% 
+  mutate(Var2 = parse_number(Var2)) %>% 
+  filter(Var2 == 5) %>% 
+  mutate(Freq_acumulada = cumsum(Freq)) # Agregar columna de frecuencia acumulada
+
+
 datos_filtrados <- ENAHO %>%
   filter(A16B != "Ignorado",
          A16B != "Técnico medio, perito o diplomado no universitario",
@@ -347,14 +377,38 @@ grafico14 <- as.data.frame(prop.table(table(datos_filtrados$A16B, datos_filtrado
   filter(Var1 != "Ignorado", Var1 != "Técnico medio, perito o diplomado no universitario", Var1 != "Profesorado o diplomado universitario") %>% 
   mutate(Var2 = str_extract(Var2, "\\d")) %>% 
   mutate(Var2 = parse_number(Var2)) %>% 
-  ggplot(aes(x = Var2, y = Freq, fill = fct_reorder(Var1, Freq, median))) +
+  ggplot(aes(x = Var2, y = Freq, fill = fct_relevel(Var1, c("Doctorado", "Maestría","Especialización", "Licenciatura", "Bachillerato", "No tiene título")))) +
   geom_area(alpha = 0.8) +  # Transparencia para el área
   labs(
-       x = NULL,
-       y = NULL,
-       fill = "Título"
+    x = NULL,
+    y = NULL,
+    fill = "Título"
   ) +
-  # Mejora de la paleta de colores con gradientes suaves
+  annotate("text",
+           x = 4.75,
+           y = 0.08,
+           label = "13,4%",
+           size = 15,
+           color = "white")+
+  annotate("text",
+           x = 4.75,
+           y = 0.3,
+           label = "24,2%",
+           size = 15,
+           color = "white")+
+  annotate("text",
+           x = 4.75,
+           y = 0.65,
+           label = "46,1%",
+           size = 15,
+           color = "black")+
+  annotate("text",
+           x = 4.75,
+           y = 0.94,
+           label = "13,7%",
+           size = 15,
+           color = "white")+
+  scale_y_continuous(labels = scales::percent_format()) +  # Escala de porcentaje en el eje Y
   scale_fill_viridis_d(option = "H") +  
   theme_minimal(base_size = 14) +  # Estilo minimalista
   theme(
@@ -370,6 +424,6 @@ grafico14 <- as.data.frame(prop.table(table(datos_filtrados$A16B, datos_filtrado
 ggsave("EntregaFinal/graphs/Grafico14.png", 
        plot = last_plot(), 
        device = "jpg", 
-       width = 14, # Tamaño: 11.5 pulgadas de ancho
-       height = 6.5, # Tamaño: 6 pulgadas de alto
+       width = 18, # Tamaño: 11.5 pulgadas de ancho
+       height = 10, # Tamaño: 6 pulgadas de alto
        dpi = 900)  # Calidad: 900 pixeles por pulgada

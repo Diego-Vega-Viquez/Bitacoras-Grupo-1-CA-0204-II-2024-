@@ -1,10 +1,10 @@
 ---
-title: "Relación entre la educación y la condición socioeconómica y la distribución del ingreso en Costa Rica, 2023"
+title: "Relación entre la educación, la condición socioeconómica y la distribución del ingreso en Costa Rica, 2023"
 author: 
   - name: "José Carlos Quintero Cedeño"
-    email: "jose.quintero@example.com"
+    email: "josecarlosquince@gmail.com"
   - name: "Diego Alberto Vega Víquez"
-    email: "diego.vega@example.com"
+    email: "diegovv13@gmail.com"
 format: 
   pdf: 
     documentclass: article  
@@ -14,7 +14,8 @@ format:
     number-sections: false               
     colorlinks: true                    
     linkcolor: blue   
-    keep-tex: true  
+  docx: 
+    reference-doc: custom-reference-doc.docx 
 bibliography: references.bib 
 csl: apa.csl  
 lang: es      
@@ -102,7 +103,7 @@ info_quintiles %>% kable(caption = "Definición de los quintiles") %>%
 Para el presente estudio, se emplearon diversos métodos orientados al análisis y síntesis de datos, con un enfoque particular en técnicas de análisis exploratorio. Estas herramientas permitieron obtener una visión inicial de la estructura, distribución y relaciones de las variables, facilitando así la identificación de patrones y tendencias clave en el conjunto de datos. A lo largo de las tablas y gráficos presentados, se aplicaron métricas descriptivas como medidas de tendencia central, dispersión y posición, complementadas con visualizaciones que aportan una comprensión más detallada de los datos. Este enfoque no solo proporciona un resumen integral de la información, sino que también establece las bases para un análisis más profundo en fases posteriores del estudio. En la presente sección se emplearán las fórmulas y definiciones planteadas por @Dekking2005 en en el libro *A Modern Introduction to Probability and Statistics*.
 
 
-### Definición 1 (Media)
+### Definición 3.1 (Media)
 
 La *esperanza* de una variable aleatoria discreta $X$ que toma los valores $a_1, a_2, \ldots$ y con función de masa de probabilidad $p$ es el número 
 $$\mathbb{E} [X] = \sum_i a_i P(X = a_i) = \sum_i a_i p(a_i).$$
@@ -112,7 +113,7 @@ También llamamos a $\mathbb{E}[X]$ el *valor esperado* o *media* de $X$.
 
 Esta medida de tendencia central es la más común y estandarizada. Aunque existen diferentes tipos de medias, para la presente investigación se empleará la definición presentada anteriormente.
 
-### Definición 2 (Varianza y Desviación Estándar)
+### Definición 3.2 ( Varianza y Desviación Estándar)
 
 La *varianza* $\operatorname{Var}(X)$ de una variable aleatoria $X$ es el número
 $$ \operatorname{Var}(X) = \mathbb{E} \left[(X - \mathbb{E} [X])^2 \right] $$
@@ -121,7 +122,7 @@ Nótese que la varianza de una variable aleatoria siempre es positiva (o 0). Ade
 
 La desviación estándar es una de las principales medidas de dispersión, que indica, en promedio, cuánto se alejan los datos de la media. Esta medida se ha empleado en diversos contextos a lo largo del estudio para analizar la variabilidad de los datos.
 
-### Definición 3 (Quintiles)
+### Definición 3.3 (Quintiles)
 
 Sea $X$ una variable aleatoria continua y sea $p$ un número entre 0 y 1. El $p$-ésimo *cuantil* o percentil $100p$ de la distribución de $X$ es el número más pequeño $q_p$ tal que
 $$
@@ -169,7 +170,7 @@ En comparación, los centros públicos tienen una media de ingresos notablemente
 
 ![Distribución del ingreso total neto por persona según título obtenido](graphs/Grafico13.png){#fig-Grafico13 width=80%}
 
-Al analizar los ingresos según la titulación obtenida en la @fig-Grafico13, se evidencia una correlación positiva entre la formación académica y los ingresos. Las personas con títulos avanzados, como especialización, maestría y doctorado, logran los ingresos más altos, superando los 1.4 millones de colones en promedio para los niveles de maestría y doctorado. En particular, quienes completaron una especialización tienen el promedio de ingresos más elevado, cercano a los 1.95 millones. Por el contrario, aquellos sin título o con formación técnica media obtienen ingresos considerablemente menores, con promedios de aproximadamente 444 mil y 527 mil colones, respectivamente. Esta diferencia destaca la importancia de la educación como una vía para acceder a mejores oportunidades económicas, aunque también muestra las dificultades que enfrentan quienes no alcanzan niveles educativos superiores, limitando su acceso a empleos bien remunerados y su movilidad económica.
+Al analizar los ingresos según la titulación obtenida en la @fig-Grafico13, se evidencia una correlación positiva entre la formación académica y los ingresos. Las personas con títulos avanzados, como especialización, maestría y doctorado, logran los ingresos más altos, superando los 1.4 millones de colones en promedio para los niveles de maestría y doctorado. En particular, quienes completaron una especialización tienen el promedio de ingresos más elevado, cercano a los 1.95 millones de colones. Por el contrario, aquellos sin título o con formación técnica media obtienen ingresos considerablemente menores, con promedios de aproximadamente 444 mil y 527 mil colones, respectivamente. Esta diferencia destaca la importancia de la educación como una vía para acceder a mejores oportunidades económicas, aunque también muestra las dificultades que enfrentan quienes no alcanzan niveles educativos superiores, limitando su acceso a empleos bien remunerados y su movilidad económica.
 
 ![Distribución del nivel de instrucción por quintil de ingreso per cápita](graphs/Grafico8.png){#fig-Grafico8 width=60%}
 
@@ -177,13 +178,13 @@ La @fig-Grafico8 revela que los niveles educativos más bajos, como sin instrucc
 
 ![Distribución de títulos obtenidos por quintil de ingreso per cápita](graphs/Grafico14.png){#fig-Grafico14 width=60%}
 
-Por otro lado, la @fig-Grafico14 resalta que la educación superior facilita la presencia en los quintiles de ingresos más altos. Por ejemplo, el 42.83% de quienes poseen una licenciatura se encuentran en el quinto quintil, y más del 12% de quienes tienen un posgrado también están en este grupo. Esto subraya la importancia de la educación como motor de movilidad social, dado que se ha demostrado que acceder a niveles educativos superiores es esencial para mejorar las oportunidades económicas.
+Por otro lado, la @fig-Grafico14 resalta que la educación superior facilita la presencia en los quintiles de ingresos más altos. Por ejemplo, el 46,07% de quienes poseen una licenciatura se encuentran en el quinto quintil, y más del 15% de quienes tienen un posgrado también están en este grupo. Esto subraya la importancia de la educación como motor de movilidad social, dado que se ha demostrado que acceder a niveles educativos superiores es esencial para mejorar las oportunidades económicas.
 
 # Conclusiones
 
 Este trabajo de investigación se propuso explorar la relación entre el nivel educativo y la condición socioeconómica de las personas en Costa Rica, así como su influencia en la distribución de los ingresos. La pregunta central fue: *¿Qué relación existe entre la condición socioeconómica de las personas y su nivel educativo, y cómo pueden estas variables explicar la distribución de los ingresos en Costa Rica?* Esta pregunta se formuló con el objetivo de entender cómo factores como los años de escolaridad, el nivel de instrucción, el tipo de institución educativa, la titulación universitaria, la universidad pública asistida y el dominio de habilidades adicionales (como un segundo idioma) influyen en la pobreza y el ingreso. Se esperaba que la educación emergiera como un factor crucial para determinar las oportunidades económicas de los individuos y para reducir la pobreza. En este sentido, los resultados coincidieron con esta hipótesis: el nivel educativo se mostró como un predictor clave tanto de la condición socioeconómica como de los ingresos. Se encontró que las personas con niveles educativos más altos tienden a concentrarse en los quintiles de mayores ingresos, mientras que aquellas con niveles más bajos suelen ubicarse en los quintiles más bajos, con una mayor incidencia de pobreza.
 
-El estudio enfrenta varios desafíos metodológicos que pueden afectar la precisión de los resultados. La falta de distinción en la calidad y contexto de las variables educativas, así como factores como la duración de estudios y el contexto socioeconómico inicial, puede distorsionar la relación observada entre educación e ingresos. Además, la presencia de valores atípicos y la variabilidad dentro de los niveles educativos analizados sugieren la influencia de factores adicionales, como la industria laboral y la especialización por sectores productivos, que no se consideraron. Estos elementos limitan la generalización de las conclusiones y subrayan la necesidad de un análisis más detallado en futuros estudios.
+El estudio enfrenta varios desafíos metodológicos que pueden afectar la precisión de los resultados. La falta de distinción en la calidad y contexto de los centros educativos, así como factores como la duración de estudios y el contexto socioeconómico inicial, puede distorsionar la relación observada entre educación e ingresos. Además, la presencia de valores atípicos y la variabilidad dentro de los niveles educativos analizados sugieren la influencia de factores adicionales, como la industria laboral y la especialización por sectores productivos, que no se consideraron. Estos elementos limitan la generalización de las conclusiones y subrayan la necesidad de un análisis más detallado en futuros estudios.
 
 Con base en estos hallazgos, se sugiere que futuras investigaciones profundicen en el análisis de variables contextuales, como el tipo de empleo y las industrias predominantes en distintas zonas geográficas, para captar mejor la relación entre educación e ingreso en diferentes sectores económicos. Asimismo, se podría añadir una dimensión temporal en el análisis para ofrecer una perspectiva valiosa, permitiendo observar cómo cambian estas variables a lo largo del tiempo y en distintos contextos económicos. Otra recomendación es explorar el impacto de factores adicionales no abordados en esta investigación, tales como la calidad específica de los programas educativos, la inversión en tecnología educativa y las políticas de desarrollo local.
 
@@ -196,5 +197,11 @@ Los autores desean expresar su más profundo agradecimiento al Profesor Ph.D. Ma
 Asimismo, se extiende un sincero agradecimiento a los compañeros del curso CA0204: Herramientas para Ciencia de Datos I, cuyo apoyo y colaboración fueron de gran utilidad a lo largo de todo el semestre en el que se desarrolló este proyecto.
 
 {{< pagebreak >}}
+
+# Anexos
+
+## Aplicación shiny
+
+<https://3iikau-jose0carlos0quintero0cede0o.shinyapps.io/appHPCD/>
 
 # Bibliografía
